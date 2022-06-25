@@ -1,0 +1,17 @@
+global using Ardalis.Specification;
+global using FluentValidation;
+global using MyHero.Application.Common.Events;
+global using MyHero.Application.Common.Exceptions;
+global using MyHero.Application.Common.FileStorage;
+global using MyHero.Application.Common.Interfaces;
+global using MyHero.Application.Common.Models;
+global using MyHero.Application.Common.Persistence;
+global using MyHero.Application.Common.Specification;
+global using MyHero.Application.Common.Validation;
+global using MyHero.Domain.Catalog;
+global using MyHero.Domain.Common;
+global using MyHero.Domain.Common.Contracts;
+global using MyHero.Shared.Notifications;
+global using MediatR;
+global using Microsoft.Extensions.Localization;
+global using Microsoft.Extensions.Logging;
