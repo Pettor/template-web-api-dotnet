@@ -1,17 +1,17 @@
-using MyHero.Application.Common.Persistence;
-using MyHero.Domain.Common.Contracts;
-using MyHero.Infrastructure.Common;
-using MyHero.Infrastructure.Persistence.ConnectionString;
-using MyHero.Infrastructure.Persistence.Context;
-using MyHero.Infrastructure.Persistence.Initialization;
-using MyHero.Infrastructure.Persistence.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Serilog;
+using WebApiTemplate.Application.Common.Persistence;
+using WebApiTemplate.Domain.Common.Contracts;
+using WebApiTemplate.Infrastructure.Common;
+using WebApiTemplate.Infrastructure.Persistence.ConnectionString;
+using WebApiTemplate.Infrastructure.Persistence.Context;
+using WebApiTemplate.Infrastructure.Persistence.Initialization;
+using WebApiTemplate.Infrastructure.Persistence.Repository;
 
-namespace MyHero.Infrastructure.Persistence;
+namespace WebApiTemplate.Infrastructure.Persistence;
 
 internal static class Startup
 {

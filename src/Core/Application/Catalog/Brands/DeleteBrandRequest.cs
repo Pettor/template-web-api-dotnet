@@ -1,6 +1,9 @@
-﻿using MyHero.Application.Catalog.Products;
+﻿using WebApiTemplate.Application.Catalog.Products;
+using WebApiTemplate.Application.Common.Exceptions;
+using WebApiTemplate.Application.Common.Persistence;
+using WebApiTemplate.Domain.Catalog;
 
-namespace MyHero.Application.Catalog.Brands;
+namespace WebApiTemplate.Application.Catalog.Brands;
 
 public class DeleteBrandRequest : IRequest<Guid>
 {

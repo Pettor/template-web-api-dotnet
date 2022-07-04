@@ -1,4 +1,4 @@
-namespace MyHero.Infrastructure.Auth;
+namespace WebApiTemplate.Infrastructure.Auth;
 
 public class SecuritySettings
 {

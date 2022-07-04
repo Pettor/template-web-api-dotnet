@@ -1,7 +1,8 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
+using WebApiTemplate.Application.Common.Models;
 
-namespace MyHero.Application.Common.Specification;
+namespace WebApiTemplate.Application.Common.Specification;
 
 // See https://github.com/ardalis/Specification/issues/53
 public static class SpecificationBuilderExtensions

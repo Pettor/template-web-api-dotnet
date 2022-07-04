@@ -1,10 +1,10 @@
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
-using MyHero.Application.Common.FileStorage;
-using MyHero.Domain.Common;
-using MyHero.Infrastructure.Common.Extensions;
+using WebApiTemplate.Application.Common.FileStorage;
+using WebApiTemplate.Domain.Common;
+using WebApiTemplate.Infrastructure.Common.Extensions;
 
-namespace MyHero.Infrastructure.FileStorage;
+namespace WebApiTemplate.Infrastructure.FileStorage;
 
 public class LocalFileStorageService : IFileStorageService
 {

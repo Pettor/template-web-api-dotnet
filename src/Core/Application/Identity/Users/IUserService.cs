@@ -1,7 +1,9 @@
 using System.Security.Claims;
-using MyHero.Application.Identity.Users.Password;
+using WebApiTemplate.Application.Common.Interfaces;
+using WebApiTemplate.Application.Common.Models;
+using WebApiTemplate.Application.Identity.Users.Password;
 
-namespace MyHero.Application.Identity.Users;
+namespace WebApiTemplate.Application.Identity.Users;
 
 public interface IUserService : ITransientService
 {

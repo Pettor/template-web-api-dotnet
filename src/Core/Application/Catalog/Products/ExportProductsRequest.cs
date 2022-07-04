@@ -1,6 +1,10 @@
-﻿using MyHero.Application.Common.Exporters;
+﻿using WebApiTemplate.Application.Common.Exporters;
+using WebApiTemplate.Application.Common.Models;
+using WebApiTemplate.Application.Common.Persistence;
+using WebApiTemplate.Application.Common.Specification;
+using WebApiTemplate.Domain.Catalog;
 
-namespace MyHero.Application.Catalog.Products;
+namespace WebApiTemplate.Application.Catalog.Products;
 
 public class ExportProductsRequest : BaseFilter, IRequest<Stream>
 {

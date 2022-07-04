@@ -1,4 +1,4 @@
-﻿namespace MyHero.Shared.Events;
+﻿namespace WebApiTemplate.Shared.Events;
 
 public interface IEvent
 {

@@ -1,5 +1,5 @@
 using FluentAssertions;
-using MyHero.Application.Common.Caching;
+using WebApiTemplate.Application.Common.Caching;
 using Xunit;
 
 namespace Infrastructure.Test.Caching;

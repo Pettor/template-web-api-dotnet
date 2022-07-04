@@ -1,6 +1,7 @@
-using MyHero.Application.Identity.Tokens;
+using WebApiTemplate.Application.Identity.Tokens;
+using WebApiTemplate.Infrastructure.OpenApi;
 
-namespace MyHero.Host.Controllers.Identity;
+namespace WebApiTemplate.Host.Controllers.Identity;
 
 public sealed class TokensController : VersionNeutralApiController
 {

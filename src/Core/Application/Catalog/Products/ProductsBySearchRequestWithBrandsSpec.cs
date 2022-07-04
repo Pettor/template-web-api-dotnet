@@ -1,4 +1,8 @@
-﻿namespace MyHero.Application.Catalog.Products;
+﻿using WebApiTemplate.Application.Common.Models;
+using WebApiTemplate.Application.Common.Specification;
+using WebApiTemplate.Domain.Catalog;
+
+namespace WebApiTemplate.Application.Catalog.Products;
 
 public class ProductsBySearchRequestWithBrandsSpec : EntitiesByPaginationFilterSpec<Product, ProductDto>
 {

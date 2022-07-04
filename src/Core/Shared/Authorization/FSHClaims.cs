@@ -1,4 +1,4 @@
-﻿namespace MyHero.Shared.Authorization;
+﻿namespace WebApiTemplate.Shared.Authorization;
 
 public static class FSHClaims
 {

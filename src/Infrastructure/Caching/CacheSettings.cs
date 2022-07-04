@@ -1,4 +1,4 @@
-namespace MyHero.Infrastructure.Caching;
+namespace WebApiTemplate.Infrastructure.Caching;
 
 public class CacheSettings
 {

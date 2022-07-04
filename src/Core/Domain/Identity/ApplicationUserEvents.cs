@@ -1,4 +1,6 @@
-﻿namespace MyHero.Domain.Identity;
+﻿using WebApiTemplate.Domain.Common.Contracts;
+
+namespace WebApiTemplate.Domain.Identity;
 
 public abstract class ApplicationUserEvent : DomainEvent
 {

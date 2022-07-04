@@ -1,6 +1,8 @@
-using MyHero.Application.Multitenancy;
+using WebApiTemplate.Application.Multitenancy;
+using WebApiTemplate.Infrastructure.Auth.Permissions;
+using WebApiTemplate.Shared.Authorization;
 
-namespace MyHero.Host.Controllers.Multitenancy;
+namespace WebApiTemplate.Host.Controllers.Multitenancy;
 
 public class TenantsController : VersionNeutralApiController
 {

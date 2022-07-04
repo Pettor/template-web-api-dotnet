@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <RootNamespace>MyHero.Domain</RootNamespace>
-        <AssemblyName>MyHero.Domain</AssemblyName>
+        <RootNamespace>WebApiTemplate.Domain</RootNamespace>
+        <AssemblyName>WebApiTemplate.Domain</AssemblyName>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="NewId" Version="4.0.0-develop.44" />

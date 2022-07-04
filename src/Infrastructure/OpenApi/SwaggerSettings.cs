@@ -1,4 +1,4 @@
-namespace MyHero.Infrastructure.OpenApi;
+namespace WebApiTemplate.Infrastructure.OpenApi;
 
 public class SwaggerSettings
 {

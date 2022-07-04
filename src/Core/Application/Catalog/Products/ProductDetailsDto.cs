@@ -1,6 +1,7 @@
-using MyHero.Application.Catalog.Brands;
+using WebApiTemplate.Application.Catalog.Brands;
+using WebApiTemplate.Application.Common.Interfaces;
 
-namespace MyHero.Application.Catalog.Products;
+namespace WebApiTemplate.Application.Catalog.Products;
 
 public class ProductDetailsDto : IDto
 {

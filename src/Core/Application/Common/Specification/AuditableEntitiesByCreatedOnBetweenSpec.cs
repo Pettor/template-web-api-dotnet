@@ -1,4 +1,6 @@
-﻿namespace MyHero.Application.Common.Specification;
+﻿using WebApiTemplate.Domain.Common.Contracts;
+
+namespace WebApiTemplate.Application.Common.Specification;
 
 public class AuditableEntitiesByCreatedOnBetweenSpec<T> : Specification<T>
     where T : AuditableEntity

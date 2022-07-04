@@ -1,4 +1,8 @@
-namespace MyHero.Application.Catalog.Products;
+using WebApiTemplate.Application.Common.Models;
+using WebApiTemplate.Application.Common.Persistence;
+using WebApiTemplate.Domain.Catalog;
+
+namespace WebApiTemplate.Application.Catalog.Products;
 
 public class SearchProductsRequest : PaginationFilter, IRequest<PaginationResponse<ProductDto>>
 {

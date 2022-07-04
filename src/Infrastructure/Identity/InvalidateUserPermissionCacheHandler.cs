@@ -1,9 +1,9 @@
-﻿using MyHero.Application.Common.Events;
-using MyHero.Application.Identity.Users;
-using MyHero.Domain.Identity;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using WebApiTemplate.Application.Common.Events;
+using WebApiTemplate.Application.Identity.Users;
+using WebApiTemplate.Domain.Identity;
 
-namespace MyHero.Infrastructure.Identity;
+namespace WebApiTemplate.Infrastructure.Identity;
 
 internal class InvalidateUserPermissionCacheHandler :
     IEventNotificationHandler<ApplicationUserUpdatedEvent>,

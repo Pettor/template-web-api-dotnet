@@ -1,7 +1,7 @@
-﻿using MyHero.Application.Common.Persistence;
-using MyHero.Infrastructure.Persistence.ConnectionString;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebApiTemplate.Application.Common.Persistence;
+using WebApiTemplate.Infrastructure.Persistence.ConnectionString;
 using Xunit.Microsoft.DependencyInjection.Abstracts;
 
 namespace Infrastructure.Test.Multitenancy.Fixtures;

@@ -1,13 +1,13 @@
-﻿using System.Security.Claims;
-using Finbuckle.MultiTenant;
-using MyHero.Infrastructure.Common;
-using MyHero.Shared.Multitenancy;
+﻿using Finbuckle.MultiTenant;
 using Hangfire.Client;
 using Hangfire.Logging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using WebApiTemplate.Infrastructure.Common;
+using WebApiTemplate.Shared.Authorization;
+using WebApiTemplate.Shared.Multitenancy;
 
-namespace MyHero.Infrastructure.BackgroundJobs;
+namespace WebApiTemplate.Infrastructure.BackgroundJobs;
 
 public class FSHJobFilter : IClientFilter
 {

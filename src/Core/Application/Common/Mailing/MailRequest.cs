@@ -1,4 +1,4 @@
-namespace MyHero.Application.Common.Mailing;
+namespace WebApiTemplate.Application.Common.Mailing;
 
 public class MailRequest
 {

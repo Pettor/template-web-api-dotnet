@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace MyHero.Application.Identity;
+namespace WebApiTemplate.Application.Common.Exceptions;
 
 public class InternalServerException : CustomException
 {

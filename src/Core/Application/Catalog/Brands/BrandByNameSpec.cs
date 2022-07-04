@@ -1,4 +1,6 @@
-﻿namespace MyHero.Application.Catalog.Brands;
+﻿using WebApiTemplate.Domain.Catalog;
+
+namespace WebApiTemplate.Application.Catalog.Brands;
 
 public class BrandByNameSpec : Specification<Brand>, ISingleResultSpecification
 {

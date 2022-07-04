@@ -1,4 +1,6 @@
-﻿namespace MyHero.Application.Catalog.Products;
+﻿using WebApiTemplate.Domain.Catalog;
+
+namespace WebApiTemplate.Application.Catalog.Products;
 
 public class ProductByIdWithBrandSpec : Specification<Product, ProductDetailsDto>, ISingleResultSpecification
 {

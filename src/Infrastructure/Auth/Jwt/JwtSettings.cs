@@ -1,4 +1,4 @@
-namespace MyHero.Infrastructure.Auth.Jwt;
+namespace WebApiTemplate.Infrastructure.Auth.Jwt;
 
 public class JwtSettings
 {

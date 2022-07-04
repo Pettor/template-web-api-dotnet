@@ -1,11 +1,11 @@
 ﻿using Finbuckle.MultiTenant;
-using MyHero.Application.Common.Exceptions;
-using MyHero.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
+using WebApiTemplate.Application.Common.Exceptions;
+using WebApiTemplate.Application.Common.Interfaces;
 
-namespace MyHero.Infrastructure.Notifications;
+namespace WebApiTemplate.Infrastructure.Notifications;
 
 [Authorize]
 public class NotificationHub : Hub, ITransientService

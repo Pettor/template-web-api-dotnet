@@ -1,4 +1,4 @@
-namespace MyHero.Infrastructure.SecurityHeaders;
+namespace WebApiTemplate.Infrastructure.SecurityHeaders;
 
 public class SecurityHeaderSettings
 {

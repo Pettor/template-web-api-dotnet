@@ -1,11 +1,11 @@
-﻿using MyHero.Application.Common.Exceptions;
-using MyHero.Application.Identity.Users;
-using MyHero.Domain.Identity;
-using MyHero.Shared.Authorization;
-using MyHero.Shared.Multitenancy;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using WebApiTemplate.Application.Common.Exceptions;
+using WebApiTemplate.Application.Identity.Users;
+using WebApiTemplate.Domain.Identity;
+using WebApiTemplate.Shared.Authorization;
+using WebApiTemplate.Shared.Multitenancy;
 
-namespace MyHero.Infrastructure.Identity;
+namespace WebApiTemplate.Infrastructure.Identity;
 
 internal partial class UserService
 {

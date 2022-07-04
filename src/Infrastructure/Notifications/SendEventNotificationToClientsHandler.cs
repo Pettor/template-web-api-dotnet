@@ -1,9 +1,9 @@
-﻿using MyHero.Application.Common.Events;
-using MyHero.Application.Common.Interfaces;
-using MyHero.Shared.Notifications;
-using MediatR;
+﻿using MediatR;
+using WebApiTemplate.Application.Common.Events;
+using WebApiTemplate.Application.Common.Interfaces;
+using WebApiTemplate.Shared.Notifications;
 
-namespace MyHero.Infrastructure.Notifications;
+namespace WebApiTemplate.Infrastructure.Notifications;
 
 // Sends all events that are also an INotificationMessage to all clients
 // Note: for this to work, the Event/NotificationMessage class needs to be in the

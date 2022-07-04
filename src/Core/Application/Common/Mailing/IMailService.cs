@@ -1,4 +1,6 @@
-namespace MyHero.Application.Common.Mailing;
+using WebApiTemplate.Application.Common.Interfaces;
+
+namespace WebApiTemplate.Application.Common.Mailing;
 
 public interface IMailService : ITransientService
 {

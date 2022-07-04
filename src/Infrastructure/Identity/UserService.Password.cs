@@ -1,10 +1,9 @@
-﻿using MyHero.Application.Common.Exceptions;
-using MyHero.Application.Common.Mailing;
-using MyHero.Application.Identity;
-using MyHero.Application.Identity.Users.Password;
-using Microsoft.AspNetCore.WebUtilities;
+﻿using Microsoft.AspNetCore.WebUtilities;
+using WebApiTemplate.Application.Common.Exceptions;
+using WebApiTemplate.Application.Common.Mailing;
+using WebApiTemplate.Application.Identity.Users.Password;
 
-namespace MyHero.Infrastructure.Identity;
+namespace WebApiTemplate.Infrastructure.Identity;
 
 internal partial class UserService
 {

@@ -1,12 +1,12 @@
-﻿using MyHero.Application.Common.Persistence;
-using MyHero.Infrastructure.Common;
+﻿using System.Data.SqlClient;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MySqlConnector;
 using Npgsql;
-using System.Data.SqlClient;
+using WebApiTemplate.Application.Common.Persistence;
+using WebApiTemplate.Infrastructure.Common;
 
-namespace MyHero.Infrastructure.Persistence.ConnectionString;
+namespace WebApiTemplate.Infrastructure.Persistence.ConnectionString;
 
 internal class ConnectionStringValidator : IConnectionStringValidator
 {

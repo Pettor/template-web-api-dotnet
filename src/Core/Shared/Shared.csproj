@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <RootNamespace>MyHero.Shared</RootNamespace>
-        <AssemblyName>MyHero.Shared</AssemblyName>
+        <RootNamespace>WebApiTemplate.Shared</RootNamespace>
+        <AssemblyName>WebApiTemplate.Shared</AssemblyName>
     </PropertyGroup>
 </Project>

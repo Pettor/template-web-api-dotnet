@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Data;
 using ClosedXML.Excel;
-using MyHero.Application.Common.Exporters;
+using WebApiTemplate.Application.Common.Exporters;
 
-namespace MyHero.Infrastructure.Common.Export;
+namespace WebApiTemplate.Infrastructure.Common.Export;
 
 public class ExcelWriter : IExcelWriter
 {

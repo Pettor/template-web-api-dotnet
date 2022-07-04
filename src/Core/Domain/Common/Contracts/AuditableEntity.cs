@@ -1,4 +1,4 @@
-namespace MyHero.Domain.Common.Contracts;
+namespace WebApiTemplate.Domain.Common.Contracts;
 
 public abstract class AuditableEntity : AuditableEntity<DefaultIdType>
 {

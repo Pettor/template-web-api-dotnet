@@ -1,6 +1,6 @@
-﻿using MyHero.Infrastructure.Multitenancy;
+﻿using WebApiTemplate.Infrastructure.Multitenancy;
 
-namespace MyHero.Infrastructure.Persistence.Initialization;
+namespace WebApiTemplate.Infrastructure.Persistence.Initialization;
 
 internal interface IDatabaseInitializer
 {

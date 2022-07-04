@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <RootNamespace>MyHero.Application</RootNamespace>
-        <AssemblyName>MyHero.Application</AssemblyName>
+        <RootNamespace>WebApiTemplate.Application</RootNamespace>
+        <AssemblyName>WebApiTemplate.Application</AssemblyName>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Ardalis.Specification" Version="6.0.1" />

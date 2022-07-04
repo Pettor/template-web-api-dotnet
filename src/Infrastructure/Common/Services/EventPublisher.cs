@@ -1,9 +1,9 @@
-using MyHero.Application.Common.Events;
-using MyHero.Shared.Events;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using WebApiTemplate.Application.Common.Events;
+using WebApiTemplate.Shared.Events;
 
-namespace MyHero.Infrastructure.Common.Services;
+namespace WebApiTemplate.Infrastructure.Common.Services;
 
 public class EventPublisher : IEventPublisher
 {

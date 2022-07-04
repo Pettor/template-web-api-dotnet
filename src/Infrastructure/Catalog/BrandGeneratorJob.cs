@@ -1,17 +1,17 @@
 ﻿using Ardalis.Specification;
-using MyHero.Application.Catalog.Brands;
-using MyHero.Application.Common.Interfaces;
-using MyHero.Application.Common.Persistence;
-using MyHero.Domain.Catalog;
-using MyHero.Shared.Notifications;
 using Hangfire;
 using Hangfire.Console.Extensions;
 using Hangfire.Console.Progress;
 using Hangfire.Server;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using WebApiTemplate.Application.Catalog.Brands;
+using WebApiTemplate.Application.Common.Interfaces;
+using WebApiTemplate.Application.Common.Persistence;
+using WebApiTemplate.Domain.Catalog;
+using WebApiTemplate.Shared.Notifications;
 
-namespace MyHero.Infrastructure.Catalog;
+namespace WebApiTemplate.Infrastructure.Catalog;
 
 public class BrandGeneratorJob : IBrandGeneratorJob
 {

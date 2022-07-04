@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
-namespace MyHero.Infrastructure.Notifications;
+namespace WebApiTemplate.Infrastructure.Notifications;
 
 internal static class Startup
 {

@@ -1,12 +1,12 @@
 ﻿using Finbuckle.MultiTenant;
-using MyHero.Infrastructure.Multitenancy;
-using MyHero.Shared.Multitenancy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using WebApiTemplate.Infrastructure.Multitenancy;
+using WebApiTemplate.Shared.Multitenancy;
 
-namespace MyHero.Infrastructure.Persistence.Initialization;
+namespace WebApiTemplate.Infrastructure.Persistence.Initialization;
 
 internal class DatabaseInitializer : IDatabaseInitializer
 {

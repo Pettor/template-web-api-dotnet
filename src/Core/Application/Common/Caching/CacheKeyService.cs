@@ -1,4 +1,6 @@
-﻿namespace MyHero.Application.Common.Caching;
+﻿using WebApiTemplate.Application.Common.Interfaces;
+
+namespace WebApiTemplate.Application.Common.Caching;
 
 public interface ICacheKeyService : IScopedService
 {

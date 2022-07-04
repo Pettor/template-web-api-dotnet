@@ -1,16 +1,15 @@
 using System.Data;
 using Finbuckle.MultiTenant;
-using MyHero.Application.Common.Events;
-using MyHero.Application.Common.Interfaces;
-using MyHero.Domain.Common.Contracts;
-using MyHero.Infrastructure.Auditing;
-using MyHero.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Options;
+using WebApiTemplate.Application.Common.Events;
+using WebApiTemplate.Application.Common.Interfaces;
+using WebApiTemplate.Domain.Common.Contracts;
+using WebApiTemplate.Infrastructure.Auditing;
+using WebApiTemplate.Infrastructure.Identity;
 
-namespace MyHero.Infrastructure.Persistence.Context;
+namespace WebApiTemplate.Infrastructure.Persistence.Context;
 
 public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUser, ApplicationRole, string, IdentityUserClaim<string>, IdentityUserRole<string>, IdentityUserLogin<string>, ApplicationRoleClaim, IdentityUserToken<string>>
 {

@@ -1,4 +1,4 @@
-namespace MyHero.Infrastructure.Persistence;
+namespace WebApiTemplate.Infrastructure.Persistence;
 
 public class DatabaseSettings
 {

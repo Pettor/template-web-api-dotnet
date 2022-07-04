@@ -1,18 +1,18 @@
 ﻿using System.Security.Claims;
 using Finbuckle.MultiTenant;
-using MyHero.Application.Common.Exceptions;
-using MyHero.Application.Identity.Users;
-using MyHero.Infrastructure.Multitenancy;
-using MyHero.Shared.Authorization;
-using MyHero.Shared.Multitenancy;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Web;
 using Serilog;
+using WebApiTemplate.Application.Common.Exceptions;
+using WebApiTemplate.Application.Identity.Users;
+using WebApiTemplate.Infrastructure.Multitenancy;
+using WebApiTemplate.Shared.Authorization;
+using WebApiTemplate.Shared.Multitenancy;
 
-namespace MyHero.Infrastructure.Auth.AzureAd;
+namespace WebApiTemplate.Infrastructure.Auth.AzureAd;
 
 internal class AzureAdJwtBearerEvents : JwtBearerEvents
 {

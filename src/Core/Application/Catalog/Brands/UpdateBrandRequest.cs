@@ -1,4 +1,9 @@
-namespace MyHero.Application.Catalog.Brands;
+using WebApiTemplate.Application.Common.Exceptions;
+using WebApiTemplate.Application.Common.Persistence;
+using WebApiTemplate.Application.Common.Validation;
+using WebApiTemplate.Domain.Catalog;
+
+namespace WebApiTemplate.Application.Catalog.Brands;
 
 public class UpdateBrandRequest : IRequest<Guid>
 {

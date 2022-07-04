@@ -1,4 +1,4 @@
-﻿namespace MyHero.Infrastructure.Persistence.Configuration;
+﻿namespace WebApiTemplate.Infrastructure.Persistence.Configuration;
 
 internal static class SchemaNames
 {

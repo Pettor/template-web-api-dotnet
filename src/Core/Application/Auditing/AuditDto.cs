@@ -1,4 +1,4 @@
-namespace MyHero.Application.Auditing;
+namespace WebApiTemplate.Application.Auditing;
 
 public class AuditDto
 {

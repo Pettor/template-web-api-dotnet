@@ -1,7 +1,10 @@
-﻿using MyHero.Application.Identity.Roles;
-using MyHero.Application.Identity.Users;
+﻿using WebApiTemplate.Application.Common.Persistence;
+using WebApiTemplate.Application.Common.Specification;
+using WebApiTemplate.Application.Identity.Roles;
+using WebApiTemplate.Application.Identity.Users;
+using WebApiTemplate.Domain.Catalog;
 
-namespace MyHero.Application.Dashboard;
+namespace WebApiTemplate.Application.Dashboard;
 
 public class GetStatsRequest : IRequest<StatsDto>
 {

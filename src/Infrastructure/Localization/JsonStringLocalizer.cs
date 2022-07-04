@@ -1,10 +1,10 @@
 ﻿using System.Globalization;
-using MyHero.Application.Common.Caching;
 using Microsoft.Extensions.Localization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using WebApiTemplate.Application.Common.Caching;
 
-namespace MyHero.Infrastructure.Localization;
+namespace WebApiTemplate.Infrastructure.Localization;
 
 public class JsonStringLocalizer : IStringLocalizer
 {

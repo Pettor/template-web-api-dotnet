@@ -1,27 +1,26 @@
-using Ardalis.Specification;
 using Ardalis.Specification.EntityFrameworkCore;
 using Finbuckle.MultiTenant;
-using MyHero.Application.Common.Caching;
-using MyHero.Application.Common.Events;
-using MyHero.Application.Common.Exceptions;
-using MyHero.Application.Common.FileStorage;
-using MyHero.Application.Common.Interfaces;
-using MyHero.Application.Common.Mailing;
-using MyHero.Application.Common.Models;
-using MyHero.Application.Common.Specification;
-using MyHero.Application.Identity.Users;
-using MyHero.Domain.Identity;
-using MyHero.Infrastructure.Auth;
-using MyHero.Infrastructure.Mailing;
-using MyHero.Infrastructure.Persistence.Context;
-using MyHero.Shared.Authorization;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
+using WebApiTemplate.Application.Common.Caching;
+using WebApiTemplate.Application.Common.Events;
+using WebApiTemplate.Application.Common.Exceptions;
+using WebApiTemplate.Application.Common.FileStorage;
+using WebApiTemplate.Application.Common.Interfaces;
+using WebApiTemplate.Application.Common.Mailing;
+using WebApiTemplate.Application.Common.Models;
+using WebApiTemplate.Application.Common.Specification;
+using WebApiTemplate.Application.Identity.Users;
+using WebApiTemplate.Domain.Identity;
+using WebApiTemplate.Infrastructure.Auth;
+using WebApiTemplate.Infrastructure.Mailing;
+using WebApiTemplate.Infrastructure.Persistence.Context;
+using WebApiTemplate.Shared.Authorization;
 
-namespace MyHero.Infrastructure.Identity;
+namespace WebApiTemplate.Infrastructure.Identity;
 
 internal partial class UserService : IUserService
 {

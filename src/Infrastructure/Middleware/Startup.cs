@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MyHero.Infrastructure.Middleware;
+namespace WebApiTemplate.Infrastructure.Middleware;
 
 internal static class Startup
 {

@@ -1,6 +1,8 @@
-using MyHero.Domain.Common.Events;
+using WebApiTemplate.Application.Common.Events;
+using WebApiTemplate.Domain.Catalog;
+using WebApiTemplate.Domain.Common.Events;
 
-namespace MyHero.Application.Catalog.Products.EventHandlers;
+namespace WebApiTemplate.Application.Catalog.Products.EventHandlers;
 
 public class ProductUpdatedEventHandler : EventNotificationHandler<EntityUpdatedEvent<Product>>
 {

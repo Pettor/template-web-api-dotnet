@@ -1,7 +1,7 @@
 ﻿using Finbuckle.MultiTenant;
-using MyHero.Shared.Multitenancy;
+using WebApiTemplate.Shared.Multitenancy;
 
-namespace MyHero.Infrastructure.Multitenancy;
+namespace WebApiTemplate.Infrastructure.Multitenancy;
 
 public class FSHTenantInfo : ITenantInfo
 {

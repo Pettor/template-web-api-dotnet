@@ -1,8 +1,8 @@
 using System.Linq.Expressions;
-using MyHero.Application.Common.Interfaces;
 using Hangfire;
+using WebApiTemplate.Application.Common.Interfaces;
 
-namespace MyHero.Infrastructure.BackgroundJobs;
+namespace WebApiTemplate.Infrastructure.BackgroundJobs;
 
 public class HangfireService : IJobService
 {

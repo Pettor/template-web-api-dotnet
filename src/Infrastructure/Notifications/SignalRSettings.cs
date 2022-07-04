@@ -1,4 +1,4 @@
-﻿namespace MyHero.Infrastructure.Notifications;
+﻿namespace WebApiTemplate.Infrastructure.Notifications;
 
 public class SignalRSettings
 {

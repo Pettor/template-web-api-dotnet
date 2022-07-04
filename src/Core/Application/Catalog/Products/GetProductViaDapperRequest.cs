@@ -1,6 +1,9 @@
 ﻿using Mapster;
+using WebApiTemplate.Application.Common.Exceptions;
+using WebApiTemplate.Application.Common.Persistence;
+using WebApiTemplate.Domain.Catalog;
 
-namespace MyHero.Application.Catalog.Products;
+namespace WebApiTemplate.Application.Catalog.Products;
 
 public class GetProductViaDapperRequest : IRequest<ProductDto>
 {

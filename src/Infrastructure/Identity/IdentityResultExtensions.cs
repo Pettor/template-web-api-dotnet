@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 
-namespace MyHero.Infrastructure.Identity;
+namespace WebApiTemplate.Infrastructure.Identity;
 
 internal static class IdentityResultExtensions
 {

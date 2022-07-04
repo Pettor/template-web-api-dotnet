@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace MyHero.Host.Controllers;
+namespace WebApiTemplate.Host.Controllers;
 
 [ApiController]
 public class BaseApiController : ControllerBase

@@ -1,14 +1,14 @@
-using MyHero.Application.Common.Interfaces;
-using MyHero.Infrastructure.Auth.AzureAd;
-using MyHero.Infrastructure.Auth.Jwt;
-using MyHero.Infrastructure.Auth.Permissions;
-using MyHero.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebApiTemplate.Application.Common.Interfaces;
+using WebApiTemplate.Infrastructure.Auth.AzureAd;
+using WebApiTemplate.Infrastructure.Auth.Jwt;
+using WebApiTemplate.Infrastructure.Auth.Permissions;
+using WebApiTemplate.Infrastructure.Identity;
 
-namespace MyHero.Infrastructure.Auth;
+namespace WebApiTemplate.Infrastructure.Auth;
 
 internal static class Startup
 {

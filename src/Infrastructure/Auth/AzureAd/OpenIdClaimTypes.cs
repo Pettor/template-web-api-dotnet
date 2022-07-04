@@ -1,4 +1,4 @@
-﻿namespace MyHero.Infrastructure.Auth.AzureAd;
+﻿namespace WebApiTemplate.Infrastructure.Auth.AzureAd;
 
 internal static class OpenIdConnectClaimTypes
 {

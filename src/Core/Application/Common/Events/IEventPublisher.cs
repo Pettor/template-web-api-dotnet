@@ -1,6 +1,7 @@
-using MyHero.Shared.Events;
+using WebApiTemplate.Application.Common.Interfaces;
+using WebApiTemplate.Shared.Events;
 
-namespace MyHero.Application.Common.Events;
+namespace WebApiTemplate.Application.Common.Events;
 
 public interface IEventPublisher : ITransientService
 {

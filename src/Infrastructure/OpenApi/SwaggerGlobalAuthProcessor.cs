@@ -6,7 +6,7 @@ using NSwag.Generation.AspNetCore;
 using NSwag.Generation.Processors;
 using NSwag.Generation.Processors.Contexts;
 
-namespace MyHero.Infrastructure.OpenApi;
+namespace WebApiTemplate.Infrastructure.OpenApi;
 
 internal static class ObjectExtensions
 {

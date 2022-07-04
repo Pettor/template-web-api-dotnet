@@ -1,4 +1,4 @@
-﻿namespace MyHero.Infrastructure.Mapping;
+﻿namespace WebApiTemplate.Infrastructure.Mapping;
 
 public class MapsterSettings
 {

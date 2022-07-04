@@ -1,6 +1,6 @@
-using MyHero.Shared.Events;
+using WebApiTemplate.Shared.Events;
 
-namespace MyHero.Domain.Common.Contracts;
+namespace WebApiTemplate.Domain.Common.Contracts;
 
 public abstract class DomainEvent : IEvent
 {

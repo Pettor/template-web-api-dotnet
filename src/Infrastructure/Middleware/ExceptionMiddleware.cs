@@ -1,12 +1,12 @@
 using System.Net;
-using MyHero.Application.Common.Exceptions;
-using MyHero.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
 using Serilog;
 using Serilog.Context;
+using WebApiTemplate.Application.Common.Exceptions;
+using WebApiTemplate.Application.Common.Interfaces;
 
-namespace MyHero.Infrastructure.Middleware;
+namespace WebApiTemplate.Infrastructure.Middleware;
 
 internal class ExceptionMiddleware : IMiddleware
 {

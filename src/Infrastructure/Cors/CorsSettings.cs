@@ -1,4 +1,4 @@
-namespace MyHero.Infrastructure.Common.Settings;
+namespace WebApiTemplate.Infrastructure.Cors;
 
 public class CorsSettings
 {

@@ -1,4 +1,7 @@
-namespace MyHero.Application.Common.FileStorage;
+using WebApiTemplate.Application.Common.Interfaces;
+using WebApiTemplate.Domain.Common;
+
+namespace WebApiTemplate.Application.Common.FileStorage;
 
 public interface IFileStorageService : ITransientService
 {

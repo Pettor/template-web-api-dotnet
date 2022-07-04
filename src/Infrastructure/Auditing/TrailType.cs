@@ -1,4 +1,4 @@
-namespace MyHero.Infrastructure.Auditing;
+namespace WebApiTemplate.Infrastructure.Auditing;
 
 public enum TrailType : byte
 {

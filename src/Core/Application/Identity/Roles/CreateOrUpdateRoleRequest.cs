@@ -1,4 +1,6 @@
-namespace MyHero.Application.Identity.Roles;
+using WebApiTemplate.Application.Common.Validation;
+
+namespace WebApiTemplate.Application.Identity.Roles;
 
 public class CreateOrUpdateRoleRequest
 {

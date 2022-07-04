@@ -1,11 +1,11 @@
 using System.Reflection;
-using MyHero.Application.Common.Interfaces;
-using MyHero.Domain.Catalog;
-using MyHero.Infrastructure.Persistence.Context;
-using MyHero.Infrastructure.Persistence.Initialization;
 using Microsoft.Extensions.Logging;
+using WebApiTemplate.Application.Common.Interfaces;
+using WebApiTemplate.Domain.Catalog;
+using WebApiTemplate.Infrastructure.Persistence.Context;
+using WebApiTemplate.Infrastructure.Persistence.Initialization;
 
-namespace MyHero.Infrastructure.Catalog;
+namespace WebApiTemplate.Infrastructure.Catalog;
 
 public class BrandSeeder : ICustomSeeder
 {

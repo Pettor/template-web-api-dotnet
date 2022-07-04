@@ -1,6 +1,9 @@
-﻿using MyHero.Application.Catalog.Products;
+﻿using WebApiTemplate.Application.Catalog.Products;
+using WebApiTemplate.Application.Common.Models;
+using WebApiTemplate.Infrastructure.Auth.Permissions;
+using WebApiTemplate.Shared.Authorization;
 
-namespace MyHero.Host.Controllers.Catalog;
+namespace WebApiTemplate.Host.Controllers.Catalog;
 
 public class ProductsController : VersionedApiController
 {

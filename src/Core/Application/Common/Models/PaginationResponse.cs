@@ -1,4 +1,4 @@
-﻿namespace MyHero.Application.Common.Models;
+﻿namespace WebApiTemplate.Application.Common.Models;
 
 public class PaginationResponse<T>
 {

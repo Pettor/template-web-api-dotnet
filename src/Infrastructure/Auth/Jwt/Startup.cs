@@ -1,12 +1,12 @@
 ﻿using System.Security.Claims;
 using System.Text;
-using MyHero.Application.Common.Exceptions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using WebApiTemplate.Application.Common.Exceptions;
 
-namespace MyHero.Infrastructure.Auth.Jwt;
+namespace WebApiTemplate.Infrastructure.Auth.Jwt;
 
 internal static class Startup
 {

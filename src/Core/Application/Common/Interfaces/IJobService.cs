@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 
-namespace MyHero.Application.Common.Interfaces;
+namespace WebApiTemplate.Application.Common.Interfaces;
 
 public interface IJobService : ITransientService
 {

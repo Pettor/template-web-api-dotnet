@@ -1,7 +1,7 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MyHero.Application;
+namespace WebApiTemplate.Application;
 
 public static class Startup
 {

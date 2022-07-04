@@ -1,8 +1,8 @@
-using MyHero.Infrastructure.Persistence.Context;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using WebApiTemplate.Infrastructure.Persistence.Context;
 
-namespace MyHero.Infrastructure.Identity;
+namespace WebApiTemplate.Infrastructure.Identity;
 
 internal static class Startup
 {

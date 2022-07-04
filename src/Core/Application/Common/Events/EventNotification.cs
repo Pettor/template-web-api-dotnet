@@ -1,6 +1,6 @@
-using MyHero.Shared.Events;
+using WebApiTemplate.Shared.Events;
 
-namespace MyHero.Application.Common.Events;
+namespace WebApiTemplate.Application.Common.Events;
 
 public class EventNotification<TEvent> : INotification
     where TEvent : IEvent

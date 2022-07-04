@@ -1,4 +1,4 @@
-﻿namespace MyHero.Infrastructure.Middleware;
+﻿namespace WebApiTemplate.Infrastructure.Middleware;
 
 public class ErrorResult
 {

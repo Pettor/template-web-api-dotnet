@@ -1,4 +1,6 @@
-namespace MyHero.Domain.Catalog;
+using WebApiTemplate.Domain.Common.Contracts;
+
+namespace WebApiTemplate.Domain.Catalog;
 
 public class Brand : AuditableEntity, IAggregateRoot
 {

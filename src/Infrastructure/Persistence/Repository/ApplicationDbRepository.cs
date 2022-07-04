@@ -1,11 +1,11 @@
 ﻿using Ardalis.Specification;
 using Ardalis.Specification.EntityFrameworkCore;
-using MyHero.Application.Common.Persistence;
-using MyHero.Domain.Common.Contracts;
-using MyHero.Infrastructure.Persistence.Context;
 using Mapster;
+using WebApiTemplate.Application.Common.Persistence;
+using WebApiTemplate.Domain.Common.Contracts;
+using WebApiTemplate.Infrastructure.Persistence.Context;
 
-namespace MyHero.Infrastructure.Persistence.Repository;
+namespace WebApiTemplate.Infrastructure.Persistence.Repository;
 
 // Inherited from Ardalis.Specification's RepositoryBase<T>
 public class ApplicationDbRepository<T> : RepositoryBase<T>, IReadRepository<T>, IRepository<T>

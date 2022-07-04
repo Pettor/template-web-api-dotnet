@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace MyHero.Shared.Authorization;
+namespace WebApiTemplate.Shared.Authorization;
 
 public static class FSHAction
 {

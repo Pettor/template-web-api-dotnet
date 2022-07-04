@@ -1,9 +1,9 @@
-﻿using MyHero.Application.Common.Caching;
-using MyHero.Application.Common.Exceptions;
-using MyHero.Shared.Authorization;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using WebApiTemplate.Application.Common.Caching;
+using WebApiTemplate.Application.Common.Exceptions;
+using WebApiTemplate.Shared.Authorization;
 
-namespace MyHero.Infrastructure.Identity;
+namespace WebApiTemplate.Infrastructure.Identity;
 
 internal partial class UserService
 {

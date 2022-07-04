@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Serilog;
 using Serilog.Context;
 
-namespace MyHero.Infrastructure.Middleware;
+namespace WebApiTemplate.Infrastructure.Middleware;
 
 public class RequestLoggingMiddleware : IMiddleware
 {

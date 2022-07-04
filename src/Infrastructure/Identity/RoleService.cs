@@ -1,19 +1,18 @@
 using Finbuckle.MultiTenant;
-using MyHero.Application.Common.Events;
-using MyHero.Application.Common.Exceptions;
-using MyHero.Application.Common.Interfaces;
-using MyHero.Application.Identity;
-using MyHero.Application.Identity.Roles;
-using MyHero.Domain.Identity;
-using MyHero.Infrastructure.Persistence.Context;
-using MyHero.Shared.Authorization;
-using MyHero.Shared.Multitenancy;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+using WebApiTemplate.Application.Common.Events;
+using WebApiTemplate.Application.Common.Exceptions;
+using WebApiTemplate.Application.Common.Interfaces;
+using WebApiTemplate.Application.Identity.Roles;
+using WebApiTemplate.Domain.Identity;
+using WebApiTemplate.Infrastructure.Persistence.Context;
+using WebApiTemplate.Shared.Authorization;
+using WebApiTemplate.Shared.Multitenancy;
 
-namespace MyHero.Infrastructure.Identity;
+namespace WebApiTemplate.Infrastructure.Identity;
 
 internal class RoleService : IRoleService
 {

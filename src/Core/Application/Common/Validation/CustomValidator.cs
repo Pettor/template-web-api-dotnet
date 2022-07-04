@@ -1,4 +1,4 @@
-namespace MyHero.Application.Common.Validation;
+namespace WebApiTemplate.Application.Common.Validation;
 
 public class CustomValidator<T> : AbstractValidator<T>
 {

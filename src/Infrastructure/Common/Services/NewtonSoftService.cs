@@ -1,9 +1,9 @@
-using MyHero.Application.Common.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using WebApiTemplate.Application.Common.Interfaces;
 
-namespace MyHero.Infrastructure.Common.Services;
+namespace WebApiTemplate.Infrastructure.Common.Services;
 
 public class NewtonSoftService : ISerializerService
 {

@@ -1,10 +1,10 @@
 ﻿using Finbuckle.MultiTenant;
-using MyHero.Application.Common.Interfaces;
-using MyHero.Shared.Notifications;
 using Microsoft.AspNetCore.SignalR;
-using static MyHero.Shared.Notifications.NotificationConstants;
+using WebApiTemplate.Application.Common.Interfaces;
+using WebApiTemplate.Shared.Notifications;
+using static WebApiTemplate.Shared.Notifications.NotificationConstants;
 
-namespace MyHero.Infrastructure.Notifications;
+namespace WebApiTemplate.Infrastructure.Notifications;
 
 public class NotificationSender : INotificationSender
 {

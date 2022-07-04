@@ -1,4 +1,6 @@
-﻿namespace MyHero.Application.Common.Specification;
+﻿using WebApiTemplate.Application.Common.Models;
+
+namespace WebApiTemplate.Application.Common.Specification;
 
 public class EntitiesByBaseFilterSpec<T, TResult> : Specification<T, TResult>
 {

@@ -1,4 +1,6 @@
-namespace MyHero.Application.Identity.Roles;
+using WebApiTemplate.Application.Common.Interfaces;
+
+namespace WebApiTemplate.Application.Identity.Roles;
 
 public interface IRoleService : ITransientService
 {

@@ -1,12 +1,12 @@
 ﻿using System.Globalization;
-using MyHero.Infrastructure.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
+using WebApiTemplate.Infrastructure.Middleware;
 
-namespace MyHero.Infrastructure.Localization;
+namespace WebApiTemplate.Infrastructure.Localization;
 
 internal static class Startup
 {

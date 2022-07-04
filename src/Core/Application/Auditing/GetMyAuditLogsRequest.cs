@@ -1,4 +1,6 @@
-namespace MyHero.Application.Auditing;
+using WebApiTemplate.Application.Common.Interfaces;
+
+namespace WebApiTemplate.Application.Auditing;
 
 public class GetMyAuditLogsRequest : IRequest<List<AuditDto>>
 {

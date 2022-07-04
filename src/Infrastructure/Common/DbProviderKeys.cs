@@ -1,4 +1,4 @@
-﻿namespace MyHero.Infrastructure.Common;
+﻿namespace WebApiTemplate.Infrastructure.Common;
 
 internal class DbProviderKeys
 {

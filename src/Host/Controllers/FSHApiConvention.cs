@@ -1,7 +1,7 @@
-﻿using MyHero.Infrastructure.Middleware;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
+﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using WebApiTemplate.Infrastructure.Middleware;
 
-namespace MyHero.Host.Controllers;
+namespace WebApiTemplate.Host.Controllers;
 
 #nullable disable
 #pragma warning disable RCS1163

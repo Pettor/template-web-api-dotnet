@@ -1,4 +1,6 @@
-namespace MyHero.Application.Multitenancy;
+using WebApiTemplate.Application.Common.Validation;
+
+namespace WebApiTemplate.Application.Multitenancy;
 
 public class DeactivateTenantRequest : IRequest<string>
 {

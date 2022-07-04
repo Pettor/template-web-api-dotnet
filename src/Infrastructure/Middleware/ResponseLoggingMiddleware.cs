@@ -1,9 +1,9 @@
-using MyHero.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Serilog;
 using Serilog.Context;
+using WebApiTemplate.Application.Common.Interfaces;
 
-namespace MyHero.Infrastructure.Middleware;
+namespace WebApiTemplate.Infrastructure.Middleware;
 
 public class ResponseLoggingMiddleware : IMiddleware
 {

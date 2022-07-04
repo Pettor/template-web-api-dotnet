@@ -1,7 +1,7 @@
-﻿using MyHero.Application.Common.Caching;
-using Microsoft.Extensions.Localization;
+﻿using Microsoft.Extensions.Localization;
+using WebApiTemplate.Application.Common.Caching;
 
-namespace MyHero.Infrastructure.Localization;
+namespace WebApiTemplate.Infrastructure.Localization;
 
 public class JsonStringLocalizerFactory : IStringLocalizerFactory
 {

@@ -1,13 +1,13 @@
-﻿using MyHero.Infrastructure.Identity;
-using MyHero.Infrastructure.Multitenancy;
-using MyHero.Infrastructure.Persistence.Context;
-using MyHero.Shared.Authorization;
-using MyHero.Shared.Multitenancy;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using WebApiTemplate.Infrastructure.Identity;
+using WebApiTemplate.Infrastructure.Multitenancy;
+using WebApiTemplate.Infrastructure.Persistence.Context;
+using WebApiTemplate.Shared.Authorization;
+using WebApiTemplate.Shared.Multitenancy;
 
-namespace MyHero.Infrastructure.Persistence.Initialization;
+namespace WebApiTemplate.Infrastructure.Persistence.Initialization;
 
 internal class ApplicationDbSeeder
 {

@@ -1,4 +1,4 @@
-namespace MyHero.Application.Common.Interfaces;
+namespace WebApiTemplate.Application.Common.Interfaces;
 
 public interface ITransientService
 {

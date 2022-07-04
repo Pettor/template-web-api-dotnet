@@ -1,4 +1,4 @@
-namespace MyHero.Shared.Multitenancy;
+namespace WebApiTemplate.Shared.Multitenancy;
 
 public class MultitenancyConstants
 {

@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Validators;
 
-namespace MyHero.Application.Common.Validation;
+namespace WebApiTemplate.Application.Common.Validation;
 
 // SetValidator doesn't work when dealing with a nullable reference type
 // Use this SetNonNullableValidator extension method instead

@@ -1,4 +1,4 @@
-﻿namespace MyHero.Infrastructure.OpenApi;
+﻿namespace WebApiTemplate.Infrastructure.OpenApi;
 
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
 public class SwaggerHeaderAttribute : Attribute

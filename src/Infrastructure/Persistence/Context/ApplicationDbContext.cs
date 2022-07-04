@@ -1,12 +1,12 @@
 using Finbuckle.MultiTenant;
-using MyHero.Application.Common.Events;
-using MyHero.Application.Common.Interfaces;
-using MyHero.Domain.Catalog;
-using MyHero.Infrastructure.Persistence.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using WebApiTemplate.Application.Common.Events;
+using WebApiTemplate.Application.Common.Interfaces;
+using WebApiTemplate.Domain.Catalog;
+using WebApiTemplate.Infrastructure.Persistence.Configuration;
 
-namespace MyHero.Infrastructure.Persistence.Context;
+namespace WebApiTemplate.Infrastructure.Persistence.Context;
 
 public class ApplicationDbContext : BaseDbContext
 {

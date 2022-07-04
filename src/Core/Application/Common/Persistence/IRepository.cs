@@ -1,4 +1,6 @@
-﻿namespace MyHero.Application.Common.Persistence;
+﻿using WebApiTemplate.Domain.Common.Contracts;
+
+namespace WebApiTemplate.Application.Common.Persistence;
 
 // The Repository for the Application Db
 // I(Read)RepositoryBase<T> is from Ardalis.Specification

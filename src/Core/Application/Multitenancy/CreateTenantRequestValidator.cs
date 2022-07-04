@@ -1,4 +1,7 @@
-namespace MyHero.Application.Multitenancy;
+using WebApiTemplate.Application.Common.Persistence;
+using WebApiTemplate.Application.Common.Validation;
+
+namespace WebApiTemplate.Application.Multitenancy;
 
 public class CreateTenantRequestValidator : CustomValidator<CreateTenantRequest>
 {

@@ -1,9 +1,9 @@
-using MyHero.Application.Auditing;
-using MyHero.Infrastructure.Persistence.Context;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
+using WebApiTemplate.Application.Auditing;
+using WebApiTemplate.Infrastructure.Persistence.Context;
 
-namespace MyHero.Infrastructure.Auditing;
+namespace WebApiTemplate.Infrastructure.Auditing;
 
 public class AuditService : IAuditService
 {

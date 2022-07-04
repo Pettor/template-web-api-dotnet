@@ -1,8 +1,8 @@
-using System.Security.Claims;
-using MyHero.Application.Identity.Users;
 using Microsoft.AspNetCore.Authorization;
+using WebApiTemplate.Application.Identity.Users;
+using WebApiTemplate.Shared.Authorization;
 
-namespace MyHero.Infrastructure.Auth.Permissions;
+namespace WebApiTemplate.Infrastructure.Auth.Permissions;
 
 internal class PermissionAuthorizationHandler : AuthorizationHandler<PermissionRequirement>
 {

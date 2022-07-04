@@ -1,4 +1,6 @@
-namespace MyHero.Application.Identity.Tokens;
+using WebApiTemplate.Application.Common.Interfaces;
+
+namespace WebApiTemplate.Application.Identity.Tokens;
 
 public interface ITokenService : ITransientService
 {

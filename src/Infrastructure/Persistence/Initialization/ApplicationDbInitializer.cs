@@ -1,9 +1,9 @@
 using Finbuckle.MultiTenant;
-using MyHero.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using WebApiTemplate.Infrastructure.Persistence.Context;
 
-namespace MyHero.Infrastructure.Persistence.Initialization;
+namespace WebApiTemplate.Infrastructure.Persistence.Initialization;
 
 internal class ApplicationDbInitializer
 {

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace MyHero.Infrastructure.Identity;
+namespace WebApiTemplate.Infrastructure.Identity;
 
 public class ApplicationUser : IdentityUser
 {

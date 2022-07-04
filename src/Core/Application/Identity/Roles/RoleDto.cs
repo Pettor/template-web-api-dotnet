@@ -1,4 +1,4 @@
-namespace MyHero.Application.Identity.Roles;
+namespace WebApiTemplate.Application.Identity.Roles;
 
 public class RoleDto
 {

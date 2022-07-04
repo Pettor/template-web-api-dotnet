@@ -1,6 +1,8 @@
-using MyHero.Application.Identity.Roles;
+using WebApiTemplate.Application.Identity.Roles;
+using WebApiTemplate.Infrastructure.Auth.Permissions;
+using WebApiTemplate.Shared.Authorization;
 
-namespace MyHero.Host.Controllers.Identity;
+namespace WebApiTemplate.Host.Controllers.Identity;
 
 public class RolesController : VersionNeutralApiController
 {

@@ -1,9 +1,9 @@
-using System.Security.Claims;
-using MyHero.Application.Auditing;
-using MyHero.Application.Identity.Users;
-using MyHero.Application.Identity.Users.Password;
+using WebApiTemplate.Application.Auditing;
+using WebApiTemplate.Application.Identity.Users;
+using WebApiTemplate.Application.Identity.Users.Password;
+using WebApiTemplate.Shared.Authorization;
 
-namespace MyHero.Host.Controllers.Identity;
+namespace WebApiTemplate.Host.Controllers.Personal;
 
 public class PersonalController : VersionNeutralApiController
 {

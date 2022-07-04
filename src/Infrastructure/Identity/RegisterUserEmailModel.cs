@@ -1,4 +1,4 @@
-﻿namespace MyHero.Infrastructure.Identity;
+﻿namespace WebApiTemplate.Infrastructure.Identity;
 
 public class RegisterUserEmailModel
 {

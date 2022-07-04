@@ -1,7 +1,7 @@
 using System.Globalization;
 using Microsoft.AspNetCore.Http;
 
-namespace MyHero.Infrastructure.Localization;
+namespace WebApiTemplate.Infrastructure.Localization;
 
 public class LocalizationMiddleware : IMiddleware
 {

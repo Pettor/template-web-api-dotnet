@@ -1,7 +1,7 @@
-﻿using MyHero.Application.Common.Interfaces;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using WebApiTemplate.Application.Common.Interfaces;
 
-namespace MyHero.Infrastructure.Common;
+namespace WebApiTemplate.Infrastructure.Common;
 
 internal static class Startup
 {

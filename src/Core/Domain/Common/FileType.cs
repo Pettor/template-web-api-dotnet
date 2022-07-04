@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace MyHero.Domain.Common;
+namespace WebApiTemplate.Domain.Common;
 
 public enum FileType
 {

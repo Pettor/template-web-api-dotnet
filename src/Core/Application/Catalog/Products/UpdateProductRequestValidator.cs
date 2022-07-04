@@ -1,4 +1,9 @@
-namespace MyHero.Application.Catalog.Products;
+using WebApiTemplate.Application.Common.FileStorage;
+using WebApiTemplate.Application.Common.Persistence;
+using WebApiTemplate.Application.Common.Validation;
+using WebApiTemplate.Domain.Catalog;
+
+namespace WebApiTemplate.Application.Catalog.Products;
 
 public class UpdateProductRequestValidator : CustomValidator<UpdateProductRequest>
 {

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using MassTransit;
 
-namespace MyHero.Domain.Common.Contracts;
+namespace WebApiTemplate.Domain.Common.Contracts;
 
 public abstract class BaseEntity : BaseEntity<DefaultIdType>
 {

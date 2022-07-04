@@ -1,7 +1,10 @@
-using MyHero.Application.Identity.Users;
-using MyHero.Application.Identity.Users.Password;
+using WebApiTemplate.Application.Identity.Users;
+using WebApiTemplate.Application.Identity.Users.Password;
+using WebApiTemplate.Infrastructure.Auth.Permissions;
+using WebApiTemplate.Infrastructure.OpenApi;
+using WebApiTemplate.Shared.Authorization;
 
-namespace MyHero.Host.Controllers.Identity;
+namespace WebApiTemplate.Host.Controllers.Identity;
 
 public class UsersController : VersionNeutralApiController
 {

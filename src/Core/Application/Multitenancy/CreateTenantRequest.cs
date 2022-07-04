@@ -1,4 +1,4 @@
-namespace MyHero.Application.Multitenancy;
+namespace WebApiTemplate.Application.Multitenancy;
 
 public class CreateTenantRequest : IRequest<string>
 {

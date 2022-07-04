@@ -1,4 +1,6 @@
-namespace MyHero.Application.Catalog.Products;
+using WebApiTemplate.Application.Common.Interfaces;
+
+namespace WebApiTemplate.Application.Catalog.Products;
 
 public class ProductDto : IDto
 {

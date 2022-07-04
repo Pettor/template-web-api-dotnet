@@ -1,8 +1,8 @@
-using MyHero.Shared.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
+using WebApiTemplate.Shared.Authorization;
 
-namespace MyHero.Infrastructure.Auth.Permissions;
+namespace WebApiTemplate.Infrastructure.Auth.Permissions;
 
 internal class PermissionPolicyProvider : IAuthorizationPolicyProvider
 {

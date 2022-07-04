@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace MyHero.Infrastructure.Auth;
+namespace WebApiTemplate.Infrastructure.Auth;
 
 public interface ICurrentUserInitializer
 {

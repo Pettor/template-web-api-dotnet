@@ -1,10 +1,10 @@
 ﻿using Finbuckle.MultiTenant.EntityFrameworkCore;
-using MyHero.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using WebApiTemplate.Infrastructure.Identity;
 
-namespace MyHero.Infrastructure.Persistence.Configuration;
+namespace WebApiTemplate.Infrastructure.Persistence.Configuration;
 
 public class ApplicationUserConfig : IEntityTypeConfiguration<ApplicationUser>
 {

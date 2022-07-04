@@ -1,4 +1,6 @@
-namespace MyHero.Application.Common.FileStorage;
+using WebApiTemplate.Application.Common.Validation;
+
+namespace WebApiTemplate.Application.Common.FileStorage;
 
 public class FileUploadRequest
 {

@@ -1,14 +1,14 @@
 ﻿using Finbuckle.MultiTenant;
-using MyHero.Application.Common.Exceptions;
-using MyHero.Application.Common.Persistence;
-using MyHero.Application.Multitenancy;
-using MyHero.Infrastructure.Persistence;
-using MyHero.Infrastructure.Persistence.Initialization;
 using Mapster;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
+using WebApiTemplate.Application.Common.Exceptions;
+using WebApiTemplate.Application.Common.Persistence;
+using WebApiTemplate.Application.Multitenancy;
+using WebApiTemplate.Infrastructure.Persistence;
+using WebApiTemplate.Infrastructure.Persistence.Initialization;
 
-namespace MyHero.Infrastructure.Multitenancy;
+namespace WebApiTemplate.Infrastructure.Multitenancy;
 
 internal class TenantService : ITenantService
 {

@@ -1,8 +1,8 @@
 using System.Text;
-using MyHero.Application.Common.Mailing;
 using RazorEngineCore;
+using WebApiTemplate.Application.Common.Mailing;
 
-namespace MyHero.Infrastructure.Mailing;
+namespace WebApiTemplate.Infrastructure.Mailing;
 
 public class EmailTemplateService : IEmailTemplateService
 {

@@ -2,20 +2,19 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using MyHero.Application.Common.Exceptions;
-using MyHero.Application.Identity.Tokens;
-using MyHero.Infrastructure.Auth;
-using MyHero.Infrastructure.Auth.Jwt;
-using MyHero.Infrastructure.Mailing;
-using MyHero.Infrastructure.Multitenancy;
-using MyHero.Shared.Authorization;
-using MyHero.Shared.Multitenancy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using WebApiTemplate.Application.Common.Exceptions;
+using WebApiTemplate.Application.Identity.Tokens;
+using WebApiTemplate.Infrastructure.Auth;
+using WebApiTemplate.Infrastructure.Auth.Jwt;
+using WebApiTemplate.Infrastructure.Multitenancy;
+using WebApiTemplate.Shared.Authorization;
+using WebApiTemplate.Shared.Multitenancy;
 
-namespace MyHero.Infrastructure.Identity;
+namespace WebApiTemplate.Infrastructure.Identity;
 
 internal class TokenService : ITokenService
 {

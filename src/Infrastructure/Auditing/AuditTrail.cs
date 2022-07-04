@@ -1,7 +1,7 @@
-using MyHero.Application.Common.Interfaces;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using WebApiTemplate.Application.Common.Interfaces;
 
-namespace MyHero.Infrastructure.Auditing;
+namespace WebApiTemplate.Infrastructure.Auditing;
 
 public class AuditTrail
 {

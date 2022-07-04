@@ -1,4 +1,9 @@
-namespace MyHero.Application.Catalog.Brands;
+using WebApiTemplate.Application.Common.Models;
+using WebApiTemplate.Application.Common.Persistence;
+using WebApiTemplate.Application.Common.Specification;
+using WebApiTemplate.Domain.Catalog;
+
+namespace WebApiTemplate.Application.Catalog.Brands;
 
 public class SearchBrandsRequest : PaginationFilter, IRequest<PaginationResponse<BrandDto>>
 {

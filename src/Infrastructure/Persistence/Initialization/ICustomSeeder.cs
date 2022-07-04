@@ -1,4 +1,4 @@
-namespace MyHero.Infrastructure.Persistence.Initialization;
+namespace WebApiTemplate.Infrastructure.Persistence.Initialization;
 
 public interface ICustomSeeder
 {

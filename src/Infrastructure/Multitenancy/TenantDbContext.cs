@@ -1,8 +1,8 @@
 ﻿using Finbuckle.MultiTenant.Stores;
-using MyHero.Infrastructure.Persistence.Configuration;
 using Microsoft.EntityFrameworkCore;
+using WebApiTemplate.Infrastructure.Persistence.Configuration;
 
-namespace MyHero.Infrastructure.Multitenancy;
+namespace WebApiTemplate.Infrastructure.Multitenancy;
 
 public class TenantDbContext : EFCoreStoreDbContext<FSHTenantInfo>
 {

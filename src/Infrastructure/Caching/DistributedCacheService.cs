@@ -1,10 +1,10 @@
 using System.Text;
-using MyHero.Application.Common.Caching;
-using MyHero.Application.Common.Interfaces;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
+using WebApiTemplate.Application.Common.Caching;
+using WebApiTemplate.Application.Common.Interfaces;
 
-namespace MyHero.Infrastructure.Caching;
+namespace WebApiTemplate.Infrastructure.Caching;
 
 #pragma warning disable CA2254
 public class DistributedCacheService : ICacheService

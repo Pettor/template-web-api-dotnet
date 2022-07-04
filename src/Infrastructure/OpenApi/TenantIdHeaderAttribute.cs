@@ -1,6 +1,6 @@
-﻿using MyHero.Shared.Multitenancy;
+﻿using WebApiTemplate.Shared.Multitenancy;
 
-namespace MyHero.Infrastructure.OpenApi;
+namespace WebApiTemplate.Infrastructure.OpenApi;
 
 public class TenantIdHeaderAttribute : SwaggerHeaderAttribute
 {

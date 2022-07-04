@@ -1,11 +1,11 @@
 using System.Text;
-using MyHero.Application.Identity;
-using MyHero.Infrastructure.Common;
-using MyHero.Shared.Multitenancy;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
+using WebApiTemplate.Application.Common.Exceptions;
+using WebApiTemplate.Infrastructure.Common;
+using WebApiTemplate.Shared.Multitenancy;
 
-namespace MyHero.Infrastructure.Identity;
+namespace WebApiTemplate.Infrastructure.Identity;
 
 internal partial class UserService
 {

@@ -1,6 +1,6 @@
-using MyHero.Shared.Authorization;
+using System.Security.Claims;
 
-namespace System.Security.Claims;
+namespace WebApiTemplate.Shared.Authorization;
 
 public static class ClaimsPrincipalExtensions
 {

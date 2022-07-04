@@ -4,7 +4,7 @@ using Hangfire.Server;
 using Hangfire.States;
 using Hangfire.Storage;
 
-namespace MyHero.Infrastructure.BackgroundJobs;
+namespace WebApiTemplate.Infrastructure.BackgroundJobs;
 
 public class LogJobFilter : IClientFilter, IServerFilter, IElectStateFilter, IApplyStateFilter
 {

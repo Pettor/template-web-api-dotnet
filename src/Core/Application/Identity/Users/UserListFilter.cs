@@ -1,4 +1,6 @@
-namespace MyHero.Application.Identity.Users;
+using WebApiTemplate.Application.Common.Models;
+
+namespace WebApiTemplate.Application.Identity.Users;
 
 public class UserListFilter : PaginationFilter
 {

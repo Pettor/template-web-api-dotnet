@@ -1,6 +1,11 @@
-using MyHero.Domain.Common.Events;
+using WebApiTemplate.Application.Common.Exceptions;
+using WebApiTemplate.Application.Common.FileStorage;
+using WebApiTemplate.Application.Common.Persistence;
+using WebApiTemplate.Domain.Catalog;
+using WebApiTemplate.Domain.Common;
+using WebApiTemplate.Domain.Common.Events;
 
-namespace MyHero.Application.Catalog.Products;
+namespace WebApiTemplate.Application.Catalog.Products;
 
 public class UpdateProductRequest : IRequest<Guid>
 {

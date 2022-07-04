@@ -1,4 +1,4 @@
-﻿namespace MyHero.Application.Common.Persistence;
+﻿namespace WebApiTemplate.Application.Common.Persistence;
 
 public interface IConnectionStringValidator
 {

@@ -1,8 +1,12 @@
-using MyHero.Domain.Common.Events;
-using MyHero.Domain.Identity;
-using MyHero.Shared.Events;
+using WebApiTemplate.Application.Common.Events;
+using WebApiTemplate.Application.Common.Interfaces;
+using WebApiTemplate.Domain.Catalog;
+using WebApiTemplate.Domain.Common.Events;
+using WebApiTemplate.Domain.Identity;
+using WebApiTemplate.Shared.Events;
+using WebApiTemplate.Shared.Notifications;
 
-namespace MyHero.Application.Dashboard;
+namespace WebApiTemplate.Application.Dashboard;
 
 public class SendStatsChangedNotificationHandler :
     IEventNotificationHandler<EntityCreatedEvent<Brand>>,

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
 
-namespace MyHero.Infrastructure.FileStorage;
+namespace WebApiTemplate.Infrastructure.FileStorage;
 
 internal static class Startup
 {

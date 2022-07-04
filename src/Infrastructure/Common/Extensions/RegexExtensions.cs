@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace MyHero.Infrastructure.Common.Extensions;
+namespace WebApiTemplate.Infrastructure.Common.Extensions;
 
 public static class RegexExtensions
 {

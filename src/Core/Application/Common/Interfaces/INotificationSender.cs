@@ -1,4 +1,6 @@
-﻿namespace MyHero.Application.Common.Interfaces;
+﻿using WebApiTemplate.Shared.Notifications;
+
+namespace WebApiTemplate.Application.Common.Interfaces;
 
 public interface INotificationSender : ITransientService
 {

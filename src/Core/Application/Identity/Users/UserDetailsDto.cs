@@ -1,4 +1,4 @@
-namespace MyHero.Application.Identity.Users;
+namespace WebApiTemplate.Application.Identity.Users;
 
 public class UserDetailsDto
 {

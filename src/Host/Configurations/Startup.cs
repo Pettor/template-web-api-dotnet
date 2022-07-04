@@ -1,4 +1,4 @@
-namespace MyHero.Host.Configurations;
+namespace WebApiTemplate.Host.Configurations;
 
 internal static class Startup
 {

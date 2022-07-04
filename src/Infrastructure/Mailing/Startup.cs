@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MyHero.Infrastructure.Mailing;
+namespace WebApiTemplate.Infrastructure.Mailing;
 
 internal static class Startup
 {

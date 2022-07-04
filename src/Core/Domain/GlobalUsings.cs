@@ -1,1 +1,1 @@
-﻿global using MyHero.Domain.Common.Contracts;
+﻿

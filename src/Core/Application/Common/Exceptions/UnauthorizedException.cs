@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace MyHero.Application.Common.Exceptions;
+namespace WebApiTemplate.Application.Common.Exceptions;
 
 public class UnauthorizedException : CustomException
 {

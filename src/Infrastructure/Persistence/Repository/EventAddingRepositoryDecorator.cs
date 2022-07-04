@@ -1,9 +1,9 @@
 ﻿using Ardalis.Specification;
-using MyHero.Application.Common.Persistence;
-using MyHero.Domain.Common.Contracts;
-using MyHero.Domain.Common.Events;
+using WebApiTemplate.Application.Common.Persistence;
+using WebApiTemplate.Domain.Common.Contracts;
+using WebApiTemplate.Domain.Common.Events;
 
-namespace MyHero.Infrastructure.Persistence.Repository;
+namespace WebApiTemplate.Infrastructure.Persistence.Repository;
 
 /// <summary>
 /// The repository that implements IRepositoryWithEvents.

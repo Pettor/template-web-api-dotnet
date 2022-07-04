@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace MyHero.Infrastructure.Multitenancy;
+namespace WebApiTemplate.Infrastructure.Multitenancy;
 
 public class TenantHealthCheck : IHealthCheck
 {

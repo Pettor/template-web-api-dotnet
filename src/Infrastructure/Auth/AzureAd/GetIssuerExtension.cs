@@ -1,6 +1,6 @@
-using MyHero.Infrastructure.Auth.AzureAd;
+using System.Security.Claims;
 
-namespace System.Security.Claims;
+namespace WebApiTemplate.Infrastructure.Auth.AzureAd;
 
 public static class GetIssuerExtension
 {

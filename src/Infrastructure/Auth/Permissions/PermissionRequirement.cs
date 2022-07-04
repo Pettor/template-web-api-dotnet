@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 
-namespace MyHero.Infrastructure.Auth.Permissions;
+namespace WebApiTemplate.Infrastructure.Auth.Permissions;
 
 internal class PermissionRequirement : IAuthorizationRequirement
 {

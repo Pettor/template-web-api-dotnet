@@ -1,4 +1,6 @@
-﻿namespace MyHero.Application.Common.Specification;
+﻿using WebApiTemplate.Application.Common.Models;
+
+namespace WebApiTemplate.Application.Common.Specification;
 
 public class EntitiesByPaginationFilterSpec<T, TResult> : EntitiesByBaseFilterSpec<T, TResult>
 {

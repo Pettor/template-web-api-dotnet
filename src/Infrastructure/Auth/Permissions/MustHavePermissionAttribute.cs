@@ -1,7 +1,7 @@
-using MyHero.Shared.Authorization;
 using Microsoft.AspNetCore.Authorization;
+using WebApiTemplate.Shared.Authorization;
 
-namespace MyHero.Infrastructure.Auth.Permissions;
+namespace WebApiTemplate.Infrastructure.Auth.Permissions;
 
 public class MustHavePermissionAttribute : AuthorizeAttribute
 {

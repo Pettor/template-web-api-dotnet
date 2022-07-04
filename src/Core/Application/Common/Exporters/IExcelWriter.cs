@@ -1,4 +1,6 @@
-﻿namespace MyHero.Application.Common.Exporters;
+﻿using WebApiTemplate.Application.Common.Interfaces;
+
+namespace WebApiTemplate.Application.Common.Exporters;
 
 public interface IExcelWriter : ITransientService
 {

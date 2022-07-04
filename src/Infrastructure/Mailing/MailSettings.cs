@@ -1,4 +1,4 @@
-namespace MyHero.Infrastructure.Mailing;
+namespace WebApiTemplate.Infrastructure.Mailing;
 
 public class MailSettings
 {

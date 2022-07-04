@@ -1,4 +1,4 @@
-namespace MyHero.Application.Identity.Users.Password;
+namespace WebApiTemplate.Application.Identity.Users.Password;
 
 public class ResetPasswordRequest
 {

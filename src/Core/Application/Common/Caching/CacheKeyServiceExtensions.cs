@@ -1,4 +1,6 @@
-﻿namespace MyHero.Application.Common.Caching;
+﻿using WebApiTemplate.Domain.Common.Contracts;
+
+namespace WebApiTemplate.Application.Common.Caching;
 
 public static class CacheKeyServiceExtensions
 {

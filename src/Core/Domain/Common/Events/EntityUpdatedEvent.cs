@@ -1,4 +1,6 @@
-namespace MyHero.Domain.Common.Events;
+using WebApiTemplate.Domain.Common.Contracts;
+
+namespace WebApiTemplate.Domain.Common.Events;
 
 public static class EntityUpdatedEvent
 {

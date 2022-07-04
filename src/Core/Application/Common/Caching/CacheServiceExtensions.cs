@@ -1,4 +1,4 @@
-namespace MyHero.Application.Common.Caching;
+namespace WebApiTemplate.Application.Common.Caching;
 
 public static class CacheServiceExtensions
 {

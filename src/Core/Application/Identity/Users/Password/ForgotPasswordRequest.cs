@@ -1,4 +1,6 @@
-namespace MyHero.Application.Identity.Users.Password;
+using WebApiTemplate.Application.Common.Validation;
+
+namespace WebApiTemplate.Application.Identity.Users.Password;
 
 public class ForgotPasswordRequest
 {

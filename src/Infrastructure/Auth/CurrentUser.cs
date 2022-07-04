@@ -1,7 +1,8 @@
 using System.Security.Claims;
-using MyHero.Application.Common.Interfaces;
+using WebApiTemplate.Application.Common.Interfaces;
+using WebApiTemplate.Shared.Authorization;
 
-namespace MyHero.Infrastructure.Auth;
+namespace WebApiTemplate.Infrastructure.Auth;
 
 public class CurrentUser : ICurrentUser, ICurrentUserInitializer
 {

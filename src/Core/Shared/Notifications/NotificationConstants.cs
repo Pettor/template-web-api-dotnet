@@ -1,4 +1,4 @@
-﻿namespace MyHero.Shared.Notifications;
+﻿namespace WebApiTemplate.Shared.Notifications;
 
 public static class NotificationConstants
 {

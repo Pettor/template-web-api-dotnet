@@ -1,6 +1,6 @@
-using MyHero.Domain.Common.Contracts;
+using WebApiTemplate.Domain.Common.Contracts;
 
-namespace MyHero.Infrastructure.Auditing;
+namespace WebApiTemplate.Infrastructure.Auditing;
 
 public class Trail : BaseEntity
 {

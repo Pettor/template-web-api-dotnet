@@ -1,6 +1,8 @@
 using System.Data;
+using WebApiTemplate.Application.Common.Interfaces;
+using WebApiTemplate.Domain.Common.Contracts;
 
-namespace MyHero.Application.Common.Persistence;
+namespace WebApiTemplate.Application.Common.Persistence;
 
 public interface IDapperRepository : ITransientService
 {

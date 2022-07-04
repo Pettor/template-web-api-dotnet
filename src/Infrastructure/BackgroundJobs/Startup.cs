@@ -1,4 +1,3 @@
-using MyHero.Infrastructure.Common;
 using Hangfire;
 using Hangfire.Console;
 using Hangfire.Console.Extensions;
@@ -10,8 +9,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using WebApiTemplate.Infrastructure.Common;
 
-namespace MyHero.Infrastructure.BackgroundJobs;
+namespace WebApiTemplate.Infrastructure.BackgroundJobs;
 
 internal static class Startup
 {

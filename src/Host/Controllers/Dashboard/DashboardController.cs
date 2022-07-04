@@ -1,6 +1,8 @@
-using MyHero.Application.Dashboard;
+using WebApiTemplate.Application.Dashboard;
+using WebApiTemplate.Infrastructure.Auth.Permissions;
+using WebApiTemplate.Shared.Authorization;
 
-namespace MyHero.Host.Controllers.Dashboard;
+namespace WebApiTemplate.Host.Controllers.Dashboard;
 
 public class DashboardController : VersionedApiController
 {

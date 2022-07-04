@@ -1,4 +1,6 @@
-namespace MyHero.Application.Common.Models;
+using WebApiTemplate.Application.Common.Interfaces;
+
+namespace WebApiTemplate.Application.Common.Models;
 
 public static class PaginationResponseExtensions
 {

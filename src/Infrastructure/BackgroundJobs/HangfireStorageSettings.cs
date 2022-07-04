@@ -1,4 +1,4 @@
-namespace MyHero.Infrastructure.BackgroundJobs;
+namespace WebApiTemplate.Infrastructure.BackgroundJobs;
 
 public class HangfireStorageSettings
 {

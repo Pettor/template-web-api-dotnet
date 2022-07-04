@@ -1,4 +1,6 @@
-namespace MyHero.Application.Identity.Users;
+using WebApiTemplate.Application.Common.Validation;
+
+namespace WebApiTemplate.Application.Identity.Users;
 
 public class CreateUserRequestValidator : CustomValidator<CreateUserRequest>
 {

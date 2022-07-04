@@ -1,10 +1,10 @@
 using FluentValidation.AspNetCore;
-using MyHero.Application;
-using MyHero.Host.Configurations;
-using MyHero.Host.Controllers;
-using MyHero.Infrastructure;
-using MyHero.Infrastructure.Common;
 using Serilog;
+using WebApiTemplate.Application;
+using WebApiTemplate.Host.Configurations;
+using WebApiTemplate.Host.Controllers;
+using WebApiTemplate.Infrastructure;
+using WebApiTemplate.Infrastructure.Common;
 
 [assembly: ApiConventionType(typeof(FSHApiConventions))]
 

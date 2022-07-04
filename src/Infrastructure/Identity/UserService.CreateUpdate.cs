@@ -1,16 +1,15 @@
-﻿using MyHero.Application.Common.Exceptions;
-using MyHero.Application.Common.Mailing;
-using MyHero.Application.Identity;
-using MyHero.Application.Identity.Users;
-using MyHero.Domain.Common;
-using MyHero.Domain.Identity;
-using MyHero.Shared.Authorization;
+﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
-using System.Security.Claims;
+using WebApiTemplate.Application.Common.Exceptions;
+using WebApiTemplate.Application.Common.Mailing;
+using WebApiTemplate.Application.Identity.Users;
+using WebApiTemplate.Domain.Common;
+using WebApiTemplate.Domain.Identity;
+using WebApiTemplate.Shared.Authorization;
 
-namespace MyHero.Infrastructure.Identity;
+namespace WebApiTemplate.Infrastructure.Identity;
 
 internal partial class UserService
 {

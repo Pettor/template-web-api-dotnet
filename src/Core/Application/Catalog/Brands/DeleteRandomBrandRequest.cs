@@ -1,4 +1,6 @@
-﻿namespace MyHero.Application.Catalog.Brands;
+﻿using WebApiTemplate.Application.Common.Interfaces;
+
+namespace WebApiTemplate.Application.Catalog.Brands;
 
 public class DeleteRandomBrandRequest : IRequest<string>
 {

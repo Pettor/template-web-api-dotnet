@@ -1,14 +1,14 @@
-using MyHero.Application.Multitenancy;
-using MyHero.Infrastructure.Persistence;
-using MyHero.Shared.Authorization;
-using MyHero.Shared.Multitenancy;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Primitives;
+using WebApiTemplate.Application.Multitenancy;
+using WebApiTemplate.Infrastructure.Persistence;
+using WebApiTemplate.Shared.Authorization;
+using WebApiTemplate.Shared.Multitenancy;
 
-namespace MyHero.Infrastructure.Multitenancy;
+namespace WebApiTemplate.Infrastructure.Multitenancy;
 
 internal static class Startup
 {

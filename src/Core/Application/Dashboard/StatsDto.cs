@@ -1,4 +1,4 @@
-namespace MyHero.Application.Dashboard;
+namespace WebApiTemplate.Application.Dashboard;
 
 public class StatsDto
 {
