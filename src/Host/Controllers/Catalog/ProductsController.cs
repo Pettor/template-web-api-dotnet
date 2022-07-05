@@ -65,4 +65,4 @@ public class ProductsController : VersionedApiController
         var result = await Mediator.Send(filter);
         return File(result, "application/octet-stream", "ProductExports");
     }
-    }
+}
