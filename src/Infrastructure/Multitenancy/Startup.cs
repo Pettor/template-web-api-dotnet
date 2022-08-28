@@ -24,7 +24,7 @@ internal static class Startup
         return services
             .AddDbContext<TenantDbContext>(m => m.UseDatabase(dbProvider, rootConnectionString))
             .AddMultiTenant<FSHTenantInfo>()
-                .WithClaimStrategy(FSHClaims.Tenant)
+                .WithClaimStrategy(FshClaims.Tenant)
                 .WithHeaderStrategy(MultitenancyConstants.TenantIdName)
                 .WithQueryStringStrategy(MultitenancyConstants.TenantIdName)
                 .WithEFCoreStore<TenantDbContext, FSHTenantInfo>()

@@ -7,7 +7,7 @@ namespace WebApiTemplate.Host.Controllers.Multitenancy;
 public class TenantsController : VersionNeutralApiController
 {
     [HttpGet]
-    [MustHavePermission(FSHAction.View, FSHResource.Tenants)]
+    [MustHavePermission(FshAction.View, FshResource.Tenants)]
     [OpenApiOperation("Get a list of all tenants.", "")]
     public Task<List<TenantDto>> GetListAsync()
     {
@@ -15,7 +15,7 @@ public class TenantsController : VersionNeutralApiController
     }
 
     [HttpGet("{id}")]
-    [MustHavePermission(FSHAction.View, FSHResource.Tenants)]
+    [MustHavePermission(FshAction.View, FshResource.Tenants)]
     [OpenApiOperation("Get tenant details.", "")]
     public Task<TenantDto> GetAsync(string id)
     {
@@ -23,7 +23,7 @@ public class TenantsController : VersionNeutralApiController
     }
 
     [HttpPost]
-    [MustHavePermission(FSHAction.Create, FSHResource.Tenants)]
+    [MustHavePermission(FshAction.Create, FshResource.Tenants)]
     [OpenApiOperation("Create a new tenant.", "")]
     public Task<string> CreateAsync(CreateTenantRequest request)
     {
@@ -31,7 +31,7 @@ public class TenantsController : VersionNeutralApiController
     }
 
     [HttpPost("{id}/activate")]
-    [MustHavePermission(FSHAction.Update, FSHResource.Tenants)]
+    [MustHavePermission(FshAction.Update, FshResource.Tenants)]
     [OpenApiOperation("Activate a tenant.", "")]
     [ApiConventionMethod(typeof(FSHApiConventions), nameof(FSHApiConventions.Register))]
     public Task<string> ActivateAsync(string id)
@@ -40,7 +40,7 @@ public class TenantsController : VersionNeutralApiController
     }
 
     [HttpPost("{id}/deactivate")]
-    [MustHavePermission(FSHAction.Update, FSHResource.Tenants)]
+    [MustHavePermission(FshAction.Update, FshResource.Tenants)]
     [OpenApiOperation("Deactivate a tenant.", "")]
     [ApiConventionMethod(typeof(FSHApiConventions), nameof(FSHApiConventions.Register))]
     public Task<string> DeactivateAsync(string id)
@@ -49,7 +49,7 @@ public class TenantsController : VersionNeutralApiController
     }
 
     [HttpPost("{id}/upgrade")]
-    [MustHavePermission(FSHAction.UpgradeSubscription, FSHResource.Tenants)]
+    [MustHavePermission(FshAction.UpgradeSubscription, FshResource.Tenants)]
     [OpenApiOperation("Upgrade a tenant's subscription.", "")]
     [ApiConventionMethod(typeof(FSHApiConventions), nameof(FSHApiConventions.Register))]
     public async Task<ActionResult<string>> UpgradeSubscriptionAsync(string id, UpgradeSubscriptionRequest request)

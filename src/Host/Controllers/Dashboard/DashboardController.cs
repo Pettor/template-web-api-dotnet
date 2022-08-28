@@ -7,7 +7,7 @@ namespace WebApiTemplate.Host.Controllers.Dashboard;
 public class DashboardController : VersionedApiController
 {
     [HttpGet]
-    [MustHavePermission(FSHAction.View, FSHResource.Dashboard)]
+    [MustHavePermission(FshAction.View, FshResource.Dashboard)]
     [OpenApiOperation("Get statistics for the dashboard.", "")]
     public Task<StatsDto> GetAsync()
     {

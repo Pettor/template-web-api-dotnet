@@ -119,7 +119,7 @@ internal partial class UserService
             throw new InternalServerException(_localizer["Validation Errors Occurred."], result.GetErrors(_localizer));
         }
 
-        await _userManager.AddToRoleAsync(user, FSHRoles.Basic);
+        await _userManager.AddToRoleAsync(user, FshRoles.Basic);
 
         var messages = new List<string> { string.Format(_localizer["User {0} Registered."], user.UserName) };
 
