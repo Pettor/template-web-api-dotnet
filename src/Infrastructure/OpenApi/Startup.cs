@@ -6,7 +6,6 @@ using NJsonSchema.Generation.TypeMappers;
 using NSwag;
 using NSwag.AspNetCore;
 using NSwag.Generation.Processors.Security;
-using ZymLabs.NSwag.FluentValidation;
 
 namespace WebApiTemplate.Infrastructure.OpenApi;
 
@@ -88,11 +87,7 @@ internal static class Startup
             }));
 
             document.OperationProcessors.Add(new SwaggerHeaderAttributeProcessor());
-
-            var fluentValidationSchemaProcessor = serviceProvider.CreateScope().ServiceProvider.GetService<FluentValidationSchemaProcessor>();
-            document.SchemaProcessors.Add(fluentValidationSchemaProcessor);
         });
-        services.AddScoped<FluentValidationSchemaProcessor>();
 
         return services;
     }
