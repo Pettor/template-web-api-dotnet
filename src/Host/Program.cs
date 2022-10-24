@@ -21,7 +21,9 @@ try
         .ReadFrom.Configuration(builder.Configuration);
     });
 
-    builder.Services.AddControllers().AddFluentValidation();
+    builder.Services.AddControllers();
+    builder.Services.AddFluentValidationAutoValidation();
+    builder.Services.AddFluentValidationClientsideAdapters();
     builder.Services.AddInfrastructure(builder.Configuration);
     builder.Services.AddApplication();
 
@@ -31,7 +33,7 @@ try
 
     app.UseInfrastructure(builder.Configuration);
     app.MapEndpoints();
-    app.Run();
+    await app.RunAsync();
 }
 catch (Exception ex) when (!ex.GetType().Name.Equals("StopTheHostException", StringComparison.Ordinal))
 {
@@ -42,5 +44,5 @@ finally
 {
     StaticLogger.EnsureInitialized();
     Log.Information("Server Shutting down...");
-    Log.CloseAndFlush();
+    await Log.CloseAndFlushAsync();
 }
