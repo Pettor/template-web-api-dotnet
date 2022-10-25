@@ -15,7 +15,11 @@ internal class DatabaseInitializer : IDatabaseInitializer
     private readonly IServiceProvider _serviceProvider;
     private readonly ILogger<DatabaseInitializer> _logger;
 
-    public DatabaseInitializer(TenantDbContext tenantDbContext, IOptions<DatabaseSettings> dbSettings, IServiceProvider serviceProvider, ILogger<DatabaseInitializer> logger)
+    public DatabaseInitializer(
+        TenantDbContext tenantDbContext,
+        IOptions<DatabaseSettings> dbSettings,
+        IServiceProvider serviceProvider,
+        ILogger<DatabaseInitializer> logger)
     {
         _tenantDbContext = tenantDbContext;
         _dbSettings = dbSettings.Value;
@@ -42,9 +46,9 @@ internal class DatabaseInitializer : IDatabaseInitializer
         using var scope = _serviceProvider.CreateScope();
 
         // Then set current tenant so the right connectionstring is used
-        _serviceProvider.GetRequiredService<IMultiTenantContextAccessor>()
-            .MultiTenantContext = new MultiTenantContext<FshTenantInfo>
-        {
+        _serviceProvider.GetRequiredService<IMultiTenantContextAccessor>().MultiTenantContext =
+            new MultiTenantContext<FshTenantInfo>
+            {
                 TenantInfo = tenant
             };
 
@@ -66,7 +70,9 @@ internal class DatabaseInitializer : IDatabaseInitializer
 
     private async Task SeedRootTenantAsync(CancellationToken cancellationToken)
     {
-        if (await _tenantDbContext.TenantInfo.FindAsync(new object?[] { MultitenancyConstants.Root.Id }, cancellationToken: cancellationToken) is null)
+        if (await _tenantDbContext.TenantInfo.FindAsync(
+            new object?[] { MultitenancyConstants.Root.Id},
+            cancellationToken: cancellationToken) is null)
         {
             var rootTenant = new FshTenantInfo(
                 MultitenancyConstants.Root.Id,
