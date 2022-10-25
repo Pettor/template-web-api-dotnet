@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
 using WebApiTemplate.Application.Common.Caching;
 
 namespace WebApiTemplate.Infrastructure.Caching;
@@ -17,7 +18,7 @@ internal static class Startup
                 services.AddStackExchangeRedisCache(options =>
                 {
                     options.Configuration = settings.RedisUrl;
-                    options.ConfigurationOptions = new StackExchange.Redis.ConfigurationOptions
+                    options.ConfigurationOptions = new ConfigurationOptions
                     {
                         AbortOnConnectFail = true,
                         EndPoints = { settings.RedisUrl }

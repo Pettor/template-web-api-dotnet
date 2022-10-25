@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Primitives;
 using WebApiTemplate.Application.Multitenancy;
 using WebApiTemplate.Infrastructure.Persistence;
 using WebApiTemplate.Shared.Authorization;

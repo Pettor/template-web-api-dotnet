@@ -56,10 +56,8 @@ public class LocalFileStorageService : IFileStorageService
             await streamData.CopyToAsync(stream, cancellationToken);
             return dbPath.Replace("\\", "/");
         }
-        else
-        {
-            return string.Empty;
-        }
+
+        return string.Empty;
     }
 
     public static string RemoveSpecialCharacters(string str)

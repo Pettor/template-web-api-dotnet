@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using NJsonSchema;
 using NSwag;
 using NSwag.Generation.Processors;
 using NSwag.Generation.Processors.Contexts;
@@ -26,9 +27,9 @@ public class SwaggerHeaderAttributeProcessor : IOperationProcessor
                 Kind = OpenApiParameterKind.Header,
                 Description = attribute.Description,
                 IsRequired = attribute.IsRequired,
-                Schema = new NJsonSchema.JsonSchema
+                Schema = new JsonSchema
                 {
-                    Type = NJsonSchema.JsonObjectType.String,
+                    Type = JsonObjectType.String,
                     Default = attribute.DefaultValue
                 }
             });

@@ -102,7 +102,7 @@ public static class SpecificationBuilderExtensions
         var selector = Expression.Lambda<Func<T, string>>(selectorExpr, paramExpr);
 
         ((List<SearchExpressionInfo<T>>)specificationBuilder.Specification.SearchCriterias)
-            .Add(new SearchExpressionInfo<T>(selector, $"%{keyword}%", 1));
+            .Add(new SearchExpressionInfo<T>(selector, $"%{keyword}%"));
     }
 
     public static IOrderedSpecificationBuilder<T> OrderBy<T>(

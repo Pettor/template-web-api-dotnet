@@ -26,6 +26,6 @@ public class GetBrandRequestHandler : IRequestHandler<GetBrandRequest, BrandDto>
 
     public async Task<BrandDto> Handle(GetBrandRequest request, CancellationToken cancellationToken) =>
         await _repository.GetBySpecAsync(
-            (ISpecification<Brand, BrandDto>)new BrandByIdSpec(request.Id), cancellationToken)
+            new BrandByIdSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["brand.notfound"], request.Id));
 }

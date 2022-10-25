@@ -18,7 +18,6 @@ public class BrandGeneratorJob : IBrandGeneratorJob
     private readonly ILogger<BrandGeneratorJob> _logger;
     private readonly ISender _mediator;
     private readonly IReadRepository<Brand> _repository;
-    private readonly IProgressBarFactory _progressBar;
     private readonly PerformingContext _performingContext;
     private readonly INotificationSender _notifications;
     private readonly ICurrentUser _currentUser;
@@ -36,11 +35,10 @@ public class BrandGeneratorJob : IBrandGeneratorJob
         _logger = logger;
         _mediator = mediator;
         _repository = repository;
-        _progressBar = progressBar;
         _performingContext = performingContext;
         _notifications = notifications;
         _currentUser = currentUser;
-        _progress = _progressBar.Create();
+        _progress = progressBar.Create();
     }
 
     private async Task NotifyAsync(string message, int progress, CancellationToken cancellationToken)
