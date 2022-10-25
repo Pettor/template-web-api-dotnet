@@ -15,7 +15,7 @@ namespace WebApiTemplate.Infrastructure.Persistence;
 
 internal static class Startup
 {
-    private static readonly ILogger _logger = Log.ForContext(typeof(Startup));
+    private static readonly ILogger Logger = Log.ForContext(typeof(Startup));
 
     internal static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration config)
     {
@@ -27,13 +27,13 @@ internal static class Startup
             throw new InvalidOperationException("DB ConnectionString is not configured.");
         }
 
-        string? dbProvider = databaseSettings.DBProvider;
+        string? dbProvider = databaseSettings.DbProvider;
         if (string.IsNullOrEmpty(dbProvider))
         {
             throw new InvalidOperationException("DB Provider is not configured.");
         }
 
-        _logger.Information($"Current DB Provider : {dbProvider}");
+        Logger.Information($"Current DB Provider : {dbProvider}");
 
         return services
             .Configure<DatabaseSettings>(config.GetSection(nameof(DatabaseSettings)))

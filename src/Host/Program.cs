@@ -6,7 +6,7 @@ using WebApiTemplate.Host.Controllers;
 using WebApiTemplate.Infrastructure;
 using WebApiTemplate.Infrastructure.Common;
 
-[assembly: ApiConventionType(typeof(FSHApiConventions))]
+[assembly: ApiConventionType(typeof(FshApiConventions))]
 
 StaticLogger.EnsureInitialized();
 Log.Information("Server Booting Up...");

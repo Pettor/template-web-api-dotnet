@@ -1,6 +1,6 @@
 ﻿namespace WebApiTemplate.Infrastructure.Auth.AzureAd;
 
-internal static class AzureADClaimTypes
+internal static class AzureAdClaimTypes
 {
     public const string ObjectId = "http://schemas.microsoft.com/identity/claims/objectidentifier";
 }

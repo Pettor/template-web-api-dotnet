@@ -11,13 +11,13 @@ namespace WebApiTemplate.Infrastructure.Persistence.Initialization;
 
 internal class ApplicationDbSeeder
 {
-    private readonly FSHTenantInfo _currentTenant;
+    private readonly FshTenantInfo _currentTenant;
     private readonly RoleManager<ApplicationRole> _roleManager;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly CustomSeederRunner _seederRunner;
     private readonly ILogger<ApplicationDbSeeder> _logger;
 
-    public ApplicationDbSeeder(FSHTenantInfo currentTenant, RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager, CustomSeederRunner seederRunner, ILogger<ApplicationDbSeeder> logger)
+    public ApplicationDbSeeder(FshTenantInfo currentTenant, RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager, CustomSeederRunner seederRunner, ILogger<ApplicationDbSeeder> logger)
     {
         _currentTenant = currentTenant;
         _roleManager = roleManager;

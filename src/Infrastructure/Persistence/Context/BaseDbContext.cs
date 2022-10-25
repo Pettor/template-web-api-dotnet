@@ -13,7 +13,7 @@ namespace WebApiTemplate.Infrastructure.Persistence.Context;
 
 public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUser, ApplicationRole, string, IdentityUserClaim<string>, IdentityUserRole<string>, IdentityUserLogin<string>, ApplicationRoleClaim, IdentityUserToken<string>>
 {
-    protected readonly ICurrentUser _currentUser;
+    protected readonly ICurrentUser CurrentUser;
     private readonly ISerializerService _serializer;
     private readonly DatabaseSettings _dbSettings;
     private readonly IEventPublisher _events;
@@ -21,7 +21,7 @@ public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUs
     protected BaseDbContext(ITenantInfo currentTenant, DbContextOptions options, ICurrentUser currentUser, ISerializerService serializer, IOptions<DatabaseSettings> dbSettings, IEventPublisher events)
         : base(currentTenant, options)
     {
-        _currentUser = currentUser;
+        CurrentUser = currentUser;
         _serializer = serializer;
         _dbSettings = dbSettings.Value;
         _events = events;
@@ -57,13 +57,13 @@ public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUs
 
         if (!string.IsNullOrWhiteSpace(TenantInfo?.ConnectionString))
         {
-            optionsBuilder.UseDatabase(_dbSettings.DBProvider!, TenantInfo.ConnectionString);
+            optionsBuilder.UseDatabase(_dbSettings.DbProvider!, TenantInfo.ConnectionString);
         }
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
-        var auditEntries = HandleAuditingBeforeSaveChanges(_currentUser.GetUserId());
+        var auditEntries = HandleAuditingBeforeSaveChanges(CurrentUser.GetUserId());
 
         int result = await base.SaveChangesAsync(cancellationToken);
 

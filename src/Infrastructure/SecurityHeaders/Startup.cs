@@ -15,32 +15,32 @@ internal static class Startup
             {
                 if (!string.IsNullOrWhiteSpace(settings.XFrameOptions))
                 {
-                    context.Response.Headers.Add(HeaderNames.XFRAMEOPTIONS, settings.XFrameOptions);
+                    context.Response.Headers.Add(HeaderNames.Xframeoptions, settings.XFrameOptions);
                 }
 
                 if (!string.IsNullOrWhiteSpace(settings.XContentTypeOptions))
                 {
-                    context.Response.Headers.Add(HeaderNames.XCONTENTTYPEOPTIONS, settings.XContentTypeOptions);
+                    context.Response.Headers.Add(HeaderNames.Xcontenttypeoptions, settings.XContentTypeOptions);
                 }
 
                 if (!string.IsNullOrWhiteSpace(settings.ReferrerPolicy))
                 {
-                    context.Response.Headers.Add(HeaderNames.REFERRERPOLICY, settings.ReferrerPolicy);
+                    context.Response.Headers.Add(HeaderNames.Referrerpolicy, settings.ReferrerPolicy);
                 }
 
                 if (!string.IsNullOrWhiteSpace(settings.PermissionsPolicy))
                 {
-                    context.Response.Headers.Add(HeaderNames.PERMISSIONSPOLICY, settings.PermissionsPolicy);
+                    context.Response.Headers.Add(HeaderNames.Permissionspolicy, settings.PermissionsPolicy);
                 }
 
                 if (!string.IsNullOrWhiteSpace(settings.SameSite))
                 {
-                    context.Response.Headers.Add(HeaderNames.SAMESITE, settings.SameSite);
+                    context.Response.Headers.Add(HeaderNames.Samesite, settings.SameSite);
                 }
 
-                if (!string.IsNullOrWhiteSpace(settings.XXSSProtection))
+                if (!string.IsNullOrWhiteSpace(settings.XxssProtection))
                 {
-                    context.Response.Headers.Add(HeaderNames.XXSSPROTECTION, settings.XXSSProtection);
+                    context.Response.Headers.Add(HeaderNames.Xxssprotection, settings.XxssProtection);
                 }
 
                 await next();

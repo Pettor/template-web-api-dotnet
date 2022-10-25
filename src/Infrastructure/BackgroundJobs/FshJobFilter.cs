@@ -9,13 +9,13 @@ using WebApiTemplate.Shared.Multitenancy;
 
 namespace WebApiTemplate.Infrastructure.BackgroundJobs;
 
-public class FSHJobFilter : IClientFilter
+public class FshJobFilter : IClientFilter
 {
     private static readonly ILog Logger = LogProvider.GetCurrentClassLogger();
 
     private readonly IServiceProvider _services;
 
-    public FSHJobFilter(IServiceProvider services) => _services = services;
+    public FshJobFilter(IServiceProvider services) => _services = services;
 
     public void OnCreating(CreatingContext context)
     {

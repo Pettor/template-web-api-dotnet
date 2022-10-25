@@ -2,11 +2,11 @@
 
 internal class HeaderNames
 {
-    public const string XFRAMEOPTIONS = "X-FrameOptions";
-    public const string XCONTENTTYPEOPTIONS = "X-Content-Type-Options";
-    public const string REFERRERPOLICY = "Referrer-Policy";
-    public const string PERMISSIONSPOLICY = "Permissions-Policy";
-    public const string SAMESITE = "SameSite";
-    public const string XXSSPROTECTION = "X-XSS-Protection";
-    public const string CONTENTPOLICY = "ContentPolicy";
+    public const string Xframeoptions = "X-FrameOptions";
+    public const string Xcontenttypeoptions = "X-Content-Type-Options";
+    public const string Referrerpolicy = "Referrer-Policy";
+    public const string Permissionspolicy = "Permissions-Policy";
+    public const string Samesite = "SameSite";
+    public const string Xxssprotection = "X-XSS-Protection";
+    public const string Contentpolicy = "ContentPolicy";
 }
