@@ -1,7 +1,7 @@
 ﻿namespace WebApiTemplate.Infrastructure.OpenApi;
 
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-public class SwaggerHeaderAttribute : Attribute
+public sealed class SwaggerHeaderAttribute : Attribute
 {
     public string HeaderName { get; }
     public string? Description { get; }
