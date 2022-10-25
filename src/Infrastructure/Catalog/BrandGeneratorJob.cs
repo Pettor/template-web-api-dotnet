@@ -1,5 +1,4 @@
-﻿using Ardalis.Specification;
-using Hangfire;
+﻿using Hangfire;
 using Hangfire.Console.Extensions;
 using Hangfire.Console.Progress;
 using Hangfire.Server;
@@ -93,10 +92,4 @@ public class BrandGeneratorJob : IBrandGeneratorJob
 
         _logger.LogInformation("All random brands deleted.");
     }
-}
-
-public class RandomBrandsSpec : Specification<Brand>
-{
-    public RandomBrandsSpec() =>
-        Query.Where(b => !string.IsNullOrEmpty(b.Name) && b.Name.Contains("Brand Random"));
 }
