@@ -43,8 +43,8 @@ internal class DatabaseInitializer : IDatabaseInitializer
 
         // Then set current tenant so the right connectionstring is used
         _serviceProvider.GetRequiredService<IMultiTenantContextAccessor>()
-            .MultiTenantContext = new MultiTenantContext<FSHTenantInfo>()
-            {
+            .MultiTenantContext = new MultiTenantContext<FSHTenantInfo>
+        {
                 TenantInfo = tenant
             };
 
