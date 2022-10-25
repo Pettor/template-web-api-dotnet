@@ -7,7 +7,7 @@ using Xunit.Microsoft.DependencyInjection.Abstracts;
 
 namespace Infrastructure.Test.Multitenancy.Fixtures;
 
-public class TestFixture : TestBedFixture
+public abstract class TestFixture : TestBedFixture
 {
     protected override void AddServices(IServiceCollection services, IConfiguration? configuration)
         => services
