@@ -5,14 +5,12 @@ services:
       dockerfile: Dockerfile
     container_name: api
     environment:
-      - "DatabaseSettings__ConnectionString=Server=db;Database=backendTemplateDb;\
-        User=sa;Password=SuperSecurePassword123!;MultipleActiveResultSets=true;\
-        TrustServerCertificate=true"
-      - "DatabaseSettings__DBProvider=mssql"
-      - "HangfireSettings__Storage__ConnectionString=Server=db;Database=backend\
-        TemplateDb;User=sa;Password=SuperSecurePassword123!;MultipleActiveResultS\
-        ets=true;TrustServerCertificate=true"
-      - "HangfireSettings__Storage__StorageProvider=mssql"
+      - "DatabaseSettings__ConnectionString=Host=db;Database=db;\
+        Username=sa;Password=SuperSecurePassword123!;Include Error Detail=true"
+      - "DatabaseSettings__DBProvider=postgresql"
+      - "HangfireSettings__Storage__ConnectionString=Host=db;Database=db;\
+        Username=sa;Password=SuperSecurePassword123!;Include Error Detail=true"
+      - "HangfireSettings__Storage__StorageProvider=postgresql"
       - "ASPNETCORE_Kestrel__Certificates__Default__Password=SuperSecurePasswor\
         d123!"
       - "ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnet.pfx"
@@ -25,10 +23,11 @@ services:
       - db
     restart: on-failure
   db:
-    image: "mcr.microsoft.com/mssql/server"
-    container_name: db
+    image: "postgres:15"
+    ports:
+      - "5432"
     restart: always
     environment:
-      MSSQL_SA_PASSWORD: "SuperSecurePassword123!"
-      SA_PASSWORD: "SuperSecurePassword123!"
-      ACCEPT_EULA: "Y"
+      POSTGRES_USER: "sa"
+      POSTGRES_PASSWORD: "SuperSecurePassword123!"
+      POSTGRES_DB: "db"
