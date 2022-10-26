@@ -12,14 +12,14 @@ namespace Backend.Infrastructure.Multitenancy;
 
 internal class TenantService : ITenantService
 {
-    private readonly IMultiTenantStore<FshTenantInfo> _tenantStore;
+    private readonly IMultiTenantStore<TenantInfo> _tenantStore;
     private readonly IConnectionStringSecurer _csSecurer;
     private readonly IDatabaseInitializer _dbInitializer;
     private readonly IStringLocalizer<TenantService> _localizer;
     private readonly DatabaseSettings _dbSettings;
 
     public TenantService(
-        IMultiTenantStore<FshTenantInfo> tenantStore,
+        IMultiTenantStore<TenantInfo> tenantStore,
         IConnectionStringSecurer csSecurer,
         IDatabaseInitializer dbInitializer,
         IStringLocalizer<TenantService> localizer,
@@ -53,7 +53,7 @@ internal class TenantService : ITenantService
     {
         if (request.ConnectionString?.Trim() == _dbSettings.ConnectionString?.Trim()) request.ConnectionString = string.Empty;
 
-        var tenant = new FshTenantInfo(request.Id, request.Name, request.ConnectionString, request.AdminEmail, request.Issuer);
+        var tenant = new TenantInfo(request.Id, request.Name, request.ConnectionString, request.AdminEmail, request.Issuer);
         await _tenantStore.TryAddAsync(tenant);
 
         // TODO: run this in a hangfire job? will then have to send mail when it's ready or not
@@ -113,7 +113,7 @@ internal class TenantService : ITenantService
         return $"Tenant {id}'s Subscription Upgraded. Now Valid till {tenant.ValidUpto}.";
     }
 
-    private async Task<FshTenantInfo> GetTenantInfoAsync(string id) =>
+    private async Task<TenantInfo> GetTenantInfoAsync(string id) =>
         await _tenantStore.TryGetAsync(id)
-            ?? throw new NotFoundException(string.Format(_localizer["entity.notfound"], typeof(FshTenantInfo).Name, id));
+            ?? throw new NotFoundException(string.Format(_localizer["entity.notfound"], typeof(TenantInfo).Name, id));
 }

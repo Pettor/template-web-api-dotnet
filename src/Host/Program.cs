@@ -6,7 +6,7 @@ using Backend.Infrastructure.Common;
 using FluentValidation.AspNetCore;
 using Serilog;
 
-[assembly: ApiConventionType(typeof(FshApiConventions))]
+[assembly: ApiConventionType(typeof(ApiConventions))]
 
 StaticLogger.EnsureInitialized();
 Log.Information("Server Booting Up...");

@@ -6,5 +6,5 @@ namespace Backend.Infrastructure.Auth.Permissions;
 public class MustHavePermissionAttribute : AuthorizeAttribute
 {
     public MustHavePermissionAttribute(string action, string resource) =>
-        Policy = FshPermission.NameFor(action, resource);
+        Policy = ApiPermission.NameFor(action, resource);
 }

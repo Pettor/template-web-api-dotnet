@@ -1,6 +1,6 @@
 ﻿namespace Backend.Shared.Authorization;
 
-public static class FshResource
+public static class ApiResource
 {
     public const string Tenants = nameof(Tenants);
     public const string Dashboard = nameof(Dashboard);

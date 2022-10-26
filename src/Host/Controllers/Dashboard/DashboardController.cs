@@ -7,7 +7,7 @@ namespace Backend.Host.Controllers.Dashboard;
 public class DashboardController : VersionedApiController
 {
     [HttpGet]
-    [MustHavePermission(FshAction.View, FshResource.Dashboard)]
+    [MustHavePermission(ApiAction.View, ApiResource.Dashboard)]
     [OpenApiOperation("Get statistics for the dashboard.", "")]
     public Task<StatsDto> GetAsync()
     {

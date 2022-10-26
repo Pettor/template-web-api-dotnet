@@ -30,11 +30,11 @@ internal static class Startup
         Logger.Information($"Hangfire: Current Storage Provider : {storageSettings.StorageProvider}");
         Logger.Information("For more Hangfire storage, visit https://www.hangfire.io/extensions.html");
 
-        services.AddSingleton<JobActivator, FshJobActivator>();
+        services.AddSingleton<JobActivator, DefaultJobActivator>();
 
         services.AddHangfire((provider, hangfireConfig) => hangfireConfig
             .UseDatabase(storageSettings.StorageProvider, storageSettings.ConnectionString, config)
-            .UseFilter(new FshJobFilter(provider))
+            .UseFilter(new DefaultJobFilter(provider))
             .UseFilter(new LogJobFilter())
             .UseConsole());
 

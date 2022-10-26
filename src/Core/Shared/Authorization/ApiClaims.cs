@@ -1,6 +1,6 @@
 ﻿namespace Backend.Shared.Authorization;
 
-public static class FshClaims
+public static class ApiClaims
 {
     public const string Tenant = "tenant";
     public const string Fullname = "fullName";
