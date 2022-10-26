@@ -23,7 +23,7 @@ internal class ConnectionStringValidator : IConnectionStringValidator
     {
         if (string.IsNullOrWhiteSpace(dbProvider))
         {
-            dbProvider = _dbSettings.DBProvider;
+            dbProvider = _dbSettings.DbProvider;
         }
 
         try

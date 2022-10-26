@@ -9,11 +9,11 @@ using WebApiTemplate.Shared.Multitenancy;
 
 namespace WebApiTemplate.Infrastructure.BackgroundJobs;
 
-public class FSHJobActivator : JobActivator
+public class FshJobActivator : JobActivator
 {
     private readonly IServiceScopeFactory _scopeFactory;
 
-    public FSHJobActivator(IServiceScopeFactory scopeFactory) =>
+    public FshJobActivator(IServiceScopeFactory scopeFactory) =>
         _scopeFactory = scopeFactory ?? throw new ArgumentNullException(nameof(scopeFactory));
 
     public override JobActivatorScope BeginScope(PerformContext context) =>
@@ -34,11 +34,11 @@ public class FSHJobActivator : JobActivator
 
         private void ReceiveParameters()
         {
-            var tenantInfo = _context.GetJobParameter<FSHTenantInfo>(MultitenancyConstants.TenantIdName);
+            var tenantInfo = _context.GetJobParameter<FshTenantInfo>(MultitenancyConstants.TenantIdName);
             if (tenantInfo is not null)
             {
                 _scope.ServiceProvider.GetRequiredService<IMultiTenantContextAccessor>()
-                    .MultiTenantContext = new MultiTenantContext<FSHTenantInfo>
+                    .MultiTenantContext = new MultiTenantContext<FshTenantInfo>
                     {
                         TenantInfo = tenantInfo
                     };

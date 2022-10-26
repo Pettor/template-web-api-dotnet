@@ -3,13 +3,13 @@ using WebApiTemplate.Shared.Multitenancy;
 
 namespace WebApiTemplate.Infrastructure.Multitenancy;
 
-public class FSHTenantInfo : ITenantInfo
+public class FshTenantInfo : ITenantInfo
 {
-    public FSHTenantInfo()
+    public FshTenantInfo()
     {
     }
 
-    public FSHTenantInfo(string id, string name, string? connectionString, string adminEmail, string? issuer = null)
+    public FshTenantInfo(string id, string name, string? connectionString, string adminEmail, string? issuer = null)
     {
         Id = id;
         Identifier = id;

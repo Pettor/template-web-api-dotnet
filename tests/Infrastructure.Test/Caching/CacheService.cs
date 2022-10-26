@@ -9,8 +9,8 @@ public abstract class CacheService<TCacheService>
 {
     private record TestRecord(Guid Id, string StringValue, DateTime DateTimeValue);
 
-    private const string _testKey = "testkey";
-    private const string _testValue = "testvalue";
+    private const string TestKey = "testkey";
+    private const string TestValue = "testvalue";
 
     protected abstract TCacheService CreateCacheService();
 
@@ -29,7 +29,7 @@ public abstract class CacheService<TCacheService>
     {
         var sut = CreateCacheService();
 
-        string? result = sut.Get<string>(_testKey);
+        string? result = sut.Get<string>(TestKey);
 
         result.Should().BeNull();
     }
@@ -38,7 +38,7 @@ public abstract class CacheService<TCacheService>
     public static IEnumerable<object[]> ValueData => new List<object[]>
 #pragma warning restore RCS1158
         {
-            new object[] { _testKey, _testValue },
+            new object[] { TestKey, TestValue },
             new object[] { "integer", 1 },
             new object[] { "long", 1L },
             new object[] { "double", 1.0 },
@@ -61,11 +61,11 @@ public abstract class CacheService<TCacheService>
     [Fact]
     public void ReturnsExistingObjectGivenExistingKey()
     {
-        var expected = new TestRecord(Guid.NewGuid(), _testValue, DateTime.UtcNow);
+        var expected = new TestRecord(Guid.NewGuid(), TestValue, DateTime.UtcNow);
         var sut = CreateCacheService();
 
-        sut.Set(_testKey, expected);
-        var result = sut.Get<TestRecord>(_testKey);
+        sut.Set(TestKey, expected);
+        var result = sut.Get<TestRecord>(TestKey);
 
         result.Should().BeEquivalentTo(expected);
     }
@@ -74,13 +74,13 @@ public abstract class CacheService<TCacheService>
     public async Task ReturnsNullGivenAnExpiredKey()
     {
         var sut = CreateCacheService();
-        sut.Set(_testKey, _testValue, TimeSpan.FromMilliseconds(200));
+        sut.Set(TestKey, TestValue, TimeSpan.FromMilliseconds(200));
 
-        string? result = sut.Get<string>(_testKey);
-        Assert.Equal(_testValue, result);
+        string? result = sut.Get<string>(TestKey);
+        Assert.Equal(TestValue, result);
 
         await Task.Delay(250);
-        result = sut.Get<string>(_testKey);
+        result = sut.Get<string>(TestKey);
 
         result.Should().BeNull();
     }

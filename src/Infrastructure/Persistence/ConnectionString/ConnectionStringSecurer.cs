@@ -25,7 +25,7 @@ public class ConnectionStringSecurer : IConnectionStringSecurer
 
         if (string.IsNullOrWhiteSpace(dbProvider))
         {
-            dbProvider = _dbSettings.DBProvider;
+            dbProvider = _dbSettings.DbProvider;
         }
 
         return dbProvider?.ToLower() switch

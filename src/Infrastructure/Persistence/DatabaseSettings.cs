@@ -2,6 +2,6 @@ namespace WebApiTemplate.Infrastructure.Persistence;
 
 public class DatabaseSettings
 {
-    public string? DBProvider { get; set; }
+    public string? DbProvider { get; set; }
     public string? ConnectionString { get; set; }
 }
