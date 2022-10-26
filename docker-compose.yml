@@ -5,13 +5,12 @@ services:
       dockerfile: Dockerfile
     container_name: api
     environment:
-      - "DatabaseSettings__ConnectionString=Server=db;Database=fullStackHeroDb;\
-        User=sa;Password=SuperSecurePassword123!;MultipleActiveResultSets=true;\
-        TrustServerCertificate=true"
+      - "DatabaseSettings__ConnectionString=Server=db;Database=backendTemplateDb;\
+        User=sa;Password=SuperSecurePassword123!;MultipleActiveResultSets=true"
       - "DatabaseSettings__DBProvider=mssql"
-      - "HangfireSettings__Storage__ConnectionString=Server=db;Database=fullSta\
-        ckHeroDb;User=sa;Password=SuperSecurePassword123!;MultipleActiveResultS\
-        ets=true;TrustServerCertificate=true"
+      - "HangfireSettings__Storage__ConnectionString=Server=db;Database=backend\
+        TemplateDb;User=sa;Password=SuperSecurePassword123!;MultipleActiveResultS\
+        ets=true"
       - "HangfireSettings__Storage__StorageProvider=mssql"
       - "ASPNETCORE_Kestrel__Certificates__Default__Password=SuperSecurePasswor\
         d123!"
