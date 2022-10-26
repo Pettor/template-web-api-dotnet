@@ -1,6 +1,6 @@
-using WebApiTemplate.Application.Common.Validation;
+using Backend.Application.Common.Validation;
 
-namespace WebApiTemplate.Application.Identity.Users;
+namespace Backend.Application.Identity.Users;
 
 public class CreateUserRequestValidator : CustomValidator<CreateUserRequest>
 {

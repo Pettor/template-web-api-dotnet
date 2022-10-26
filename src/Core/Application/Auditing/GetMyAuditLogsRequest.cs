@@ -1,4 +1,4 @@
-namespace WebApiTemplate.Application.Auditing;
+namespace Backend.Application.Auditing;
 
 public class GetMyAuditLogsRequest : IRequest<List<AuditDto>>
 {

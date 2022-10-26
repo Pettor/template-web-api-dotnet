@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Application.Common.Interfaces;
+﻿using Backend.Application.Common.Interfaces;
 
-namespace WebApiTemplate.Application.Common.Exporters;
+namespace Backend.Application.Common.Exporters;
 
 public interface IExcelWriter : ITransientService
 {

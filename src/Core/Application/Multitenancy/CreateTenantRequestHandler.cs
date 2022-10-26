@@ -1,4 +1,4 @@
-﻿namespace WebApiTemplate.Application.Multitenancy;
+﻿namespace Backend.Application.Multitenancy;
 
 public class CreateTenantRequestHandler : IRequestHandler<CreateTenantRequest, string>
 {

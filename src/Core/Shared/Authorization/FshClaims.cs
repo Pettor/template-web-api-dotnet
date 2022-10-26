@@ -1,4 +1,4 @@
-﻿namespace WebApiTemplate.Shared.Authorization;
+﻿namespace Backend.Shared.Authorization;
 
 public static class FshClaims
 {

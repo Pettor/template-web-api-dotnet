@@ -1,12 +1,12 @@
-﻿using Finbuckle.MultiTenant;
+﻿using Backend.Infrastructure.Multitenancy;
+using Backend.Shared.Multitenancy;
+using Finbuckle.MultiTenant;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using WebApiTemplate.Infrastructure.Multitenancy;
-using WebApiTemplate.Shared.Multitenancy;
 
-namespace WebApiTemplate.Infrastructure.Persistence.Initialization;
+namespace Backend.Infrastructure.Persistence.Initialization;
 
 internal class DatabaseInitializer : IDatabaseInitializer
 {
@@ -31,9 +31,6 @@ internal class DatabaseInitializer : IDatabaseInitializer
         {
             await InitializeApplicationDbForTenantAsync(tenant, cancellationToken);
         }
-
-        _logger.LogInformation("For documentations and guides, visit https://www.fullstackhero.net");
-        _logger.LogInformation("To Sponsor this project, visit https://opencollective.com/fullstackhero");
     }
 
     public async Task InitializeApplicationDbForTenantAsync(FshTenantInfo tenant, CancellationToken cancellationToken)

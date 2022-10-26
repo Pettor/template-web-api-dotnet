@@ -1,9 +1,9 @@
+using Backend.Application.Common.Events;
+using Backend.Shared.Events;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using WebApiTemplate.Application.Common.Events;
-using WebApiTemplate.Shared.Events;
 
-namespace WebApiTemplate.Infrastructure.Common.Services;
+namespace Backend.Infrastructure.Common.Services;
 
 public class EventPublisher : IEventPublisher
 {

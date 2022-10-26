@@ -1,4 +1,4 @@
-﻿namespace WebApiTemplate.Infrastructure.Mapping;
+﻿namespace Backend.Infrastructure.Mapping;
 
 public class MapsterSettings
 {

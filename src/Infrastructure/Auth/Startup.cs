@@ -1,14 +1,14 @@
+using Backend.Application.Common.Interfaces;
+using Backend.Infrastructure.Auth.AzureAd;
+using Backend.Infrastructure.Auth.Jwt;
+using Backend.Infrastructure.Auth.Permissions;
+using Backend.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebApiTemplate.Application.Common.Interfaces;
-using WebApiTemplate.Infrastructure.Auth.AzureAd;
-using WebApiTemplate.Infrastructure.Auth.Jwt;
-using WebApiTemplate.Infrastructure.Auth.Permissions;
-using WebApiTemplate.Infrastructure.Identity;
 
-namespace WebApiTemplate.Infrastructure.Auth;
+namespace Backend.Infrastructure.Auth;
 
 internal static class Startup
 {

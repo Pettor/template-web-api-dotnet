@@ -1,12 +1,12 @@
 ﻿using System.Security.Claims;
 using System.Text;
+using Backend.Application.Common.Exceptions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using WebApiTemplate.Application.Common.Exceptions;
 
-namespace WebApiTemplate.Infrastructure.Auth.Jwt;
+namespace Backend.Infrastructure.Auth.Jwt;
 
 internal static class Startup
 {

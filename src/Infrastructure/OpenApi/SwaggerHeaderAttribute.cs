@@ -1,4 +1,4 @@
-﻿namespace WebApiTemplate.Infrastructure.OpenApi;
+﻿namespace Backend.Infrastructure.OpenApi;
 
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
 public class SwaggerHeaderAttribute : Attribute

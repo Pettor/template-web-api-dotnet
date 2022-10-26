@@ -1,6 +1,6 @@
-using WebApiTemplate.Application.Common.Interfaces;
+using Backend.Application.Common.Interfaces;
 
-namespace WebApiTemplate.Application.Identity.Roles;
+namespace Backend.Application.Identity.Roles;
 
 public interface IRoleService : ITransientService
 {

@@ -1,6 +1,6 @@
-using WebApiTemplate.Application.Common.Models;
+using Backend.Application.Common.Models;
 
-namespace WebApiTemplate.Application.Identity.Users;
+namespace Backend.Application.Identity.Users;
 
 public class UserListFilter : PaginationFilter
 {

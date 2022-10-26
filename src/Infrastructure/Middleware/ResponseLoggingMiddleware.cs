@@ -1,9 +1,9 @@
+using Backend.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Serilog;
 using Serilog.Context;
-using WebApiTemplate.Application.Common.Interfaces;
 
-namespace WebApiTemplate.Infrastructure.Middleware;
+namespace Backend.Infrastructure.Middleware;
 
 public class ResponseLoggingMiddleware : IMiddleware
 {

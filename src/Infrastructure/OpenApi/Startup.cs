@@ -7,7 +7,7 @@ using NSwag;
 using NSwag.AspNetCore;
 using NSwag.Generation.Processors.Security;
 
-namespace WebApiTemplate.Infrastructure.OpenApi;
+namespace Backend.Infrastructure.OpenApi;
 
 internal static class Startup
 {
@@ -112,7 +112,7 @@ internal static class Startup
 
             options.OAuth2Client = new OAuth2ClientSettings
             {
-                AppName = "Full Stack Hero Api Client",
+                AppName = "[AppName]",
                 ClientId = config["SecuritySettings:Swagger:OpenIdClientId"],
                 UsePkceWithAuthorizationCodeGrant = true,
                 ScopeSeparator = " "

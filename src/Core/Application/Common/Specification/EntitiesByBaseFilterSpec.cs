@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Application.Common.Models;
+﻿using Backend.Application.Common.Models;
 
-namespace WebApiTemplate.Application.Common.Specification;
+namespace Backend.Application.Common.Specification;
 
 public class EntitiesByBaseFilterSpec<T, TResult> : Specification<T, TResult>
 {

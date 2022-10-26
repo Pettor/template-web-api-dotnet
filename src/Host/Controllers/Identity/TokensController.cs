@@ -1,7 +1,7 @@
-using WebApiTemplate.Application.Identity.Tokens;
-using WebApiTemplate.Infrastructure.OpenApi;
+using Backend.Application.Identity.Tokens;
+using Backend.Infrastructure.OpenApi;
 
-namespace WebApiTemplate.Host.Controllers.Identity;
+namespace Backend.Host.Controllers.Identity;
 
 public sealed class TokensController : VersionNeutralApiController
 {

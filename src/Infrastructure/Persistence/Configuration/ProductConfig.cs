@@ -1,9 +1,9 @@
-﻿using Finbuckle.MultiTenant.EntityFrameworkCore;
+﻿using Backend.Domain.Catalog;
+using Finbuckle.MultiTenant.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WebApiTemplate.Domain.Catalog;
 
-namespace WebApiTemplate.Infrastructure.Persistence.Configuration;
+namespace Backend.Infrastructure.Persistence.Configuration;
 
 public class ProductConfig : IEntityTypeConfiguration<Product>
 {

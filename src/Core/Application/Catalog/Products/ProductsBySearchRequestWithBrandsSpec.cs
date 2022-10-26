@@ -1,8 +1,8 @@
-﻿using WebApiTemplate.Application.Common.Models;
-using WebApiTemplate.Application.Common.Specification;
-using WebApiTemplate.Domain.Catalog;
+﻿using Backend.Application.Common.Models;
+using Backend.Application.Common.Specification;
+using Backend.Domain.Catalog;
 
-namespace WebApiTemplate.Application.Catalog.Products;
+namespace Backend.Application.Catalog.Products;
 
 public class ProductsBySearchRequestWithBrandsSpec : EntitiesByPaginationFilterSpec<Product, ProductDto>
 {

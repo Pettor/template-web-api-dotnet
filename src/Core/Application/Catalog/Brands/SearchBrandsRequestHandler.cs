@@ -1,8 +1,8 @@
-﻿using WebApiTemplate.Application.Common.Models;
-using WebApiTemplate.Application.Common.Persistence;
-using WebApiTemplate.Domain.Catalog;
+﻿using Backend.Application.Common.Models;
+using Backend.Application.Common.Persistence;
+using Backend.Domain.Catalog;
 
-namespace WebApiTemplate.Application.Catalog.Brands;
+namespace Backend.Application.Catalog.Brands;
 
 public class SearchBrandsRequestHandler : IRequestHandler<SearchBrandsRequest, PaginationResponse<BrandDto>>
 {

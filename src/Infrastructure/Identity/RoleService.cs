@@ -1,18 +1,18 @@
+using Backend.Application.Common.Events;
+using Backend.Application.Common.Exceptions;
+using Backend.Application.Common.Interfaces;
+using Backend.Application.Identity.Roles;
+using Backend.Domain.Identity;
+using Backend.Infrastructure.Persistence.Context;
+using Backend.Shared.Authorization;
+using Backend.Shared.Multitenancy;
 using Finbuckle.MultiTenant;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
-using WebApiTemplate.Application.Common.Events;
-using WebApiTemplate.Application.Common.Exceptions;
-using WebApiTemplate.Application.Common.Interfaces;
-using WebApiTemplate.Application.Identity.Roles;
-using WebApiTemplate.Domain.Identity;
-using WebApiTemplate.Infrastructure.Persistence.Context;
-using WebApiTemplate.Shared.Authorization;
-using WebApiTemplate.Shared.Multitenancy;
 
-namespace WebApiTemplate.Infrastructure.Identity;
+namespace Backend.Infrastructure.Identity;
 
 internal class RoleService : IRoleService
 {

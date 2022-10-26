@@ -1,4 +1,4 @@
-﻿namespace WebApiTemplate.Shared.Notifications;
+﻿namespace Backend.Shared.Notifications;
 
 public interface INotificationMessage
 {

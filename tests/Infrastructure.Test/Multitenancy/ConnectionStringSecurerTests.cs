@@ -1,5 +1,5 @@
-﻿using Infrastructure.Test.Multitenancy.Fixtures;
-using WebApiTemplate.Application.Common.Persistence;
+﻿using Backend.Application.Common.Persistence;
+using Infrastructure.Test.Multitenancy.Fixtures;
 using Xunit;
 using Xunit.Abstractions;
 using Xunit.Microsoft.DependencyInjection.Abstracts;
@@ -8,7 +8,7 @@ namespace Infrastructure.Test.Multitenancy;
 
 public class ConnectionStringSecurerTests : TestBed<TestFixture>
 {
-    private const string Mssql = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=fullStackHeroDb;MultipleActiveResultSets=True;";
+    private const string Mssql = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=backendTemplateDb;MultipleActiveResultSets=True;";
     private const string Mysql = "server=127.0.0.1;database=test";
     private readonly IConnectionStringSecurer? _makeSecureConnectionString;
 

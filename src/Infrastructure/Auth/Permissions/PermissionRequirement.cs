@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 
-namespace WebApiTemplate.Infrastructure.Auth.Permissions;
+namespace Backend.Infrastructure.Auth.Permissions;
 
 internal class PermissionRequirement : IAuthorizationRequirement
 {

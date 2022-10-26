@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace WebApiTemplate.Shared.Authorization;
+namespace Backend.Shared.Authorization;
 
 public static class FshPermissions
 {

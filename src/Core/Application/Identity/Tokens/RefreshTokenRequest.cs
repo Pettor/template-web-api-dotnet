@@ -1,3 +1,3 @@
-namespace WebApiTemplate.Application.Identity.Tokens;
+namespace Backend.Application.Identity.Tokens;
 
 public record RefreshTokenRequest(string RefreshToken);

@@ -1,7 +1,7 @@
+using Backend.Application.Common.Interfaces;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using WebApiTemplate.Application.Common.Interfaces;
 
-namespace WebApiTemplate.Infrastructure.Auditing;
+namespace Backend.Infrastructure.Auditing;
 
 public class AuditTrail
 {

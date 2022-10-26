@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Application.Common.Validation;
+﻿using Backend.Application.Common.Validation;
 
-namespace WebApiTemplate.Application.Identity.Roles;
+namespace Backend.Application.Identity.Roles;
 
 public class UpdateRolePermissionsRequestValidator : CustomValidator<UpdateRolePermissionsRequest>
 {

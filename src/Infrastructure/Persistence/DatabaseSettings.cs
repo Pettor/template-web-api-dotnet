@@ -1,4 +1,4 @@
-namespace WebApiTemplate.Infrastructure.Persistence;
+namespace Backend.Infrastructure.Persistence;
 
 public class DatabaseSettings
 {

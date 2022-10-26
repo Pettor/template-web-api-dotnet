@@ -1,4 +1,4 @@
-namespace WebApiTemplate.Infrastructure.Mailing;
+namespace Backend.Infrastructure.Mailing;
 
 public class MailSettings
 {

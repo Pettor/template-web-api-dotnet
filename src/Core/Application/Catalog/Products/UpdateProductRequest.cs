@@ -1,6 +1,6 @@
-using WebApiTemplate.Application.Common.FileStorage;
+using Backend.Application.Common.FileStorage;
 
-namespace WebApiTemplate.Application.Catalog.Products;
+namespace Backend.Application.Catalog.Products;
 
 public class UpdateProductRequest : IRequest<Guid>
 {

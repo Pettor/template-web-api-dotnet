@@ -1,4 +1,4 @@
-namespace WebApiTemplate.Application.Common.Mailing;
+namespace Backend.Application.Common.Mailing;
 
 public class MailRequest
 {

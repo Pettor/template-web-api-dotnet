@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.WebUtilities;
-using WebApiTemplate.Application.Common.Exceptions;
-using WebApiTemplate.Application.Common.Mailing;
-using WebApiTemplate.Application.Identity.Users.Password;
+﻿using Backend.Application.Common.Exceptions;
+using Backend.Application.Common.Mailing;
+using Backend.Application.Identity.Users.Password;
+using Microsoft.AspNetCore.WebUtilities;
 
-namespace WebApiTemplate.Infrastructure.Identity;
+namespace Backend.Infrastructure.Identity;
 
 internal partial class UserService
 {

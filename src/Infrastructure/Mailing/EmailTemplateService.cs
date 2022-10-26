@@ -1,8 +1,8 @@
 using System.Text;
+using Backend.Application.Common.Mailing;
 using RazorEngineCore;
-using WebApiTemplate.Application.Common.Mailing;
 
-namespace WebApiTemplate.Infrastructure.Mailing;
+namespace Backend.Infrastructure.Mailing;
 
 public class EmailTemplateService : IEmailTemplateService
 {

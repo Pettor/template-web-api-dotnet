@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <RootNamespace>WebApiTemplate.Host</RootNamespace>
-        <AssemblyName>WebApiTemplate.Host</AssemblyName>
+        <RootNamespace>Backend.Host</RootNamespace>
+        <AssemblyName>Backend.Host</AssemblyName>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
@@ -30,7 +30,7 @@
         <Content Update="Configurations\*.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
-        <None Update="Files\full-stack-hero-logo.png">
+        <None Update="Files\logo.png">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Include="Email Templates\*.html">

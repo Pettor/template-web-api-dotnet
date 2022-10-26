@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using WebApiTemplate.Application.Common.Interfaces;
+﻿using Backend.Application.Common.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace WebApiTemplate.Infrastructure.Common;
+namespace Backend.Infrastructure.Common;
 
 internal static class Startup
 {

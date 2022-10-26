@@ -1,4 +1,4 @@
-﻿namespace WebApiTemplate.Infrastructure.Middleware;
+﻿namespace Backend.Infrastructure.Middleware;
 
 public class ErrorResult
 {

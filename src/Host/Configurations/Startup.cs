@@ -1,4 +1,4 @@
-namespace WebApiTemplate.Host.Configurations;
+namespace Backend.Host.Configurations;
 
 internal static class Startup
 {

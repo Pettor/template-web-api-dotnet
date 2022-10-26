@@ -1,8 +1,8 @@
+using Backend.Application.Common.Caching;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
-using WebApiTemplate.Application.Common.Caching;
 
-namespace WebApiTemplate.Infrastructure.Caching;
+namespace Backend.Infrastructure.Caching;
 
 public class LocalCacheService : ICacheService
 {

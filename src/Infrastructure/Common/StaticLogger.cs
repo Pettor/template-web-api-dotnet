@@ -1,6 +1,6 @@
 using Serilog;
 
-namespace WebApiTemplate.Infrastructure.Common;
+namespace Backend.Infrastructure.Common;
 
 public static class StaticLogger
 {

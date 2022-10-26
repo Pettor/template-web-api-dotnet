@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace WebApiTemplate.Infrastructure.Middleware;
+namespace Backend.Infrastructure.Middleware;
 
 internal static class Startup
 {

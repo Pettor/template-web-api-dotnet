@@ -1,4 +1,4 @@
-﻿namespace WebApiTemplate.Application.Common.Persistence;
+﻿namespace Backend.Application.Common.Persistence;
 
 public interface IConnectionStringValidator
 {

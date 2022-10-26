@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Domain.Common.Contracts;
+﻿using Backend.Domain.Common.Contracts;
 
-namespace WebApiTemplate.Domain.Identity;
+namespace Backend.Domain.Identity;
 
 public abstract class ApplicationRoleEvent : DomainEvent
 {

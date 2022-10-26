@@ -1,12 +1,12 @@
-using WebApiTemplate.Application.Common.Events;
-using WebApiTemplate.Application.Common.Interfaces;
-using WebApiTemplate.Domain.Catalog;
-using WebApiTemplate.Domain.Common.Events;
-using WebApiTemplate.Domain.Identity;
-using WebApiTemplate.Shared.Events;
-using WebApiTemplate.Shared.Notifications;
+using Backend.Application.Common.Events;
+using Backend.Application.Common.Interfaces;
+using Backend.Domain.Catalog;
+using Backend.Domain.Common.Events;
+using Backend.Domain.Identity;
+using Backend.Shared.Events;
+using Backend.Shared.Notifications;
 
-namespace WebApiTemplate.Application.Dashboard;
+namespace Backend.Application.Dashboard;
 
 public class SendStatsChangedNotificationHandler :
     IEventNotificationHandler<EntityCreatedEvent<Brand>>,

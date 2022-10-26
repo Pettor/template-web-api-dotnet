@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Domain.Catalog;
+﻿using Backend.Domain.Catalog;
 
-namespace WebApiTemplate.Application.Catalog.Products;
+namespace Backend.Application.Catalog.Products;
 
 public class ProductByNameSpec : Specification<Product>, ISingleResultSpecification
 {

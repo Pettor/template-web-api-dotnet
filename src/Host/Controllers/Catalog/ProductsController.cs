@@ -1,9 +1,9 @@
-﻿using WebApiTemplate.Application.Catalog.Products;
-using WebApiTemplate.Application.Common.Models;
-using WebApiTemplate.Infrastructure.Auth.Permissions;
-using WebApiTemplate.Shared.Authorization;
+﻿using Backend.Application.Catalog.Products;
+using Backend.Application.Common.Models;
+using Backend.Infrastructure.Auth.Permissions;
+using Backend.Shared.Authorization;
 
-namespace WebApiTemplate.Host.Controllers.Catalog;
+namespace Backend.Host.Controllers.Catalog;
 
 public class ProductsController : VersionedApiController
 {

@@ -1,16 +1,16 @@
-﻿using Hangfire;
+﻿using Backend.Application.Catalog.Brands;
+using Backend.Application.Common.Interfaces;
+using Backend.Application.Common.Persistence;
+using Backend.Domain.Catalog;
+using Backend.Shared.Notifications;
+using Hangfire;
 using Hangfire.Console.Extensions;
 using Hangfire.Console.Progress;
 using Hangfire.Server;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using WebApiTemplate.Application.Catalog.Brands;
-using WebApiTemplate.Application.Common.Interfaces;
-using WebApiTemplate.Application.Common.Persistence;
-using WebApiTemplate.Domain.Catalog;
-using WebApiTemplate.Shared.Notifications;
 
-namespace WebApiTemplate.Infrastructure.Catalog;
+namespace Backend.Infrastructure.Catalog;
 
 public class BrandGeneratorJob : IBrandGeneratorJob
 {

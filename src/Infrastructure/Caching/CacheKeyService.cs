@@ -1,7 +1,7 @@
-﻿using Finbuckle.MultiTenant;
-using WebApiTemplate.Application.Common.Caching;
+﻿using Backend.Application.Common.Caching;
+using Finbuckle.MultiTenant;
 
-namespace WebApiTemplate.Infrastructure.Caching;
+namespace Backend.Infrastructure.Caching;
 
 public class CacheKeyService : ICacheKeyService
 {

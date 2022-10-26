@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Infrastructure.Multitenancy;
+﻿using Backend.Infrastructure.Multitenancy;
 
-namespace WebApiTemplate.Infrastructure.Persistence.Initialization;
+namespace Backend.Infrastructure.Persistence.Initialization;
 
 internal interface IDatabaseInitializer
 {

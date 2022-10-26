@@ -1,4 +1,4 @@
-namespace WebApiTemplate.Application.Identity.Users.Password;
+namespace Backend.Application.Identity.Users.Password;
 
 public class ChangePasswordRequest
 {

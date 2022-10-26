@@ -1,5 +1,5 @@
+using Backend.Application.Common.Caching;
 using FluentAssertions;
-using WebApiTemplate.Application.Common.Caching;
 using Xunit;
 
 namespace Infrastructure.Test.Caching;

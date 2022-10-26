@@ -1,8 +1,8 @@
-﻿using WebApiTemplate.Application.Common.Exporters;
-using WebApiTemplate.Application.Common.Persistence;
-using WebApiTemplate.Domain.Catalog;
+﻿using Backend.Application.Common.Exporters;
+using Backend.Application.Common.Persistence;
+using Backend.Domain.Catalog;
 
-namespace WebApiTemplate.Application.Catalog.Products;
+namespace Backend.Application.Catalog.Products;
 
 public class ExportProductsRequestHandler : IRequestHandler<ExportProductsRequest, Stream>
 {

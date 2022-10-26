@@ -1,3 +1,4 @@
+using Backend.Infrastructure.Common;
 using Hangfire;
 using Hangfire.Console;
 using Hangfire.Console.Extensions;
@@ -9,9 +10,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
-using WebApiTemplate.Infrastructure.Common;
 
-namespace WebApiTemplate.Infrastructure.BackgroundJobs;
+namespace Backend.Infrastructure.BackgroundJobs;
 
 internal static class Startup
 {

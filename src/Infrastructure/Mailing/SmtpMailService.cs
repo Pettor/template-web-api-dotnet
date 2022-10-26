@@ -1,11 +1,11 @@
+using Backend.Application.Common.Mailing;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using WebApiTemplate.Application.Common.Mailing;
 
-namespace WebApiTemplate.Infrastructure.Mailing;
+namespace Backend.Infrastructure.Mailing;
 
 public class SmtpMailService : IMailService
 {

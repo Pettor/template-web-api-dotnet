@@ -1,8 +1,8 @@
-using WebApiTemplate.Application.Common.Events;
-using WebApiTemplate.Domain.Catalog;
-using WebApiTemplate.Domain.Common.Events;
+using Backend.Application.Common.Events;
+using Backend.Domain.Catalog;
+using Backend.Domain.Common.Events;
 
-namespace WebApiTemplate.Application.Catalog.Products.EventHandlers;
+namespace Backend.Application.Catalog.Products.EventHandlers;
 
 public class ProductDeletedEventHandler : EventNotificationHandler<EntityDeletedEvent<Product>>
 {

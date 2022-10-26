@@ -1,4 +1,4 @@
-namespace WebApiTemplate.Application.Common.Caching;
+namespace Backend.Application.Common.Caching;
 
 public interface ICacheService
 {

@@ -1,9 +1,9 @@
-using WebApiTemplate.Application.Common.FileStorage;
-using WebApiTemplate.Application.Common.Persistence;
-using WebApiTemplate.Application.Common.Validation;
-using WebApiTemplate.Domain.Catalog;
+using Backend.Application.Common.FileStorage;
+using Backend.Application.Common.Persistence;
+using Backend.Application.Common.Validation;
+using Backend.Domain.Catalog;
 
-namespace WebApiTemplate.Application.Catalog.Products;
+namespace Backend.Application.Catalog.Products;
 
 public class UpdateProductRequestValidator : CustomValidator<UpdateProductRequest>
 {

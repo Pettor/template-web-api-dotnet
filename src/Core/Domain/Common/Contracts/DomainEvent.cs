@@ -1,6 +1,6 @@
-using WebApiTemplate.Shared.Events;
+using Backend.Shared.Events;
 
-namespace WebApiTemplate.Domain.Common.Contracts;
+namespace Backend.Domain.Common.Contracts;
 
 public abstract class DomainEvent : IEvent
 {

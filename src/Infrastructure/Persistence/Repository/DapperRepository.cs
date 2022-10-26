@@ -1,12 +1,12 @@
 using System.Data;
+using Backend.Application.Common.Exceptions;
+using Backend.Application.Common.Persistence;
+using Backend.Domain.Common.Contracts;
+using Backend.Infrastructure.Persistence.Context;
 using Dapper;
 using Finbuckle.MultiTenant.EntityFrameworkCore;
-using WebApiTemplate.Application.Common.Exceptions;
-using WebApiTemplate.Application.Common.Persistence;
-using WebApiTemplate.Domain.Common.Contracts;
-using WebApiTemplate.Infrastructure.Persistence.Context;
 
-namespace WebApiTemplate.Infrastructure.Persistence.Repository;
+namespace Backend.Infrastructure.Persistence.Repository;
 
 public class DapperRepository : IDapperRepository
 {

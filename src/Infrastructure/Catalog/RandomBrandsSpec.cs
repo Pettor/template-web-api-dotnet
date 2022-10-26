@@ -1,7 +1,7 @@
 ﻿using Ardalis.Specification;
-using WebApiTemplate.Domain.Catalog;
+using Backend.Domain.Catalog;
 
-namespace WebApiTemplate.Infrastructure.Catalog;
+namespace Backend.Infrastructure.Catalog;
 
 public class RandomBrandsSpec : Specification<Brand>
 {

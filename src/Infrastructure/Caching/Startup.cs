@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Backend.Application.Common.Caching;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebApiTemplate.Application.Common.Caching;
 
-namespace WebApiTemplate.Infrastructure.Caching;
+namespace Backend.Infrastructure.Caching;
 
 internal static class Startup
 {

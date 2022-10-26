@@ -1,9 +1,9 @@
-﻿using Finbuckle.MultiTenant.EntityFrameworkCore;
+﻿using Backend.Infrastructure.Auditing;
+using Finbuckle.MultiTenant.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WebApiTemplate.Infrastructure.Auditing;
 
-namespace WebApiTemplate.Infrastructure.Persistence.Configuration;
+namespace Backend.Infrastructure.Persistence.Configuration;
 
 public class AuditTrailConfig : IEntityTypeConfiguration<Trail>
 {

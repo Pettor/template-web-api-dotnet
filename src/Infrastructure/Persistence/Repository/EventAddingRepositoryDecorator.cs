@@ -1,9 +1,9 @@
 ﻿using Ardalis.Specification;
-using WebApiTemplate.Application.Common.Persistence;
-using WebApiTemplate.Domain.Common.Contracts;
-using WebApiTemplate.Domain.Common.Events;
+using Backend.Application.Common.Persistence;
+using Backend.Domain.Common.Contracts;
+using Backend.Domain.Common.Events;
 
-namespace WebApiTemplate.Infrastructure.Persistence.Repository;
+namespace Backend.Infrastructure.Persistence.Repository;
 
 /// <summary>
 /// The repository that implements IRepositoryWithEvents.

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace WebApiTemplate.Infrastructure.Mailing;
+namespace Backend.Infrastructure.Mailing;
 
 internal static class Startup
 {

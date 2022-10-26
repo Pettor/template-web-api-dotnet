@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Shared.Notifications;
+﻿using Backend.Shared.Notifications;
 
-namespace WebApiTemplate.Application.Common.Interfaces;
+namespace Backend.Application.Common.Interfaces;
 
 public interface INotificationSender : ITransientService
 {

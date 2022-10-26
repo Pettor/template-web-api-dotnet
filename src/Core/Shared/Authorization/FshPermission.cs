@@ -1,4 +1,4 @@
-﻿namespace WebApiTemplate.Shared.Authorization;
+﻿namespace Backend.Shared.Authorization;
 
 public record FshPermission(string Description, string Action, string Resource, bool IsBasic = false, bool IsRoot = false)
 {

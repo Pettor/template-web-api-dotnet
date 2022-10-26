@@ -1,6 +1,6 @@
-using WebApiTemplate.Application.Common.Interfaces;
+using Backend.Application.Common.Interfaces;
 
-namespace WebApiTemplate.Application.Common.Mailing;
+namespace Backend.Application.Common.Mailing;
 
 public interface IEmailTemplateService : ITransientService
 {

@@ -1,4 +1,4 @@
-namespace WebApiTemplate.Domain.Common.Contracts;
+namespace Backend.Domain.Common.Contracts;
 
 public abstract class AuditableEntity : AuditableEntity<DefaultIdType>
 {

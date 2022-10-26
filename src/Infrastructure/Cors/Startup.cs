@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace WebApiTemplate.Infrastructure.Cors;
+namespace Backend.Infrastructure.Cors;
 
 internal static class Startup
 {

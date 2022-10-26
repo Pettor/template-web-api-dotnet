@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <RootNamespace>WebApiTemplate.Infrastructure</RootNamespace>
-        <AssemblyName>WebApiTemplate.Infrastructure</AssemblyName>
+        <RootNamespace>Backend.Infrastructure</RootNamespace>
+        <AssemblyName>Backend.Infrastructure</AssemblyName>
     </PropertyGroup>
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />

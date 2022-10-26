@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Application.Common.Validation;
+﻿using Backend.Application.Common.Validation;
 
-namespace WebApiTemplate.Application.Identity.Tokens;
+namespace Backend.Application.Identity.Tokens;
 
 public class TokenRequestValidator : CustomValidator<TokenRequest>
 {

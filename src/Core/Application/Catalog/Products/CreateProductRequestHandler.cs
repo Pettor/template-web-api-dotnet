@@ -1,10 +1,10 @@
-﻿using WebApiTemplate.Application.Common.FileStorage;
-using WebApiTemplate.Application.Common.Persistence;
-using WebApiTemplate.Domain.Catalog;
-using WebApiTemplate.Domain.Common;
-using WebApiTemplate.Domain.Common.Events;
+﻿using Backend.Application.Common.FileStorage;
+using Backend.Application.Common.Persistence;
+using Backend.Domain.Catalog;
+using Backend.Domain.Common;
+using Backend.Domain.Common.Events;
 
-namespace WebApiTemplate.Application.Catalog.Products;
+namespace Backend.Application.Catalog.Products;
 
 public class CreateProductRequestHandler : IRequestHandler<CreateProductRequest, Guid>
 {

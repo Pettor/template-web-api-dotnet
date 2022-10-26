@@ -1,6 +1,6 @@
-using WebApiTemplate.Domain.Common.Contracts;
+using Backend.Domain.Common.Contracts;
 
-namespace WebApiTemplate.Domain.Catalog;
+namespace Backend.Domain.Catalog;
 
 public class Brand : AuditableEntity, IAggregateRoot
 {

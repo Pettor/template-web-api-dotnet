@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Application.Common.Interfaces;
+﻿using Backend.Application.Common.Interfaces;
 
-namespace WebApiTemplate.Application.Auditing;
+namespace Backend.Application.Auditing;
 
 public class GetMyAuditLogsRequestHandler : IRequestHandler<GetMyAuditLogsRequest, List<AuditDto>>
 {
