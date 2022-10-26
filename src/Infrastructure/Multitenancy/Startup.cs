@@ -18,16 +18,16 @@ internal static class Startup
         var databaseSettings = config.GetSection(nameof(DatabaseSettings)).Get<DatabaseSettings>();
         string? rootConnectionString = databaseSettings.ConnectionString;
         if (string.IsNullOrEmpty(rootConnectionString)) throw new InvalidOperationException("DB ConnectionString is not configured.");
-        string? dbProvider = databaseSettings.DBProvider;
+        string? dbProvider = databaseSettings.DbProvider;
         if (string.IsNullOrEmpty(dbProvider)) throw new InvalidOperationException("DB Provider is not configured.");
 
         return services
             .AddDbContext<TenantDbContext>(m => m.UseDatabase(dbProvider, rootConnectionString))
-            .AddMultiTenant<FSHTenantInfo>()
+            .AddMultiTenant<FshTenantInfo>()
                 .WithClaimStrategy(FshClaims.Tenant)
                 .WithHeaderStrategy(MultitenancyConstants.TenantIdName)
                 .WithQueryStringStrategy(MultitenancyConstants.TenantIdName)
-                .WithEFCoreStore<TenantDbContext, FSHTenantInfo>()
+                .WithEFCoreStore<TenantDbContext, FshTenantInfo>()
                 .Services
             .AddScoped<ITenantService, TenantService>();
     }
@@ -35,7 +35,7 @@ internal static class Startup
     internal static IApplicationBuilder UseMultiTenancy(this IApplicationBuilder app) =>
         app.UseMultiTenant();
 
-    private static FinbuckleMultiTenantBuilder<FSHTenantInfo> WithQueryStringStrategy(this FinbuckleMultiTenantBuilder<FSHTenantInfo> builder, string queryStringKey) =>
+    private static FinbuckleMultiTenantBuilder<FshTenantInfo> WithQueryStringStrategy(this FinbuckleMultiTenantBuilder<FshTenantInfo> builder, string queryStringKey) =>
         builder.WithDelegateStrategy(context =>
         {
             if (context is not HttpContext httpContext)
@@ -43,7 +43,7 @@ internal static class Startup
                 return Task.FromResult((string?)null);
             }
 
-            httpContext.Request.Query.TryGetValue(queryStringKey, out StringValues tenantIdParam);
+            httpContext.Request.Query.TryGetValue(queryStringKey, out var tenantIdParam);
 
             return Task.FromResult((string?)tenantIdParam.ToString());
         });

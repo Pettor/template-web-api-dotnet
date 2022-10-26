@@ -12,6 +12,6 @@ public static class GetIssuerExtension
         }
 
         // Workaround to deal with missing "iss" claim. We search for the ObjectId claim instead and return the value of Issuer property of that Claim
-        return principal.FindFirst(AzureADClaimTypes.ObjectId)?.Issuer;
+        return principal.FindFirst(AzureAdClaimTypes.ObjectId)?.Issuer;
     }
 }

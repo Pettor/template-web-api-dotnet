@@ -15,7 +15,7 @@ namespace WebApiTemplate.Infrastructure.BackgroundJobs;
 
 internal static class Startup
 {
-    private static readonly ILogger _logger = Log.ForContext(typeof(Startup));
+    private static readonly ILogger Logger = Log.ForContext(typeof(Startup));
 
     internal static IServiceCollection AddBackgroundJobs(this IServiceCollection services, IConfiguration config)
     {
@@ -27,14 +27,14 @@ internal static class Startup
 
         if (string.IsNullOrEmpty(storageSettings.StorageProvider)) throw new Exception("Hangfire Storage Provider is not configured.");
         if (string.IsNullOrEmpty(storageSettings.ConnectionString)) throw new Exception("Hangfire Storage Provider ConnectionString is not configured.");
-        _logger.Information($"Hangfire: Current Storage Provider : {storageSettings.StorageProvider}");
-        _logger.Information("For more Hangfire storage, visit https://www.hangfire.io/extensions.html");
+        Logger.Information($"Hangfire: Current Storage Provider : {storageSettings.StorageProvider}");
+        Logger.Information("For more Hangfire storage, visit https://www.hangfire.io/extensions.html");
 
-        services.AddSingleton<JobActivator, FSHJobActivator>();
+        services.AddSingleton<JobActivator, FshJobActivator>();
 
         services.AddHangfire((provider, hangfireConfig) => hangfireConfig
             .UseDatabase(storageSettings.StorageProvider, storageSettings.ConnectionString, config)
-            .UseFilter(new FSHJobFilter(provider))
+            .UseFilter(new FshJobFilter(provider))
             .UseFilter(new LogJobFilter())
             .UseConsole());
 

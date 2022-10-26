@@ -127,7 +127,7 @@ internal partial class UserService
         {
             // send verification email
             string emailVerificationUri = await GetEmailVerificationUriAsync(user, origin);
-            RegisterUserEmailModel eMailModel = new RegisterUserEmailModel()
+            var eMailModel = new RegisterUserEmailModel
             {
                 Email = user.Email,
                 UserName = user.UserName,
