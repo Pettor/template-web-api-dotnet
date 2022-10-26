@@ -1,6 +1,6 @@
 {
   "DatabaseSettings": {
-    "DBProvider": "mssql",
-    "ConnectionString": "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=preReleaseTest;Integrated Security=True;MultipleActiveResultSets=True"
+    "ConnectionString": "Host=localhost;Database=backendTemplate;Username=postgres;Password=root;Include Error Detail=true",
+    "DBProvider": "postgresql"
   }
 }
