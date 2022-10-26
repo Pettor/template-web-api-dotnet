@@ -30,7 +30,7 @@
         <Content Update="Configurations\*.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
-        <None Update="Files\full-stack-hero-logo.png">
+        <None Update="Files\logo.png">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Include="Email Templates\*.html">
