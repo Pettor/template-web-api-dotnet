@@ -1,6 +1,6 @@
 ﻿namespace Backend.Shared.Authorization;
 
-public static class FshAction
+public static class ApiAction
 {
     public const string View = nameof(View);
     public const string Search = nameof(Search);

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using TenantInfo = Backend.Infrastructure.Multitenancy.TenantInfo;
 
 namespace Backend.Infrastructure.Persistence.Initialization;
 
@@ -33,14 +34,14 @@ internal class DatabaseInitializer : IDatabaseInitializer
         }
     }
 
-    public async Task InitializeApplicationDbForTenantAsync(FshTenantInfo tenant, CancellationToken cancellationToken)
+    public async Task InitializeApplicationDbForTenantAsync(TenantInfo tenant, CancellationToken cancellationToken)
     {
         // First create a new scope
         using var scope = _serviceProvider.CreateScope();
 
         // Then set current tenant so the right connectionstring is used
         _serviceProvider.GetRequiredService<IMultiTenantContextAccessor>().MultiTenantContext =
-            new MultiTenantContext<FshTenantInfo>
+            new MultiTenantContext<TenantInfo>
             {
                 TenantInfo = tenant
             };
@@ -66,7 +67,7 @@ internal class DatabaseInitializer : IDatabaseInitializer
     {
         if (await _tenantDbContext.TenantInfo.FindAsync(new object?[] { MultitenancyConstants.Root.Id }, cancellationToken: cancellationToken) is null)
         {
-            var rootTenant = new FshTenantInfo(
+            var rootTenant = new TenantInfo(
                 MultitenancyConstants.Root.Id,
                 MultitenancyConstants.Root.Name,
                 _dbSettings.ConnectionString,

@@ -6,14 +6,15 @@ using Finbuckle.MultiTenant;
 using Hangfire;
 using Hangfire.Server;
 using Microsoft.Extensions.DependencyInjection;
+using TenantInfo = Backend.Infrastructure.Multitenancy.TenantInfo;
 
 namespace Backend.Infrastructure.BackgroundJobs;
 
-public class FshJobActivator : JobActivator
+public class DefaultJobActivator : JobActivator
 {
     private readonly IServiceScopeFactory _scopeFactory;
 
-    public FshJobActivator(IServiceScopeFactory scopeFactory) =>
+    public DefaultJobActivator(IServiceScopeFactory scopeFactory) =>
         _scopeFactory = scopeFactory ?? throw new ArgumentNullException(nameof(scopeFactory));
 
     public override JobActivatorScope BeginScope(PerformContext context) =>
@@ -34,11 +35,11 @@ public class FshJobActivator : JobActivator
 
         private void ReceiveParameters()
         {
-            var tenantInfo = _context.GetJobParameter<FshTenantInfo>(MultitenancyConstants.TenantIdName);
+            var tenantInfo = _context.GetJobParameter<TenantInfo>(MultitenancyConstants.TenantIdName);
             if (tenantInfo is not null)
             {
                 _scope.ServiceProvider.GetRequiredService<IMultiTenantContextAccessor>()
-                    .MultiTenantContext = new MultiTenantContext<FshTenantInfo>
+                    .MultiTenantContext = new MultiTenantContext<TenantInfo>
                     {
                         TenantInfo = tenantInfo
                     };

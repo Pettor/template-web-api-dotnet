@@ -9,13 +9,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Backend.Infrastructure.BackgroundJobs;
 
-public class FshJobFilter : IClientFilter
+public class DefaultJobFilter : IClientFilter
 {
     private static readonly ILog Logger = LogProvider.GetCurrentClassLogger();
 
     private readonly IServiceProvider _services;
 
-    public FshJobFilter(IServiceProvider services) => _services = services;
+    public DefaultJobFilter(IServiceProvider services) => _services = services;
 
     public void OnCreating(CreatingContext context)
     {

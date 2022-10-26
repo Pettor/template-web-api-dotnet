@@ -35,7 +35,7 @@ public class PersonalController : VersionNeutralApiController
 
     [HttpPut("change-password")]
     [OpenApiOperation("Change password of currently logged in user.", "")]
-    [ApiConventionMethod(typeof(FshApiConventions), nameof(FshApiConventions.Register))]
+    [ApiConventionMethod(typeof(ApiConventions), nameof(ApiConventions.Register))]
     public async Task<ActionResult> ChangePasswordAsync(ChangePasswordRequest model)
     {
         if (User.GetUserId() is not { } userId || string.IsNullOrEmpty(userId))

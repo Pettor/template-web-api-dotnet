@@ -22,7 +22,7 @@ public sealed class TokensController : VersionNeutralApiController
     [AllowAnonymous]
     [TenantIdHeader]
     [OpenApiOperation("Request an access token using a refresh token.", "")]
-    [ApiConventionMethod(typeof(FshApiConventions), nameof(FshApiConventions.Search))]
+    [ApiConventionMethod(typeof(ApiConventions), nameof(ApiConventions.Search))]
     public Task<TokenResponse> RefreshAsync(RefreshTokenRequest request)
     {
         return _tokenService.RefreshTokenAsync(request, GetIpAddress());

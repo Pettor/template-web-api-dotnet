@@ -2,7 +2,7 @@ using System.Collections.ObjectModel;
 
 namespace Backend.Shared.Authorization;
 
-public static class FshRoles
+public static class ApiRoles
 {
     public const string Admin = nameof(Admin);
     public const string Basic = nameof(Basic);

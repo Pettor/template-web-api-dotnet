@@ -6,7 +6,7 @@ namespace Backend.Host.Controllers;
 #nullable disable
 #pragma warning disable RCS1163
 
-public static class FshApiConventions
+public static class ApiConventions
 {
     [ProducesResponseType(200)]
     [ProducesResponseType(400, Type = typeof(HttpValidationProblemDetails))]

@@ -17,7 +17,7 @@ internal class PermissionPolicyProvider : IAuthorizationPolicyProvider
 
     public Task<AuthorizationPolicy?> GetPolicyAsync(string policyName)
     {
-        if (policyName.StartsWith(FshClaims.Permission, StringComparison.OrdinalIgnoreCase))
+        if (policyName.StartsWith(ApiClaims.Permission, StringComparison.OrdinalIgnoreCase))
         {
             var policy = new AuthorizationPolicyBuilder();
             policy.AddRequirements(new PermissionRequirement(policyName));

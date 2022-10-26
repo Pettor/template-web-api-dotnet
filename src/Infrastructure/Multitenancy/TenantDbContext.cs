@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Infrastructure.Multitenancy;
 
-public class TenantDbContext : EFCoreStoreDbContext<FshTenantInfo>
+public class TenantDbContext : EFCoreStoreDbContext<TenantInfo>
 {
     public TenantDbContext(DbContextOptions<TenantDbContext> options)
         : base(options)
@@ -15,6 +15,6 @@ public class TenantDbContext : EFCoreStoreDbContext<FshTenantInfo>
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<FshTenantInfo>().ToTable("Tenants", SchemaNames.MultiTenancy);
+        modelBuilder.Entity<TenantInfo>().ToTable("Tenants", SchemaNames.MultiTenancy);
     }
 }

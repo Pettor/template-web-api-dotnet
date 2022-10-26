@@ -3,13 +3,13 @@ using Finbuckle.MultiTenant;
 
 namespace Backend.Infrastructure.Multitenancy;
 
-public class FshTenantInfo : ITenantInfo
+public class TenantInfo : ITenantInfo
 {
-    public FshTenantInfo()
+    public TenantInfo()
     {
     }
 
-    public FshTenantInfo(string id, string name, string? connectionString, string adminEmail, string? issuer = null)
+    public TenantInfo(string id, string name, string? connectionString, string adminEmail, string? issuer = null)
     {
         Id = id;
         Identifier = id;
