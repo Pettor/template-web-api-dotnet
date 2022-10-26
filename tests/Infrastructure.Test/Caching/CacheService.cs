@@ -53,7 +53,7 @@ public abstract class CacheService<TCacheService>
         var sut = CreateCacheService();
 
         sut.Set(testKey, testValue);
-        T? result = sut.Get<T>(testKey);
+        var result = sut.Get<T>(testKey);
 
         result.Should().Be(testValue);
     }

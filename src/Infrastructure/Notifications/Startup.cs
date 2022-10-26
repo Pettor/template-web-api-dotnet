@@ -10,7 +10,7 @@ internal static class Startup
 {
     internal static IServiceCollection AddNotifications(this IServiceCollection services, IConfiguration config)
     {
-        ILogger logger = Log.ForContext(typeof(Startup));
+        var logger = Log.ForContext(typeof(Startup));
 
         var signalRSettings = config.GetSection(nameof(SignalRSettings)).Get<SignalRSettings>();
 

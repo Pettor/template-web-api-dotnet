@@ -11,7 +11,7 @@ public class EmailTemplateService : IEmailTemplateService
         string template = GetTemplate(templateName);
 
         IRazorEngine razorEngine = new RazorEngine();
-        IRazorEngineCompiledTemplate modifiedTemplate = razorEngine.Compile(template);
+        var modifiedTemplate = razorEngine.Compile(template);
 
         return modifiedTemplate.Run(mailTemplateModel);
     }
