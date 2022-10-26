@@ -42,11 +42,11 @@ internal class DatabaseInitializer : IDatabaseInitializer
         using var scope = _serviceProvider.CreateScope();
 
         // Then set current tenant so the right connectionstring is used
-        _serviceProvider.GetRequiredService<IMultiTenantContextAccessor>()
-            .MultiTenantContext = new MultiTenantContext<FSHTenantInfo>
-        {
+        _serviceProvider.GetRequiredService<IMultiTenantContextAccessor>().MultiTenantContext =
+            new MultiTenantContext<FSHTenantInfo>
+            {
                 TenantInfo = tenant
-        };
+            };
 
         // Then run the initialization in the new scope
         await scope.ServiceProvider.GetRequiredService<ApplicationDbInitializer>()
