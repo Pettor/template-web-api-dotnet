@@ -1,10 +1,10 @@
 ﻿using System.Globalization;
+using Backend.Application.Common.Caching;
 using Microsoft.Extensions.Localization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using WebApiTemplate.Application.Common.Caching;
 
-namespace WebApiTemplate.Infrastructure.Localization;
+namespace Backend.Infrastructure.Localization;
 
 public class JsonStringLocalizer : IStringLocalizer
 {

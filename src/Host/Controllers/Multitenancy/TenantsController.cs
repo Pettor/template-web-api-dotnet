@@ -1,8 +1,8 @@
-using WebApiTemplate.Application.Multitenancy;
-using WebApiTemplate.Infrastructure.Auth.Permissions;
-using WebApiTemplate.Shared.Authorization;
+using Backend.Application.Multitenancy;
+using Backend.Infrastructure.Auth.Permissions;
+using Backend.Shared.Authorization;
 
-namespace WebApiTemplate.Host.Controllers.Multitenancy;
+namespace Backend.Host.Controllers.Multitenancy;
 
 public class TenantsController : VersionNeutralApiController
 {

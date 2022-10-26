@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace WebApiTemplate.Application.Common.Exceptions;
+namespace Backend.Application.Common.Exceptions;
 
 public class NotFoundException : CustomException
 {

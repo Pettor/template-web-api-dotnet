@@ -1,5 +1,5 @@
-﻿using Infrastructure.Test.Multitenancy.Fixtures;
-using WebApiTemplate.Application.Common.Persistence;
+﻿using Backend.Application.Common.Persistence;
+using Infrastructure.Test.Multitenancy.Fixtures;
 using Xunit;
 using Xunit.Abstractions;
 using Xunit.Microsoft.DependencyInjection.Abstracts;

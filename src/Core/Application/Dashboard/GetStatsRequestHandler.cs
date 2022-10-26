@@ -1,10 +1,10 @@
-﻿using WebApiTemplate.Application.Common.Persistence;
-using WebApiTemplate.Application.Common.Specification;
-using WebApiTemplate.Application.Identity.Roles;
-using WebApiTemplate.Application.Identity.Users;
-using WebApiTemplate.Domain.Catalog;
+﻿using Backend.Application.Common.Persistence;
+using Backend.Application.Common.Specification;
+using Backend.Application.Identity.Roles;
+using Backend.Application.Identity.Users;
+using Backend.Domain.Catalog;
 
-namespace WebApiTemplate.Application.Dashboard;
+namespace Backend.Application.Dashboard;
 
 public class GetStatsRequestHandler : IRequestHandler<GetStatsRequest, StatsDto>
 {

@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Domain.Common.Contracts;
+﻿using Backend.Domain.Common.Contracts;
 
-namespace WebApiTemplate.Application.Common.Persistence;
+namespace Backend.Application.Common.Persistence;
 
 /// <summary>
 /// The read-only repository for an aggregate root.

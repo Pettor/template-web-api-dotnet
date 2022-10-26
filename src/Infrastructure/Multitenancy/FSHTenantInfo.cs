@@ -1,7 +1,7 @@
-﻿using Finbuckle.MultiTenant;
-using WebApiTemplate.Shared.Multitenancy;
+﻿using Backend.Shared.Multitenancy;
+using Finbuckle.MultiTenant;
 
-namespace WebApiTemplate.Infrastructure.Multitenancy;
+namespace Backend.Infrastructure.Multitenancy;
 
 public class FshTenantInfo : ITenantInfo
 {

@@ -1,4 +1,4 @@
-namespace WebApiTemplate.Infrastructure.SecurityHeaders;
+namespace Backend.Infrastructure.SecurityHeaders;
 
 public class SecurityHeaderSettings
 {

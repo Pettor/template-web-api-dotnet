@@ -1,10 +1,10 @@
 using System.Text;
+using Backend.Application.Common.Caching;
+using Backend.Application.Common.Interfaces;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
-using WebApiTemplate.Application.Common.Caching;
-using WebApiTemplate.Application.Common.Interfaces;
 
-namespace WebApiTemplate.Infrastructure.Caching;
+namespace Backend.Infrastructure.Caching;
 
 #pragma warning disable CA2254
 public class DistributedCacheService : ICacheService

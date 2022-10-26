@@ -1,4 +1,4 @@
-﻿namespace WebApiTemplate.Application.Catalog.Brands;
+﻿namespace Backend.Application.Catalog.Brands;
 
 public class GetBrandRequest : IRequest<BrandDto>
 {

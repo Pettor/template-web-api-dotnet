@@ -1,7 +1,7 @@
-using WebApiTemplate.Application.Common.Interfaces;
-using WebApiTemplate.Shared.Events;
+using Backend.Application.Common.Interfaces;
+using Backend.Shared.Events;
 
-namespace WebApiTemplate.Application.Common.Events;
+namespace Backend.Application.Common.Events;
 
 public interface IEventPublisher : ITransientService
 {

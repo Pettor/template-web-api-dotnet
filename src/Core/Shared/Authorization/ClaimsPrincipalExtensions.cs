@@ -1,6 +1,6 @@
 using System.Security.Claims;
 
-namespace WebApiTemplate.Shared.Authorization;
+namespace Backend.Shared.Authorization;
 
 public static class ClaimsPrincipalExtensions
 {

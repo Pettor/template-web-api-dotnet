@@ -1,6 +1,6 @@
-using WebApiTemplate.Application.Common.Interfaces;
+using Backend.Application.Common.Interfaces;
 
-namespace WebApiTemplate.Application.Identity.Tokens;
+namespace Backend.Application.Identity.Tokens;
 
 public interface ITokenService : ITransientService
 {

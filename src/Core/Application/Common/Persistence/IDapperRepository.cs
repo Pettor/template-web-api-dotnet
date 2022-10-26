@@ -1,8 +1,8 @@
 using System.Data;
-using WebApiTemplate.Application.Common.Interfaces;
-using WebApiTemplate.Domain.Common.Contracts;
+using Backend.Application.Common.Interfaces;
+using Backend.Domain.Common.Contracts;
 
-namespace WebApiTemplate.Application.Common.Persistence;
+namespace Backend.Application.Common.Persistence;
 
 public interface IDapperRepository : ITransientService
 {

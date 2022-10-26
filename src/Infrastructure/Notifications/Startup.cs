@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
-namespace WebApiTemplate.Infrastructure.Notifications;
+namespace Backend.Infrastructure.Notifications;
 
 internal static class Startup
 {

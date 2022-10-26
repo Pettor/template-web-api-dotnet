@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace WebApiTemplate.Infrastructure.Persistence.Configuration;
+namespace Backend.Infrastructure.Persistence.Configuration;
 
 public class IdentityUserTokenConfig : IEntityTypeConfiguration<IdentityUserToken<string>>
 {

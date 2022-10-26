@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Backend.Infrastructure.Identity;
+using Backend.Infrastructure.Multitenancy;
+using Backend.Infrastructure.Persistence.Context;
+using Backend.Shared.Authorization;
+using Backend.Shared.Multitenancy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using WebApiTemplate.Infrastructure.Identity;
-using WebApiTemplate.Infrastructure.Multitenancy;
-using WebApiTemplate.Infrastructure.Persistence.Context;
-using WebApiTemplate.Shared.Authorization;
-using WebApiTemplate.Shared.Multitenancy;
 
-namespace WebApiTemplate.Infrastructure.Persistence.Initialization;
+namespace Backend.Infrastructure.Persistence.Initialization;
 
 internal class ApplicationDbSeeder
 {

@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Application.Common.Validation;
+﻿using Backend.Application.Common.Validation;
 
-namespace WebApiTemplate.Application.Identity.Users.Password;
+namespace Backend.Application.Identity.Users.Password;
 
 public class ForgotPasswordRequestValidator : CustomValidator<ForgotPasswordRequest>
 {

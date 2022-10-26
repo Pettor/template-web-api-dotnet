@@ -1,4 +1,9 @@
 ﻿using System.Security.Claims;
+using Backend.Application.Common.Exceptions;
+using Backend.Application.Identity.Users;
+using Backend.Infrastructure.Multitenancy;
+using Backend.Shared.Authorization;
+using Backend.Shared.Multitenancy;
 using Finbuckle.MultiTenant;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -6,13 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Web;
 using Serilog;
-using WebApiTemplate.Application.Common.Exceptions;
-using WebApiTemplate.Application.Identity.Users;
-using WebApiTemplate.Infrastructure.Multitenancy;
-using WebApiTemplate.Shared.Authorization;
-using WebApiTemplate.Shared.Multitenancy;
 
-namespace WebApiTemplate.Infrastructure.Auth.AzureAd;
+namespace Backend.Infrastructure.Auth.AzureAd;
 
 internal class AzureAdJwtBearerEvents : JwtBearerEvents
 {

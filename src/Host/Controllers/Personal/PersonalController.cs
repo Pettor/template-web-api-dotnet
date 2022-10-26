@@ -1,9 +1,9 @@
-using WebApiTemplate.Application.Auditing;
-using WebApiTemplate.Application.Identity.Users;
-using WebApiTemplate.Application.Identity.Users.Password;
-using WebApiTemplate.Shared.Authorization;
+using Backend.Application.Auditing;
+using Backend.Application.Identity.Users;
+using Backend.Application.Identity.Users.Password;
+using Backend.Shared.Authorization;
 
-namespace WebApiTemplate.Host.Controllers.Personal;
+namespace Backend.Host.Controllers.Personal;
 
 public class PersonalController : VersionNeutralApiController
 {

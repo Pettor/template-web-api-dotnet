@@ -1,9 +1,9 @@
 using System.Security.Claims;
-using WebApiTemplate.Application.Common.Interfaces;
-using WebApiTemplate.Application.Common.Models;
-using WebApiTemplate.Application.Identity.Users.Password;
+using Backend.Application.Common.Interfaces;
+using Backend.Application.Common.Models;
+using Backend.Application.Identity.Users.Password;
 
-namespace WebApiTemplate.Application.Identity.Users;
+namespace Backend.Application.Identity.Users;
 
 public interface IUserService : ITransientService
 {

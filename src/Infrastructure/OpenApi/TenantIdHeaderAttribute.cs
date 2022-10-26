@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Shared.Multitenancy;
+﻿using Backend.Shared.Multitenancy;
 
-namespace WebApiTemplate.Infrastructure.OpenApi;
+namespace Backend.Infrastructure.OpenApi;
 
 public class TenantIdHeaderAttribute : SwaggerHeaderAttribute
 {

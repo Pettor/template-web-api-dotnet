@@ -1,9 +1,9 @@
-﻿using WebApiTemplate.Application.Catalog.Brands;
-using WebApiTemplate.Application.Common.Models;
-using WebApiTemplate.Infrastructure.Auth.Permissions;
-using WebApiTemplate.Shared.Authorization;
+﻿using Backend.Application.Catalog.Brands;
+using Backend.Application.Common.Models;
+using Backend.Infrastructure.Auth.Permissions;
+using Backend.Shared.Authorization;
 
-namespace WebApiTemplate.Host.Controllers.Catalog;
+namespace Backend.Host.Controllers.Catalog;
 
 public class BrandsController : VersionedApiController
 {

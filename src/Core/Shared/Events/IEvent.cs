@@ -1,4 +1,4 @@
-﻿namespace WebApiTemplate.Shared.Events;
+﻿namespace Backend.Shared.Events;
 
 public interface IEvent
 {

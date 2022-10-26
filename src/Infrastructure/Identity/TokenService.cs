@@ -2,19 +2,19 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Backend.Application.Common.Exceptions;
+using Backend.Application.Identity.Tokens;
+using Backend.Infrastructure.Auth;
+using Backend.Infrastructure.Auth.Jwt;
+using Backend.Infrastructure.Multitenancy;
+using Backend.Shared.Authorization;
+using Backend.Shared.Multitenancy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using WebApiTemplate.Application.Common.Exceptions;
-using WebApiTemplate.Application.Identity.Tokens;
-using WebApiTemplate.Infrastructure.Auth;
-using WebApiTemplate.Infrastructure.Auth.Jwt;
-using WebApiTemplate.Infrastructure.Multitenancy;
-using WebApiTemplate.Shared.Authorization;
-using WebApiTemplate.Shared.Multitenancy;
 
-namespace WebApiTemplate.Infrastructure.Identity;
+namespace Backend.Infrastructure.Identity;
 
 internal class TokenService : ITokenService
 {

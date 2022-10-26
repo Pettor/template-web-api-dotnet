@@ -1,8 +1,8 @@
+using Backend.Infrastructure.Persistence.Context;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using WebApiTemplate.Infrastructure.Persistence.Context;
 
-namespace WebApiTemplate.Infrastructure.Identity;
+namespace Backend.Infrastructure.Identity;
 
 internal static class Startup
 {

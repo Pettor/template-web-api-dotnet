@@ -1,9 +1,9 @@
+using Backend.Infrastructure.Persistence.Context;
 using Finbuckle.MultiTenant;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using WebApiTemplate.Infrastructure.Persistence.Context;
 
-namespace WebApiTemplate.Infrastructure.Persistence.Initialization;
+namespace Backend.Infrastructure.Persistence.Initialization;
 
 internal class ApplicationDbInitializer
 {

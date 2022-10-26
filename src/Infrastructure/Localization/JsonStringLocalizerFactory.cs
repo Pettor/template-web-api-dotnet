@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Localization;
-using WebApiTemplate.Application.Common.Caching;
+﻿using Backend.Application.Common.Caching;
+using Microsoft.Extensions.Localization;
 
-namespace WebApiTemplate.Infrastructure.Localization;
+namespace Backend.Infrastructure.Localization;
 
 public class JsonStringLocalizerFactory : IStringLocalizerFactory
 {

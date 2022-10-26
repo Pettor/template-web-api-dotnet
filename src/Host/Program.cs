@@ -1,10 +1,10 @@
+using Backend.Application;
+using Backend.Host.Configurations;
+using Backend.Host.Controllers;
+using Backend.Infrastructure;
+using Backend.Infrastructure.Common;
 using FluentValidation.AspNetCore;
 using Serilog;
-using WebApiTemplate.Application;
-using WebApiTemplate.Host.Configurations;
-using WebApiTemplate.Host.Controllers;
-using WebApiTemplate.Infrastructure;
-using WebApiTemplate.Infrastructure.Common;
 
 [assembly: ApiConventionType(typeof(FshApiConventions))]
 

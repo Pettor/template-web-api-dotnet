@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Domain.Catalog;
+﻿using Backend.Domain.Catalog;
 
-namespace WebApiTemplate.Application.Catalog.Brands;
+namespace Backend.Application.Catalog.Brands;
 
 public class BrandByIdSpec : Specification<Brand, BrandDto>, ISingleResultSpecification
 {

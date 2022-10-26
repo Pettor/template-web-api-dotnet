@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Application.Common.Validation;
+﻿using Backend.Application.Common.Validation;
 
-namespace WebApiTemplate.Application.Multitenancy;
+namespace Backend.Application.Multitenancy;
 
 public class ActivateTenantRequestValidator : CustomValidator<ActivateTenantRequest>
 {

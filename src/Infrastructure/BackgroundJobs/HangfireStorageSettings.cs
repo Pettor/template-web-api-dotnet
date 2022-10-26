@@ -1,4 +1,4 @@
-namespace WebApiTemplate.Infrastructure.BackgroundJobs;
+namespace Backend.Infrastructure.BackgroundJobs;
 
 public class HangfireStorageSettings
 {

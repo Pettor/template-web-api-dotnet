@@ -1,7 +1,7 @@
-using WebApiTemplate.Application.Common.Interfaces;
-using WebApiTemplate.Domain.Common;
+using Backend.Application.Common.Interfaces;
+using Backend.Domain.Common;
 
-namespace WebApiTemplate.Application.Common.FileStorage;
+namespace Backend.Application.Common.FileStorage;
 
 public interface IFileStorageService : ITransientService
 {

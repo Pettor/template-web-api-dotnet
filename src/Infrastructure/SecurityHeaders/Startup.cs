@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 
-namespace WebApiTemplate.Infrastructure.SecurityHeaders;
+namespace Backend.Infrastructure.SecurityHeaders;
 
 internal static class Startup
 {

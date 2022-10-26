@@ -3,10 +3,10 @@ using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Infrastructure.Test.Caching;
 
-public class LocalCacheService : CacheService<WebApiTemplate.Infrastructure.Caching.LocalCacheService>
+public class LocalCacheService : CacheService<Backend.Infrastructure.Caching.LocalCacheService>
 {
-    protected override WebApiTemplate.Infrastructure.Caching.LocalCacheService CreateCacheService() =>
+    protected override Backend.Infrastructure.Caching.LocalCacheService CreateCacheService() =>
         new(
             new MemoryCache(new MemoryCacheOptions()),
-            NullLogger<WebApiTemplate.Infrastructure.Caching.LocalCacheService>.Instance);
+            NullLogger<Backend.Infrastructure.Caching.LocalCacheService>.Instance);
 }

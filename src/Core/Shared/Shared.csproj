@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <RootNamespace>WebApiTemplate.Shared</RootNamespace>
-        <AssemblyName>WebApiTemplate.Shared</AssemblyName>
+        <RootNamespace>Backend.Shared</RootNamespace>
+        <AssemblyName>Backend.Shared</AssemblyName>
     </PropertyGroup>
     <ItemGroup>
       <PackageReference Update="Roslynator.Analyzers" Version="4.1.1">

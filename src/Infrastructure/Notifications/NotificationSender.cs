@@ -1,10 +1,10 @@
-﻿using Finbuckle.MultiTenant;
+﻿using Backend.Application.Common.Interfaces;
+using Backend.Shared.Notifications;
+using Finbuckle.MultiTenant;
 using Microsoft.AspNetCore.SignalR;
-using WebApiTemplate.Application.Common.Interfaces;
-using WebApiTemplate.Shared.Notifications;
-using static WebApiTemplate.Shared.Notifications.NotificationConstants;
+using static Backend.Shared.Notifications.NotificationConstants;
 
-namespace WebApiTemplate.Infrastructure.Notifications;
+namespace Backend.Infrastructure.Notifications;
 
 public class NotificationSender : INotificationSender
 {

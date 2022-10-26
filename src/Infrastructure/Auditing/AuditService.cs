@@ -1,9 +1,9 @@
+using Backend.Application.Auditing;
+using Backend.Infrastructure.Persistence.Context;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
-using WebApiTemplate.Application.Auditing;
-using WebApiTemplate.Infrastructure.Persistence.Context;
 
-namespace WebApiTemplate.Infrastructure.Auditing;
+namespace Backend.Infrastructure.Auditing;
 
 public class AuditService : IAuditService
 {

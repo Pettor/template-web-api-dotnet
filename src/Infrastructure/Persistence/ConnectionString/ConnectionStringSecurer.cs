@@ -1,12 +1,12 @@
 using System.Data.SqlClient;
+using Backend.Application.Common.Persistence;
+using Backend.Infrastructure.Common;
 using Microsoft.Extensions.Options;
 using MySqlConnector;
 using Npgsql;
 using Oracle.ManagedDataAccess.Client;
-using WebApiTemplate.Application.Common.Persistence;
-using WebApiTemplate.Infrastructure.Common;
 
-namespace WebApiTemplate.Infrastructure.Persistence.ConnectionString;
+namespace Backend.Infrastructure.Persistence.ConnectionString;
 
 public class ConnectionStringSecurer : IConnectionStringSecurer
 {

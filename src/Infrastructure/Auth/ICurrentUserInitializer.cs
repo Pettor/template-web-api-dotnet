@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace WebApiTemplate.Infrastructure.Auth;
+namespace Backend.Infrastructure.Auth;
 
 public interface ICurrentUserInitializer
 {

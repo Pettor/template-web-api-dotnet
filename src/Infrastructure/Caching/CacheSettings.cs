@@ -1,4 +1,4 @@
-namespace WebApiTemplate.Infrastructure.Caching;
+namespace Backend.Infrastructure.Caching;
 
 public class CacheSettings
 {

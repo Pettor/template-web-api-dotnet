@@ -1,11 +1,11 @@
-﻿using Finbuckle.MultiTenant;
+﻿using Backend.Application.Common.Exceptions;
+using Backend.Application.Common.Interfaces;
+using Finbuckle.MultiTenant;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
-using WebApiTemplate.Application.Common.Exceptions;
-using WebApiTemplate.Application.Common.Interfaces;
 
-namespace WebApiTemplate.Infrastructure.Notifications;
+namespace Backend.Infrastructure.Notifications;
 
 [Authorize]
 public class NotificationHub : Hub, ITransientService

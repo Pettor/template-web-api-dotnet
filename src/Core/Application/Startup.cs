@@ -1,7 +1,7 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace WebApiTemplate.Application;
+namespace Backend.Application;
 
 public static class Startup
 {

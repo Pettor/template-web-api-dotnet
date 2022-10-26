@@ -1,6 +1,6 @@
-using WebApiTemplate.Domain.Common.Contracts;
+using Backend.Domain.Common.Contracts;
 
-namespace WebApiTemplate.Domain.Common.Events;
+namespace Backend.Domain.Common.Events;
 
 public static class EntityCreatedEvent
 {

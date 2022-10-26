@@ -1,11 +1,11 @@
 using System.Text;
+using Backend.Application.Common.Exceptions;
+using Backend.Infrastructure.Common;
+using Backend.Shared.Multitenancy;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
-using WebApiTemplate.Application.Common.Exceptions;
-using WebApiTemplate.Infrastructure.Common;
-using WebApiTemplate.Shared.Multitenancy;
 
-namespace WebApiTemplate.Infrastructure.Identity;
+namespace Backend.Infrastructure.Identity;
 
 internal partial class UserService
 {

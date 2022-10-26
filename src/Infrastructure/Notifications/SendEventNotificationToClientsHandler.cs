@@ -1,9 +1,9 @@
-﻿using MediatR;
-using WebApiTemplate.Application.Common.Events;
-using WebApiTemplate.Application.Common.Interfaces;
-using WebApiTemplate.Shared.Notifications;
+﻿using Backend.Application.Common.Events;
+using Backend.Application.Common.Interfaces;
+using Backend.Shared.Notifications;
+using MediatR;
 
-namespace WebApiTemplate.Infrastructure.Notifications;
+namespace Backend.Infrastructure.Notifications;
 
 // Sends all events that are also an INotificationMessage to all clients
 // Note: for this to work, the Event/NotificationMessage class needs to be in the

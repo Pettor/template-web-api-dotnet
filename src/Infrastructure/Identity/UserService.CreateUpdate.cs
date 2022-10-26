@@ -1,15 +1,15 @@
 ﻿using System.Security.Claims;
+using Backend.Application.Common.Exceptions;
+using Backend.Application.Common.Mailing;
+using Backend.Application.Identity.Users;
+using Backend.Domain.Common;
+using Backend.Domain.Identity;
+using Backend.Shared.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
-using WebApiTemplate.Application.Common.Exceptions;
-using WebApiTemplate.Application.Common.Mailing;
-using WebApiTemplate.Application.Identity.Users;
-using WebApiTemplate.Domain.Common;
-using WebApiTemplate.Domain.Identity;
-using WebApiTemplate.Shared.Authorization;
 
-namespace WebApiTemplate.Infrastructure.Identity;
+namespace Backend.Infrastructure.Identity;
 
 internal partial class UserService
 {

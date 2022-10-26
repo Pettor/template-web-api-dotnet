@@ -1,6 +1,6 @@
-using WebApiTemplate.Domain.Common.Contracts;
+using Backend.Domain.Common.Contracts;
 
-namespace WebApiTemplate.Infrastructure.Auditing;
+namespace Backend.Infrastructure.Auditing;
 
 public class Trail : BaseEntity
 {

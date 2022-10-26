@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Backend.Application.Common.Persistence;
+using Backend.Infrastructure.Persistence.ConnectionString;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebApiTemplate.Application.Common.Persistence;
-using WebApiTemplate.Infrastructure.Persistence.ConnectionString;
 using Xunit.Microsoft.DependencyInjection;
 using Xunit.Microsoft.DependencyInjection.Abstracts;
 

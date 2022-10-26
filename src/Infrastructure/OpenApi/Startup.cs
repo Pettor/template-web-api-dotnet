@@ -7,7 +7,7 @@ using NSwag;
 using NSwag.AspNetCore;
 using NSwag.Generation.Processors.Security;
 
-namespace WebApiTemplate.Infrastructure.OpenApi;
+namespace Backend.Infrastructure.OpenApi;
 
 internal static class Startup
 {

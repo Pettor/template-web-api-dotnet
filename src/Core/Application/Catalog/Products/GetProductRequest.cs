@@ -1,4 +1,4 @@
-﻿namespace WebApiTemplate.Application.Catalog.Products;
+﻿namespace Backend.Application.Catalog.Products;
 
 public class GetProductRequest : IRequest<ProductDetailsDto>
 {

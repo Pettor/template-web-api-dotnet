@@ -1,15 +1,15 @@
 using System.Data;
+using Backend.Application.Common.Events;
+using Backend.Application.Common.Interfaces;
+using Backend.Domain.Common.Contracts;
+using Backend.Infrastructure.Auditing;
+using Backend.Infrastructure.Identity;
 using Finbuckle.MultiTenant;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using WebApiTemplate.Application.Common.Events;
-using WebApiTemplate.Application.Common.Interfaces;
-using WebApiTemplate.Domain.Common.Contracts;
-using WebApiTemplate.Infrastructure.Auditing;
-using WebApiTemplate.Infrastructure.Identity;
 
-namespace WebApiTemplate.Infrastructure.Persistence.Context;
+namespace Backend.Infrastructure.Persistence.Context;
 
 public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUser, ApplicationRole, string, IdentityUserClaim<string>, IdentityUserRole<string>, IdentityUserLogin<string>, ApplicationRoleClaim, IdentityUserToken<string>>
 {

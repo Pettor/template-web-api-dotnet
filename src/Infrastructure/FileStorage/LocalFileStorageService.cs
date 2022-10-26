@@ -1,10 +1,10 @@
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
-using WebApiTemplate.Application.Common.FileStorage;
-using WebApiTemplate.Domain.Common;
-using WebApiTemplate.Infrastructure.Common.Extensions;
+using Backend.Application.Common.FileStorage;
+using Backend.Domain.Common;
+using Backend.Infrastructure.Common.Extensions;
 
-namespace WebApiTemplate.Infrastructure.FileStorage;
+namespace Backend.Infrastructure.FileStorage;
 
 public class LocalFileStorageService : IFileStorageService
 {

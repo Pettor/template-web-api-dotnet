@@ -1,8 +1,8 @@
 using System.Security.Claims;
-using WebApiTemplate.Application.Common.Interfaces;
-using WebApiTemplate.Shared.Authorization;
+using Backend.Application.Common.Interfaces;
+using Backend.Shared.Authorization;
 
-namespace WebApiTemplate.Infrastructure.Auth;
+namespace Backend.Infrastructure.Auth;
 
 public class CurrentUser : ICurrentUser, ICurrentUserInitializer
 {

@@ -1,4 +1,4 @@
-﻿namespace WebApiTemplate.Infrastructure.Common;
+﻿namespace Backend.Infrastructure.Common;
 
 internal class DbProviderKeys
 {

@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Web;
 using Serilog;
 
-namespace WebApiTemplate.Infrastructure.Auth.AzureAd;
+namespace Backend.Infrastructure.Auth.AzureAd;
 
 internal static class Startup
 {

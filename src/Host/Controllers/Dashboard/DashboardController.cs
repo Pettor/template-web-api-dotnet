@@ -1,8 +1,8 @@
-using WebApiTemplate.Application.Dashboard;
-using WebApiTemplate.Infrastructure.Auth.Permissions;
-using WebApiTemplate.Shared.Authorization;
+using Backend.Application.Dashboard;
+using Backend.Infrastructure.Auth.Permissions;
+using Backend.Shared.Authorization;
 
-namespace WebApiTemplate.Host.Controllers.Dashboard;
+namespace Backend.Host.Controllers.Dashboard;
 
 public class DashboardController : VersionedApiController
 {

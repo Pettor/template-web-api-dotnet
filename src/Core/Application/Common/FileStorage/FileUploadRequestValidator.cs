@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Application.Common.Validation;
+﻿using Backend.Application.Common.Validation;
 
-namespace WebApiTemplate.Application.Common.FileStorage;
+namespace Backend.Application.Common.FileStorage;
 
 public class FileUploadRequestValidator : CustomValidator<FileUploadRequest>
 {

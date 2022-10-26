@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace WebApiTemplate.Infrastructure.OpenApi;
+namespace Backend.Infrastructure.OpenApi;
 
 internal static class ObjectExtensions
 {

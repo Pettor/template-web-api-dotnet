@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
-using WebApiTemplate.Application.Common.Interfaces;
+using Backend.Application.Common.Interfaces;
 
-namespace WebApiTemplate.Application.Catalog.Brands;
+namespace Backend.Application.Catalog.Brands;
 
 public interface IBrandGeneratorJob : IScopedService
 {

@@ -1,26 +1,26 @@
 using Ardalis.Specification.EntityFrameworkCore;
+using Backend.Application.Common.Caching;
+using Backend.Application.Common.Events;
+using Backend.Application.Common.Exceptions;
+using Backend.Application.Common.FileStorage;
+using Backend.Application.Common.Interfaces;
+using Backend.Application.Common.Mailing;
+using Backend.Application.Common.Models;
+using Backend.Application.Common.Specification;
+using Backend.Application.Identity.Users;
+using Backend.Domain.Identity;
+using Backend.Infrastructure.Auth;
+using Backend.Infrastructure.Mailing;
+using Backend.Infrastructure.Persistence.Context;
+using Backend.Shared.Authorization;
 using Finbuckle.MultiTenant;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
-using WebApiTemplate.Application.Common.Caching;
-using WebApiTemplate.Application.Common.Events;
-using WebApiTemplate.Application.Common.Exceptions;
-using WebApiTemplate.Application.Common.FileStorage;
-using WebApiTemplate.Application.Common.Interfaces;
-using WebApiTemplate.Application.Common.Mailing;
-using WebApiTemplate.Application.Common.Models;
-using WebApiTemplate.Application.Common.Specification;
-using WebApiTemplate.Application.Identity.Users;
-using WebApiTemplate.Domain.Identity;
-using WebApiTemplate.Infrastructure.Auth;
-using WebApiTemplate.Infrastructure.Mailing;
-using WebApiTemplate.Infrastructure.Persistence.Context;
-using WebApiTemplate.Shared.Authorization;
 
-namespace WebApiTemplate.Infrastructure.Identity;
+namespace Backend.Infrastructure.Identity;
 
 internal partial class UserService : IUserService
 {

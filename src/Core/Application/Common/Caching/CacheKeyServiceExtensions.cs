@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Domain.Common.Contracts;
+﻿using Backend.Domain.Common.Contracts;
 
-namespace WebApiTemplate.Application.Common.Caching;
+namespace Backend.Application.Common.Caching;
 
 public static class CacheKeyServiceExtensions
 {

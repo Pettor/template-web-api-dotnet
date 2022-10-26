@@ -1,11 +1,11 @@
 using System.Reflection;
+using Backend.Application.Common.Interfaces;
+using Backend.Domain.Catalog;
+using Backend.Infrastructure.Persistence.Context;
+using Backend.Infrastructure.Persistence.Initialization;
 using Microsoft.Extensions.Logging;
-using WebApiTemplate.Application.Common.Interfaces;
-using WebApiTemplate.Domain.Catalog;
-using WebApiTemplate.Infrastructure.Persistence.Context;
-using WebApiTemplate.Infrastructure.Persistence.Initialization;
 
-namespace WebApiTemplate.Infrastructure.Catalog;
+namespace Backend.Infrastructure.Catalog;
 
 public class BrandSeeder : ICustomSeeder
 {

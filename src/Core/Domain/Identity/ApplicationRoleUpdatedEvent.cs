@@ -1,4 +1,4 @@
-﻿namespace WebApiTemplate.Domain.Identity;
+﻿namespace Backend.Domain.Identity;
 
 public class ApplicationRoleUpdatedEvent : ApplicationRoleEvent
 {

@@ -1,10 +1,10 @@
-using WebApiTemplate.Application.Identity.Users;
-using WebApiTemplate.Application.Identity.Users.Password;
-using WebApiTemplate.Infrastructure.Auth.Permissions;
-using WebApiTemplate.Infrastructure.OpenApi;
-using WebApiTemplate.Shared.Authorization;
+using Backend.Application.Identity.Users;
+using Backend.Application.Identity.Users.Password;
+using Backend.Infrastructure.Auth.Permissions;
+using Backend.Infrastructure.OpenApi;
+using Backend.Shared.Authorization;
 
-namespace WebApiTemplate.Host.Controllers.Identity;
+namespace Backend.Host.Controllers.Identity;
 
 public class UsersController : VersionNeutralApiController
 {

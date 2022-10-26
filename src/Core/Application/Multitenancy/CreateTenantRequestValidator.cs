@@ -1,7 +1,7 @@
-using WebApiTemplate.Application.Common.Persistence;
-using WebApiTemplate.Application.Common.Validation;
+using Backend.Application.Common.Persistence;
+using Backend.Application.Common.Validation;
 
-namespace WebApiTemplate.Application.Multitenancy;
+namespace Backend.Application.Multitenancy;
 
 public class CreateTenantRequestValidator : CustomValidator<CreateTenantRequest>
 {

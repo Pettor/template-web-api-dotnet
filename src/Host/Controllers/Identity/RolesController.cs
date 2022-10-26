@@ -1,8 +1,8 @@
-using WebApiTemplate.Application.Identity.Roles;
-using WebApiTemplate.Infrastructure.Auth.Permissions;
-using WebApiTemplate.Shared.Authorization;
+using Backend.Application.Identity.Roles;
+using Backend.Infrastructure.Auth.Permissions;
+using Backend.Shared.Authorization;
 
-namespace WebApiTemplate.Host.Controllers.Identity;
+namespace Backend.Host.Controllers.Identity;
 
 public class RolesController : VersionNeutralApiController
 {

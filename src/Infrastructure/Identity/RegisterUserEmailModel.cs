@@ -1,4 +1,4 @@
-﻿namespace WebApiTemplate.Infrastructure.Identity;
+﻿namespace Backend.Infrastructure.Identity;
 
 public class RegisterUserEmailModel
 {

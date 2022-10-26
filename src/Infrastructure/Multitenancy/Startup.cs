@@ -1,14 +1,13 @@
+using Backend.Application.Multitenancy;
+using Backend.Infrastructure.Persistence;
+using Backend.Shared.Authorization;
+using Backend.Shared.Multitenancy;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Primitives;
-using WebApiTemplate.Application.Multitenancy;
-using WebApiTemplate.Infrastructure.Persistence;
-using WebApiTemplate.Shared.Authorization;
-using WebApiTemplate.Shared.Multitenancy;
 
-namespace WebApiTemplate.Infrastructure.Multitenancy;
+namespace Backend.Infrastructure.Multitenancy;
 
 internal static class Startup
 {

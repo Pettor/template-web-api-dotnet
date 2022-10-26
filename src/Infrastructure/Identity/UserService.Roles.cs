@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WebApiTemplate.Application.Common.Exceptions;
-using WebApiTemplate.Application.Identity.Users;
-using WebApiTemplate.Domain.Identity;
-using WebApiTemplate.Shared.Authorization;
-using WebApiTemplate.Shared.Multitenancy;
+﻿using Backend.Application.Common.Exceptions;
+using Backend.Application.Identity.Users;
+using Backend.Domain.Identity;
+using Backend.Shared.Authorization;
+using Backend.Shared.Multitenancy;
+using Microsoft.EntityFrameworkCore;
 
-namespace WebApiTemplate.Infrastructure.Identity;
+namespace Backend.Infrastructure.Identity;
 
 internal partial class UserService
 {

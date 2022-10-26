@@ -1,4 +1,4 @@
-﻿namespace WebApiTemplate.Infrastructure.Persistence.Configuration;
+﻿namespace Backend.Infrastructure.Persistence.Configuration;
 
 internal static class SchemaNames
 {

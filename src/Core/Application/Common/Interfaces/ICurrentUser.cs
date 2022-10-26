@@ -1,6 +1,6 @@
 using System.Security.Claims;
 
-namespace WebApiTemplate.Application.Common.Interfaces;
+namespace Backend.Application.Common.Interfaces;
 
 public interface ICurrentUser
 {

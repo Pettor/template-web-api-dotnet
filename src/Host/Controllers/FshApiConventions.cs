@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using WebApiTemplate.Infrastructure.Middleware;
+﻿using Backend.Infrastructure.Middleware;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
-namespace WebApiTemplate.Host.Controllers;
+namespace Backend.Host.Controllers;
 
 #nullable disable
 #pragma warning disable RCS1163

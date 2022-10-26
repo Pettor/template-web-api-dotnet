@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Shared.Events;
+﻿using Backend.Shared.Events;
 
-namespace WebApiTemplate.Application.Common.Events;
+namespace Backend.Application.Common.Events;
 
 public abstract class EventNotificationHandler<TEvent> : INotificationHandler<EventNotification<TEvent>>
     where TEvent : IEvent

@@ -1,9 +1,9 @@
+using Backend.Application.Common.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using WebApiTemplate.Application.Common.Interfaces;
 
-namespace WebApiTemplate.Infrastructure.Common.Services;
+namespace Backend.Infrastructure.Common.Services;
 
 public class NewtonSoftService : ISerializerService
 {

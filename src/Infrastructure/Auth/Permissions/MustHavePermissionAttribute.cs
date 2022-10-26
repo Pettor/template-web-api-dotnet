@@ -1,7 +1,7 @@
+using Backend.Shared.Authorization;
 using Microsoft.AspNetCore.Authorization;
-using WebApiTemplate.Shared.Authorization;
 
-namespace WebApiTemplate.Infrastructure.Auth.Permissions;
+namespace Backend.Infrastructure.Auth.Permissions;
 
 public class MustHavePermissionAttribute : AuthorizeAttribute
 {

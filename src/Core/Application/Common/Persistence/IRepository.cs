@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Domain.Common.Contracts;
+﻿using Backend.Domain.Common.Contracts;
 
-namespace WebApiTemplate.Application.Common.Persistence;
+namespace Backend.Application.Common.Persistence;
 
 // The Repository for the Application Db
 // I(Read)RepositoryBase<T> is from Ardalis.Specification

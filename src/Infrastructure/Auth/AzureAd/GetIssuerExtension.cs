@@ -1,6 +1,6 @@
 using System.Security.Claims;
 
-namespace WebApiTemplate.Infrastructure.Auth.AzureAd;
+namespace Backend.Infrastructure.Auth.AzureAd;
 
 public static class GetIssuerExtension
 {

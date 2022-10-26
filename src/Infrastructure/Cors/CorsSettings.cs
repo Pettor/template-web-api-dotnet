@@ -1,4 +1,4 @@
-namespace WebApiTemplate.Infrastructure.Cors;
+namespace Backend.Infrastructure.Cors;
 
 public class CorsSettings
 {

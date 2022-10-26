@@ -1,6 +1,6 @@
-using WebApiTemplate.Application.Common.FileStorage;
+using Backend.Application.Common.FileStorage;
 
-namespace WebApiTemplate.Application.Identity.Users;
+namespace Backend.Application.Identity.Users;
 
 public class UpdateUserRequest
 {

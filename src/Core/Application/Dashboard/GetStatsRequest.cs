@@ -1,4 +1,4 @@
-﻿namespace WebApiTemplate.Application.Dashboard;
+﻿namespace Backend.Application.Dashboard;
 
 public class GetStatsRequest : IRequest<StatsDto>
 {

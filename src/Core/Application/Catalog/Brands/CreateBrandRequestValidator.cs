@@ -1,8 +1,8 @@
-﻿using WebApiTemplate.Application.Common.Persistence;
-using WebApiTemplate.Application.Common.Validation;
-using WebApiTemplate.Domain.Catalog;
+﻿using Backend.Application.Common.Persistence;
+using Backend.Application.Common.Validation;
+using Backend.Domain.Catalog;
 
-namespace WebApiTemplate.Application.Catalog.Brands;
+namespace Backend.Application.Catalog.Brands;
 
 public class CreateBrandRequestValidator : CustomValidator<CreateBrandRequest>
 {

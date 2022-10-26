@@ -1,8 +1,8 @@
+using Backend.Shared.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
-using WebApiTemplate.Shared.Authorization;
 
-namespace WebApiTemplate.Infrastructure.Auth.Permissions;
+namespace Backend.Infrastructure.Auth.Permissions;
 
 internal class PermissionPolicyProvider : IAuthorizationPolicyProvider
 {

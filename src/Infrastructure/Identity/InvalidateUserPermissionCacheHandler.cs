@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
-using WebApiTemplate.Application.Common.Events;
-using WebApiTemplate.Application.Identity.Users;
-using WebApiTemplate.Domain.Identity;
+﻿using Backend.Application.Common.Events;
+using Backend.Application.Identity.Users;
+using Backend.Domain.Identity;
+using Microsoft.AspNetCore.Identity;
 
-namespace WebApiTemplate.Infrastructure.Identity;
+namespace Backend.Infrastructure.Identity;
 
 internal class InvalidateUserPermissionCacheHandler :
     IEventNotificationHandler<ApplicationUserUpdatedEvent>,

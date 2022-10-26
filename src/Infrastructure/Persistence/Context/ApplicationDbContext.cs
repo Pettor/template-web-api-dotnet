@@ -1,12 +1,12 @@
+using Backend.Application.Common.Events;
+using Backend.Application.Common.Interfaces;
+using Backend.Domain.Catalog;
+using Backend.Infrastructure.Persistence.Configuration;
 using Finbuckle.MultiTenant;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using WebApiTemplate.Application.Common.Events;
-using WebApiTemplate.Application.Common.Interfaces;
-using WebApiTemplate.Domain.Catalog;
-using WebApiTemplate.Infrastructure.Persistence.Configuration;
 
-namespace WebApiTemplate.Infrastructure.Persistence.Context;
+namespace Backend.Infrastructure.Persistence.Context;
 
 public class ApplicationDbContext : BaseDbContext
 {

@@ -1,28 +1,28 @@
 using System.Reflection;
+using Backend.Infrastructure.Auth;
+using Backend.Infrastructure.BackgroundJobs;
+using Backend.Infrastructure.Caching;
+using Backend.Infrastructure.Common;
+using Backend.Infrastructure.Cors;
+using Backend.Infrastructure.FileStorage;
+using Backend.Infrastructure.Localization;
+using Backend.Infrastructure.Mailing;
+using Backend.Infrastructure.Mapping;
+using Backend.Infrastructure.Middleware;
+using Backend.Infrastructure.Multitenancy;
+using Backend.Infrastructure.Notifications;
+using Backend.Infrastructure.OpenApi;
+using Backend.Infrastructure.Persistence;
+using Backend.Infrastructure.Persistence.Initialization;
+using Backend.Infrastructure.SecurityHeaders;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebApiTemplate.Infrastructure.Auth;
-using WebApiTemplate.Infrastructure.BackgroundJobs;
-using WebApiTemplate.Infrastructure.Caching;
-using WebApiTemplate.Infrastructure.Common;
-using WebApiTemplate.Infrastructure.Cors;
-using WebApiTemplate.Infrastructure.FileStorage;
-using WebApiTemplate.Infrastructure.Localization;
-using WebApiTemplate.Infrastructure.Mailing;
-using WebApiTemplate.Infrastructure.Mapping;
-using WebApiTemplate.Infrastructure.Middleware;
-using WebApiTemplate.Infrastructure.Multitenancy;
-using WebApiTemplate.Infrastructure.Notifications;
-using WebApiTemplate.Infrastructure.OpenApi;
-using WebApiTemplate.Infrastructure.Persistence;
-using WebApiTemplate.Infrastructure.Persistence.Initialization;
-using WebApiTemplate.Infrastructure.SecurityHeaders;
 
-namespace WebApiTemplate.Infrastructure;
+namespace Backend.Infrastructure;
 
 public static class Startup
 {

@@ -1,14 +1,14 @@
-﻿using Finbuckle.MultiTenant;
+﻿using Backend.Application.Common.Exceptions;
+using Backend.Application.Common.Persistence;
+using Backend.Application.Multitenancy;
+using Backend.Infrastructure.Persistence;
+using Backend.Infrastructure.Persistence.Initialization;
+using Finbuckle.MultiTenant;
 using Mapster;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
-using WebApiTemplate.Application.Common.Exceptions;
-using WebApiTemplate.Application.Common.Persistence;
-using WebApiTemplate.Application.Multitenancy;
-using WebApiTemplate.Infrastructure.Persistence;
-using WebApiTemplate.Infrastructure.Persistence.Initialization;
 
-namespace WebApiTemplate.Infrastructure.Multitenancy;
+namespace Backend.Infrastructure.Multitenancy;
 
 internal class TenantService : ITenantService
 {

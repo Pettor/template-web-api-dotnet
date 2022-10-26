@@ -1,9 +1,9 @@
-﻿using WebApiTemplate.Application.Catalog.Products;
-using WebApiTemplate.Application.Common.Exceptions;
-using WebApiTemplate.Application.Common.Persistence;
-using WebApiTemplate.Domain.Catalog;
+﻿using Backend.Application.Catalog.Products;
+using Backend.Application.Common.Exceptions;
+using Backend.Application.Common.Persistence;
+using Backend.Domain.Catalog;
 
-namespace WebApiTemplate.Application.Catalog.Brands;
+namespace Backend.Application.Catalog.Brands;
 
 public class DeleteBrandRequestHandler : IRequestHandler<DeleteBrandRequest, Guid>
 {

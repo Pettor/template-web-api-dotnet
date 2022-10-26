@@ -1,7 +1,7 @@
-using WebApiTemplate.Application.Catalog.Brands;
-using WebApiTemplate.Application.Common.Interfaces;
+using Backend.Application.Catalog.Brands;
+using Backend.Application.Common.Interfaces;
 
-namespace WebApiTemplate.Application.Catalog.Products;
+namespace Backend.Application.Catalog.Products;
 
 public class ProductDetailsDto : IDto
 {

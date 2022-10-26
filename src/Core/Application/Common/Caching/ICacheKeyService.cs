@@ -1,6 +1,6 @@
-﻿using WebApiTemplate.Application.Common.Interfaces;
+﻿using Backend.Application.Common.Interfaces;
 
-namespace WebApiTemplate.Application.Common.Caching;
+namespace Backend.Application.Common.Caching;
 
 public interface ICacheKeyService : IScopedService
 {

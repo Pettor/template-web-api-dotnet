@@ -1,6 +1,6 @@
-using WebApiTemplate.Application.Common.Models;
+using Backend.Application.Common.Models;
 
-namespace WebApiTemplate.Application.Catalog.Products;
+namespace Backend.Application.Catalog.Products;
 
 public class SearchProductsRequest : PaginationFilter, IRequest<PaginationResponse<ProductDto>>
 {

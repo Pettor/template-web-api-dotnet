@@ -1,12 +1,12 @@
 using System.Net;
+using Backend.Application.Common.Exceptions;
+using Backend.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
 using Serilog;
 using Serilog.Context;
-using WebApiTemplate.Application.Common.Exceptions;
-using WebApiTemplate.Application.Common.Interfaces;
 
-namespace WebApiTemplate.Infrastructure.Middleware;
+namespace Backend.Infrastructure.Middleware;
 
 internal class ExceptionMiddleware : IMiddleware
 {

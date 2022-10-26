@@ -1,6 +1,6 @@
-using WebApiTemplate.Application.Common.Interfaces;
+using Backend.Application.Common.Interfaces;
 
-namespace WebApiTemplate.Application.Common.Models;
+namespace Backend.Application.Common.Models;
 
 public static class PaginationResponseExtensions
 {

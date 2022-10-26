@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace WebApiTemplate.Infrastructure.Persistence.Initialization;
+namespace Backend.Infrastructure.Persistence.Initialization;
 
 internal class CustomSeederRunner
 {
