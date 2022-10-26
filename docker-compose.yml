@@ -6,11 +6,12 @@ services:
     container_name: api
     environment:
       - "DatabaseSettings__ConnectionString=Server=db;Database=fullStackHeroDb;\
-        User=sa;Password=SuperSecurePassword123!;MultipleActiveResultSets=true"
+        User=sa;Password=SuperSecurePassword123!;MultipleActiveResultSets=true;\
+        TrustServerCertificate=true"
       - "DatabaseSettings__DBProvider=mssql"
       - "HangfireSettings__Storage__ConnectionString=Server=db;Database=fullSta\
         ckHeroDb;User=sa;Password=SuperSecurePassword123!;MultipleActiveResultS\
-        ets=true"
+        ets=true;TrustServerCertificate=true"
       - "HangfireSettings__Storage__StorageProvider=mssql"
       - "ASPNETCORE_Kestrel__Certificates__Default__Password=SuperSecurePasswor\
         d123!"
