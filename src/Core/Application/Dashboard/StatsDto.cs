@@ -9,9 +9,3 @@ public class StatsDto
     public List<ChartSeries> DataEnterBarChart { get; set; } = new();
     public Dictionary<string, double>? ProductByBrandTypePieChart { get; set; }
 }
-
-public class ChartSeries
-{
-    public string? Name { get; set; }
-    public double[]? Data { get; set; }
-}
