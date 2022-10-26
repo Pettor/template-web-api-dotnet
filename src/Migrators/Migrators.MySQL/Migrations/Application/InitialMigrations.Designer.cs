@@ -22,7 +22,7 @@ namespace Migrators.MySQL.Migrations.Application
                 .HasAnnotation("ProductVersion", "6.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("MyHero.Domain.Catalog.Brand", b =>
+            modelBuilder.Entity("Backend.Domain.Catalog.Brand", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -66,7 +66,7 @@ namespace Migrators.MySQL.Migrations.Application
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
 
-            modelBuilder.Entity("MyHero.Domain.Catalog.Product", b =>
+            modelBuilder.Entity("Backend.Domain.Catalog.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -122,7 +122,7 @@ namespace Migrators.MySQL.Migrations.Application
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
 
-            modelBuilder.Entity("MyHero.Infrastructure.Auditing.Trail", b =>
+            modelBuilder.Entity("Backend.Infrastructure.Auditing.Trail", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -164,7 +164,7 @@ namespace Migrators.MySQL.Migrations.Application
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
 
-            modelBuilder.Entity("MyHero.Infrastructure.Identity.ApplicationRole", b =>
+            modelBuilder.Entity("Backend.Infrastructure.Identity.ApplicationRole", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -200,7 +200,7 @@ namespace Migrators.MySQL.Migrations.Application
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
 
-            modelBuilder.Entity("MyHero.Infrastructure.Identity.ApplicationRoleClaim", b =>
+            modelBuilder.Entity("Backend.Infrastructure.Identity.ApplicationRoleClaim", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -248,7 +248,7 @@ namespace Migrators.MySQL.Migrations.Application
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
 
-            modelBuilder.Entity("MyHero.Infrastructure.Identity.ApplicationUser", b =>
+            modelBuilder.Entity("Backend.Infrastructure.Identity.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -457,9 +457,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
 
-            modelBuilder.Entity("MyHero.Domain.Catalog.Product", b =>
+            modelBuilder.Entity("Backend.Domain.Catalog.Product", b =>
                 {
-                    b.HasOne("MyHero.Domain.Catalog.Brand", "Brand")
+                    b.HasOne("Backend.Domain.Catalog.Brand", "Brand")
                         .WithMany()
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -468,9 +468,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Navigation("Brand");
                 });
 
-            modelBuilder.Entity("MyHero.Infrastructure.Identity.ApplicationRoleClaim", b =>
+            modelBuilder.Entity("Backend.Infrastructure.Identity.ApplicationRoleClaim", b =>
                 {
-                    b.HasOne("MyHero.Infrastructure.Identity.ApplicationRole", null)
+                    b.HasOne("Backend.Infrastructure.Identity.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -479,7 +479,7 @@ namespace Migrators.MySQL.Migrations.Application
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("MyHero.Infrastructure.Identity.ApplicationUser", null)
+                    b.HasOne("Backend.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -488,7 +488,7 @@ namespace Migrators.MySQL.Migrations.Application
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("MyHero.Infrastructure.Identity.ApplicationUser", null)
+                    b.HasOne("Backend.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -497,13 +497,13 @@ namespace Migrators.MySQL.Migrations.Application
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("MyHero.Infrastructure.Identity.ApplicationRole", null)
+                    b.HasOne("Backend.Infrastructure.Identity.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyHero.Infrastructure.Identity.ApplicationUser", null)
+                    b.HasOne("Backend.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -512,7 +512,7 @@ namespace Migrators.MySQL.Migrations.Application
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("MyHero.Infrastructure.Identity.ApplicationUser", null)
+                    b.HasOne("Backend.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
