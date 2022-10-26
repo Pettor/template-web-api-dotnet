@@ -17,7 +17,7 @@ internal static class Startup
                 services.AddStackExchangeRedisCache(options =>
                 {
                     options.Configuration = settings.RedisURL;
-                    options.ConfigurationOptions = new StackExchange.Redis.ConfigurationOptions()
+                    options.ConfigurationOptions = new StackExchange.Redis.ConfigurationOptions
                     {
                         AbortOnConnectFail = true,
                         EndPoints = { settings.RedisURL }

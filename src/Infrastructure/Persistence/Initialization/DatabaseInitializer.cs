@@ -43,10 +43,10 @@ internal class DatabaseInitializer : IDatabaseInitializer
 
         // Then set current tenant so the right connectionstring is used
         _serviceProvider.GetRequiredService<IMultiTenantContextAccessor>()
-            .MultiTenantContext = new MultiTenantContext<FSHTenantInfo>()
-            {
+            .MultiTenantContext = new MultiTenantContext<FSHTenantInfo>
+        {
                 TenantInfo = tenant
-            };
+        };
 
         // Then run the initialization in the new scope
         await scope.ServiceProvider.GetRequiredService<ApplicationDbInitializer>()
@@ -55,7 +55,8 @@ internal class DatabaseInitializer : IDatabaseInitializer
 
     private async Task InitializeTenantDbAsync(CancellationToken cancellationToken)
     {
-        if (_tenantDbContext.Database.GetPendingMigrations().Any())
+        var pendingMigrations = await _tenantDbContext.Database.GetPendingMigrationsAsync(cancellationToken);
+        if (pendingMigrations.Any())
         {
             _logger.LogInformation("Applying Root Migrations.");
             await _tenantDbContext.Database.MigrateAsync(cancellationToken);

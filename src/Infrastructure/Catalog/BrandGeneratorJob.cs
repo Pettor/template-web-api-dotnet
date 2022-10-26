@@ -47,7 +47,7 @@ public class BrandGeneratorJob : IBrandGeneratorJob
     {
         _progress.SetValue(progress);
         await _notifications.SendToUserAsync(
-            new JobNotification()
+            new JobNotification
             {
                 JobId = _performingContext.BackgroundJob.Id,
                 Message = message,
