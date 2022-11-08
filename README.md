@@ -7,6 +7,12 @@
 - Install PostgreSQL 15.
 - Latest Docker
 
+### Configuration
+
+Copy the template files for `database.json` and `hangfire.json` in `Host.Configurations.Templates` directory to the `Host.Configurations` directory.
+
+Configure the `ConnectionString` in both files to make sure they match the credentials for the local PostgreSQL installation.
+
 ### Run using Docker
 
 To run the project using Docker run the following in the root dir:
