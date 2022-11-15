@@ -1,4 +1,4 @@
-using Backend.Application;
+﻿using Backend.Application;
 using Backend.Host.Configurations;
 using Backend.Host.Controllers;
 using Backend.Infrastructure;
@@ -18,7 +18,7 @@ try
     builder.Host.UseSerilog((_, config) =>
     {
         config.WriteTo.Console()
-        .ReadFrom.Configuration(builder.Configuration);
+            .ReadFrom.Configuration(builder.Configuration);
     });
 
     builder.Services.AddControllers();
