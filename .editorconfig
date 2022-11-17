@@ -73,6 +73,9 @@ dotnet_diagnostic.SA1206.severity = none
 # CA1040: Avoid empty interfaces
 dotnet_diagnostic.CA1040.severity = none
 
+# CA1506: Avoid excessive class coupling
+dotnet_diagnostic.CA1506.severity = none
+
 # RCS1012: Use explicit type instead of 'var'
 dotnet_diagnostic.RCS1012.severity = none
 
