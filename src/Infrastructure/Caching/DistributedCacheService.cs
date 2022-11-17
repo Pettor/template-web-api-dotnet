@@ -1,4 +1,4 @@
-using System.Text;
+﻿using System.Text;
 using Backend.Application.Common.Caching;
 using Backend.Application.Common.Interfaces;
 using Microsoft.Extensions.Caching.Distributed;

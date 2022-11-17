@@ -1,4 +1,4 @@
-namespace Backend.Application.Dashboard;
+﻿namespace Backend.Application.Dashboard;
 
 public class StatsDto
 {

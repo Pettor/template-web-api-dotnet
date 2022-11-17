@@ -1,4 +1,4 @@
-namespace Backend.Shared.Notifications;
+﻿namespace Backend.Shared.Notifications;
 
 public class StatsChangedNotification : INotificationMessage
 {

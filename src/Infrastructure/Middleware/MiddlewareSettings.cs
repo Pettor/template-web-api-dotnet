@@ -1,4 +1,4 @@
-namespace Backend.Infrastructure.Middleware;
+﻿namespace Backend.Infrastructure.Middleware;
 
 public class MiddlewareSettings
 {

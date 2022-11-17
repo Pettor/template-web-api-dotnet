@@ -1,4 +1,4 @@
-using Backend.Application.Common.Interfaces;
+﻿using Backend.Application.Common.Interfaces;
 using Backend.Shared.Events;
 
 namespace Backend.Application.Common.Events;

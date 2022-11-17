@@ -1,4 +1,4 @@
-namespace Backend.Infrastructure.Cors;
+﻿namespace Backend.Infrastructure.Cors;
 
 public class CorsSettings
 {

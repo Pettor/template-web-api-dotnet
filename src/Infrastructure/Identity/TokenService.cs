@@ -1,4 +1,4 @@
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -143,36 +143,6 @@ internal class TokenService : ITokenService
            signingCredentials: signingCredentials);
         var tokenHandler = new JwtSecurityTokenHandler();
         return tokenHandler.WriteToken(token);
-    }
-
-    private ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
-    {
-        if (string.IsNullOrEmpty(_jwtSettings.Key))
-        {
-            throw new InvalidOperationException("No Key defined in JwtSettings config.");
-        }
-
-        var tokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key)),
-            ValidateIssuer = false,
-            ValidateAudience = false,
-            RoleClaimType = ClaimTypes.Role,
-            ClockSkew = TimeSpan.Zero,
-            ValidateLifetime = false
-        };
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out var securityToken);
-        if (securityToken is not JwtSecurityToken jwtSecurityToken ||
-            !jwtSecurityToken.Header.Alg.Equals(
-                SecurityAlgorithms.HmacSha256,
-                StringComparison.InvariantCultureIgnoreCase))
-        {
-            throw new UnauthorizedException(_localizer["identity.invalidtoken"]);
-        }
-
-        return principal;
     }
 
     private SigningCredentials GetSigningCredentials()

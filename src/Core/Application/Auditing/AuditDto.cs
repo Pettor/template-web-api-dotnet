@@ -1,4 +1,4 @@
-namespace Backend.Application.Auditing;
+﻿namespace Backend.Application.Auditing;
 
 public class AuditDto
 {

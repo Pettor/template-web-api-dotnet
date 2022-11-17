@@ -1,4 +1,4 @@
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using Backend.Application.Common.Interfaces;
 using Backend.Shared.Authorization;
 

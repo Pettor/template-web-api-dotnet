@@ -1,4 +1,4 @@
-namespace Backend.Infrastructure.SecurityHeaders;
+﻿namespace Backend.Infrastructure.SecurityHeaders;
 
 public class SecurityHeaderSettings
 {

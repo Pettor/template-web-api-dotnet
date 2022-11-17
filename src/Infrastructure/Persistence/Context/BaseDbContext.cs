@@ -1,4 +1,4 @@
-using System.Data;
+﻿using System.Data;
 using Backend.Application.Common.Events;
 using Backend.Application.Common.Interfaces;
 using Backend.Domain.Common.Contracts;

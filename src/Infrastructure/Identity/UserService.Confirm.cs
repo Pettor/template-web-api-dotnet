@@ -1,4 +1,4 @@
-using System.Text;
+﻿using System.Text;
 using Backend.Application.Common.Exceptions;
 using Backend.Infrastructure.Common;
 using Backend.Shared.Multitenancy;

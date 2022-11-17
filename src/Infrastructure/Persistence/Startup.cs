@@ -1,4 +1,4 @@
-using Backend.Application.Common.Persistence;
+﻿using Backend.Application.Common.Persistence;
 using Backend.Domain.Common.Contracts;
 using Backend.Infrastructure.Common;
 using Backend.Infrastructure.Persistence.ConnectionString;

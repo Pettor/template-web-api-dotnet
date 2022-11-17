@@ -1,4 +1,4 @@
-namespace Backend.Infrastructure.Auth;
+﻿namespace Backend.Infrastructure.Auth;
 
 public class SecuritySettings
 {

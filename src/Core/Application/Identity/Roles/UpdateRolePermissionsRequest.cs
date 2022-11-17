@@ -1,4 +1,4 @@
-namespace Backend.Application.Identity.Roles;
+﻿namespace Backend.Application.Identity.Roles;
 
 public class UpdateRolePermissionsRequest
 {

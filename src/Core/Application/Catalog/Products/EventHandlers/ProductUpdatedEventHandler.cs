@@ -1,4 +1,4 @@
-using Backend.Application.Common.Events;
+﻿using Backend.Application.Common.Events;
 using Backend.Domain.Catalog;
 using Backend.Domain.Common.Events;
 

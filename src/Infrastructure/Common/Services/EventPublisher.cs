@@ -1,4 +1,4 @@
-using Backend.Application.Common.Events;
+﻿using Backend.Application.Common.Events;
 using Backend.Shared.Events;
 using MediatR;
 using Microsoft.Extensions.Logging;

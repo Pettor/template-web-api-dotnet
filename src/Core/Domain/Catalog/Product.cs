@@ -1,4 +1,4 @@
-using Backend.Domain.Common.Contracts;
+﻿using Backend.Domain.Common.Contracts;
 
 namespace Backend.Domain.Catalog;
 
@@ -22,11 +22,16 @@ public class Product : AuditableEntity, IAggregateRoot
 
     public Product Update(string? name, string? description, decimal? rate, Guid? brandId, string? imagePath)
     {
-        if (name is not null && Name?.Equals(name) is not true) Name = name;
-        if (description is not null && Description?.Equals(description) is not true) Description = description;
-        if (rate.HasValue && Rate != rate) Rate = rate.Value;
-        if (brandId.HasValue && brandId.Value != Guid.Empty && !BrandId.Equals(brandId.Value)) BrandId = brandId.Value;
-        if (imagePath is not null && ImagePath?.Equals(imagePath) is not true) ImagePath = imagePath;
+        if (name is not null && Name?.Equals(name) is not true)
+            Name = name;
+        if (description is not null && Description?.Equals(description) is not true)
+            Description = description;
+        if (rate.HasValue && Rate != rate)
+            Rate = rate.Value;
+        if (brandId.HasValue && brandId.Value != Guid.Empty && !BrandId.Equals(brandId.Value))
+            BrandId = brandId.Value;
+        if (imagePath is not null && ImagePath?.Equals(imagePath) is not true)
+            ImagePath = imagePath;
         return this;
     }
 

@@ -1,4 +1,4 @@
-using Backend.Application.Identity.Tokens;
+﻿using Backend.Application.Identity.Tokens;
 using Backend.Infrastructure.OpenApi;
 
 namespace Backend.Host.Controllers.Identity;

@@ -1,4 +1,4 @@
-using Backend.Shared.Events;
+﻿using Backend.Shared.Events;
 
 namespace Backend.Application.Common.Events;
 

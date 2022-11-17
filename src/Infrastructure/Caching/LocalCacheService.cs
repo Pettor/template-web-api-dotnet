@@ -1,4 +1,4 @@
-using Backend.Application.Common.Caching;
+﻿using Backend.Application.Common.Caching;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 

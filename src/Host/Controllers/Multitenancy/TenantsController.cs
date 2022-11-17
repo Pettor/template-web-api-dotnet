@@ -1,4 +1,4 @@
-using Backend.Application.Multitenancy;
+﻿using Backend.Application.Multitenancy;
 using Backend.Infrastructure.Auth.Permissions;
 using Backend.Shared.Authorization;
 
