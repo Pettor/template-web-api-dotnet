@@ -1,4 +1,5 @@
 ﻿using Backend.Application;
+using Backend.Host;
 using Backend.Host.Configurations;
 using Backend.Host.Controllers;
 using Backend.Infrastructure;
@@ -15,11 +16,7 @@ try
     var builder = WebApplication.CreateBuilder(args);
 
     builder.AddConfigurations();
-    builder.Host.UseSerilog((_, config) =>
-    {
-        config.WriteTo.Console()
-            .ReadFrom.Configuration(builder.Configuration);
-    });
+    builder.AddSerilog();
 
     builder.Services.AddControllers();
     builder.Services.AddFluentValidationAutoValidation();
