@@ -14,7 +14,7 @@ internal static class Startup
     internal static IServiceCollection AddOpenApiDocumentation(this IServiceCollection services, IConfiguration config)
     {
         var settings = config.GetSection(nameof(SwaggerSettings)).Get<SwaggerSettings>();
-        if (!settings.Enable)
+        if (settings is { Enable: false })
         {
             return services;
         }
@@ -41,7 +41,7 @@ internal static class Startup
                 };
             };
 
-            if (config["SecuritySettings:Provider"].Equals("AzureAd", StringComparison.OrdinalIgnoreCase))
+            if (config["SecuritySettings:Provider"]!.Equals("AzureAd", StringComparison.OrdinalIgnoreCase))
             {
                 document.AddSecurity(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
                 {
@@ -56,7 +56,7 @@ internal static class Startup
                             TokenUrl = config["SecuritySettings:Swagger:TokenUrl"],
                             Scopes = new Dictionary<string, string>
                             {
-                                { config["SecuritySettings:Swagger:ApiScope"], "access the api" }
+                                { config["SecuritySettings:Swagger:ApiScope"] ?? string.Empty, "access the api"}
                             }
                         }
                     }
@@ -82,7 +82,8 @@ internal static class Startup
             {
                 schema.Type = NJsonSchema.JsonObjectType.String;
                 schema.IsNullableRaw = true;
-                schema.Pattern = @"^([0-9]{1}|(?:0[0-9]|1[0-9]|2[0-3])+):([0-5]?[0-9])(?::([0-5]?[0-9])(?:.(\d{1,9}))?)?$";
+                schema.Pattern =
+                    @"^([0-9]{1}|(?:0[0-9]|1[0-9]|2[0-3])+):([0-5]?[0-9])(?::([0-5]?[0-9])(?:.(\d{1,9}))?)?$";
                 schema.Example = "02:00:00";
             }));
 
@@ -105,7 +106,7 @@ internal static class Startup
             options.DefaultModelsExpandDepth = -1;
             options.DocExpansion = "none";
             options.TagsSorter = "alpha";
-            if (!config["SecuritySettings:Provider"].Equals("AzureAd", StringComparison.OrdinalIgnoreCase))
+            if (!config["SecuritySettings:Provider"]!.Equals("AzureAd", StringComparison.OrdinalIgnoreCase))
             {
                 return;
             }
