@@ -1,4 +1,4 @@
-using System.Data;
+﻿using System.Data;
 using Backend.Application.Common.Exceptions;
 using Backend.Application.Common.Persistence;
 using Backend.Domain.Common.Contracts;

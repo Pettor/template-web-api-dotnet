@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using Backend.Application.Common.Interfaces;
 using Backend.Domain.Catalog;
 using Backend.Infrastructure.Persistence.Context;

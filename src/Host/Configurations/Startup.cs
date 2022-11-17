@@ -1,4 +1,4 @@
-namespace Backend.Host.Configurations;
+﻿namespace Backend.Host.Configurations;
 
 internal static class Startup
 {

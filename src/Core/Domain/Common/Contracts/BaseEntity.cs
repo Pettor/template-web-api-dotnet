@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using MassTransit;
 
 namespace Backend.Domain.Common.Contracts;

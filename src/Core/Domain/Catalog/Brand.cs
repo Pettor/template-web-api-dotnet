@@ -1,4 +1,4 @@
-using Backend.Domain.Common.Contracts;
+﻿using Backend.Domain.Common.Contracts;
 
 namespace Backend.Domain.Catalog;
 
@@ -15,8 +15,10 @@ public class Brand : AuditableEntity, IAggregateRoot
 
     public Brand Update(string? name, string? description)
     {
-        if (name is not null && Name?.Equals(name) is not true) Name = name;
-        if (description is not null && Description?.Equals(description) is not true) Description = description;
+        if (name is not null && Name?.Equals(name) is not true)
+            Name = name;
+        if (description is not null && Description?.Equals(description) is not true)
+            Description = description;
         return this;
     }
 }

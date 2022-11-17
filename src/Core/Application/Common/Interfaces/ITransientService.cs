@@ -1,4 +1,4 @@
-namespace Backend.Application.Common.Interfaces;
+﻿namespace Backend.Application.Common.Interfaces;
 
 public interface ITransientService
 {

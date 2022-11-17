@@ -1,4 +1,4 @@
-using Backend.Application.Common.Interfaces;
+﻿using Backend.Application.Common.Interfaces;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Backend.Infrastructure.Auditing;

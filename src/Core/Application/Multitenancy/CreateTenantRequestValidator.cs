@@ -1,4 +1,4 @@
-using Backend.Application.Common.Persistence;
+﻿using Backend.Application.Common.Persistence;
 using Backend.Application.Common.Validation;
 
 namespace Backend.Application.Multitenancy;

@@ -1,4 +1,4 @@
-using Backend.Application.Common.Events;
+﻿using Backend.Application.Common.Events;
 using Backend.Application.Common.Exceptions;
 using Backend.Application.Common.Interfaces;
 using Backend.Application.Identity.Roles;

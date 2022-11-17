@@ -1,4 +1,4 @@
-using Backend.Application.Multitenancy;
+﻿using Backend.Application.Multitenancy;
 using Backend.Infrastructure.Persistence;
 using Backend.Shared.Authorization;
 using Backend.Shared.Multitenancy;
@@ -16,9 +16,11 @@ internal static class Startup
         // TODO: We should probably add specific dbprovider/connectionstring setting for the tenantDb with a fallback to the main databasesettings
         var databaseSettings = config.GetSection(nameof(DatabaseSettings)).Get<DatabaseSettings>();
         string? rootConnectionString = databaseSettings.ConnectionString;
-        if (string.IsNullOrEmpty(rootConnectionString)) throw new InvalidOperationException("DB ConnectionString is not configured.");
+        if (string.IsNullOrEmpty(rootConnectionString))
+            throw new InvalidOperationException("DB ConnectionString is not configured.");
         string? dbProvider = databaseSettings.DbProvider;
-        if (string.IsNullOrEmpty(dbProvider)) throw new InvalidOperationException("DB Provider is not configured.");
+        if (string.IsNullOrEmpty(dbProvider))
+            throw new InvalidOperationException("DB Provider is not configured.");
 
         return services
             .AddDbContext<TenantDbContext>(m => m.UseDatabase(dbProvider, rootConnectionString))

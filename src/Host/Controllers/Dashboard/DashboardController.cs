@@ -1,4 +1,4 @@
-using Backend.Application.Dashboard;
+﻿using Backend.Application.Dashboard;
 using Backend.Infrastructure.Auth.Permissions;
 using Backend.Shared.Authorization;
 

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,11 +21,13 @@ internal static class Startup
         else
         {
             var backplaneSettings = config.GetSection("SignalRSettings:Backplane").Get<SignalRSettings.Backplane>();
-            if (backplaneSettings is null) throw new InvalidOperationException("Backplane enabled, but no backplane settings in config.");
+            if (backplaneSettings is null)
+                throw new InvalidOperationException("Backplane enabled, but no backplane settings in config.");
             switch (backplaneSettings.Provider)
             {
                 case "redis":
-                    if (backplaneSettings.StringConnection is null) throw new InvalidOperationException("Redis backplane provider: No connectionString configured.");
+                    if (backplaneSettings.StringConnection is null)
+                        throw new InvalidOperationException("Redis backplane provider: No connectionString configured.");
                     services.AddSignalR().AddStackExchangeRedis(backplaneSettings.StringConnection, options =>
                     {
                         options.Configuration.AbortOnConnectFail = false;

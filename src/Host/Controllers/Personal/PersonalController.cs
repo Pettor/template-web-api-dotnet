@@ -1,4 +1,4 @@
-using Backend.Application.Auditing;
+﻿using Backend.Application.Auditing;
 using Backend.Application.Identity.Users;
 using Backend.Application.Identity.Users.Password;
 using Backend.Shared.Authorization;

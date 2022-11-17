@@ -1,4 +1,4 @@
-namespace Backend.Infrastructure.Mailing;
+﻿namespace Backend.Infrastructure.Mailing;
 
 public class MailSettings
 {

@@ -1,4 +1,4 @@
-namespace Backend.Application.Common.FileStorage;
+﻿namespace Backend.Application.Common.FileStorage;
 
 public class FileUploadRequest
 {

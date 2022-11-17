@@ -1,4 +1,4 @@
-namespace Backend.Application.Multitenancy;
+﻿namespace Backend.Application.Multitenancy;
 
 public class ActivateTenantRequest : IRequest<string>
 {

@@ -1,4 +1,4 @@
-namespace Backend.Infrastructure.Auditing;
+﻿namespace Backend.Infrastructure.Auditing;
 
 public enum TrailType : byte
 {

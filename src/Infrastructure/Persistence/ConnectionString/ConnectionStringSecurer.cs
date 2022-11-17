@@ -1,4 +1,4 @@
-using Backend.Application.Common.Persistence;
+﻿using Backend.Application.Common.Persistence;
 using Backend.Infrastructure.Common;
 using Microsoft.Extensions.Options;
 using Npgsql;

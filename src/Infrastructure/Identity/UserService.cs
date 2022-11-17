@@ -1,4 +1,4 @@
-using Ardalis.Specification.EntityFrameworkCore;
+﻿using Ardalis.Specification.EntityFrameworkCore;
 using Backend.Application.Common.Caching;
 using Backend.Application.Common.Events;
 using Backend.Application.Common.Exceptions;
@@ -10,7 +10,6 @@ using Backend.Application.Common.Specification;
 using Backend.Application.Identity.Users;
 using Backend.Domain.Identity;
 using Backend.Infrastructure.Auth;
-using Backend.Infrastructure.Mailing;
 using Backend.Infrastructure.Persistence.Context;
 using Backend.Shared.Authorization;
 using Finbuckle.MultiTenant;
@@ -31,7 +30,6 @@ internal partial class UserService : IUserService
     private readonly IStringLocalizer<UserService> _localizer;
     private readonly IJobService _jobService;
     private readonly IMailService _mailService;
-    private readonly MailSettings _mailSettings;
     private readonly SecuritySettings _securitySettings;
     private readonly IEmailTemplateService _templateService;
     private readonly IFileStorageService _fileStorage;
@@ -48,7 +46,6 @@ internal partial class UserService : IUserService
         IStringLocalizer<UserService> localizer,
         IJobService jobService,
         IMailService mailService,
-        IOptions<MailSettings> mailSettings,
         IEmailTemplateService templateService,
         IFileStorageService fileStorage,
         IEventPublisher events,
@@ -64,7 +61,6 @@ internal partial class UserService : IUserService
         _localizer = localizer;
         _jobService = jobService;
         _mailService = mailService;
-        _mailSettings = mailSettings.Value;
         _templateService = templateService;
         _fileStorage = fileStorage;
         _events = events;

@@ -1,4 +1,4 @@
-using Backend.Domain.Common.Contracts;
+﻿using Backend.Domain.Common.Contracts;
 
 namespace Backend.Infrastructure.Auditing;
 

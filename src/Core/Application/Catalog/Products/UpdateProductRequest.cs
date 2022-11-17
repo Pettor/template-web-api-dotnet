@@ -1,4 +1,4 @@
-using Backend.Application.Common.FileStorage;
+﻿using Backend.Application.Common.FileStorage;
 
 namespace Backend.Application.Catalog.Products;
 

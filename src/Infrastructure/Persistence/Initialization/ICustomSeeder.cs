@@ -1,4 +1,4 @@
-namespace Backend.Infrastructure.Persistence.Initialization;
+﻿namespace Backend.Infrastructure.Persistence.Initialization;
 
 public interface ICustomSeeder
 {

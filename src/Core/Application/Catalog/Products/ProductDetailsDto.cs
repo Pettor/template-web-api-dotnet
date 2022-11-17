@@ -1,4 +1,4 @@
-using Backend.Application.Catalog.Brands;
+﻿using Backend.Application.Catalog.Brands;
 using Backend.Application.Common.Interfaces;
 
 namespace Backend.Application.Catalog.Products;

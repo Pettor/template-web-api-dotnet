@@ -1,4 +1,4 @@
-namespace Backend.Shared.Multitenancy;
+﻿namespace Backend.Shared.Multitenancy;
 
 public class MultitenancyConstants
 {

@@ -1,4 +1,4 @@
-using System.Globalization;
+﻿using System.Globalization;
 using Microsoft.AspNetCore.Http;
 
 namespace Backend.Infrastructure.Localization;

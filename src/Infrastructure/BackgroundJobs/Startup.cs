@@ -1,4 +1,4 @@
-using Backend.Infrastructure.Common;
+﻿using Backend.Infrastructure.Common;
 using Hangfire;
 using Hangfire.Console;
 using Hangfire.Console.Extensions;
@@ -25,8 +25,10 @@ internal static class Startup
 
         var storageSettings = config.GetSection("HangfireSettings:Storage").Get<HangfireStorageSettings>();
 
-        if (string.IsNullOrEmpty(storageSettings.StorageProvider)) throw new Exception("Hangfire Storage Provider is not configured.");
-        if (string.IsNullOrEmpty(storageSettings.ConnectionString)) throw new Exception("Hangfire Storage Provider ConnectionString is not configured.");
+        if (string.IsNullOrEmpty(storageSettings.StorageProvider))
+            throw new Exception("Hangfire Storage Provider is not configured.");
+        if (string.IsNullOrEmpty(storageSettings.ConnectionString))
+            throw new Exception("Hangfire Storage Provider ConnectionString is not configured.");
         Logger.Information($"Hangfire: Current Storage Provider : {storageSettings.StorageProvider}");
         Logger.Information("For more Hangfire storage, visit https://www.hangfire.io/extensions.html");
 

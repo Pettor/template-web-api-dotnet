@@ -64,11 +64,14 @@ public class JsonStringLocalizer : IStringLocalizer
     private string? GetString(string key)
     {
         string? stringCulture = GetSpecificCulture(key);
-        if (!string.IsNullOrEmpty(stringCulture)) return stringCulture;
+        if (!string.IsNullOrEmpty(stringCulture))
+            return stringCulture;
         stringCulture = GetNaturalCulture(key);
-        if (!string.IsNullOrEmpty(stringCulture)) return stringCulture;
+        if (!string.IsNullOrEmpty(stringCulture))
+            return stringCulture;
         stringCulture = GetDefaultCulture(key);
-        if (!string.IsNullOrEmpty(stringCulture)) return stringCulture;
+        if (!string.IsNullOrEmpty(stringCulture))
+            return stringCulture;
 
         return default;
     }
@@ -100,7 +103,8 @@ public class JsonStringLocalizer : IStringLocalizer
     private void WriteEmptyKeys(CultureInfo sourceCulture, string fullFilePath)
     {
         string sourceFilePath = $"{Localization}/{sourceCulture.Name}.json";
-        if (!File.Exists(sourceFilePath)) return;
+        if (!File.Exists(sourceFilePath))
+            return;
         using var str = new FileStream(sourceFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
         using var outStream = File.Create(fullFilePath);
         using var sWriter = new StreamWriter(outStream);
@@ -121,8 +125,10 @@ public class JsonStringLocalizer : IStringLocalizer
 
     private T? PullDeserialize<T>(string propertyName, string filePath)
     {
-        if (propertyName == null) return default;
-        if (filePath == null) return default;
+        if (propertyName == null)
+            return default;
+        if (filePath == null)
+            return default;
         using var str = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
         using var sReader = new StreamReader(str);
         using var reader = new JsonTextReader(sReader);

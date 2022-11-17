@@ -1,4 +1,4 @@
-using Backend.Application.Common.Mailing;
+﻿using Backend.Application.Common.Mailing;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Logging;

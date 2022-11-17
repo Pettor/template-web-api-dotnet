@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using Backend.Infrastructure.Auth;
 using Backend.Infrastructure.BackgroundJobs;
 using Backend.Infrastructure.Caching;

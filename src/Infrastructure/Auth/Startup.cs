@@ -1,4 +1,4 @@
-using Backend.Application.Common.Interfaces;
+﻿using Backend.Application.Common.Interfaces;
 using Backend.Infrastructure.Auth.AzureAd;
 using Backend.Infrastructure.Auth.Jwt;
 using Backend.Infrastructure.Auth.Permissions;
