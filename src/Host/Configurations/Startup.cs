@@ -2,13 +2,11 @@ namespace Backend.Host.Configurations;
 
 internal static class Startup
 {
-    internal static ConfigureHostBuilder AddConfigurations(this ConfigureHostBuilder host)
+    internal static void AddConfigurations(this WebApplicationBuilder builder)
     {
-        host.ConfigureAppConfiguration((context, config) =>
-        {
-            const string configurationsDirectory = "Configurations";
-            var env = context.HostingEnvironment;
-            config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+        const string configurationsDirectory = "Configurations";
+        var env = builder.Environment;
+        builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"{configurationsDirectory}/logger.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"{configurationsDirectory}/logger.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
@@ -33,7 +31,5 @@ internal static class Startup
                 .AddJsonFile($"{configurationsDirectory}/securityheaders.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"{configurationsDirectory}/securityheaders.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
-        });
-        return host;
     }
 }
