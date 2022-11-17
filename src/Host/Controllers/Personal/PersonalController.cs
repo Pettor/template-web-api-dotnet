@@ -22,7 +22,7 @@ public class PersonalController : VersionNeutralApiController
 
     [HttpPut("profile")]
     [OpenApiOperation("Update profile details of currently logged in user.", "")]
-    public async Task<ActionResult> UpdateProfileAsync(UpdateUserRequest request)
+    public async Task<Microsoft.AspNetCore.Mvc.ActionResult> UpdateProfileAsync(UpdateUserRequest request)
     {
         if (User.GetUserId() is not { } userId || string.IsNullOrEmpty(userId))
         {
@@ -36,7 +36,7 @@ public class PersonalController : VersionNeutralApiController
     [HttpPut("change-password")]
     [OpenApiOperation("Change password of currently logged in user.", "")]
     [ApiConventionMethod(typeof(ApiConventions), nameof(ApiConventions.Register))]
-    public async Task<ActionResult> ChangePasswordAsync(ChangePasswordRequest model)
+    public async Task<Microsoft.AspNetCore.Mvc.ActionResult> ChangePasswordAsync(ChangePasswordRequest model)
     {
         if (User.GetUserId() is not { } userId || string.IsNullOrEmpty(userId))
         {
