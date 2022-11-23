@@ -22,7 +22,7 @@ internal partial class UserService
     /// </summary>
     public async Task<string> GetOrCreateFromPrincipalAsync(ClaimsPrincipal principal)
     {
-        string? objectId = principal.GetObjectId();
+        var objectId = principal.GetObjectId();
         if (string.IsNullOrWhiteSpace(objectId))
         {
             throw new InternalServerException(_localizer["Invalid objectId"]);
@@ -43,8 +43,8 @@ internal partial class UserService
 
     private async Task<ApplicationUser> CreateOrUpdateFromPrincipalAsync(ClaimsPrincipal principal)
     {
-        string? email = principal.FindFirstValue(ClaimTypes.Upn);
-        string? username = principal.GetDisplayName();
+        var email = principal.FindFirstValue(ClaimTypes.Upn);
+        var username = principal.GetDisplayName();
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(username))
         {
             throw new InternalServerException(string.Format(_localizer["Username or Email not valid."]));
@@ -126,7 +126,7 @@ internal partial class UserService
         if (_securitySettings.RequireConfirmedAccount && !string.IsNullOrEmpty(user.Email))
         {
             // send verification email
-            string emailVerificationUri = await GetEmailVerificationUriAsync(user, origin);
+            var emailVerificationUri = await GetEmailVerificationUriAsync(user, origin);
             var eMailModel = new RegisterUserEmailModel
             {
                 Email = user.Email,
@@ -152,13 +152,13 @@ internal partial class UserService
 
         _ = user ?? throw new NotFoundException(_localizer["User Not Found."]);
 
-        string currentImage = user.ImageUrl ?? string.Empty;
+        var currentImage = user.ImageUrl ?? string.Empty;
         if (request.Image != null || request.DeleteCurrentImage)
         {
             user.ImageUrl = await _fileStorage.UploadAsync<ApplicationUser>(request.Image, FileType.Image);
             if (request.DeleteCurrentImage && !string.IsNullOrEmpty(currentImage))
             {
-                string root = Directory.GetCurrentDirectory();
+                var root = Directory.GetCurrentDirectory();
                 _fileStorage.Remove(Path.Combine(root, currentImage));
             }
         }
@@ -166,7 +166,7 @@ internal partial class UserService
         user.FirstName = request.FirstName;
         user.LastName = request.LastName;
         user.PhoneNumber = request.PhoneNumber;
-        string phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+        var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
         if (request.PhoneNumber != phoneNumber)
         {
             await _userManager.SetPhoneNumberAsync(user, request.PhoneNumber);

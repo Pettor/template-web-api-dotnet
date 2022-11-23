@@ -25,17 +25,17 @@ public class UpdateProductRequestHandler : IRequestHandler<UpdateProductRequest,
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)
         {
-            string? currentProductImagePath = product.ImagePath;
+            var currentProductImagePath = product.ImagePath;
             if (!string.IsNullOrEmpty(currentProductImagePath))
             {
-                string root = Directory.GetCurrentDirectory();
+                var root = Directory.GetCurrentDirectory();
                 _file.Remove(Path.Combine(root, currentProductImagePath));
             }
 
             product = product.ClearImagePath();
         }
 
-        string? productImagePath = request.Image is not null
+        var productImagePath = request.Image is not null
             ? await _file.UploadAsync<Product>(request.Image, FileType.Image, cancellationToken)
             : null;
 

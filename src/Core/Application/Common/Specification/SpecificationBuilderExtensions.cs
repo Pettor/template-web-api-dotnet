@@ -48,12 +48,12 @@ public static class SpecificationBuilderExtensions
             if (search.Fields?.Any() is true)
             {
                 // search seleted fields (can contain deeper nested fields)
-                foreach (string field in search.Fields)
+                foreach (var field in search.Fields)
                 {
                     var paramExpr = Expression.Parameter(typeof(T));
 
                     Expression propertyExpr = paramExpr;
-                    foreach (string member in field.Split('.'))
+                    foreach (var member in field.Split('.'))
                     {
                         propertyExpr = Expression.PropertyOrField(propertyExpr, member);
                     }
@@ -116,7 +116,7 @@ public static class SpecificationBuilderExtensions
                 var paramExpr = Expression.Parameter(typeof(T));
 
                 Expression propertyExpr = paramExpr;
-                foreach (string member in field.Key.Split('.'))
+                foreach (var member in field.Key.Split('.'))
                 {
                     propertyExpr = Expression.PropertyOrField(propertyExpr, member);
                 }
@@ -136,9 +136,9 @@ public static class SpecificationBuilderExtensions
     private static Dictionary<string, OrderTypeEnum> ParseOrderBy(string[] orderByFields) =>
         new(orderByFields.Select((orderByfield, index) =>
         {
-            string[] fieldParts = orderByfield.Split(' ');
-            string field = fieldParts[0];
-            bool descending = fieldParts.Length > 1 && fieldParts[1].StartsWith("Desc", StringComparison.OrdinalIgnoreCase);
+            var fieldParts = orderByfield.Split(' ');
+            var field = fieldParts[0];
+            var descending = fieldParts.Length > 1 && fieldParts[1].StartsWith("Desc", StringComparison.OrdinalIgnoreCase);
             var orderBy = index == 0
                 ? descending ? OrderTypeEnum.OrderByDescending
                                 : OrderTypeEnum.OrderBy

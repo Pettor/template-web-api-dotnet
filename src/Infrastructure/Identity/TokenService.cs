@@ -100,7 +100,7 @@ internal class TokenService : ITokenService
 
     private async Task<TokenResponse> GenerateTokensAndUpdateUser(ApplicationUser user, string ipAddress)
     {
-        string token = GenerateJwt(user, ipAddress);
+        var token = GenerateJwt(user, ipAddress);
 
         user.RefreshToken = GenerateRefreshToken();
         user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpirationInDays);
@@ -129,7 +129,7 @@ internal class TokenService : ITokenService
 
     private string GenerateRefreshToken()
     {
-        byte[] randomNumber = new byte[32];
+        var randomNumber = new byte[32];
         using var rng = RandomNumberGenerator.Create();
         rng.GetBytes(randomNumber);
         return Convert.ToBase64String(randomNumber);
@@ -152,7 +152,7 @@ internal class TokenService : ITokenService
             throw new InvalidOperationException("No Key defined in JwtSettings config.");
         }
 
-        byte[] secret = Encoding.UTF8.GetBytes(_jwtSettings.Key);
+        var secret = Encoding.UTF8.GetBytes(_jwtSettings.Key);
         return new SigningCredentials(new SymmetricSecurityKey(secret), SecurityAlgorithms.HmacSha256);
     }
 }

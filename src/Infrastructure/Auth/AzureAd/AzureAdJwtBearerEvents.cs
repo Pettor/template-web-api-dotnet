@@ -42,8 +42,8 @@ internal class AzureAdJwtBearerEvents : JwtBearerEvents
     public override async Task TokenValidated(TokenValidatedContext context)
     {
         var principal = context.Principal;
-        string? issuer = principal?.GetIssuer();
-        string? objectId = principal?.GetObjectId();
+        var issuer = principal?.GetIssuer();
+        var objectId = principal?.GetObjectId();
         _logger.TokenValidationStarted(objectId, issuer);
 
         if (principal is null || issuer is null || objectId is null)
@@ -77,7 +77,7 @@ internal class AzureAdJwtBearerEvents : JwtBearerEvents
         context.HttpContext.TrySetTenantInfo(tenant, false);
 
         // Lookup local user or create one if none exist.
-        string userId = await context.HttpContext.RequestServices.GetRequiredService<IUserService>()
+        var userId = await context.HttpContext.RequestServices.GetRequiredService<IUserService>()
             .GetOrCreateFromPrincipalAsync(principal);
 
         // We use the nameidentifier claim to store the user id.

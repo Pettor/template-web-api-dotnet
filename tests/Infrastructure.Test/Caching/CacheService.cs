@@ -19,7 +19,7 @@ public abstract class CacheService<TCacheService>
     {
         var sut = CreateCacheService();
 
-        var action = () => { string? result = sut.Get<string>(null!); };
+        var action = () => { var result = sut.Get<string>(null!); };
 
         action.Should().Throw<ArgumentNullException>();
     }
@@ -29,7 +29,7 @@ public abstract class CacheService<TCacheService>
     {
         var sut = CreateCacheService();
 
-        string? result = sut.Get<string>(TestKey);
+        var result = sut.Get<string>(TestKey);
 
         result.Should().BeNull();
     }
@@ -76,7 +76,7 @@ public abstract class CacheService<TCacheService>
         var sut = CreateCacheService();
         sut.Set(TestKey, TestValue, TimeSpan.FromMilliseconds(200));
 
-        string? result = sut.Get<string>(TestKey);
+        var result = sut.Get<string>(TestKey);
         Assert.Equal(TestValue, result);
 
         await Task.Delay(250);

@@ -61,7 +61,7 @@ public class BrandGeneratorJob : IBrandGeneratorJob
     {
         await NotifyAsync("Your job processing has started", 0, cancellationToken);
 
-        foreach (int index in Enumerable.Range(1, nSeed))
+        foreach (var index in Enumerable.Range(1, nSeed))
         {
             await _mediator.Send(
                 new CreateBrandRequest

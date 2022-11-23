@@ -78,7 +78,7 @@ internal partial class UserService : IUserService
             .WithSpecification(spec)
             .ProjectToType<UserDetailsDto>()
             .ToListAsync(cancellationToken);
-        int count = await _userManager.Users
+        var count = await _userManager.Users
             .CountAsync(cancellationToken);
 
         return new PaginationResponse<UserDetailsDto>(users, count, filter.PageNumber, filter.PageSize);
@@ -137,7 +137,7 @@ internal partial class UserService : IUserService
 
         _ = user ?? throw new NotFoundException(_localizer["User Not Found."]);
 
-        bool isAdmin = await _userManager.IsInRoleAsync(user, ApiRoles.Admin);
+        var isAdmin = await _userManager.IsInRoleAsync(user, ApiRoles.Admin);
         if (isAdmin)
         {
             throw new ConflictException(_localizer["Administrators Profile's Status cannot be toggled"]);

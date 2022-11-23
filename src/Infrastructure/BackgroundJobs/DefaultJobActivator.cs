@@ -45,7 +45,7 @@ public class DefaultJobActivator : JobActivator
                     };
             }
 
-            string userId = _context.GetJobParameter<string>(QueryStringKeys.UserId);
+            var userId = _context.GetJobParameter<string>(QueryStringKeys.UserId);
             if (!string.IsNullOrEmpty(userId))
             {
                 _scope.ServiceProvider.GetRequiredService<ICurrentUserInitializer>()

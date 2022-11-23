@@ -25,7 +25,7 @@ public class JsonStringLocalizer : IStringLocalizer
     {
         get
         {
-            string? value = GetString(name);
+            var value = GetString(name);
             return new LocalizedString(name, value ?? $"{name}", value == null);
         }
     }
@@ -43,7 +43,7 @@ public class JsonStringLocalizer : IStringLocalizer
 
     public IEnumerable<LocalizedString> GetAllStrings(bool includeParentCultures)
     {
-        string filePath = $"{Localization}/{Thread.CurrentThread.CurrentCulture.Name}.json";
+        var filePath = $"{Localization}/{Thread.CurrentThread.CurrentCulture.Name}.json";
         using var str = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
         using var sReader = new StreamReader(str);
         using var reader = new JsonTextReader(sReader);
@@ -51,9 +51,9 @@ public class JsonStringLocalizer : IStringLocalizer
         {
             if (reader.TokenType != JsonToken.PropertyName || reader.Value is null)
                 continue;
-            string key = (string)reader.Value;
+            var key = (string)reader.Value;
             reader.Read();
-            string? value = _serializer.Deserialize<string>(reader);
+            var value = _serializer.Deserialize<string>(reader);
             if (value is not null)
             {
                 yield return new LocalizedString(key, value, false);
@@ -63,7 +63,7 @@ public class JsonStringLocalizer : IStringLocalizer
 
     private string? GetString(string key)
     {
-        string? stringCulture = GetSpecificCulture(key);
+        var stringCulture = GetSpecificCulture(key);
         if (!string.IsNullOrEmpty(stringCulture))
             return stringCulture;
         stringCulture = GetNaturalCulture(key);
@@ -78,8 +78,8 @@ public class JsonStringLocalizer : IStringLocalizer
 
     private string? ValidateCulture(string key, string culture)
     {
-        string relativeFilePath = $"{Localization}/{culture}.json";
-        string fullFilePath = Path.GetFullPath(relativeFilePath);
+        var relativeFilePath = $"{Localization}/{culture}.json";
+        var fullFilePath = Path.GetFullPath(relativeFilePath);
         if (File.Exists(fullFilePath))
         {
             return _cache.GetOrSet(
@@ -102,7 +102,7 @@ public class JsonStringLocalizer : IStringLocalizer
 
     private void WriteEmptyKeys(CultureInfo sourceCulture, string fullFilePath)
     {
-        string sourceFilePath = $"{Localization}/{sourceCulture.Name}.json";
+        var sourceFilePath = $"{Localization}/{sourceCulture.Name}.json";
         if (!File.Exists(sourceFilePath))
             return;
         using var str = new FileStream(sourceFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
