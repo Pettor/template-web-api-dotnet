@@ -21,31 +21,31 @@ public class LocalFileStorageService : IFileStorageService
         if (request.Name is null)
             throw new InvalidOperationException("Name is required.");
 
-        string base64Data = Regex.Match(request.Data, "data:image/(?<type>.+?),(?<data>.+)").Groups["data"].Value;
+        var base64Data = Regex.Match(request.Data, "data:image/(?<type>.+?),(?<data>.+)").Groups["data"].Value;
 
         var streamData = new MemoryStream(Convert.FromBase64String(base64Data));
         if (streamData.Length > 0)
         {
-            string folder = typeof(T).Name;
+            var folder = typeof(T).Name;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
                 folder = folder.Replace(@"\", "/");
             }
 
-            string folderName = supportedFileType switch
+            var folderName = supportedFileType switch
             {
                 FileType.Image => Path.Combine("Files", "Images", folder),
                 _ => Path.Combine("Files", "Others", folder),
             };
-            string pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
             Directory.CreateDirectory(pathToSave);
 
-            string fileName = request.Name.Trim('"');
+            var fileName = request.Name.Trim('"');
             fileName = RemoveSpecialCharacters(fileName);
             fileName = fileName.ReplaceWhitespace("-");
             fileName += request.Extension.Trim();
-            string fullPath = Path.Combine(pathToSave, fileName);
-            string dbPath = Path.Combine(folderName, fileName);
+            var fullPath = Path.Combine(pathToSave, fileName);
+            var dbPath = Path.Combine(folderName, fileName);
             if (File.Exists(dbPath))
             {
                 dbPath = NextAvailableFilename(dbPath);
@@ -94,7 +94,7 @@ public class LocalFileStorageService : IFileStorageService
 
     private static string GetNextFilename(string pattern)
     {
-        string tmp = string.Format(pattern, 1);
+        var tmp = string.Format(pattern, 1);
 
         if (!File.Exists(tmp))
         {
@@ -111,7 +111,7 @@ public class LocalFileStorageService : IFileStorageService
 
         while (max != min + 1)
         {
-            int pivot = (max + min) / 2;
+            var pivot = (max + min) / 2;
             if (File.Exists(string.Format(pattern, pivot)))
             {
                 min = pivot;

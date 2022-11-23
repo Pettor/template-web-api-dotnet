@@ -10,7 +10,7 @@ public class DeleteRandomBrandRequestHandler : IRequestHandler<DeleteRandomBrand
 
     public Task<string> Handle(DeleteRandomBrandRequest request, CancellationToken cancellationToken)
     {
-        string jobId = _jobService.Schedule<IBrandGeneratorJob>(x => x.CleanAsync(default), TimeSpan.FromSeconds(5));
+        var jobId = _jobService.Schedule<IBrandGeneratorJob>(x => x.CleanAsync(default), TimeSpan.FromSeconds(5));
         return Task.FromResult(jobId);
     }
 }

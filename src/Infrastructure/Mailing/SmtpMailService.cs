@@ -28,7 +28,7 @@ public class SmtpMailService : IMailService
             email.From.Add(new MailboxAddress(_settings.DisplayName, request.From ?? _settings.From));
 
             // To
-            foreach (string address in request.To)
+            foreach (var address in request.To)
                 email.To.Add(MailboxAddress.Parse(address));
 
             // Reply To
@@ -38,14 +38,14 @@ public class SmtpMailService : IMailService
             // Bcc
             if (request.Bcc != null)
             {
-                foreach (string address in request.Bcc.Where(bccValue => !string.IsNullOrWhiteSpace(bccValue)))
+                foreach (var address in request.Bcc.Where(bccValue => !string.IsNullOrWhiteSpace(bccValue)))
                     email.Bcc.Add(MailboxAddress.Parse(address.Trim()));
             }
 
             // Cc
             if (request.Cc != null)
             {
-                foreach (string? address in request.Cc.Where(ccValue => !string.IsNullOrWhiteSpace(ccValue)))
+                foreach (var address in request.Cc.Where(ccValue => !string.IsNullOrWhiteSpace(ccValue)))
                     email.Cc.Add(MailboxAddress.Parse(address.Trim()));
             }
 

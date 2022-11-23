@@ -13,11 +13,11 @@ internal partial class UserService
     {
         EnsureValidTenant();
 
-        string code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
         code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
         const string route = "api/users/confirm-email/";
         var endpointUri = new Uri(string.Concat($"{origin}/", route));
-        string verificationUri = QueryHelpers.AddQueryString(endpointUri.ToString(), QueryStringKeys.UserId, user.Id);
+        var verificationUri = QueryHelpers.AddQueryString(endpointUri.ToString(), QueryStringKeys.UserId, user.Id);
         verificationUri = QueryHelpers.AddQueryString(verificationUri, QueryStringKeys.Code, code);
         verificationUri = QueryHelpers.AddQueryString(verificationUri, MultitenancyConstants.TenantIdName, _currentTenant.Id!);
         return verificationUri;

@@ -65,7 +65,7 @@ public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUs
     {
         var auditEntries = HandleAuditingBeforeSaveChanges(CurrentUser.GetUserId());
 
-        int result = await base.SaveChangesAsync(cancellationToken);
+        var result = await base.SaveChangesAsync(cancellationToken);
 
         await HandleAuditingAfterSaveChangesAsync(auditEntries, cancellationToken);
 
@@ -123,7 +123,7 @@ public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUs
                     continue;
                 }
 
-                string propertyName = property.Metadata.Name;
+                var propertyName = property.Metadata.Name;
                 if (property.Metadata.IsPrimaryKey())
                 {
                     trailEntry.KeyValues[propertyName] = property.CurrentValue;

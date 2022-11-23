@@ -144,7 +144,7 @@ internal class RoleService : IRoleService
         }
 
         // Add all permissions that were not previously selected
-        foreach (string permission in request.Permissions.Where(c => !currentClaims.Any(p => p.Value == c)))
+        foreach (var permission in request.Permissions.Where(c => !currentClaims.Any(p => p.Value == c)))
         {
             if (!string.IsNullOrEmpty(permission))
             {

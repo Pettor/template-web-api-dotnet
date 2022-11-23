@@ -31,7 +31,7 @@ public class DefaultJobFilter : IClientFilter
         var tenantInfo = scope.ServiceProvider.GetRequiredService<ITenantInfo>();
         context.SetJobParameter(MultitenancyConstants.TenantIdName, tenantInfo);
 
-        string? userId = httpContext.User.GetUserId();
+        var userId = httpContext.User.GetUserId();
         context.SetJobParameter(QueryStringKeys.UserId, userId);
     }
 

@@ -32,15 +32,15 @@ internal class ExceptionMiddleware : IMiddleware
         }
         catch (Exception exception)
         {
-            string email = _currentUser.GetUserEmail() is string userEmail ? userEmail : "Anonymous";
+            var email = _currentUser.GetUserEmail() is string userEmail ? userEmail : "Anonymous";
             var userId = _currentUser.GetUserId();
-            string tenant = _currentUser.GetTenant() ?? string.Empty;
+            var tenant = _currentUser.GetTenant() ?? string.Empty;
             if (userId != Guid.Empty)
                 LogContext.PushProperty("UserId", userId);
             LogContext.PushProperty("UserEmail", email);
             if (!string.IsNullOrEmpty(tenant))
                 LogContext.PushProperty("Tenant", tenant);
-            string errorId = Guid.NewGuid().ToString();
+            var errorId = Guid.NewGuid().ToString();
             LogContext.PushProperty("ErrorId", errorId);
             LogContext.PushProperty("StackTrace", exception.StackTrace);
             var errorResult = new ErrorResult

@@ -16,7 +16,7 @@ public class CreateProductRequestHandler : IRequestHandler<CreateProductRequest,
 
     public async Task<Guid> Handle(CreateProductRequest request, CancellationToken cancellationToken)
     {
-        string productImagePath = await _file.UploadAsync<Product>(request.Image, FileType.Image, cancellationToken);
+        var productImagePath = await _file.UploadAsync<Product>(request.Image, FileType.Image, cancellationToken);
 
         var product = new Product(request.Name, request.Description, request.Rate, request.BrandId, productImagePath);
 

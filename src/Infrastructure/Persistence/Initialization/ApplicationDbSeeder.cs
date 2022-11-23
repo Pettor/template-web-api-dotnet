@@ -35,7 +35,7 @@ internal class ApplicationDbSeeder
 
     private async Task SeedRolesAsync(ApplicationDbContext dbContext)
     {
-        foreach (string roleName in ApiRoles.DefaultRoles)
+        foreach (var roleName in ApiRoles.DefaultRoles)
         {
             if (await _roleManager.Roles.SingleOrDefaultAsync(r => r.Name == roleName)
                 is not ApplicationRole role)
@@ -93,7 +93,7 @@ internal class ApplicationDbSeeder
         if (await _userManager.Users.FirstOrDefaultAsync(u => u.Email == _currentTenant.AdminEmail)
             is not ApplicationUser adminUser)
         {
-            string adminUserName = $"{_currentTenant.Id.Trim()}.{ApiRoles.Admin}".ToLowerInvariant();
+            var adminUserName = $"{_currentTenant.Id.Trim()}.{ApiRoles.Admin}".ToLowerInvariant();
             adminUser = new ApplicationUser
             {
                 FirstName = _currentTenant.Id.Trim().ToLowerInvariant(),

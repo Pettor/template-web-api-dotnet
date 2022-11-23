@@ -10,7 +10,7 @@ public class RequestLoggingMiddleware : IMiddleware
     public async Task InvokeAsync(HttpContext httpContext, RequestDelegate next)
     {
         LogContext.PushProperty("RequestTimeUTC", DateTime.UtcNow);
-        string requestBody = string.Empty;
+        var requestBody = string.Empty;
         if (httpContext.Request.Path.ToString().Contains("tokens"))
         {
             requestBody = "[Redacted] Contains Sensitive Information.";

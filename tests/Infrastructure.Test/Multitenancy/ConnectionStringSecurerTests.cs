@@ -24,8 +24,8 @@ public class ConnectionStringSecurerTests : TestBed<TestFixture>
     [InlineData(Mysql + ";uid=root;pwd=12345;", "mysql", "MYSQL: CASE 3 - Credentials")]
     public void MakeSecureTest(string connectionString, string dbProvider, string name)
     {
-        string? res1 = _makeSecureConnectionString?.MakeSecure(connectionString, dbProvider);
-        string? check1 = _makeSecureConnectionString?.MakeSecure(res1, dbProvider);
+        var res1 = _makeSecureConnectionString?.MakeSecure(connectionString, dbProvider);
+        var check1 = _makeSecureConnectionString?.MakeSecure(res1, dbProvider);
 
         Assert.True(check1?.Equals(res1, StringComparison.InvariantCultureIgnoreCase), name);
     }

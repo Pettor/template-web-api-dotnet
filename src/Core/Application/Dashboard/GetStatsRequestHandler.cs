@@ -33,12 +33,12 @@ public class GetStatsRequestHandler : IRequestHandler<GetStatsRequest, StatsDto>
             RoleCount = await _roleService.GetCountAsync(cancellationToken)
         };
 
-        int selectedYear = DateTime.Now.Year;
-        double[] productsFigure = new double[13];
-        double[] brandsFigure = new double[13];
-        for (int i = 1; i <= 12; i++)
+        var selectedYear = DateTime.Now.Year;
+        var productsFigure = new double[13];
+        var brandsFigure = new double[13];
+        for (var i = 1; i <= 12; i++)
         {
-            int month = i;
+            var month = i;
             var filterStartDate = new DateTime(selectedYear, month, 01);
             var filterEndDate = new DateTime(selectedYear, month, DateTime.DaysInMonth(selectedYear, month), 23, 59, 59); // Monthly Based
 

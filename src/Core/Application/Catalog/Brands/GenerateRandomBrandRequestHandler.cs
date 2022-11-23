@@ -10,7 +10,7 @@ public class GenerateRandomBrandRequestHandler : IRequestHandler<GenerateRandomB
 
     public Task<string> Handle(GenerateRandomBrandRequest request, CancellationToken cancellationToken)
     {
-        string jobId = _jobService.Enqueue<IBrandGeneratorJob>(x => x.GenerateAsync(request.NSeed, default));
+        var jobId = _jobService.Enqueue<IBrandGeneratorJob>(x => x.GenerateAsync(request.NSeed, default));
         return Task.FromResult(jobId);
     }
 }
