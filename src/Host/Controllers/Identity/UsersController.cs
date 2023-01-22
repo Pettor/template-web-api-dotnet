@@ -73,7 +73,7 @@ public class UsersController : VersionNeutralApiController
     [MustHavePermission(ApiAction.Update, ApiResource.Users)]
     [ApiConventionMethod(typeof(ApiConventions), nameof(ApiConventions.Register))]
     [OpenApiOperation("Toggle a user's active status.", "")]
-    public async Task<Microsoft.AspNetCore.Mvc.ActionResult> ToggleStatusAsync(string id, ToggleUserStatusRequest request, CancellationToken cancellationToken)
+    public async Task<ActionResult> ToggleStatusAsync(string id, ToggleUserStatusRequest request, CancellationToken cancellationToken)
     {
         if (id != request.UserId)
         {

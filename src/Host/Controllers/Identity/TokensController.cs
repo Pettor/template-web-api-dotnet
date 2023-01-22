@@ -1,5 +1,7 @@
-﻿using Backend.Application.Identity.Tokens;
+﻿using Backend.Application.Common.Exceptions;
+using Backend.Application.Identity.Tokens;
 using Backend.Infrastructure.OpenApi;
+using Org.BouncyCastle.Ocsp;
 
 namespace Backend.Host.Controllers.Identity;
 
@@ -13,19 +15,41 @@ public sealed class TokensController : VersionNeutralApiController
     [AllowAnonymous]
     [TenantIdHeader]
     [OpenApiOperation("Request an access token using credentials.", "")]
-    public Task<TokenResponse> GetTokenAsync(TokenRequest request, CancellationToken cancellationToken)
+    public async Task<ActionResult<TokenResponse>> GetTokenAsync(TokenRequest request, CancellationToken cancellationToken)
     {
-        return _tokenService.GetTokenAsync(request, GetIpAddress(), cancellationToken);
+        var tokenResult = await _tokenService.GetTokenAsync(request, GetIpAddress(), cancellationToken);
+
+        AddRefreshTokenCookie(tokenResult.RefreshToken);
+        return new TokenResponse(tokenResult.Token, tokenResult.RefreshTokenExpiryTime);
     }
 
-    [HttpPost("refresh")]
+    [HttpGet("refresh")]
     [AllowAnonymous]
     [TenantIdHeader]
     [OpenApiOperation("Request an access token using a refresh token.", "")]
     [ApiConventionMethod(typeof(ApiConventions), nameof(ApiConventions.Search))]
-    public Task<TokenResponse> RefreshAsync(RefreshTokenRequest request)
+    public async Task<ActionResult<TokenResponse>> RefreshAsync()
     {
-        return _tokenService.RefreshTokenAsync(request, GetIpAddress());
+        if (!Request.Cookies.TryGetValue("refresh_token", out var accessToken))
+        {
+            return UnprocessableEntity();
+        }
+
+        var tokenResult = await _tokenService.RefreshTokenAsync(accessToken, GetIpAddress());
+
+        AddRefreshTokenCookie(tokenResult.RefreshToken);
+        return new TokenResponse(tokenResult.Token, tokenResult.RefreshTokenExpiryTime);
+    }
+
+    private void AddRefreshTokenCookie(string refreshToken)
+    {
+        // Apply RefreshToken to secure cookie
+        Response.Cookies.Append("refresh_token", refreshToken, new CookieOptions
+        {
+            HttpOnly = true,
+            SameSite = SameSiteMode.Strict,
+            Secure = true
+        });
     }
 
     private string GetIpAddress() =>
