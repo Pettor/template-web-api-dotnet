@@ -50,6 +50,7 @@
     <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.355802">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Remove="Roslynator.Analyzers" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Application\Application.csproj" />
