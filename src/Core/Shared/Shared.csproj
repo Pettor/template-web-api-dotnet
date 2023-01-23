@@ -4,4 +4,7 @@
         <RootNamespace>Backend.Shared</RootNamespace>
         <AssemblyName>Backend.Shared</AssemblyName>
     </PropertyGroup>
+    <ItemGroup>
+      <PackageReference Remove="Roslynator.Analyzers" />
+    </ItemGroup>
 </Project>
