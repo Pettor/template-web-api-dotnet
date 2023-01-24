@@ -47,10 +47,17 @@ public sealed class TokensController : VersionNeutralApiController
             return UnprocessableEntity();
         }
 
-        var tokenResult = await _tokenService.RefreshTokenAsync(accessToken, GetIpAddress());
-
-        AddRefreshTokenCookie(tokenResult.RefreshToken);
-        return new TokenResponse(tokenResult.Token, tokenResult.RefreshTokenExpiryTime);
+        try
+        {
+            var tokenResult = await _tokenService.RefreshTokenAsync(accessToken, GetIpAddress());
+            AddRefreshTokenCookie(tokenResult.RefreshToken);
+            return new TokenResponse(tokenResult.Token, tokenResult.RefreshTokenExpiryTime);
+        }
+        catch (UnauthorizedException ex)
+        {
+            Response.Cookies.Delete("refresh_token", CreateCookeOptions());
+            throw ex;
+        }
     }
 
     private void AddRefreshTokenCookie(string refreshToken)
