@@ -7,7 +7,7 @@ There are some prerequisites for using the included Dockerfile and docker-compos
 2) Create and install an https certificate:
 
     ```
-    dotnet dev-certs https -ep $env:USERPROFILE\.aspnet\https\DN.Host.pfx -p SuperSecurePassword123!
+    dotnet dev-certs https -ep "$env:USERPROFILE\.aspnet\https\aspnetapp.pfx" -p SuperSecurePassword123!
     ```
 
 3) It's possible that the above step gives you an `A valid HTTPS certificate is already present.` error.
