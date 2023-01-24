@@ -4,6 +4,6 @@ public class GetDemoDataRequestHandler : IRequestHandler<GetDemoDataRequest, Dem
 {
     public async Task<DemoData> Handle(GetDemoDataRequest request, CancellationToken cancellationToken)
     {
-        return new DemoData {Data = "Hello World"};
+        return new DemoData { Data = "Hello World" };
     }
 }

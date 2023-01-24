@@ -15,12 +15,24 @@ public sealed class TokensController : VersionNeutralApiController
     [AllowAnonymous]
     [TenantIdHeader]
     [OpenApiOperation("Request an access token using credentials.", "")]
-    public async Task<ActionResult<TokenResponse>> GetTokenAsync(TokenRequest request, CancellationToken cancellationToken)
+    public async Task<ActionResult<TokenResponse>> GetTokenAsync(
+        TokenRequest request,
+        CancellationToken cancellationToken)
     {
         var tokenResult = await _tokenService.GetTokenAsync(request, GetIpAddress(), cancellationToken);
 
         AddRefreshTokenCookie(tokenResult.RefreshToken);
         return new TokenResponse(tokenResult.Token, tokenResult.RefreshTokenExpiryTime);
+    }
+
+    [HttpDelete]
+    [AllowAnonymous]
+    [TenantIdHeader]
+    [OpenApiOperation("Request an access token using credentials.", "")]
+    public async Task<ActionResult<TokenResponse>> RemoveTokenAsync()
+    {
+        Response.Cookies.Delete("refresh_token", CreateCookeOptions());
+        return Ok();
     }
 
     [HttpGet("refresh")]
@@ -44,16 +56,18 @@ public sealed class TokensController : VersionNeutralApiController
     private void AddRefreshTokenCookie(string refreshToken)
     {
         // Apply RefreshToken to secure cookie
-        Response.Cookies.Append("refresh_token", refreshToken, new CookieOptions
-        {
-            HttpOnly = true,
-            SameSite = SameSiteMode.Strict,
-            Secure = true
-        });
+        Response.Cookies.Append("refresh_token", refreshToken, CreateCookeOptions());
     }
 
-    private string GetIpAddress() =>
-        Request.Headers.ContainsKey("X-Forwarded-For")
+    private static CookieOptions CreateCookeOptions()
+    {
+        return new CookieOptions { HttpOnly = true, SameSite = SameSiteMode.Strict, Secure = true };
+    }
+
+    private string GetIpAddress()
+    {
+        return Request.Headers.ContainsKey("X-Forwarded-For")
             ? Request.Headers["X-Forwarded-For"]
             : HttpContext.Connection.RemoteIpAddress?.MapToIPv4().ToString() ?? "N/A";
+    }
 }
