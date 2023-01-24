@@ -38,7 +38,7 @@ internal class TokenService : ITokenService
         _securitySettings = securitySettings.Value;
     }
 
-    public async Task<TokenResponse> GetTokenAsync(TokenRequest request, string ipAddress, CancellationToken cancellationToken)
+    public async Task<TokenResult> GetTokenAsync(TokenRequest request, string ipAddress, CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(_currentTenant?.Id))
         {
@@ -82,15 +82,15 @@ internal class TokenService : ITokenService
         return await GenerateTokensAndUpdateUser(user, ipAddress);
     }
 
-    public async Task<TokenResponse> RefreshTokenAsync(RefreshTokenRequest request, string ipAddress)
+    public async Task<TokenResult> RefreshTokenAsync(string accessToken, string ipAddress)
     {
-        var user = _userManager.Users.FirstOrDefault(u => u.RefreshToken == request.RefreshToken);
+        var user = _userManager.Users.FirstOrDefault(u => u.RefreshToken == accessToken);
         if (user is null)
         {
             throw new UnauthorizedException(_localizer["auth.failed"]);
         }
 
-        if (user.RefreshToken != request.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
+        if (user.RefreshToken != accessToken || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
         {
             throw new UnauthorizedException(_localizer["identity.invalidrefreshtoken"]);
         }
@@ -98,7 +98,7 @@ internal class TokenService : ITokenService
         return await GenerateTokensAndUpdateUser(user, ipAddress);
     }
 
-    private async Task<TokenResponse> GenerateTokensAndUpdateUser(ApplicationUser user, string ipAddress)
+    private async Task<TokenResult> GenerateTokensAndUpdateUser(ApplicationUser user, string ipAddress)
     {
         var token = GenerateJwt(user, ipAddress);
 
@@ -107,7 +107,7 @@ internal class TokenService : ITokenService
 
         await _userManager.UpdateAsync(user);
 
-        return new TokenResponse(token, user.RefreshToken, user.RefreshTokenExpiryTime);
+        return new TokenResult(token, user.RefreshToken, user.RefreshTokenExpiryTime);
     }
 
     private string GenerateJwt(ApplicationUser user, string ipAddress) =>

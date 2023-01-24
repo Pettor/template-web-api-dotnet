@@ -46,19 +46,23 @@ internal class ApplicationDbSeeder
                 await _roleManager.CreateAsync(role);
             }
 
-            // Assign permissions
-            if (roleName == ApiRoles.Basic)
+            switch (roleName)
             {
-                await AssignPermissionsToRoleAsync(dbContext, ApiPermissions.Basic, role);
-            }
-            else if (roleName == ApiRoles.Admin)
-            {
-                await AssignPermissionsToRoleAsync(dbContext, ApiPermissions.Admin, role);
+                // Assign permissions
+                case ApiRoles.Basic:
+                    await AssignPermissionsToRoleAsync(dbContext, ApiPermissions.Basic, role);
+                    break;
+                case ApiRoles.Admin:
+                    {
+                        await AssignPermissionsToRoleAsync(dbContext, ApiPermissions.Admin, role);
 
-                if (_currentTenant.Id == MultitenancyConstants.Root.Id)
-                {
-                    await AssignPermissionsToRoleAsync(dbContext, ApiPermissions.Root, role);
-                }
+                        if (_currentTenant.Id == MultitenancyConstants.Root.Id)
+                        {
+                            await AssignPermissionsToRoleAsync(dbContext, ApiPermissions.Root, role);
+                        }
+
+                        break;
+                    }
             }
         }
     }
