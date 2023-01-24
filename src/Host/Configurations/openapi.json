@@ -1,9 +1,9 @@
 {
   "SwaggerSettings": {
     "Enable": true,
-    "Title": ".NET 6.0 Web API Template",
+    "Title": "Web API using .NET",
     "Version": "v1",
-    "Description": "Clean Architecture Template for .NET 6.0 Web API built with Multitenancy Support.",
+    "Description": "Clean Architecture Template for .NET 7.0 Web API built with Multitenancy Support.",
     "License": true,
     "LicenseName": "MIT License",
     "LicenseUrl": "https://github.com/Pettor/template-web-api-dotnet/blob/main/LICENSE"
