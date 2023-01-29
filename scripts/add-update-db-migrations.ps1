@@ -1,9 +1,9 @@
 param(
      [Parameter(Mandatory=$true)]
      [ValidateNotNullOrEmpty()]
-     [string]$commitMessage  
+     [string]$commitMessage
  )
- 
+
 $rootDirectory = git rev-parse --show-toplevel
 $hostDirectory = $rootDirectory + '/src/Host'
 Set-Location -Path $hostDirectory
@@ -26,41 +26,11 @@ $hangfireJsonPath = 'Configurations/hangfire.json'
 <# Get Current Config #>
 Write-Host "Getting Current Config...`n"
 $databaseFileContent = Get-Content $databaseJsonPath -raw
-$hangfireFileContent = Get-Content $hangfireJsonPath -raw 
+$hangfireFileContent = Get-Content $hangfireJsonPath -raw
 
 Write-Host "Creating Config Objects...`n"
 $databaseJsonContent = Get-Content $databaseJsonPath -raw | ConvertFrom-Json
 $hangfireJsonContent = Get-Content $hangfireJsonPath -raw | ConvertFrom-Json
-Write-Host "**************************`n"
-
-<# MSSQL #>
-Write-Host "Updating Configurations for MSSQL Provider..."
-$databaseJsonContent.DatabaseSettings.DBProvider = "mssql"
-$databaseJsonContent.DatabaseSettings.ConnectionString = $mssqlConnectionString
-$databaseJsonContent | ConvertTo-Json | set-content $databaseJsonPath
-
-$hangfireJsonContent.HangfireSettings.Storage.StorageProvider = "mssql"
-$hangfireJsonContent.HangfireSettings.Storage.ConnectionString = $mssqlConnectionString
-$hangfireJsonContent | ConvertTo-Json | set-content $hangfireJsonPath
-
-Write-Host "Adding Migrations for MSSQL Provider..."
-dotnet ef migrations add $commitMessage --project .././Migrators/Migrators.MSSQL/ --context ApplicationDbContext -o Migrations/Application
-Write-Host "Adding Migrations for MSSQL Provider...Done`n"
-Write-Host "**************************`n"
-
-<# MySQL #>
-Write-Host "Updating Configurations for MySQL Provider..."
-$databaseJsonContent.DatabaseSettings.DBProvider = "mysql"
-$databaseJsonContent.DatabaseSettings.ConnectionString = $mysqlConnectionString
-$databaseJsonContent | ConvertTo-Json | set-content $databaseJsonPath
-
-$hangfireJsonContent.HangfireSettings.Storage.StorageProvider = "mysql"
-$hangfireJsonContent.HangfireSettings.Storage.ConnectionString = $mysqlConnectionString
-$hangfireJsonContent | ConvertTo-Json | set-content $hangfireJsonPath
-
-Write-Host "Adding Migrations for MySQL Provider..."
-dotnet ef migrations add $commitMessage --project .././Migrators/Migrators.MySQL/ --context ApplicationDbContext -o Migrations/Application
-Write-Host "Adding Migrations for MySQL Provider...Done`n"
 Write-Host "**************************`n"
 
 <# PostgreSQL #>
