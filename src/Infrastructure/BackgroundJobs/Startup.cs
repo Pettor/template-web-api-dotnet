@@ -1,4 +1,5 @@
-﻿using Backend.Infrastructure.Common;
+﻿using System.Configuration;
+using Backend.Infrastructure.Common;
 using Hangfire;
 using Hangfire.Console;
 using Hangfire.Console.Extensions;
@@ -25,11 +26,11 @@ internal static class Startup
 
         var storageSettings = config.GetSection("HangfireSettings:Storage").Get<HangfireStorageSettings>();
 
-        if (string.IsNullOrEmpty(storageSettings.StorageProvider))
-            throw new Exception("Hangfire Storage Provider is not configured.");
-        if (string.IsNullOrEmpty(storageSettings.ConnectionString))
-            throw new Exception("Hangfire Storage Provider ConnectionString is not configured.");
-        Logger.Information($"Hangfire: Current Storage Provider : {storageSettings.StorageProvider}");
+        if (string.IsNullOrEmpty(storageSettings!.StorageProvider))
+            throw new ConfigurationErrorsException("Hangfire Storage Provider is not configured.");
+        if (string.IsNullOrEmpty(storageSettings!.ConnectionString))
+            throw new ConfigurationErrorsException("Hangfire Storage Provider ConnectionString is not configured.");
+        Logger.Information("Hangfire: Current Storage Provider : {StorageProvider}", storageSettings!.StorageProvider);
         Logger.Information("For more Hangfire storage, visit https://www.hangfire.io/extensions.html");
 
         services.AddSingleton<JobActivator, DefaultJobActivator>();
@@ -43,29 +44,31 @@ internal static class Startup
         return services;
     }
 
-    private static IGlobalConfiguration UseDatabase(this IGlobalConfiguration hangfireConfig, string dbProvider, string connectionString, IConfiguration config) =>
-        dbProvider.ToLowerInvariant() switch
+    private static IGlobalConfiguration UseDatabase(
+        this IGlobalConfiguration hangfireConfig,
+        string dbProvider,
+        string connectionString,
+        IConfiguration config) =>
+        dbProvider.ToUpperInvariant() switch
         {
             DbProviderKeys.Npgsql =>
-                hangfireConfig.UsePostgreSqlStorage(connectionString, config.GetSection("HangfireSettings:Storage:Options").Get<PostgreSqlStorageOptions>()),
-            DbProviderKeys.SqlServer =>
-                hangfireConfig.UseSqlServerStorage(connectionString, config.GetSection("HangfireSettings:Storage:Options").Get<SqlServerStorageOptions>()),
-            DbProviderKeys.MySql =>
-                hangfireConfig.UseStorage(new MySqlStorage(connectionString, config.GetSection("HangfireSettings:Storage:Options").Get<MySqlStorageOptions>())),
-            _ => throw new Exception($"Hangfire Storage Provider {dbProvider} is not supported.")
+                hangfireConfig.UsePostgreSqlStorage(
+                    connectionString,
+                    config.GetSection("HangfireSettings:Storage:Options").Get<PostgreSqlStorageOptions>()),
+            _ => throw new ConfigurationErrorsException($"Hangfire Storage Provider {dbProvider} is not supported.")
         };
 
     internal static IApplicationBuilder UseHangfireDashboard(this IApplicationBuilder app, IConfiguration config)
     {
         var dashboardOptions = config.GetSection("HangfireSettings:Dashboard").Get<DashboardOptions>();
 
-        dashboardOptions.Authorization = new[]
+        dashboardOptions!.Authorization = new[]
         {
-           new HangfireCustomBasicAuthenticationFilter
-           {
+            new HangfireCustomBasicAuthenticationFilter
+            {
                 User = config.GetSection("HangfireSettings:Credentials:User").Value,
                 Pass = config.GetSection("HangfireSettings:Credentials:Password").Value
-           }
+            }
         };
 
         return app.UseHangfireDashboard(config["HangfireSettings:Route"], dashboardOptions);

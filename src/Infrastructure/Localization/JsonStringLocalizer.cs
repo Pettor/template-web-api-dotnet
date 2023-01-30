@@ -8,9 +8,9 @@ namespace Backend.Infrastructure.Localization;
 
 public class JsonStringLocalizer : IStringLocalizer
 {
-    private string Localization => "Localization";
+    private static string Localization => "Localization";
 
-    private string DefaultCulture => "en-US";
+    private static string DefaultCulture => "en-US";
 
     private readonly ICacheService _cache;
 
