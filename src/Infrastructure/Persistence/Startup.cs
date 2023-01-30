@@ -53,7 +53,7 @@ internal static class Startup
 
     internal static DbContextOptionsBuilder UseDatabase(this DbContextOptionsBuilder builder, string dbProvider, string connectionString)
     {
-        switch (dbProvider.ToLowerInvariant())
+        switch (dbProvider.ToUpperInvariant())
         {
             case DbProviderKeys.Npgsql:
                 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
