@@ -20,7 +20,7 @@ internal static class Startup
     {
         // TODO: there must be a cleaner way to do IOptions validation...
         var databaseSettings = config.GetSection(nameof(DatabaseSettings)).Get<DatabaseSettings>();
-        var rootConnectionString = databaseSettings.ConnectionString;
+        var rootConnectionString = databaseSettings!.ConnectionString;
         if (string.IsNullOrEmpty(rootConnectionString))
         {
             throw new InvalidOperationException("DB ConnectionString is not configured.");

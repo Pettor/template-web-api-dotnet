@@ -29,7 +29,7 @@ public sealed class TokensController : VersionNeutralApiController
     [AllowAnonymous]
     [TenantIdHeader]
     [OpenApiOperation("Request an access token using credentials.", "")]
-    public async Task<ActionResult<TokenResponse>> RemoveTokenAsync()
+    public ActionResult<TokenResponse> RemoveTokenAsync()
     {
         Response.Cookies.Delete("refresh_token", CreateCookeOptions());
         return Ok();
@@ -73,8 +73,14 @@ public sealed class TokensController : VersionNeutralApiController
 
     private string GetIpAddress()
     {
-        return Request.Headers.ContainsKey("X-Forwarded-For")
-            ? Request.Headers["X-Forwarded-For"]
-            : HttpContext.Connection.RemoteIpAddress?.MapToIPv4().ToString() ?? "N/A";
+        const string Na = "N/A";
+
+        var headers = Request.Headers;
+        if (headers.TryGetValue("X-Forwarded-For", out var forwardedForHeader))
+        {
+            return forwardedForHeader.ToString();
+        }
+
+        return HttpContext.Connection.RemoteIpAddress?.MapToIPv4().ToString() ?? Na;
     }
 }

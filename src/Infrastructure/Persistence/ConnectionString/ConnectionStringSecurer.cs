@@ -32,7 +32,7 @@ public class ConnectionStringSecurer : IConnectionStringSecurer
         };
     }
 
-    private string MakeSecureNpgsqlConnectionString(string connectionString)
+    private static string MakeSecureNpgsqlConnectionString(string connectionString)
     {
         var builder = new NpgsqlConnectionStringBuilder(connectionString);
 

@@ -14,7 +14,7 @@ internal static class Startup
     {
         services.Configure<JwtSettings>(config.GetSection($"SecuritySettings:{nameof(JwtSettings)}"));
         var jwtSettings = config.GetSection($"SecuritySettings:{nameof(JwtSettings)}").Get<JwtSettings>();
-        if (string.IsNullOrEmpty(jwtSettings.Key))
+        if (string.IsNullOrEmpty(jwtSettings!.Key))
             throw new InvalidOperationException("No Key defined in JwtSettings config.");
         var key = Encoding.ASCII.GetBytes(jwtSettings.Key);
 

@@ -7,12 +7,22 @@ public class LocalizationMiddleware : IMiddleware
 {
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
-        var cultureKey = context.Request.Headers["Accept-Language"];
-        if (!string.IsNullOrEmpty(cultureKey) && CultureExists(cultureKey))
+        if (context == null)
         {
-            var culture = new CultureInfo(cultureKey);
+            throw new ArgumentNullException(nameof(context));
+        }
+
+        var cultureKey = context.Request.Headers["Accept-Language"];
+        if (!string.IsNullOrEmpty(cultureKey) && CultureExists(cultureKey!))
+        {
+            var culture = new CultureInfo(cultureKey!);
             Thread.CurrentThread.CurrentCulture = culture;
             Thread.CurrentThread.CurrentUICulture = culture;
+        }
+
+        if (next == null)
+        {
+            throw new ArgumentNullException(nameof(next));
         }
 
         await next(context);

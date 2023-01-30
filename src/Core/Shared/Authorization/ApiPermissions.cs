@@ -7,7 +7,6 @@ public static class ApiPermissions
     private static readonly ApiPermission[] AllClaims =
     {
         new("View Dashboard", ApiAction.View, ApiResource.Dashboard),
-        new("View Demo", ApiAction.View, ApiResource.Demo),
         new("View Hangfire", ApiAction.View, ApiResource.Hangfire),
         new("View Users", ApiAction.View, ApiResource.Users),
         new("Search Users", ApiAction.Search, ApiResource.Users),

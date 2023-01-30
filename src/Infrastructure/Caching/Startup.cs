@@ -9,8 +9,7 @@ internal static class Startup
     internal static IServiceCollection AddCaching(this IServiceCollection services, IConfiguration config)
     {
         var settings = config.GetSection(nameof(CacheSettings)).Get<CacheSettings>();
-
-        if (settings.UseDistributedCache)
+        if (settings!.UseDistributedCache)
         {
             if (settings.PreferRedis)
             {
