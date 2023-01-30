@@ -100,7 +100,7 @@ public class JsonStringLocalizer : IStringLocalizer
     private string? GetDefaultCulture(string key) =>
         ValidateCulture(key, DefaultCulture);
 
-    private void WriteEmptyKeys(CultureInfo sourceCulture, string fullFilePath)
+    private static void WriteEmptyKeys(CultureInfo sourceCulture, string fullFilePath)
     {
         var sourceFilePath = $"{Localization}/{sourceCulture.Name}.json";
         if (!File.Exists(sourceFilePath))
