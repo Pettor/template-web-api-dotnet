@@ -50,7 +50,8 @@ internal partial class UserService
                 user.Email)
             : throw new InternalServerException(string.Format(
                 CultureInfo.CurrentCulture,
-                _localizer["An error occurred while confirming {0}"], user.Email));
+                _localizer["An error occurred while confirming {0}"],
+                user.Email));
     }
 
     public async Task<string> ConfirmPhoneNumberAsync(string userId, string code)
@@ -61,7 +62,7 @@ internal partial class UserService
 
         _ = user ?? throw new InternalServerException(_localizer["An error occurred while confirming Mobile Phone."]);
 
-        var result = await _userManager.ChangePhoneNumberAsync(user, user?.PhoneNumber ?? "N/A", code);
+        var result = await _userManager.ChangePhoneNumberAsync(user, user.PhoneNumber ?? "N/A", code);
 
         return result.Succeeded
             ? user.EmailConfirmed

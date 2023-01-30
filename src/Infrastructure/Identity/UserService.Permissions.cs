@@ -21,7 +21,7 @@ internal partial class UserService
         {
             permissions.AddRange(await _db.RoleClaims
                 .Where(rc => rc.RoleId == role.Id && rc.ClaimType == ApiClaims.Permission)
-                .Select(rc => rc.ClaimValue)
+                .Select(rc => rc.ClaimValue ?? "N/A")
                 .ToListAsync(cancellationToken));
         }
 
