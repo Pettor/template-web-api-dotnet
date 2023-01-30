@@ -13,8 +13,7 @@ internal static class Startup
         var logger = Log.ForContext(typeof(Startup));
 
         var signalRSettings = config.GetSection(nameof(SignalRSettings)).Get<SignalRSettings>();
-
-        if (!signalRSettings.UseBackplane)
+        if (!signalRSettings!.UseBackplane)
         {
             services.AddSignalR();
         }
@@ -35,10 +34,13 @@ internal static class Startup
                     break;
 
                 default:
-                    throw new InvalidOperationException($"SignalR backplane Provider {backplaneSettings.Provider} is not supported.");
+                    throw new InvalidOperationException(
+                        $"SignalR backplane Provider {backplaneSettings.Provider} is not supported.");
             }
 
-            logger.Information($"SignalR Backplane Current Provider: {backplaneSettings.Provider}.");
+            logger.Information(
+                "SignalR Backplane Current Provider: {BackplaneSettingsProvider}",
+                backplaneSettings.Provider);
         }
 
         return services;

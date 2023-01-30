@@ -15,7 +15,7 @@ internal static class Startup
     {
         // TODO: We should probably add specific dbprovider/connectionstring setting for the tenantDb with a fallback to the main databasesettings
         var databaseSettings = config.GetSection(nameof(DatabaseSettings)).Get<DatabaseSettings>();
-        var rootConnectionString = databaseSettings.ConnectionString;
+        var rootConnectionString = databaseSettings!.ConnectionString;
         if (string.IsNullOrEmpty(rootConnectionString))
             throw new InvalidOperationException("DB ConnectionString is not configured.");
         var dbProvider = databaseSettings.DbProvider;

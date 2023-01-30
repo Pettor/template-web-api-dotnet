@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Globalization;
+using System.Text;
 using Backend.Application.Common.Exceptions;
 using Backend.Infrastructure.Common;
 using Backend.Shared.Multitenancy;
@@ -19,11 +20,16 @@ internal partial class UserService
         var endpointUri = new Uri(string.Concat($"{origin}/", route));
         var verificationUri = QueryHelpers.AddQueryString(endpointUri.ToString(), QueryStringKeys.UserId, user.Id);
         verificationUri = QueryHelpers.AddQueryString(verificationUri, QueryStringKeys.Code, code);
-        verificationUri = QueryHelpers.AddQueryString(verificationUri, MultitenancyConstants.TenantIdName, _currentTenant.Id!);
+        verificationUri =
+            QueryHelpers.AddQueryString(verificationUri, MultitenancyConstants.TenantIdName, _currentTenant.Id!);
         return verificationUri;
     }
 
-    public async Task<string> ConfirmEmailAsync(string userId, string code, string tenant, CancellationToken cancellationToken)
+    public async Task<string> ConfirmEmailAsync(
+        string userId,
+        string code,
+        string tenant,
+        CancellationToken cancellationToken)
     {
         EnsureValidTenant();
 
@@ -37,8 +43,14 @@ internal partial class UserService
         var result = await _userManager.ConfirmEmailAsync(user, code);
 
         return result.Succeeded
-            ? string.Format(_localizer["Account Confirmed for E-Mail {0}. You can now use the /api/tokens endpoint to generate JWT."], user.Email)
-            : throw new InternalServerException(string.Format(_localizer["An error occurred while confirming {0}"], user.Email));
+            ? string.Format(
+                CultureInfo.CurrentCulture,
+                _localizer[
+                    "Account Confirmed for E-Mail {0}. You can now use the /api/tokens endpoint to generate JWT."],
+                user.Email)
+            : throw new InternalServerException(string.Format(
+                CultureInfo.CurrentCulture,
+                _localizer["An error occurred while confirming {0}"], user.Email));
     }
 
     public async Task<string> ConfirmPhoneNumberAsync(string userId, string code)
@@ -49,12 +61,23 @@ internal partial class UserService
 
         _ = user ?? throw new InternalServerException(_localizer["An error occurred while confirming Mobile Phone."]);
 
-        var result = await _userManager.ChangePhoneNumberAsync(user, user.PhoneNumber, code);
+        var result = await _userManager.ChangePhoneNumberAsync(user, user?.PhoneNumber ?? "N/A", code);
 
         return result.Succeeded
             ? user.EmailConfirmed
-                ? string.Format(_localizer["Account Confirmed for Phone Number {0}. You can now use the /api/tokens endpoint to generate JWT."], user.PhoneNumber)
-                : string.Format(_localizer["Account Confirmed for Phone Number {0}. You should confirm your E-mail before using the /api/tokens endpoint to generate JWT."], user.PhoneNumber)
-            : throw new InternalServerException(string.Format(_localizer["An error occurred while confirming {0}"], user.PhoneNumber));
+                ? string.Format(
+                    CultureInfo.CurrentCulture,
+                    _localizer[
+                        "Account Confirmed for Phone Number {0}. You can now use the /api/tokens endpoint to generate JWT."],
+                    user.PhoneNumber)
+                : string.Format(
+                    CultureInfo.CurrentCulture,
+                    _localizer[
+                        "Account Confirmed for Phone Number {0}. You should confirm your E-mail before using the /api/tokens endpoint to generate JWT."],
+                    user.PhoneNumber)
+            : throw new InternalServerException(string.Format(
+                CultureInfo.CurrentCulture,
+                _localizer["An error occurred while confirming {0}"],
+                user.PhoneNumber));
     }
 }
