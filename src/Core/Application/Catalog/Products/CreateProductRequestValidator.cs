@@ -12,7 +12,7 @@ public class CreateProductRequestValidator : CustomValidator<CreateProductReques
         RuleFor(p => p.Name)
             .NotEmpty()
             .MaximumLength(75)
-            .MustAsync(async (name, ct) => await productRepo.GetBySpecAsync(new ProductByNameSpec(name), ct) is null)
+            .MustAsync(async (name, ct) => await productRepo.FirstOrDefaultAsync(new ProductByNameSpec(name), ct) is null)
                 .WithMessage((_, name) => string.Format(localizer["product.alreadyexists"], name));
 
         RuleFor(p => p.Rate)

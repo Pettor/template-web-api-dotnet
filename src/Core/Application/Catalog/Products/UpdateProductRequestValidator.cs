@@ -13,7 +13,7 @@ public class UpdateProductRequestValidator : CustomValidator<UpdateProductReques
             .NotEmpty()
             .MaximumLength(75)
             .MustAsync(async (product, name, ct) =>
-                    await productRepo.GetBySpecAsync(new ProductByNameSpec(name), ct)
+                    await productRepo.FirstOrDefaultAsync(new ProductByNameSpec(name), ct)
                         is not Product existingProduct || existingProduct.Id == product.Id)
                 .WithMessage((_, name) => string.Format(localizer["product.alreadyexists"], name));
 
