@@ -29,7 +29,7 @@ public sealed class TokensController : VersionNeutralApiController
     [AllowAnonymous]
     [TenantIdHeader]
     [OpenApiOperation("Request an access token using credentials.", "")]
-    public async Task<ActionResult<TokenResponse>> RemoveTokenAsync()
+    public ActionResult<TokenResponse> RemoveTokenAsync()
     {
         Response.Cookies.Delete("refresh_token", CreateCookeOptions());
         return Ok();

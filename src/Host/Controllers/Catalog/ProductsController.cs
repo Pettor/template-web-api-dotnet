@@ -60,7 +60,7 @@ public class ProductsController : VersionedApiController
     [HttpPost("export")]
     [MustHavePermission(ApiAction.Export, ApiResource.Products)]
     [OpenApiOperation("Export a products.", "")]
-    public async Task<Microsoft.AspNetCore.Mvc.FileResult> ExportAsync(ExportProductsRequest filter)
+    public async Task<FileResult> ExportAsync(ExportProductsRequest filter)
     {
         var result = await Mediator.Send(filter);
         return File(result, "application/octet-stream", "ProductExports");
