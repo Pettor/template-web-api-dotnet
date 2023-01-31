@@ -2,14 +2,20 @@
 using Backend.Application.Identity.Users;
 using Backend.Application.Identity.Users.Password;
 using Backend.Shared.Authorization;
+using FluentValidation;
 
 namespace Backend.Host.Controllers.Personal;
 
 public class PersonalController : VersionNeutralApiController
 {
+    private readonly IValidator<UpdateUserRequest> _validator;
     private readonly IUserService _userService;
 
-    public PersonalController(IUserService userService) => _userService = userService;
+    public PersonalController(IValidator<UpdateUserRequest> validator, IUserService userService)
+    {
+        _validator = validator;
+        _userService = userService;
+    }
 
     [HttpGet("profile")]
     [OpenApiOperation("Get profile details of currently logged in user.", "")]
@@ -24,6 +30,8 @@ public class PersonalController : VersionNeutralApiController
     [OpenApiOperation("Update profile details of currently logged in user.", "")]
     public async Task<ActionResult> UpdateProfileAsync(UpdateUserRequest request)
     {
+        await _validator.ValidateAndThrowAsync(request);
+
         if (User.GetUserId() is not { } userId || string.IsNullOrEmpty(userId))
         {
             return Unauthorized();

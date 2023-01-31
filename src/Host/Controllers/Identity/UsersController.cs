@@ -9,12 +9,12 @@ namespace Backend.Host.Controllers.Identity;
 
 public class UsersController : VersionNeutralApiController
 {
-    private readonly IValidator<CreateUserRequest> _validator;
+    private readonly IValidator<CreateUserRequest> _createUservalidator;
     private readonly IUserService _userService;
 
-    public UsersController(IValidator<CreateUserRequest> validator, IUserService userService)
+    public UsersController(IValidator<CreateUserRequest> createUservalidator, IUserService userService)
     {
-        _validator = validator;
+        _createUservalidator = createUservalidator;
         _userService = userService;
     }
 
@@ -56,7 +56,7 @@ public class UsersController : VersionNeutralApiController
     [OpenApiOperation("Creates a new user.", "")]
     public async Task<string> CreateAsync(CreateUserRequest request)
     {
-        await _validator.ValidateAndThrowAsync(request);
+        await _createUservalidator.ValidateAndThrowAsync(request);
 
         // TODO: add other protection to prevent automatic posting (captcha?)
         return await _userService.CreateAsync(request, GetOriginFromRequest());
@@ -69,7 +69,7 @@ public class UsersController : VersionNeutralApiController
     [ApiConventionMethod(typeof(ApiConventions), nameof(ApiConventions.Register))]
     public async Task<string> SelfRegisterAsync(CreateUserRequest request)
     {
-        await _validator.ValidateAndThrowAsync(request);
+        await _createUservalidator.ValidateAndThrowAsync(request);
 
         // TODO: add other protection to prevent automatic posting (captcha?)
         return await _userService.CreateAsync(request, GetOriginFromRequest());

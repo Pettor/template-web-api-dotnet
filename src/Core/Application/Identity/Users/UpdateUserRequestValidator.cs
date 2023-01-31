@@ -5,7 +5,7 @@ namespace Backend.Application.Identity.Users;
 
 public class UpdateUserRequestValidator : CustomValidator<UpdateUserRequest>
 {
-    public UpdateUserRequestValidator(IUserService userService, IStringLocalizer<UpdateUserRequestValidator> localizer)
+    public UpdateUserRequestValidator(IUserService userService, IStringLocalizer localizer)
     {
         RuleFor(p => p.Id)
             .NotEmpty();

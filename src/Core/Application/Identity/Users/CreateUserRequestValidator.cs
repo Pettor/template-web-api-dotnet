@@ -4,7 +4,7 @@ namespace Backend.Application.Identity.Users;
 
 public class CreateUserRequestValidator : CustomValidator<CreateUserRequest>
 {
-    public CreateUserRequestValidator(IUserService userService, IStringLocalizer<CreateUserRequestValidator> localizer)
+    public CreateUserRequestValidator(IUserService userService, IStringLocalizer localizer)
     {
         RuleFor(u => u.Email).Cascade(CascadeMode.Stop)
             .NotEmpty()
