@@ -2,11 +2,11 @@
 
 public class CreateUserRequest
 {
-    public string FirstName { get; set; } = default!;
-    public string LastName { get; set; } = default!;
-    public string Email { get; set; } = default!;
-    public string UserName { get; set; } = default!;
-    public string Password { get; set; } = default!;
-    public string ConfirmPassword { get; set; } = default!;
-    public string? PhoneNumber { get; set; }
+    public string FirstName { get; } = default!;
+    public string LastName { get; } = default!;
+    public string Email { get; } = default!;
+    public string UserName { get; } = default!;
+    public string Password { get; } = default!;
+    public string ConfirmPassword { get; } = default!;
+    public string? PhoneNumber { get; } = default!;
 }

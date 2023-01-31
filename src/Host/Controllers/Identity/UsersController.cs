@@ -3,14 +3,20 @@ using Backend.Application.Identity.Users.Password;
 using Backend.Infrastructure.Auth.Permissions;
 using Backend.Infrastructure.OpenApi;
 using Backend.Shared.Authorization;
+using FluentValidation;
 
 namespace Backend.Host.Controllers.Identity;
 
 public class UsersController : VersionNeutralApiController
 {
+    private readonly IValidator<CreateUserRequest> _validator;
     private readonly IUserService _userService;
 
-    public UsersController(IUserService userService) => _userService = userService;
+    public UsersController(IValidator<CreateUserRequest> validator, IUserService userService)
+    {
+        _validator = validator;
+        _userService = userService;
+    }
 
     [HttpGet]
     [MustHavePermission(ApiAction.View, ApiResource.Users)]
@@ -48,12 +54,12 @@ public class UsersController : VersionNeutralApiController
     [HttpPost]
     [MustHavePermission(ApiAction.Create, ApiResource.Users)]
     [OpenApiOperation("Creates a new user.", "")]
-    public Task<string> CreateAsync(CreateUserRequest request)
+    public async Task<string> CreateAsync(CreateUserRequest request)
     {
-        // TODO: check if registering anonymous users is actually allowed (should probably be an appsetting)
-        // and return UnAuthorized when it isn't
-        // Also: add other protection to prevent automatic posting (captcha?)
-        return _userService.CreateAsync(request, GetOriginFromRequest());
+        await _validator.ValidateAndThrowAsync(request);
+
+        // TODO: add other protection to prevent automatic posting (captcha?)
+        return await _userService.CreateAsync(request, GetOriginFromRequest());
     }
 
     [HttpPost("self-register")]
@@ -61,12 +67,12 @@ public class UsersController : VersionNeutralApiController
     [AllowAnonymous]
     [OpenApiOperation("Anonymous user creates a user.", "")]
     [ApiConventionMethod(typeof(ApiConventions), nameof(ApiConventions.Register))]
-    public Task<string> SelfRegisterAsync(CreateUserRequest request)
+    public async Task<string> SelfRegisterAsync(CreateUserRequest request)
     {
-        // TODO: check if registering anonymous users is actually allowed (should probably be an appsetting)
-        // and return UnAuthorized when it isn't
-        // Also: add other protection to prevent automatic posting (captcha?)
-        return _userService.CreateAsync(request, GetOriginFromRequest());
+        await _validator.ValidateAndThrowAsync(request);
+
+        // TODO: add other protection to prevent automatic posting (captcha?)
+        return await _userService.CreateAsync(request, GetOriginFromRequest());
     }
 
     [HttpPost("{id}/toggle-status")]
