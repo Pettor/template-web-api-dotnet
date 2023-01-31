@@ -1,15 +1,21 @@
 ﻿using Backend.Application.Common.Exceptions;
 using Backend.Application.Identity.Tokens;
 using Backend.Infrastructure.OpenApi;
+using FluentValidation;
 using Org.BouncyCastle.Ocsp;
 
 namespace Backend.Host.Controllers.Identity;
 
 public sealed class TokensController : VersionNeutralApiController
 {
+    private readonly IValidator<TokenRequest> _tokenRequestValidator;
     private readonly ITokenService _tokenService;
 
-    public TokensController(ITokenService tokenService) => _tokenService = tokenService;
+    public TokensController(IValidator<TokenRequest> tokenRequestValidator, ITokenService tokenService)
+    {
+        _tokenRequestValidator = tokenRequestValidator;
+        _tokenService = tokenService;
+    }
 
     [HttpPost]
     [AllowAnonymous]
@@ -19,6 +25,8 @@ public sealed class TokensController : VersionNeutralApiController
         TokenRequest request,
         CancellationToken cancellationToken)
     {
+        await _tokenRequestValidator.ValidateAndThrowAsync(request, cancellationToken: cancellationToken);
+
         var tokenResult = await _tokenService.GetTokenAsync(request, GetIpAddress(), cancellationToken);
 
         AddRefreshTokenCookie(tokenResult.RefreshToken);
