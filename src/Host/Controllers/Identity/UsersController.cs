@@ -9,12 +9,17 @@ namespace Backend.Host.Controllers.Identity;
 
 public class UsersController : VersionNeutralApiController
 {
-    private readonly IValidator<CreateUserRequest> _createUservalidator;
+    private readonly IValidator<CreateUserRequest> _createUserValidator;
+    private readonly IValidator<ResetPasswordRequest> _resetPasswordValidator;
     private readonly IUserService _userService;
 
-    public UsersController(IValidator<CreateUserRequest> createUservalidator, IUserService userService)
+    public UsersController(
+        IValidator<CreateUserRequest> createUserValidator,
+        IValidator<ResetPasswordRequest> resetPasswordValidator,
+        IUserService userService)
     {
-        _createUservalidator = createUservalidator;
+        _createUserValidator = createUserValidator;
+        _resetPasswordValidator = resetPasswordValidator;
         _userService = userService;
     }
 
@@ -56,7 +61,7 @@ public class UsersController : VersionNeutralApiController
     [OpenApiOperation("Creates a new user.", "")]
     public async Task<string> CreateAsync(CreateUserRequest request)
     {
-        await _createUservalidator.ValidateAndThrowAsync(request);
+        await _createUserValidator.ValidateAndThrowAsync(request);
 
         // TODO: add other protection to prevent automatic posting (captcha?)
         return await _userService.CreateAsync(request, GetOriginFromRequest());
@@ -69,7 +74,7 @@ public class UsersController : VersionNeutralApiController
     [ApiConventionMethod(typeof(ApiConventions), nameof(ApiConventions.Register))]
     public async Task<string> SelfRegisterAsync(CreateUserRequest request)
     {
-        await _createUservalidator.ValidateAndThrowAsync(request);
+        await _createUserValidator.ValidateAndThrowAsync(request);
 
         // TODO: add other protection to prevent automatic posting (captcha?)
         return await _userService.CreateAsync(request, GetOriginFromRequest());
@@ -121,9 +126,11 @@ public class UsersController : VersionNeutralApiController
     [HttpPost("reset-password")]
     [OpenApiOperation("Reset a user's password.", "")]
     [ApiConventionMethod(typeof(ApiConventions), nameof(ApiConventions.Register))]
-    public Task<string> ResetPasswordAsync(ResetPasswordRequest request)
+    public async Task<string> ResetPasswordAsync(ResetPasswordRequest request)
     {
-        return _userService.ResetPasswordAsync(request);
+        await _resetPasswordValidator.ValidateAndThrowAsync(request);
+        
+        return await _userService.ResetPasswordAsync(request);
     }
 
     private string GetOriginFromRequest() => $"{Request.Scheme}://{Request.Host.Value}{Request.PathBase.Value}";
