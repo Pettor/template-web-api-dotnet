@@ -8,12 +8,17 @@ namespace Backend.Host.Controllers.Personal;
 
 public class PersonalController : VersionNeutralApiController
 {
-    private readonly IValidator<UpdateUserRequest> _validator;
+    private readonly IValidator<UpdateUserRequest> _updateUserValidator;
+    private readonly IValidator<ChangePasswordRequest> _changePasswordValidator;
     private readonly IUserService _userService;
 
-    public PersonalController(IValidator<UpdateUserRequest> validator, IUserService userService)
+    public PersonalController(
+        IValidator<UpdateUserRequest> updateUserValidator,
+        IValidator<ChangePasswordRequest> changePasswordValidator,
+        IUserService userService)
     {
-        _validator = validator;
+        _updateUserValidator = updateUserValidator;
+        _changePasswordValidator = changePasswordValidator;
         _userService = userService;
     }
 
@@ -30,7 +35,7 @@ public class PersonalController : VersionNeutralApiController
     [OpenApiOperation("Update profile details of currently logged in user.", "")]
     public async Task<ActionResult> UpdateProfileAsync(UpdateUserRequest request)
     {
-        await _validator.ValidateAndThrowAsync(request);
+        await _updateUserValidator.ValidateAndThrowAsync(request);
 
         if (User.GetUserId() is not { } userId || string.IsNullOrEmpty(userId))
         {
@@ -44,14 +49,16 @@ public class PersonalController : VersionNeutralApiController
     [HttpPut("change-password")]
     [OpenApiOperation("Change password of currently logged in user.", "")]
     [ApiConventionMethod(typeof(ApiConventions), nameof(ApiConventions.Register))]
-    public async Task<ActionResult> ChangePasswordAsync(ChangePasswordRequest model)
+    public async Task<ActionResult> ChangePasswordAsync(ChangePasswordRequest request)
     {
+        await _changePasswordValidator.ValidateAndThrowAsync(request);
+
         if (User.GetUserId() is not { } userId || string.IsNullOrEmpty(userId))
         {
             return Unauthorized();
         }
 
-        await _userService.ChangePasswordAsync(model, userId);
+        await _userService.ChangePasswordAsync(request, userId);
         return Ok();
     }
 
