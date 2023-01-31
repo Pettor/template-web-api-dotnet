@@ -11,15 +11,18 @@ public class UsersController : VersionNeutralApiController
 {
     private readonly IValidator<CreateUserRequest> _createUserValidator;
     private readonly IValidator<ResetPasswordRequest> _resetPasswordValidator;
+    private readonly IValidator<ForgotPasswordRequest> _forgotPasswordValidator;
     private readonly IUserService _userService;
 
     public UsersController(
         IValidator<CreateUserRequest> createUserValidator,
         IValidator<ResetPasswordRequest> resetPasswordValidator,
+        IValidator<ForgotPasswordRequest> forgotPasswordValidator,
         IUserService userService)
     {
         _createUserValidator = createUserValidator;
         _resetPasswordValidator = resetPasswordValidator;
+        _forgotPasswordValidator = forgotPasswordValidator;
         _userService = userService;
     }
 
@@ -118,9 +121,11 @@ public class UsersController : VersionNeutralApiController
     [TenantIdHeader]
     [OpenApiOperation("Request a pasword reset email for a user.", "")]
     [ApiConventionMethod(typeof(ApiConventions), nameof(ApiConventions.Register))]
-    public Task<string> ForgotPasswordAsync(ForgotPasswordRequest request)
+    public async Task<string> ForgotPasswordAsync(ForgotPasswordRequest request)
     {
-        return _userService.ForgotPasswordAsync(request, GetOriginFromRequest());
+        await _forgotPasswordValidator.ValidateAndThrowAsync(request);
+
+        return await _userService.ForgotPasswordAsync(request, GetOriginFromRequest());
     }
 
     [HttpPost("reset-password")]
@@ -129,7 +134,7 @@ public class UsersController : VersionNeutralApiController
     public async Task<string> ResetPasswordAsync(ResetPasswordRequest request)
     {
         await _resetPasswordValidator.ValidateAndThrowAsync(request);
-        
+
         return await _userService.ResetPasswordAsync(request);
     }
 
