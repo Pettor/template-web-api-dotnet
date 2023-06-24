@@ -9,7 +9,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="6.1.0" />
-    <PackageReference Include="ClosedXML" Version="0.101.0" />
+    <PackageReference Include="ClosedXML" Version="0.102.0" />
     <PackageReference Include="Finbuckle.MultiTenant.AspNetCore" Version="6.10.0" />
     <PackageReference Include="Finbuckle.MultiTenant.EntityFrameworkCore" Version="6.10.0" />
     <PackageReference Include="Hangfire" Version="1.8.0" />
