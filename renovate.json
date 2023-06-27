@@ -9,7 +9,7 @@
   "packageRules": [
     {
       "matchDepTypes": ["nuget"],
-      "groupName": "nuget package updates",
+      "groupName": "nuget packages",
       "semanticCommitType": "chore"
     }
   ]
