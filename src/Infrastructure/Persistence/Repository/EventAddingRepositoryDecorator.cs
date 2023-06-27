@@ -94,6 +94,9 @@ public class EventAddingRepositoryDecorator<T> : IRepositoryWithEvents<T>
         _decorated.AnyAsync(specification, cancellationToken);
     public Task<bool> AnyAsync(CancellationToken cancellationToken = default) =>
         _decorated.AnyAsync(cancellationToken);
+
+    public IAsyncEnumerable<T> AsAsyncEnumerable(ISpecification<T> specification) => _decorated.AsAsyncEnumerable(specification);
+
     public Task<int> CountAsync(ISpecification<T> specification, CancellationToken cancellationToken = default) =>
         _decorated.CountAsync(specification, cancellationToken);
     public Task<int> CountAsync(CancellationToken cancellationToken = default) =>
