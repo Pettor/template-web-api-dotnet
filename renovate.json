@@ -1,21 +1,16 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base", ":semanticCommits"],
+  "platform": "github",
   "labels": ["dependency", "bot"],
   "schedule": ["every weekend"],
   "separateMajorMinor": false,
+  "automerge": true,
   "packageRules": [
     {
-      "matchDepTypes": ["devDependencies"],
-      "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest", "lockFileMaintenance", "rollback", "bump"],
-      "groupName": "dev dependencies",
+      "matchDepTypes": ["nuget"],
+      "groupName": "nuget package updates",
       "semanticCommitType": "chore"
-    },
-    {
-      "matchDepTypes": ["dependencies"],
-      "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest", "lockFileMaintenance", "rollback", "bump"],
-      "groupName": "dependencies",
-      "semanticCommitType": "fix"
     }
   ]
 }
