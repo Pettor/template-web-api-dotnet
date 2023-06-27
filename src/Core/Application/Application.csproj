@@ -5,7 +5,7 @@
         <AssemblyName>Backend.Application</AssemblyName>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Ardalis.Specification" Version="6.1.0" />
+        <PackageReference Include="Ardalis.Specification" Version="7.0.0" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.2" />
         <PackageReference Include="Mapster" Version="7.3.0" />
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
