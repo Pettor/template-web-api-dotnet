@@ -6,11 +6,11 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Ardalis.Specification" Version="7.0.0" />
-        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.6.0" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.7.0" />
         <PackageReference Include="Mapster" Version="7.3.0" />
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
         <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="7.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.9" />
+        <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.10" />
         <PackageReference Remove="Roslynator.Analyzers" />
     </ItemGroup>
     <ItemGroup>
