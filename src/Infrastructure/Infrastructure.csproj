@@ -3,6 +3,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>Backend.Infrastructure</RootNamespace>
     <AssemblyName>Backend.Infrastructure</AssemblyName>
+    <AssemblyVersion>0.5.0</AssemblyVersion>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />

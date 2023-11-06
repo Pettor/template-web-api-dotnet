@@ -3,6 +3,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <RootNamespace>Backend.Shared</RootNamespace>
         <AssemblyName>Backend.Shared</AssemblyName>
+        <AssemblyVersion>0.5.0</AssemblyVersion>
     </PropertyGroup>
     <ItemGroup>
       <PackageReference Remove="Roslynator.Analyzers" />
