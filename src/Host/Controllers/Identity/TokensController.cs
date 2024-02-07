@@ -53,10 +53,10 @@ public sealed class TokensController : VersionNeutralApiController
             AddRefreshTokenCookie(tokenResult.RefreshToken);
             return new TokenResponse(tokenResult.Token, tokenResult.RefreshTokenExpiryTime);
         }
-        catch (UnauthorizedException ex)
+        catch (UnauthorizedException)
         {
             Response.Cookies.Delete("refresh_token", CreateCookeOptions());
-            throw ex;
+            throw;
         }
     }
 
