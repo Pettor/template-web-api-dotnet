@@ -4,6 +4,7 @@
 
 ### Requirements
 
+- .NET 8.0
 - Install PostgreSQL 15.
 - Latest Docker
 
