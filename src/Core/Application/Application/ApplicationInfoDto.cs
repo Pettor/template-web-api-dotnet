@@ -2,5 +2,5 @@
 
 public class ApplicationInfoDto
 {
-    public string Version { get; set; }
+    public string Version { get; set; } = default!;
 }

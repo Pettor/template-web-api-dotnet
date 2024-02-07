@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <NoWarn>RCS1021;IDE0161;RCS1205</NoWarn>
+    <LangVersion>12</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Infrastructure.csproj" />

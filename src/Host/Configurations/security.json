@@ -1,9 +1,9 @@
 {
   "SecuritySettings": {
     "Provider": "Jwt",
-    "RequireConfirmedAccount":true,
+    "RequireConfirmedAccount": true,
     "JwtSettings": {
-      "key": "S0M3RAN0MS3CR3T!1!MAG1C!1!",
+      "key": "7fE5hzHNoUd2uydxteTeaeaTRPq02qA9WJ9jR-XwJsKxwMmrFqTP7DDar22SUFHBFRqX0Y0CSpZ24vQ8hqMPm1kuDpw7I-NgjajIOqN7X1PSznK46jNmLmq6SI_pCR4cZyYnS4GG4JgbfW20p_K7PNXDSBP0NyEXgsXt-Nax5HFPmtf0crSTvYsGHbzIrWHd5IkQgQecvJeM1ztO6iCGpwat4CBs2PgeJt3ybFXB8cYhMV6rMYrJ893lNnwTqp-xp2Ko93e2XoHXnj23UFz3Ip6v5Ex2bt-FU1rQHkZXxKuo4HWJ7g3863OZ-Fk1XzhI8tFnQyl0XY8rEM8hSbPcDA",
       "tokenExpirationInMinutes": 60,
       "refreshTokenExpirationInDays": 7
     },
