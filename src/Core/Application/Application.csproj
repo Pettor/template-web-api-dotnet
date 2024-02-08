@@ -6,8 +6,8 @@
         <AssemblyVersion>0.5.0</AssemblyVersion>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Ardalis.Specification" Version="7.0.0" />
-        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.8.0" />
+        <PackageReference Include="Ardalis.Specification" Version="8.0.0" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
         <PackageReference Include="Mapster" Version="7.4.0" />
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
         <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="8.0.0" />
