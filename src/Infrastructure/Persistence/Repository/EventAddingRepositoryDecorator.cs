@@ -53,6 +53,11 @@ public class EventAddingRepositoryDecorator<T> : IRepositoryWithEvents<T>
         return _decorated.DeleteRangeAsync(entities, cancellationToken);
     }
 
+    public Task DeleteRangeAsync(ISpecification<T> specification, CancellationToken cancellationToken = new CancellationToken())
+    {
+        throw new NotImplementedException();
+    }
+
     // The rest of the methods are simply forwarded.
     public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) =>
         _decorated.SaveChangesAsync(cancellationToken);

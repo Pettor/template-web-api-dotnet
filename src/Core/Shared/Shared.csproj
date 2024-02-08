@@ -1,9 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <RootNamespace>Backend.Shared</RootNamespace>
         <AssemblyName>Backend.Shared</AssemblyName>
         <AssemblyVersion>0.5.0</AssemblyVersion>
+        <LangVersion>12</LangVersion>
     </PropertyGroup>
     <ItemGroup>
       <PackageReference Remove="Roslynator.Analyzers" />

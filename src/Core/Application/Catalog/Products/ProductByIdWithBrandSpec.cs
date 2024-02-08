@@ -2,7 +2,7 @@
 
 namespace Backend.Application.Catalog.Products;
 
-public class ProductByIdWithBrandSpec : Specification<Product, ProductDetailsDto>, ISingleResultSpecification
+public class ProductByIdWithBrandSpec : Specification<Product, ProductDetailsDto>, ISingleResultSpecification<Product>
 {
     public ProductByIdWithBrandSpec(Guid id) =>
         Query

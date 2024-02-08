@@ -53,7 +53,10 @@ internal static class Startup
         {
             DbProviderKeys.Npgsql =>
                 hangfireConfig.UsePostgreSqlStorage(
-                    connectionString,
+                    (options) =>
+                    {
+                        options.UseNpgsqlConnection(connectionString);
+                    },
                     config.GetSection("HangfireSettings:Storage:Options").Get<PostgreSqlStorageOptions>()),
             _ => throw new ConfigurationErrorsException($"Hangfire Storage Provider {dbProvider} is not supported.")
         };
