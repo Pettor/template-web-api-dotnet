@@ -1,23 +1,21 @@
 ﻿using Backend.Application.Auditing;
+using Backend.Application.Auditing.Entities;
+using Backend.Application.Auditing.Queries.Get;
 using Backend.Application.Identity.Users;
 using Backend.Application.Identity.Users.Password;
 using Backend.Shared.Authorization;
 
 namespace Backend.Host.Controllers.Personal;
 
-public class PersonalController : VersionNeutralApiController
+public class PersonalController(IUserService userService) : VersionNeutralApiController
 {
-    private readonly IUserService _userService;
-
-    public PersonalController(IUserService userService) => _userService = userService;
-
     [HttpGet("profile")]
     [OpenApiOperation("Get profile details of currently logged in user.", "")]
     public async Task<ActionResult<UserDetailsDto>> GetProfileAsync(CancellationToken cancellationToken)
     {
         return User.GetUserId() is not { } userId || string.IsNullOrEmpty(userId)
             ? Unauthorized()
-            : Ok(await _userService.GetAsync(userId, cancellationToken));
+            : Ok(await userService.GetAsync(userId, cancellationToken));
     }
 
     [HttpPut("profile")]
@@ -29,7 +27,7 @@ public class PersonalController : VersionNeutralApiController
             return Unauthorized();
         }
 
-        await _userService.UpdateAsync(request, userId);
+        await userService.UpdateAsync(request, userId);
         return Ok();
     }
 
@@ -43,7 +41,7 @@ public class PersonalController : VersionNeutralApiController
             return Unauthorized();
         }
 
-        await _userService.ChangePasswordAsync(model, userId);
+        await userService.ChangePasswordAsync(model, userId);
         return Ok();
     }
 
@@ -53,7 +51,7 @@ public class PersonalController : VersionNeutralApiController
     {
         return User.GetUserId() is not { } userId || string.IsNullOrEmpty(userId)
             ? Unauthorized()
-            : Ok(await _userService.GetPermissionsAsync(userId, cancellationToken));
+            : Ok(await userService.GetPermissionsAsync(userId, cancellationToken));
     }
 
     [HttpGet("logs")]

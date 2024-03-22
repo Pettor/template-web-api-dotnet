@@ -2,10 +2,4 @@
 
 namespace Backend.Application.Common.Exceptions;
 
-public class UnauthorizedException : CustomException
-{
-    public UnauthorizedException(string message)
-       : base(message, null, HttpStatusCode.Unauthorized)
-    {
-    }
-}
+public class UnauthorizedException(string message) : CustomException(message, null, HttpStatusCode.Unauthorized);

@@ -2,10 +2,8 @@
 
 namespace Backend.Application.Common.Events;
 
-public class EventNotification<TEvent> : INotification
+public class EventNotification<TEvent>(TEvent @event) : INotification
     where TEvent : IEvent
 {
-    public EventNotification(TEvent @event) => Event = @event;
-
-    public TEvent Event { get; }
+    public TEvent Event { get; } = @event;
 }

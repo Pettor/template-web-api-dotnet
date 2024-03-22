@@ -1,11 +1,6 @@
 ﻿namespace Backend.Domain.Identity;
 
-public class ApplicationRoleDeletedEvent : ApplicationRoleEvent
+public class ApplicationRoleDeletedEvent(string roleId, string roleName) : ApplicationRoleEvent(roleId, roleName)
 {
     public bool PermissionsUpdated { get; set; }
-
-    public ApplicationRoleDeletedEvent(string roleId, string roleName)
-        : base(roleId, roleName)
-    {
-    }
 }

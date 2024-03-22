@@ -5,12 +5,8 @@ using Serilog.Context;
 
 namespace Backend.Infrastructure.Middleware;
 
-public class ResponseLoggingMiddleware : IMiddleware
+public class ResponseLoggingMiddleware(ICurrentUser currentUser) : IMiddleware
 {
-    private readonly ICurrentUser _currentUser;
-
-    public ResponseLoggingMiddleware(ICurrentUser currentUser) => _currentUser = currentUser;
-
     public async Task InvokeAsync(HttpContext httpContext, RequestDelegate next)
     {
         await next(httpContext);
@@ -28,9 +24,9 @@ public class ResponseLoggingMiddleware : IMiddleware
             responseBody = await new StreamReader(httpContext.Response.Body).ReadToEndAsync();
         }
 
-        var email = _currentUser.GetUserEmail() is string userEmail ? userEmail : "Anonymous";
-        var userId = _currentUser.GetUserId();
-        var tenant = _currentUser.GetTenant() ?? string.Empty;
+        var email = currentUser.GetUserEmail() is string userEmail ? userEmail : "Anonymous";
+        var userId = currentUser.GetUserId();
+        var tenant = currentUser.GetTenant() ?? string.Empty;
         if (userId != Guid.Empty)
             LogContext.PushProperty("UserId", userId);
         LogContext.PushProperty("UserEmail", email);

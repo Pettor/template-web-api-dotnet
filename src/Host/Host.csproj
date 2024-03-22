@@ -3,7 +3,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>Backend.Host</RootNamespace>
     <AssemblyName>Backend.Host</AssemblyName>
-    <AssemblyVersion>0.5.0</AssemblyVersion>
+    <AssemblyVersion>0.6.0</AssemblyVersion>
     <LangVersion>12</LangVersion>
   </PropertyGroup>
   <ItemGroup>

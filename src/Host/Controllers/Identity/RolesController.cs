@@ -4,18 +4,14 @@ using Backend.Shared.Authorization;
 
 namespace Backend.Host.Controllers.Identity;
 
-public class RolesController : VersionNeutralApiController
+public class RolesController(IRoleService roleService) : VersionNeutralApiController
 {
-    private readonly IRoleService _roleService;
-
-    public RolesController(IRoleService roleService) => _roleService = roleService;
-
     [HttpGet]
     [MustHavePermission(ApiAction.View, ApiResource.Roles)]
     [OpenApiOperation("Get a list of all roles.", "")]
     public Task<List<RoleDto>> GetListAsync(CancellationToken cancellationToken)
     {
-        return _roleService.GetListAsync(cancellationToken);
+        return roleService.GetListAsync(cancellationToken);
     }
 
     [HttpGet("{id}")]
@@ -23,7 +19,7 @@ public class RolesController : VersionNeutralApiController
     [OpenApiOperation("Get role details.", "")]
     public Task<RoleDto> GetByIdAsync(string id)
     {
-        return _roleService.GetByIdAsync(id);
+        return roleService.GetByIdAsync(id);
     }
 
     [HttpGet("{id}/permissions")]
@@ -31,7 +27,7 @@ public class RolesController : VersionNeutralApiController
     [OpenApiOperation("Get role details with its permissions.", "")]
     public Task<RoleDto> GetByIdWithPermissionsAsync(string id, CancellationToken cancellationToken)
     {
-        return _roleService.GetByIdWithPermissionsAsync(id, cancellationToken);
+        return roleService.GetByIdWithPermissionsAsync(id, cancellationToken);
     }
 
     [HttpPut("{id}/permissions")]
@@ -44,7 +40,7 @@ public class RolesController : VersionNeutralApiController
             return BadRequest();
         }
 
-        return Ok(await _roleService.UpdatePermissionsAsync(request, cancellationToken));
+        return Ok(await roleService.UpdatePermissionsAsync(request, cancellationToken));
     }
 
     [HttpPost]
@@ -52,7 +48,7 @@ public class RolesController : VersionNeutralApiController
     [OpenApiOperation("Create or update a role.", "")]
     public Task<string> RegisterRoleAsync(CreateOrUpdateRoleRequest request)
     {
-        return _roleService.CreateOrUpdateAsync(request);
+        return roleService.CreateOrUpdateAsync(request);
     }
 
     [HttpDelete("{id}")]
@@ -60,6 +56,6 @@ public class RolesController : VersionNeutralApiController
     [OpenApiOperation("Delete a role.", "")]
     public Task<string> DeleteAsync(string id)
     {
-        return _roleService.DeleteAsync(id);
+        return roleService.DeleteAsync(id);
     }
 }

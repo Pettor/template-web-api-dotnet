@@ -1,9 +1,3 @@
 ﻿namespace Backend.Domain.Identity;
 
-public class ApplicationRoleCreatedEvent : ApplicationRoleEvent
-{
-    public ApplicationRoleCreatedEvent(string roleId, string roleName)
-        : base(roleId, roleName)
-    {
-    }
-}
+public class ApplicationRoleCreatedEvent(string roleId, string roleName) : ApplicationRoleEvent(roleId, roleName);

@@ -3,18 +3,11 @@ using Microsoft.Extensions.Localization;
 
 namespace Backend.Infrastructure.Localization;
 
-public class JsonStringLocalizerFactory : IStringLocalizerFactory
+public class JsonStringLocalizerFactory(ICacheService cache) : IStringLocalizerFactory
 {
-    private readonly ICacheService _cache;
-
-    public JsonStringLocalizerFactory(ICacheService cache)
-    {
-        _cache = cache;
-    }
-
     public IStringLocalizer Create(Type resourceSource) =>
-        new JsonStringLocalizer(_cache);
+        new JsonStringLocalizer(cache);
 
     public IStringLocalizer Create(string baseName, string location) =>
-        new JsonStringLocalizer(_cache);
+        new JsonStringLocalizer(cache);
 }

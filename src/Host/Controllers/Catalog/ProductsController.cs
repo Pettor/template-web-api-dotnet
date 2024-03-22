@@ -1,4 +1,11 @@
 ﻿using Backend.Application.Catalog.Products;
+using Backend.Application.Catalog.Products.Entities;
+using Backend.Application.Catalog.Products.Queries.Create;
+using Backend.Application.Catalog.Products.Queries.Delete;
+using Backend.Application.Catalog.Products.Queries.Export;
+using Backend.Application.Catalog.Products.Queries.Get;
+using Backend.Application.Catalog.Products.Queries.Search;
+using Backend.Application.Catalog.Products.Queries.Update;
 using Backend.Application.Common.Models;
 using Backend.Infrastructure.Auth.Permissions;
 using Backend.Shared.Authorization;

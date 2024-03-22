@@ -5,17 +5,14 @@ using Npgsql;
 
 namespace Backend.Infrastructure.Persistence.ConnectionString;
 
-public class ConnectionStringSecurer : IConnectionStringSecurer
+public class ConnectionStringSecurer(IOptions<DatabaseSettings> dbSettings) : IConnectionStringSecurer
 {
     private const string HiddenValueDefault = "*******";
-    private readonly DatabaseSettings _dbSettings;
-
-    public ConnectionStringSecurer(IOptions<DatabaseSettings> dbSettings) =>
-        _dbSettings = dbSettings.Value;
+    private readonly DatabaseSettings _dbSettings = dbSettings.Value;
 
     public string? MakeSecure(string? connectionString, string? dbProvider)
     {
-        if (connectionString == null || string.IsNullOrEmpty(connectionString))
+        if (connectionString is null || string.IsNullOrEmpty(connectionString))
         {
             return connectionString;
         }

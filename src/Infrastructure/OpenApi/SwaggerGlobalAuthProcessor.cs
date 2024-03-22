@@ -12,18 +12,11 @@ namespace Backend.Infrastructure.OpenApi;
 /// Unless the AllowAnonymous attribute is defined, this processor will always add the security scheme
 /// when it's not already there, so effectively adding "Global Auth".
 /// </summary>
-public class SwaggerGlobalAuthProcessor : IOperationProcessor
+public class SwaggerGlobalAuthProcessor(string name) : IOperationProcessor
 {
-    private readonly string _name;
-
     public SwaggerGlobalAuthProcessor()
         : this(JwtBearerDefaults.AuthenticationScheme)
     {
-    }
-
-    public SwaggerGlobalAuthProcessor(string name)
-    {
-        _name = name;
     }
 
     public bool Process(OperationProcessorContext context)
@@ -41,7 +34,7 @@ public class SwaggerGlobalAuthProcessor : IOperationProcessor
                 (context.OperationDescription.Operation.Security ??= new List<OpenApiSecurityRequirement>()).Add(new OpenApiSecurityRequirement
                 {
                     {
-                        _name,
+                        name,
                         Array.Empty<string>()
                     }
                 });

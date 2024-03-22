@@ -1,4 +1,11 @@
 ﻿using Backend.Application.Multitenancy;
+using Backend.Application.Multitenancy.Entities;
+using Backend.Application.Multitenancy.Queries.Active;
+using Backend.Application.Multitenancy.Queries.Create;
+using Backend.Application.Multitenancy.Queries.Deactivate;
+using Backend.Application.Multitenancy.Queries.Get;
+using Backend.Application.Multitenancy.Queries.GetAll;
+using Backend.Application.Multitenancy.Queries.Upgrade;
 using Backend.Infrastructure.Auth.Permissions;
 using Backend.Shared.Authorization;
 

@@ -11,12 +11,12 @@ public class LocalFileStorageService : IFileStorageService
     public async Task<string> UploadAsync<T>(FileUploadRequest? request, FileType supportedFileType, CancellationToken cancellationToken = default)
     where T : class
     {
-        if (request == null || request.Data == null)
+        if (request?.Data is null)
         {
             return string.Empty;
         }
 
-        if (request.Extension is null || !supportedFileType.GetDescriptionList().Contains(request.Extension.ToLower()))
+        if (!supportedFileType.GetDescriptionList().Contains(request.Extension.ToLower()))
             throw new InvalidOperationException("File Format Not Supported.");
         if (request.Name is null)
             throw new InvalidOperationException("Name is required.");

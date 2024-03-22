@@ -11,21 +11,18 @@ using Microsoft.Extensions.Options;
 
 namespace Backend.Infrastructure.Persistence.Context;
 
-public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUser, ApplicationRole, string, IdentityUserClaim<string>, IdentityUserRole<string>, IdentityUserLogin<string>, ApplicationRoleClaim, IdentityUserToken<string>>
+public abstract class BaseDbContext(
+    ITenantInfo currentTenant,
+    DbContextOptions options,
+    ICurrentUser currentUser,
+    ISerializerService serializer,
+    IOptions<DatabaseSettings> dbSettings,
+    IEventPublisher events)
+    : MultiTenantIdentityDbContext<ApplicationUser, ApplicationRole, string, IdentityUserClaim<string>, IdentityUserRole<string>,
+        IdentityUserLogin<string>, ApplicationRoleClaim, IdentityUserToken<string>>(currentTenant, options)
 {
-    protected readonly ICurrentUser CurrentUser;
-    private readonly ISerializerService _serializer;
-    private readonly DatabaseSettings _dbSettings;
-    private readonly IEventPublisher _events;
-
-    protected BaseDbContext(ITenantInfo currentTenant, DbContextOptions options, ICurrentUser currentUser, ISerializerService serializer, IOptions<DatabaseSettings> dbSettings, IEventPublisher events)
-        : base(currentTenant, options)
-    {
-        CurrentUser = currentUser;
-        _serializer = serializer;
-        _dbSettings = dbSettings.Value;
-        _events = events;
-    }
+    protected readonly ICurrentUser CurrentUser = currentUser;
+    private readonly DatabaseSettings _dbSettings = dbSettings.Value;
 
     // Used by Dapper
     public IDbConnection Connection => Database.GetDbConnection();
@@ -109,7 +106,7 @@ public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUs
             .Where(e => e.State is EntityState.Added or EntityState.Deleted or EntityState.Modified)
             .ToList())
         {
-            var trailEntry = new AuditTrail(entry, _serializer)
+            var trailEntry = new AuditTrail(entry, serializer)
             {
                 TableName = entry.Entity.GetType().Name,
                 UserId = userId
@@ -143,7 +140,7 @@ public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUs
                         break;
 
                     case EntityState.Modified:
-                        if (property.IsModified && entry.Entity is ISoftDelete && property.OriginalValue == null && property.CurrentValue != null)
+                        if (property.IsModified && entry.Entity is ISoftDelete && property.OriginalValue is null && property.CurrentValue != null)
                         {
                             trailEntry.ChangedColumns.Add(propertyName);
                             trailEntry.TrailType = TrailType.Delete;
@@ -173,7 +170,7 @@ public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUs
 
     private Task HandleAuditingAfterSaveChangesAsync(List<AuditTrail> trailEntries, CancellationToken cancellationToken = new())
     {
-        if (trailEntries == null || trailEntries.Count == 0)
+        if (trailEntries is null || trailEntries.Count == 0)
         {
             return Task.CompletedTask;
         }
@@ -211,7 +208,7 @@ public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUs
             entity.DomainEvents.Clear();
             foreach (var domainEvent in domainEvents)
             {
-                await _events.PublishAsync(domainEvent);
+                await events.PublishAsync(domainEvent);
             }
         }
     }

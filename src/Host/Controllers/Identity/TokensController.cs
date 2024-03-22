@@ -5,12 +5,8 @@ using Org.BouncyCastle.Ocsp;
 
 namespace Backend.Host.Controllers.Identity;
 
-public sealed class TokensController : VersionNeutralApiController
+public sealed class TokensController(ITokenService tokenService) : VersionNeutralApiController
 {
-    private readonly ITokenService _tokenService;
-
-    public TokensController(ITokenService tokenService) => _tokenService = tokenService;
-
     [HttpPost]
     [AllowAnonymous]
     [TenantIdHeader]
@@ -19,7 +15,7 @@ public sealed class TokensController : VersionNeutralApiController
         TokenRequest request,
         CancellationToken cancellationToken)
     {
-        var tokenResult = await _tokenService.GetTokenAsync(request, GetIpAddress(), cancellationToken);
+        var tokenResult = await tokenService.GetTokenAsync(request, GetIpAddress(), cancellationToken);
 
         AddRefreshTokenCookie(tokenResult.RefreshToken);
         return new TokenResponse(tokenResult.Token, tokenResult.RefreshTokenExpiryTime);
@@ -49,7 +45,7 @@ public sealed class TokensController : VersionNeutralApiController
 
         try
         {
-            var tokenResult = await _tokenService.RefreshTokenAsync(accessToken, GetIpAddress());
+            var tokenResult = await tokenService.RefreshTokenAsync(accessToken, GetIpAddress());
             AddRefreshTokenCookie(tokenResult.RefreshToken);
             return new TokenResponse(tokenResult.Token, tokenResult.RefreshTokenExpiryTime);
         }

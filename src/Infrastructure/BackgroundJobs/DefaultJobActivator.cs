@@ -10,12 +10,9 @@ using TenantInfo = Backend.Infrastructure.Multitenancy.TenantInfo;
 
 namespace Backend.Infrastructure.BackgroundJobs;
 
-public class DefaultJobActivator : JobActivator
+public class DefaultJobActivator(IServiceScopeFactory scopeFactory) : JobActivator
 {
-    private readonly IServiceScopeFactory _scopeFactory;
-
-    public DefaultJobActivator(IServiceScopeFactory scopeFactory) =>
-        _scopeFactory = scopeFactory ?? throw new ArgumentNullException(nameof(scopeFactory));
+    private readonly IServiceScopeFactory _scopeFactory = scopeFactory ?? throw new ArgumentNullException(nameof(scopeFactory));
 
     public override JobActivatorScope BeginScope(PerformContext context) =>
         new Scope(context, _scopeFactory.CreateScope());

@@ -2,10 +2,5 @@
 
 namespace Backend.Application.Common.Exceptions;
 
-public class InternalServerException : CustomException
-{
-    public InternalServerException(string message, List<string>? errors = default)
-        : base(message, errors, HttpStatusCode.InternalServerError)
-    {
-    }
-}
+public class InternalServerException(string message, List<string>? errors = default)
+    : CustomException(message, errors, HttpStatusCode.InternalServerError);

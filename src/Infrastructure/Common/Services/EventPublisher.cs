@@ -5,18 +5,13 @@ using Microsoft.Extensions.Logging;
 
 namespace Backend.Infrastructure.Common.Services;
 
-public class EventPublisher : IEventPublisher
+public class EventPublisher(IPublisher mediator) : IEventPublisher
 {
-    private readonly IPublisher _mediator;
-
-    public EventPublisher(IPublisher mediator) =>
-        _mediator = mediator;
-
     public Task PublishAsync(IEvent @event)
     {
         var eventName = @event?.GetType().Name;
         LoggerMessage.Define<EventPublisher>(LogLevel.Information, new EventId(1, eventName), $"Publishing Event : {eventName}");
-        return _mediator.Publish(CreateEventNotification(@event!));
+        return mediator.Publish(CreateEventNotification(@event!));
     }
 
     private static INotification CreateEventNotification(IEvent @event) =>

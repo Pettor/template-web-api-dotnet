@@ -3,11 +3,9 @@ using Finbuckle.MultiTenant;
 
 namespace Backend.Infrastructure.Caching;
 
-public class CacheKeyService : ICacheKeyService
+public class CacheKeyService(ITenantInfo currentTenant) : ICacheKeyService
 {
-    private readonly ITenantInfo? _currentTenant;
-
-    public CacheKeyService(ITenantInfo currentTenant) => _currentTenant = currentTenant;
+    private readonly ITenantInfo? _currentTenant = currentTenant;
 
     public string GetCacheKey(string name, object id, bool includeTenantId = true)
     {

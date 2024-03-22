@@ -16,67 +16,56 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Backend.Infrastructure.Identity;
 
-internal class TokenService : ITokenService
+internal class TokenService(
+    UserManager<ApplicationUser> userManager,
+    IOptions<JwtSettings> jwtSettings,
+    IStringLocalizer<TokenService> localizer,
+    TenantInfo? currentTenant,
+    IOptions<SecuritySettings> securitySettings)
+    : ITokenService
 {
-    private readonly UserManager<ApplicationUser> _userManager;
-    private readonly IStringLocalizer<TokenService> _localizer;
-    private readonly SecuritySettings _securitySettings;
-    private readonly JwtSettings _jwtSettings;
-    private readonly TenantInfo? _currentTenant;
-
-    public TokenService(
-        UserManager<ApplicationUser> userManager,
-        IOptions<JwtSettings> jwtSettings,
-        IStringLocalizer<TokenService> localizer,
-        TenantInfo? currentTenant,
-        IOptions<SecuritySettings> securitySettings)
-    {
-        _userManager = userManager;
-        _localizer = localizer;
-        _jwtSettings = jwtSettings.Value;
-        _currentTenant = currentTenant;
-        _securitySettings = securitySettings.Value;
-    }
+    private readonly SecuritySettings _securitySettings = securitySettings.Value;
+    private readonly JwtSettings _jwtSettings = jwtSettings.Value;
 
     public async Task<TokenResult> GetTokenAsync(TokenRequest request, string ipAddress, CancellationToken cancellationToken)
     {
-        if (string.IsNullOrWhiteSpace(_currentTenant?.Id))
+        if (string.IsNullOrWhiteSpace(currentTenant?.Id))
         {
-            throw new UnauthorizedException(_localizer["tenant.invalid"]);
+            throw new UnauthorizedException(localizer["tenant.invalid"]);
         }
 
-        var user = await _userManager.FindByEmailAsync(request.Email.Trim().Normalize());
+        var user = await userManager.FindByEmailAsync(request.Email.Trim().Normalize());
         if (user is null)
         {
-            throw new UnauthorizedException(_localizer["auth.failed"]);
+            throw new UnauthorizedException(localizer["auth.failed"]);
         }
 
         if (!user.IsActive)
         {
-            throw new UnauthorizedException(_localizer["identity.usernotactive"]);
+            throw new UnauthorizedException(localizer["identity.usernotactive"]);
         }
 
         if (_securitySettings.RequireConfirmedAccount && !user.EmailConfirmed)
         {
-            throw new UnauthorizedException(_localizer["identity.emailnotconfirmed"]);
+            throw new UnauthorizedException(localizer["identity.emailnotconfirmed"]);
         }
 
-        if (_currentTenant.Id != MultitenancyConstants.Root.Id)
+        if (currentTenant.Id != MultitenancyConstants.Root.Id)
         {
-            if (!_currentTenant.IsActive)
+            if (!currentTenant.IsActive)
             {
-                throw new UnauthorizedException(_localizer["tenant.inactive"]);
+                throw new UnauthorizedException(localizer["tenant.inactive"]);
             }
 
-            if (DateTime.UtcNow > _currentTenant.ValidUpto)
+            if (DateTime.UtcNow > currentTenant.ValidUpto)
             {
-                throw new UnauthorizedException(_localizer["tenant.expired"]);
+                throw new UnauthorizedException(localizer["tenant.expired"]);
             }
         }
 
-        if (!await _userManager.CheckPasswordAsync(user, request.Password))
+        if (!await userManager.CheckPasswordAsync(user, request.Password))
         {
-            throw new UnauthorizedException(_localizer["identity.invalidcredentials"]);
+            throw new UnauthorizedException(localizer["identity.invalidcredentials"]);
         }
 
         return await GenerateTokensAndUpdateUser(user, ipAddress);
@@ -84,15 +73,15 @@ internal class TokenService : ITokenService
 
     public async Task<TokenResult> RefreshTokenAsync(string accessToken, string ipAddress)
     {
-        var user = _userManager.Users.FirstOrDefault(u => u.RefreshToken == accessToken);
+        var user = userManager.Users.FirstOrDefault(u => u.RefreshToken == accessToken);
         if (user is null)
         {
-            throw new UnauthorizedException(_localizer["auth.failed"]);
+            throw new UnauthorizedException(localizer["auth.failed"]);
         }
 
         if (user.RefreshToken != accessToken || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
         {
-            throw new UnauthorizedException(_localizer["identity.invalidrefreshtoken"]);
+            throw new UnauthorizedException(localizer["identity.invalidrefreshtoken"]);
         }
 
         return await GenerateTokensAndUpdateUser(user, ipAddress);
@@ -105,7 +94,7 @@ internal class TokenService : ITokenService
         user.RefreshToken = GenerateRefreshToken();
         user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpirationInDays);
 
-        await _userManager.UpdateAsync(user);
+        await userManager.UpdateAsync(user);
 
         return new TokenResult(token, user.RefreshToken, user.RefreshTokenExpiryTime);
     }
@@ -122,7 +111,7 @@ internal class TokenService : ITokenService
             new(ClaimTypes.Name, user.FirstName ?? string.Empty),
             new(ClaimTypes.Surname, user.LastName ?? string.Empty),
             new(ApiClaims.IpAddress, ipAddress),
-            new(ApiClaims.Tenant, _currentTenant!.Id),
+            new(ApiClaims.Tenant, currentTenant!.Id),
             new(ApiClaims.ImageUrl, user.ImageUrl ?? string.Empty),
             new(ClaimTypes.MobilePhone, user.PhoneNumber ?? string.Empty)
         };

@@ -9,17 +9,17 @@ internal partial class UserService
 {
     public async Task<List<string>> GetPermissionsAsync(string userId, CancellationToken cancellationToken)
     {
-        var user = await _userManager.FindByIdAsync(userId);
+        var user = await userManager.FindByIdAsync(userId);
 
-        _ = user ?? throw new NotFoundException(_localizer["User Not Found."]);
+        _ = user ?? throw new NotFoundException(localizer["User Not Found."]);
 
-        var userRoles = await _userManager.GetRolesAsync(user);
+        var userRoles = await userManager.GetRolesAsync(user);
         var permissions = new List<string>();
-        foreach (var role in await _roleManager.Roles
+        foreach (var role in await roleManager.Roles
             .Where(r => userRoles.Contains(r.Name))
             .ToListAsync(cancellationToken))
         {
-            permissions.AddRange(await _db.RoleClaims
+            permissions.AddRange(await db.RoleClaims
                 .Where(rc => rc.RoleId == role.Id && rc.ClaimType == ApiClaims.Permission)
                 .Select(rc => rc.ClaimValue ?? "N/A")
                 .ToListAsync(cancellationToken));
@@ -30,8 +30,8 @@ internal partial class UserService
 
     public async Task<bool> HasPermissionAsync(string userId, string permission, CancellationToken cancellationToken)
     {
-        var permissions = await _cache.GetOrSetAsync(
-            _cacheKeys.GetCacheKey(ApiClaims.Permission, userId),
+        var permissions = await cache.GetOrSetAsync(
+            cacheKeys.GetCacheKey(ApiClaims.Permission, userId),
             () => GetPermissionsAsync(userId, cancellationToken),
             cancellationToken: cancellationToken);
 
@@ -39,5 +39,5 @@ internal partial class UserService
     }
 
     public Task InvalidatePermissionCacheAsync(string userId, CancellationToken cancellationToken) =>
-        _cache.RemoveAsync(_cacheKeys.GetCacheKey(ApiClaims.Permission, userId), cancellationToken);
+        cache.RemoveAsync(cacheKeys.GetCacheKey(ApiClaims.Permission, userId), cancellationToken);
 }
