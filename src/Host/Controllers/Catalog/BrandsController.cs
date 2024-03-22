@@ -1,4 +1,11 @@
 ﻿using Backend.Application.Catalog.Brands;
+using Backend.Application.Catalog.Brands.Entities;
+using Backend.Application.Catalog.Brands.Queries.Create;
+using Backend.Application.Catalog.Brands.Queries.Delete;
+using Backend.Application.Catalog.Brands.Queries.Generate;
+using Backend.Application.Catalog.Brands.Queries.Get;
+using Backend.Application.Catalog.Brands.Queries.Search;
+using Backend.Application.Catalog.Brands.Queries.Update;
 using Backend.Application.Common.Models;
 using Backend.Infrastructure.Auth.Permissions;
 using Backend.Shared.Authorization;

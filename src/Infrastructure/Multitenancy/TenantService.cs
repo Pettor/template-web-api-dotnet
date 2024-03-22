@@ -1,6 +1,9 @@
 ﻿using Backend.Application.Common.Exceptions;
 using Backend.Application.Common.Persistence;
 using Backend.Application.Multitenancy;
+using Backend.Application.Multitenancy.Entities;
+using Backend.Application.Multitenancy.Interfaces;
+using Backend.Application.Multitenancy.Queries.Create;
 using Backend.Infrastructure.Persistence;
 using Backend.Infrastructure.Persistence.Initialization;
 using Finbuckle.MultiTenant;

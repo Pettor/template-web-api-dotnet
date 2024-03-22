@@ -4,15 +4,11 @@ using Backend.Domain.Common.Events;
 
 namespace Backend.Application.Catalog.Products.EventHandlers;
 
-public class ProductDeletedEventHandler : EventNotificationHandler<EntityDeletedEvent<Product>>
+public class ProductDeletedEventHandler(ILogger<ProductDeletedEventHandler> logger) : EventNotificationHandler<EntityDeletedEvent<Product>>
 {
-    private readonly ILogger<ProductDeletedEventHandler> _logger;
-
-    public ProductDeletedEventHandler(ILogger<ProductDeletedEventHandler> logger) => _logger = logger;
-
     public override Task Handle(EntityDeletedEvent<Product> @event, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("{event} Triggered", @event.GetType().Name);
+        logger.LogInformation("{event} Triggered", @event.GetType().Name);
         return Task.CompletedTask;
     }
 }

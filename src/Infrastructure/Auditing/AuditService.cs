@@ -1,4 +1,6 @@
 ﻿using Backend.Application.Auditing;
+using Backend.Application.Auditing.Entities;
+using Backend.Application.Auditing.Interfaces;
 using Backend.Infrastructure.Persistence.Context;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
