@@ -1,25 +1,16 @@
 ﻿namespace Backend.Application.Common.Models;
 
-public class PaginationResponse<T>
+public class PaginationResponse<T>(List<T> data, int count, int page, int pageSize)
 {
-    public PaginationResponse(List<T> data, int count, int page, int pageSize)
-    {
-        Data = data;
-        CurrentPage = page;
-        PageSize = pageSize;
-        TotalPages = (int)Math.Ceiling(count / (double)pageSize);
-        TotalCount = count;
-    }
+    public List<T> Data { get; set; } = data;
 
-    public List<T> Data { get; set; }
+    public int CurrentPage { get; set; } = page;
 
-    public int CurrentPage { get; set; }
+    public int TotalPages { get; set; } = (int)Math.Ceiling(count / (double)pageSize);
 
-    public int TotalPages { get; set; }
+    public int TotalCount { get; set; } = count;
 
-    public int TotalCount { get; set; }
-
-    public int PageSize { get; set; }
+    public int PageSize { get; set; } = pageSize;
 
     public bool HasPreviousPage => CurrentPage > 1;
 

@@ -6,20 +6,13 @@ using Newtonsoft.Json.Linq;
 
 namespace Backend.Infrastructure.Localization;
 
-public class JsonStringLocalizer : IStringLocalizer
+public class JsonStringLocalizer(ICacheService cache) : IStringLocalizer
 {
     private static string Localization => "Localization";
 
     private static string DefaultCulture => "en-US";
 
-    private readonly ICacheService _cache;
-
     private readonly JsonSerializer _serializer = new();
-
-    public JsonStringLocalizer(ICacheService cache)
-    {
-        _cache = cache;
-    }
 
     public LocalizedString this[string name]
     {
@@ -82,7 +75,7 @@ public class JsonStringLocalizer : IStringLocalizer
         var fullFilePath = Path.GetFullPath(relativeFilePath);
         if (File.Exists(fullFilePath))
         {
-            return _cache.GetOrSet(
+            return cache.GetOrSet(
                 $"locale_{culture}_{key}",
                 () => PullDeserialize<string>(key, Path.GetFullPath(relativeFilePath)));
         }

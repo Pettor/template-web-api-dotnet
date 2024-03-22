@@ -11,53 +11,53 @@ internal partial class UserService
     {
         EnsureValidTenant();
 
-        var user = await _userManager.FindByEmailAsync(request.Email.Normalize());
-        if (user is null || !await _userManager.IsEmailConfirmedAsync(user))
+        var user = await userManager.FindByEmailAsync(request.Email.Normalize());
+        if (user is null || !await userManager.IsEmailConfirmedAsync(user))
         {
             // Don't reveal that the user does not exist or is not confirmed
-            throw new InternalServerException(_localizer["An Error has occurred!"]);
+            throw new InternalServerException(localizer["An Error has occurred!"]);
         }
 
         // For more information on how to enable account confirmation and password reset please
         // visit https://go.microsoft.com/fwlink/?LinkID=532713
-        var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+        var code = await userManager.GeneratePasswordResetTokenAsync(user);
         const string route = "account/reset-password";
         var endpointUri = new Uri(string.Concat($"{origin}/", route));
         var passwordResetUrl = QueryHelpers.AddQueryString(endpointUri.ToString(), "Token", code);
         var mailRequest = new MailRequest(
             new List<string> { request.Email },
-            _localizer["Reset Password"],
-            _localizer[$"Your Password Reset Token is '{code}'. You can reset your password using the {endpointUri} Endpoint."]);
-        _jobService.Enqueue(() => _mailService.SendAsync(mailRequest));
+            localizer["Reset Password"],
+            localizer[$"Your Password Reset Token is '{code}'. You can reset your password using the {endpointUri} Endpoint."]);
+        jobService.Enqueue(() => mailService.SendAsync(mailRequest));
 
-        return _localizer["Password Reset Mail has been sent to your authorized Email."];
+        return localizer["Password Reset Mail has been sent to your authorized Email."];
     }
 
     public async Task<string> ResetPasswordAsync(ResetPasswordRequest request)
     {
-        var user = await _userManager.FindByEmailAsync(request.Email?.Normalize());
+        var user = await userManager.FindByEmailAsync(request.Email?.Normalize());
 
         // Don't reveal that the user does not exist
-        _ = user ?? throw new InternalServerException(_localizer["An Error has occurred!"]);
+        _ = user ?? throw new InternalServerException(localizer["An Error has occurred!"]);
 
-        var result = await _userManager.ResetPasswordAsync(user, request.Token, request.Password);
+        var result = await userManager.ResetPasswordAsync(user, request.Token, request.Password);
 
         return result.Succeeded
-            ? _localizer["Password Reset Successful!"]
-            : throw new InternalServerException(_localizer["An Error has occurred!"]);
+            ? localizer["Password Reset Successful!"]
+            : throw new InternalServerException(localizer["An Error has occurred!"]);
     }
 
     public async Task ChangePasswordAsync(ChangePasswordRequest model, string userId)
     {
-        var user = await _userManager.FindByIdAsync(userId);
+        var user = await userManager.FindByIdAsync(userId);
 
-        _ = user ?? throw new NotFoundException(_localizer["User Not Found."]);
+        _ = user ?? throw new NotFoundException(localizer["User Not Found."]);
 
-        var result = await _userManager.ChangePasswordAsync(user, model.Password, model.NewPassword);
+        var result = await userManager.ChangePasswordAsync(user, model.Password, model.NewPassword);
 
         if (!result.Succeeded)
         {
-            throw new InternalServerException(_localizer["Change password failed"], result.GetErrors(_localizer));
+            throw new InternalServerException(localizer["Change password failed"], result.GetErrors(localizer));
         }
     }
 }

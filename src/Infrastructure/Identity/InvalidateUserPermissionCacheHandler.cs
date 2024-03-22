@@ -5,21 +5,15 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Backend.Infrastructure.Identity;
 
-internal class InvalidateUserPermissionCacheHandler :
+internal class InvalidateUserPermissionCacheHandler(IUserService userService, UserManager<ApplicationUser> userManager) :
     IEventNotificationHandler<ApplicationUserUpdatedEvent>,
     IEventNotificationHandler<ApplicationRoleUpdatedEvent>
 {
-    private readonly IUserService _userService;
-    private readonly UserManager<ApplicationUser> _userManager;
-
-    public InvalidateUserPermissionCacheHandler(IUserService userService, UserManager<ApplicationUser> userManager) =>
-        (_userService, _userManager) = (userService, userManager);
-
     public async Task Handle(EventNotification<ApplicationUserUpdatedEvent> notification, CancellationToken cancellationToken)
     {
         if (notification.Event.RolesUpdated)
         {
-            await _userService.InvalidatePermissionCacheAsync(notification.Event.UserId, cancellationToken);
+            await userService.InvalidatePermissionCacheAsync(notification.Event.UserId, cancellationToken);
         }
     }
 
@@ -27,9 +21,9 @@ internal class InvalidateUserPermissionCacheHandler :
     {
         if (notification.Event.PermissionsUpdated)
         {
-            foreach (var user in await _userManager.GetUsersInRoleAsync(notification.Event.RoleName))
+            foreach (var user in await userManager.GetUsersInRoleAsync(notification.Event.RoleName))
             {
-                await _userService.InvalidatePermissionCacheAsync(user.Id, cancellationToken);
+                await userService.InvalidatePermissionCacheAsync(user.Id, cancellationToken);
             }
         }
     }

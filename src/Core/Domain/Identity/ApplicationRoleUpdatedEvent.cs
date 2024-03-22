@@ -1,10 +1,6 @@
 ﻿namespace Backend.Domain.Identity;
 
-public class ApplicationRoleUpdatedEvent : ApplicationRoleEvent
+public class ApplicationRoleUpdatedEvent(string roleId, string roleName, bool permissionsUpdated = false) : ApplicationRoleEvent(roleId, roleName)
 {
-    public bool PermissionsUpdated { get; set; }
-
-    public ApplicationRoleUpdatedEvent(string roleId, string roleName, bool permissionsUpdated = false)
-        : base(roleId, roleName) =>
-        PermissionsUpdated = permissionsUpdated;
+    public bool PermissionsUpdated { get; set; } = permissionsUpdated;
 }

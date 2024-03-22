@@ -2,10 +2,4 @@
 
 namespace Backend.Application.Common.Exceptions;
 
-public class ForbiddenException : CustomException
-{
-    public ForbiddenException(string message)
-        : base(message, null, HttpStatusCode.Forbidden)
-    {
-    }
-}
+public class ForbiddenException(string message) : CustomException(message, null, HttpStatusCode.Forbidden);

@@ -1,10 +1,6 @@
 ﻿namespace Backend.Domain.Identity;
 
-public class ApplicationUserUpdatedEvent : ApplicationUserEvent
+public class ApplicationUserUpdatedEvent(string userId, bool rolesUpdated = false) : ApplicationUserEvent(userId)
 {
-    public bool RolesUpdated { get; set; }
-
-    public ApplicationUserUpdatedEvent(string userId, bool rolesUpdated = false)
-        : base(userId) =>
-        RolesUpdated = rolesUpdated;
+    public bool RolesUpdated { get; set; } = rolesUpdated;
 }

@@ -7,16 +7,9 @@ using MimeKit;
 
 namespace Backend.Infrastructure.Mailing;
 
-public class SmtpMailService : IMailService
+public class SmtpMailService(IOptions<MailSettings> settings, ILogger<SmtpMailService> logger) : IMailService
 {
-    private readonly MailSettings _settings;
-    private readonly ILogger<SmtpMailService> _logger;
-
-    public SmtpMailService(IOptions<MailSettings> settings, ILogger<SmtpMailService> logger)
-    {
-        _settings = settings.Value;
-        _logger = logger;
-    }
+    private readonly MailSettings _settings = settings.Value;
 
     public async Task SendAsync(MailRequest request)
     {
@@ -79,7 +72,7 @@ public class SmtpMailService : IMailService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, ex.Message);
+            logger.LogError(ex, ex.Message);
         }
     }
 }

@@ -2,9 +2,7 @@
 
 namespace Backend.Application.Catalog.Products.Queries.Get;
 
-public class GetProductViaDapperRequest : IRequest<ProductDto>
+public class GetProductViaDapperRequest(Guid id) : IRequest<ProductDto>
 {
-    public Guid Id { get; set; }
-
-    public GetProductViaDapperRequest(Guid id) => Id = id;
+    public Guid Id { get; set; } = id;
 }

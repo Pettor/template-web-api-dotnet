@@ -14,23 +14,17 @@ using Serilog;
 
 namespace Backend.Infrastructure.Auth.AzureAd;
 
-internal class AzureAdJwtBearerEvents : JwtBearerEvents
+internal class AzureAdJwtBearerEvents(ILogger logger, IConfiguration config) : JwtBearerEvents
 {
-    private readonly ILogger _logger;
-    private readonly IConfiguration _config;
-
-    public AzureAdJwtBearerEvents(ILogger logger, IConfiguration config) =>
-        (_logger, _config) = (logger, config);
-
     public override Task AuthenticationFailed(AuthenticationFailedContext context)
     {
-        _logger.AuthenticationFailed(context.Exception);
+        logger.AuthenticationFailed(context.Exception);
         return base.AuthenticationFailed(context);
     }
 
     public override Task MessageReceived(MessageReceivedContext context)
     {
-        _logger.TokenReceived();
+        logger.TokenReceived();
         return base.MessageReceived(context);
     }
 
@@ -44,24 +38,24 @@ internal class AzureAdJwtBearerEvents : JwtBearerEvents
         var principal = context.Principal;
         var issuer = principal?.GetIssuer();
         var objectId = principal?.GetObjectId();
-        _logger.TokenValidationStarted(objectId, issuer);
+        logger.TokenValidationStarted(objectId, issuer);
 
         if (principal is null || issuer is null || objectId is null)
         {
-            _logger.TokenValidationFailed(objectId, issuer);
+            logger.TokenValidationFailed(objectId, issuer);
             throw new UnauthorizedException("Authentication Failed.");
         }
 
         // Lookup the tenant using the issuer.
         // TODO: we should probably cache this (root tenant and tenant per issuer)
         var tenantDb = context.HttpContext.RequestServices.GetRequiredService<TenantDbContext>();
-        var tenant = issuer == _config["SecuritySettings:AzureAd:RootIssuer"]
+        var tenant = issuer == config["SecuritySettings:AzureAd:RootIssuer"]
             ? await tenantDb.TenantInfo.FindAsync(MultitenancyConstants.Root.Id)
             : await tenantDb.TenantInfo.FirstOrDefaultAsync(t => t.Issuer == issuer);
 
         if (tenant is null)
         {
-            _logger.TokenValidationFailed(objectId, issuer);
+            logger.TokenValidationFailed(objectId, issuer);
 
             // The caller was not from a trusted issuer - throw to block the authentication flow.
             throw new UnauthorizedException("Authentication Failed.");
@@ -94,6 +88,6 @@ internal class AzureAdJwtBearerEvents : JwtBearerEvents
             identity.AddClaim(new Claim(ClaimTypes.Email, upnClaim.Value));
         }
 
-        _logger.TokenValidationSucceeded(objectId, issuer);
+        logger.TokenValidationSucceeded(objectId, issuer);
     }
 }

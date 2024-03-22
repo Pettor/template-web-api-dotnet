@@ -3,17 +3,9 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Backend.Infrastructure.Auditing;
 
-public class AuditTrail
+public class AuditTrail(EntityEntry entry, ISerializerService serializer)
 {
-    private readonly ISerializerService _serializer;
-
-    public AuditTrail(EntityEntry entry, ISerializerService serializer)
-    {
-        Entry = entry;
-        _serializer = serializer;
-    }
-
-    public EntityEntry Entry { get; }
+    public EntityEntry Entry { get; } = entry;
     public Guid UserId { get; set; }
     public string? TableName { get; set; }
     public Dictionary<string, object?> KeyValues { get; } = new();
@@ -31,9 +23,9 @@ public class AuditTrail
             Type = TrailType.ToString(),
             TableName = TableName,
             DateTime = DateTime.UtcNow,
-            PrimaryKey = _serializer.Serialize(KeyValues),
-            OldValues = OldValues.Count == 0 ? null : _serializer.Serialize(OldValues),
-            NewValues = NewValues.Count == 0 ? null : _serializer.Serialize(NewValues),
-            AffectedColumns = ChangedColumns.Count == 0 ? null : _serializer.Serialize(ChangedColumns)
+            PrimaryKey = serializer.Serialize(KeyValues),
+            OldValues = OldValues.Count == 0 ? null : serializer.Serialize(OldValues),
+            NewValues = NewValues.Count == 0 ? null : serializer.Serialize(NewValues),
+            AffectedColumns = ChangedColumns.Count == 0 ? null : serializer.Serialize(ChangedColumns)
         };
 }

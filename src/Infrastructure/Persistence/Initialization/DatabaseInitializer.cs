@@ -9,26 +9,20 @@ using TenantInfo = Backend.Infrastructure.Multitenancy.TenantInfo;
 
 namespace Backend.Infrastructure.Persistence.Initialization;
 
-internal class DatabaseInitializer : IDatabaseInitializer
+internal class DatabaseInitializer(
+    TenantDbContext tenantDbContext,
+    IOptions<DatabaseSettings> dbSettings,
+    IServiceProvider serviceProvider,
+    ILogger<DatabaseInitializer> logger)
+    : IDatabaseInitializer
 {
-    private readonly TenantDbContext _tenantDbContext;
-    private readonly DatabaseSettings _dbSettings;
-    private readonly IServiceProvider _serviceProvider;
-    private readonly ILogger<DatabaseInitializer> _logger;
-
-    public DatabaseInitializer(TenantDbContext tenantDbContext, IOptions<DatabaseSettings> dbSettings, IServiceProvider serviceProvider, ILogger<DatabaseInitializer> logger)
-    {
-        _tenantDbContext = tenantDbContext;
-        _dbSettings = dbSettings.Value;
-        _serviceProvider = serviceProvider;
-        _logger = logger;
-    }
+    private readonly DatabaseSettings _dbSettings = dbSettings.Value;
 
     public async Task InitializeDatabasesAsync(CancellationToken cancellationToken)
     {
         await InitializeTenantDbAsync(cancellationToken);
 
-        foreach (var tenant in await _tenantDbContext.TenantInfo.ToListAsync(cancellationToken))
+        foreach (var tenant in await tenantDbContext.TenantInfo.ToListAsync(cancellationToken))
         {
             await InitializeApplicationDbForTenantAsync(tenant, cancellationToken);
         }
@@ -37,10 +31,10 @@ internal class DatabaseInitializer : IDatabaseInitializer
     public async Task InitializeApplicationDbForTenantAsync(TenantInfo tenant, CancellationToken cancellationToken)
     {
         // First create a new scope
-        using var scope = _serviceProvider.CreateScope();
+        using var scope = serviceProvider.CreateScope();
 
         // Then set current tenant so the right connectionstring is used
-        _serviceProvider.GetRequiredService<IMultiTenantContextAccessor>().MultiTenantContext =
+        serviceProvider.GetRequiredService<IMultiTenantContextAccessor>().MultiTenantContext =
             new MultiTenantContext<TenantInfo>
             {
                 TenantInfo = tenant
@@ -53,11 +47,11 @@ internal class DatabaseInitializer : IDatabaseInitializer
 
     private async Task InitializeTenantDbAsync(CancellationToken cancellationToken)
     {
-        var pendingMigrations = await _tenantDbContext.Database.GetPendingMigrationsAsync(cancellationToken);
+        var pendingMigrations = await tenantDbContext.Database.GetPendingMigrationsAsync(cancellationToken);
         if (pendingMigrations.Any())
         {
-            _logger.LogInformation("Applying Root Migrations.");
-            await _tenantDbContext.Database.MigrateAsync(cancellationToken);
+            logger.LogInformation("Applying Root Migrations.");
+            await tenantDbContext.Database.MigrateAsync(cancellationToken);
         }
 
         await SeedRootTenantAsync(cancellationToken);
@@ -65,7 +59,7 @@ internal class DatabaseInitializer : IDatabaseInitializer
 
     private async Task SeedRootTenantAsync(CancellationToken cancellationToken)
     {
-        if (await _tenantDbContext.TenantInfo.FindAsync(new object?[] { MultitenancyConstants.Root.Id }, cancellationToken: cancellationToken) is null)
+        if (await tenantDbContext.TenantInfo.FindAsync(new object?[] { MultitenancyConstants.Root.Id }, cancellationToken: cancellationToken) is null)
         {
             var rootTenant = new TenantInfo(
                 MultitenancyConstants.Root.Id,
@@ -75,9 +69,9 @@ internal class DatabaseInitializer : IDatabaseInitializer
 
             rootTenant.SetValidity(DateTime.UtcNow.AddYears(1));
 
-            _tenantDbContext.TenantInfo.Add(rootTenant);
+            tenantDbContext.TenantInfo.Add(rootTenant);
 
-            await _tenantDbContext.SaveChangesAsync(cancellationToken);
+            await tenantDbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

@@ -1,8 +1,6 @@
 ﻿namespace Backend.Application.Catalog.Brands.Queries.Delete;
 
-public class DeleteBrandRequest : IRequest<Guid>
+public class DeleteBrandRequest(Guid id) : IRequest<Guid>
 {
-    public Guid Id { get; set; }
-
-    public DeleteBrandRequest(Guid id) => Id = id;
+    public Guid Id { get; set; } = id;
 }

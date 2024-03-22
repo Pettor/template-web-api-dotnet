@@ -17,12 +17,9 @@ public static class SetNonNullableValidatorExtension
         return ruleBuilder.SetAsyncValidator(adapter);
     }
 
-    private class NullableChildValidatorAdaptor<T, TProperty> : ChildValidatorAdaptor<T, TProperty>, IPropertyValidator<T, TProperty?>, IAsyncPropertyValidator<T, TProperty?>
+    private class NullableChildValidatorAdaptor<T, TProperty>(IValidator<TProperty> validator, Type validatorType)
+        : ChildValidatorAdaptor<T, TProperty>(validator, validatorType), IPropertyValidator<T, TProperty?>, IAsyncPropertyValidator<T, TProperty?>
     {
-        public NullableChildValidatorAdaptor(IValidator<TProperty> validator, Type validatorType)
-            : base(validator, validatorType)
-        {
-        }
 #pragma warning disable RCS1132
         public override bool IsValid(ValidationContext<T> context, TProperty? value)
         {

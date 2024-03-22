@@ -2,9 +2,7 @@
 
 namespace Backend.Application.Catalog.Products.Queries.Get;
 
-public class GetProductRequest : IRequest<ProductDetailsDto>
+public class GetProductRequest(Guid id) : IRequest<ProductDetailsDto>
 {
-    public Guid Id { get; set; }
-
-    public GetProductRequest(Guid id) => Id = id;
+    public Guid Id { get; set; } = id;
 }

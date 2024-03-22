@@ -8,16 +8,10 @@ using Npgsql;
 
 namespace Backend.Infrastructure.Persistence.ConnectionString;
 
-internal class ConnectionStringValidator : IConnectionStringValidator
+internal class ConnectionStringValidator(IOptions<DatabaseSettings> dbSettings, ILogger<ConnectionStringValidator> logger)
+    : IConnectionStringValidator
 {
-    private readonly DatabaseSettings _dbSettings;
-    private readonly ILogger<ConnectionStringValidator> _logger;
-
-    public ConnectionStringValidator(IOptions<DatabaseSettings> dbSettings, ILogger<ConnectionStringValidator> logger)
-    {
-        _dbSettings = dbSettings.Value;
-        _logger = logger;
-    }
+    private readonly DatabaseSettings _dbSettings = dbSettings.Value;
 
     public bool TryValidate(string connectionString, string? dbProvider = null)
     {
@@ -40,7 +34,7 @@ internal class ConnectionStringValidator : IConnectionStringValidator
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Connection String Validation Exception : {ex.Message}");
+            logger.LogError($"Connection String Validation Exception : {ex.Message}");
             return false;
         }
     }
