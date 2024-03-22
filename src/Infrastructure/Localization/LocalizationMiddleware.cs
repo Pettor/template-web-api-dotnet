@@ -7,7 +7,7 @@ public class LocalizationMiddleware : IMiddleware
 {
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
-        if (context == null)
+        if (context is null)
         {
             throw new ArgumentNullException(nameof(context));
         }
@@ -20,7 +20,7 @@ public class LocalizationMiddleware : IMiddleware
             Thread.CurrentThread.CurrentUICulture = culture;
         }
 
-        if (next == null)
+        if (next is null)
         {
             throw new ArgumentNullException(nameof(next));
         }

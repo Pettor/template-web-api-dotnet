@@ -19,7 +19,7 @@ public class JsonStringLocalizer(ICacheService cache) : IStringLocalizer
         get
         {
             var value = GetString(name);
-            return new LocalizedString(name, value ?? $"{name}", value == null);
+            return new LocalizedString(name, value ?? $"{name}", value is null);
         }
     }
 
@@ -118,9 +118,9 @@ public class JsonStringLocalizer(ICacheService cache) : IStringLocalizer
 
     private T? PullDeserialize<T>(string propertyName, string filePath)
     {
-        if (propertyName == null)
+        if (propertyName is null)
             return default;
-        if (filePath == null)
+        if (filePath is null)
             return default;
         using var str = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
         using var sReader = new StreamReader(str);

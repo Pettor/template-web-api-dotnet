@@ -12,7 +12,7 @@ public class ConnectionStringSecurer(IOptions<DatabaseSettings> dbSettings) : IC
 
     public string? MakeSecure(string? connectionString, string? dbProvider)
     {
-        if (connectionString == null || string.IsNullOrEmpty(connectionString))
+        if (connectionString is null || string.IsNullOrEmpty(connectionString))
         {
             return connectionString;
         }

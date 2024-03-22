@@ -140,7 +140,7 @@ public abstract class BaseDbContext(
                         break;
 
                     case EntityState.Modified:
-                        if (property.IsModified && entry.Entity is ISoftDelete && property.OriginalValue == null && property.CurrentValue != null)
+                        if (property.IsModified && entry.Entity is ISoftDelete && property.OriginalValue is null && property.CurrentValue != null)
                         {
                             trailEntry.ChangedColumns.Add(propertyName);
                             trailEntry.TrailType = TrailType.Delete;
@@ -170,7 +170,7 @@ public abstract class BaseDbContext(
 
     private Task HandleAuditingAfterSaveChangesAsync(List<AuditTrail> trailEntries, CancellationToken cancellationToken = new())
     {
-        if (trailEntries == null || trailEntries.Count == 0)
+        if (trailEntries is null || trailEntries.Count == 0)
         {
             return Task.CompletedTask;
         }
