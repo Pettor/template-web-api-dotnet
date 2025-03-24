@@ -24,22 +24,22 @@ public class EventAddingRepositoryDecorator<T>(IRepository<T> decorated) : IRepo
     public Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = new()) =>
         decorated.AddRangeAsync(entities, cancellationToken);
 
-    public Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
+    public Task<int> UpdateAsync(T entity, CancellationToken cancellationToken = default)
     {
         entity.DomainEvents.Add(EntityUpdatedEvent.WithEntity(entity));
         return decorated.UpdateAsync(entity, cancellationToken);
     }
 
-    public Task UpdateRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = new()) =>
+    public Task<int> UpdateRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = new()) =>
         decorated.UpdateRangeAsync(entities, cancellationToken);
 
-    public Task DeleteAsync(T entity, CancellationToken cancellationToken = default)
+    public Task<int> DeleteAsync(T entity, CancellationToken cancellationToken = default)
     {
         entity.DomainEvents.Add(EntityDeletedEvent.WithEntity(entity));
         return decorated.DeleteAsync(entity, cancellationToken);
     }
 
-    public Task DeleteRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default)
+    public Task<int> DeleteRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default)
     {
         foreach (var entity in entities)
         {
@@ -49,7 +49,7 @@ public class EventAddingRepositoryDecorator<T>(IRepository<T> decorated) : IRepo
         return decorated.DeleteRangeAsync(entities, cancellationToken);
     }
 
-    public Task DeleteRangeAsync(ISpecification<T> specification, CancellationToken cancellationToken = new CancellationToken())
+    public Task<int> DeleteRangeAsync(ISpecification<T> specification, CancellationToken cancellationToken = new CancellationToken())
     {
         throw new NotImplementedException();
     }
@@ -61,17 +61,6 @@ public class EventAddingRepositoryDecorator<T>(IRepository<T> decorated) : IRepo
         where TId : notnull =>
         decorated.GetByIdAsync(id, cancellationToken);
 
-    [Obsolete("Obsolete")]
-    public Task<T?> GetBySpecAsync(
-        ISpecification<T> specification,
-        CancellationToken cancellationToken = new CancellationToken()) =>
-        decorated.GetBySpecAsync(specification, cancellationToken);
-
-    [Obsolete("Obsolete")]
-    public Task<TResult?> GetBySpecAsync<TResult>(
-        ISpecification<T, TResult> specification,
-        CancellationToken cancellationToken = new CancellationToken()) =>
-        decorated.GetBySpecAsync(specification, cancellationToken);
     public Task<T?> FirstOrDefaultAsync(ISpecification<T> specification, CancellationToken cancellationToken = new()) =>
         decorated.FirstOrDefaultAsync(specification, cancellationToken);
     public Task<TResult?> FirstOrDefaultAsync<TResult>(
