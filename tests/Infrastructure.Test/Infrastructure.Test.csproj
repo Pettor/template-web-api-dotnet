@@ -1,11 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
     <IsPackable>false</IsPackable>
-    <LangVersion>12</LangVersion>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="6.8.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
@@ -21,15 +17,12 @@
     </PackageReference>
     <PackageReference Remove="Roslynator.Analyzers" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\src\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
 </Project>
