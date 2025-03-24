@@ -1,10 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>Backend.Infrastructure</RootNamespace>
     <AssemblyName>Backend.Infrastructure</AssemblyName>
-    <AssemblyVersion>0.6.0</AssemblyVersion>
-    <LangVersion>12</LangVersion>
+    <AssemblyVersion>0.7.0</AssemblyVersion>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
