@@ -34,12 +34,12 @@ public static class SpecificationBuilderExtensions
             .OrderBy(filter.OrderBy);
     }
 
-    public static IOrderedSpecificationBuilder<T> SearchByKeyword<T>(
+    public static ISpecificationBuilder<T> SearchByKeyword<T>(
         this ISpecificationBuilder<T> specificationBuilder,
         string? keyword) =>
         specificationBuilder.AdvancedSearch(new Search { Keyword = keyword });
 
-    public static IOrderedSpecificationBuilder<T> AdvancedSearch<T>(
+    public static ISpecificationBuilder<T> AdvancedSearch<T>(
         this ISpecificationBuilder<T> specificationBuilder,
         Search? search)
     {
@@ -77,7 +77,7 @@ public static class SpecificationBuilderExtensions
             }
         }
 
-        return new OrderedSpecificationBuilder<T>(specificationBuilder.Specification);
+        return specificationBuilder;
     }
 
     private static void AddSearchPropertyByKeyword<T>(this ISpecificationBuilder<T> specificationBuilder, Expression propertyExpr, ParameterExpression paramExpr, string keyword)
@@ -105,7 +105,7 @@ public static class SpecificationBuilderExtensions
             .Add(new SearchExpressionInfo<T>(selector, $"%{keyword}%", 1));
     }
 
-    public static IOrderedSpecificationBuilder<T> OrderBy<T>(
+    public static ISpecificationBuilder<T> OrderBy<T>(
         this ISpecificationBuilder<T> specificationBuilder,
         string[]? orderByFields)
     {
@@ -130,7 +130,7 @@ public static class SpecificationBuilderExtensions
             }
         }
 
-        return new OrderedSpecificationBuilder<T>(specificationBuilder.Specification);
+        return specificationBuilder;
     }
 
     private static Dictionary<string, OrderTypeEnum> ParseOrderBy(string[] orderByFields) =>
