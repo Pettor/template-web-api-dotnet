@@ -6,6 +6,7 @@ using Backend.Infrastructure.Persistence.Context;
 using Backend.Infrastructure.Persistence.Initialization;
 using Backend.Infrastructure.Persistence.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
@@ -37,7 +38,8 @@ internal static class Startup
         return services
             .Configure<DatabaseSettings>(config.GetSection(nameof(DatabaseSettings)))
 
-            .AddDbContext<ApplicationDbContext>(m => m.UseDatabase(dbProvider, rootConnectionString))
+            .AddDbContext<ApplicationDbContext>(m => m.UseDatabase(dbProvider, rootConnectionString)
+                .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning)))
 
             .AddTransient<IDatabaseInitializer, DatabaseInitializer>()
             .AddTransient<ApplicationDbInitializer>()

@@ -5,6 +5,7 @@ using Backend.Shared.Authorization;
 using Backend.Shared.Multitenancy;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -24,7 +25,8 @@ internal static class Startup
             throw new InvalidOperationException("DB Provider is not configured.");
 
         return services
-            .AddDbContext<TenantDbContext>(m => m.UseDatabase(dbProvider, rootConnectionString))
+            .AddDbContext<TenantDbContext>(m => m.UseDatabase(dbProvider, rootConnectionString)
+                .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning)))
             .AddMultiTenant<TenantInfo>()
                 .WithClaimStrategy(ApiClaims.Tenant)
                 .WithHeaderStrategy(MultitenancyConstants.TenantIdName)
