@@ -68,7 +68,7 @@ internal class TokenService(
             throw new UnauthorizedException(localizer["identity.invalidcredentials"]);
         }
 
-        return await GenerateTokensAndUpdateUser(user, ipAddress);
+        return await GenerateTokensAndUpdateUser(user, ipAddress, request.RememberMe);
     }
 
     public async Task<TokenResult> RefreshTokenAsync(string accessToken, string ipAddress)
@@ -87,12 +87,12 @@ internal class TokenService(
         return await GenerateTokensAndUpdateUser(user, ipAddress);
     }
 
-    private async Task<TokenResult> GenerateTokensAndUpdateUser(ApplicationUser user, string ipAddress)
+    private async Task<TokenResult> GenerateTokensAndUpdateUser(ApplicationUser user, string ipAddress, bool rememberMe = true)
     {
         var token = GenerateJwt(user, ipAddress);
 
         user.RefreshToken = GenerateRefreshToken();
-        user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpirationInDays);
+        user.RefreshTokenExpiryTime = rememberMe ? DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpirationInDays) : DateTime.UtcNow;
 
         await userManager.UpdateAsync(user);
 
