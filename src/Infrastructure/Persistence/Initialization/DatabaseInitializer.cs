@@ -1,6 +1,7 @@
 ﻿using Backend.Infrastructure.Multitenancy;
 using Backend.Shared.Multitenancy;
 using Finbuckle.MultiTenant;
+using Finbuckle.MultiTenant.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -37,8 +38,12 @@ internal class DatabaseInitializer(
         using var scope = serviceProvider.CreateScope();
 
         // Then set current tenant so the right connectionstring is used
-        serviceProvider.GetRequiredService<IMultiTenantContextAccessor>().MultiTenantContext =
-            new MultiTenantContext<TenantInfo> { TenantInfo = tenant };
+        var multiTenantContextAccessor =
+            serviceProvider.GetRequiredService<IMultiTenantContextAccessor>();
+        if (multiTenantContextAccessor.MultiTenantContext is MultiTenantContext<TenantInfo> context)
+        {
+            context.TenantInfo = tenant;
+        }
 
         // Then run the initialization in the new scope
         await scope
@@ -64,7 +69,7 @@ internal class DatabaseInitializer(
     {
         if (
             await tenantDbContext.TenantInfo.FindAsync(
-                new object?[] { MultitenancyConstants.Root.Id },
+                [MultitenancyConstants.Root.Id],
                 cancellationToken: cancellationToken
             )
             is null

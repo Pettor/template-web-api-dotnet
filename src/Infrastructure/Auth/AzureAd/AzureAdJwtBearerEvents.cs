@@ -5,12 +5,15 @@ using Backend.Infrastructure.Multitenancy;
 using Backend.Shared.Authorization;
 using Backend.Shared.Multitenancy;
 using Finbuckle.MultiTenant;
+using Finbuckle.MultiTenant.Abstractions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Web;
 using Serilog;
+using TenantInfo = Backend.Infrastructure.Multitenancy.TenantInfo;
 
 namespace Backend.Infrastructure.Auth.AzureAd;
 
@@ -91,5 +94,26 @@ internal class AzureAdJwtBearerEvents(ILogger logger, IConfiguration config) : J
         }
 
         logger.TokenValidationSucceeded(objectId, issuer);
+    }
+}
+
+public static class HttpContextExtensions
+{
+    public static void TrySetTenantInfo(
+        this HttpContext httpContext,
+        TenantInfo tenantInfo,
+        bool throwIfNull = true
+    )
+    {
+        var multiTenantContextAccessor =
+            httpContext.RequestServices.GetRequiredService<IMultiTenantContextAccessor>();
+        if (multiTenantContextAccessor.MultiTenantContext is MultiTenantContext<TenantInfo> context)
+        {
+            context.TenantInfo = tenantInfo;
+        }
+        else if (throwIfNull)
+        {
+            throw new InvalidOperationException("MultiTenantContext is not available.");
+        }
     }
 }

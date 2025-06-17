@@ -2,6 +2,7 @@
 using Backend.Shared.Authorization;
 using Backend.Shared.Multitenancy;
 using Finbuckle.MultiTenant;
+using Finbuckle.MultiTenant.Abstractions;
 using Hangfire.Client;
 using Hangfire.Logging;
 using Microsoft.AspNetCore.Http;

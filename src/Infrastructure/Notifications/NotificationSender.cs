@@ -1,6 +1,7 @@
 ﻿using Backend.Application.Common.Interfaces;
 using Backend.Shared.Notifications;
 using Finbuckle.MultiTenant;
+using Finbuckle.MultiTenant.Abstractions;
 using Microsoft.AspNetCore.SignalR;
 using static Backend.Shared.Notifications.NotificationConstants;
 

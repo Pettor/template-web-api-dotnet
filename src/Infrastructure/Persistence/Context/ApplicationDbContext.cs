@@ -1,15 +1,16 @@
 ﻿using Backend.Application.Common.Events;
 using Backend.Application.Common.Interfaces;
 using Backend.Domain.Catalog;
+using Backend.Infrastructure.Multitenancy;
 using Backend.Infrastructure.Persistence.Configuration;
-using Finbuckle.MultiTenant;
+using Finbuckle.MultiTenant.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 namespace Backend.Infrastructure.Persistence.Context;
 
 public class ApplicationDbContext(
-    ITenantInfo currentTenant,
+    IMultiTenantContextAccessor<TenantInfo> currentTenant,
     DbContextOptions options,
     ICurrentUser currentUser,
     ISerializerService serializer,

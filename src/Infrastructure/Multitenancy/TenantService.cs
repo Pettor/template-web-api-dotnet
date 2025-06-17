@@ -6,6 +6,7 @@ using Backend.Application.Multitenancy.Queries.Create;
 using Backend.Infrastructure.Persistence;
 using Backend.Infrastructure.Persistence.Initialization;
 using Finbuckle.MultiTenant;
+using Finbuckle.MultiTenant.Abstractions;
 using Mapster;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
