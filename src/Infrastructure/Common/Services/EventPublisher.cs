@@ -10,11 +10,18 @@ public class EventPublisher(IPublisher mediator) : IEventPublisher
     public Task PublishAsync(IEvent @event)
     {
         var eventName = @event?.GetType().Name;
-        LoggerMessage.Define<EventPublisher>(LogLevel.Information, new EventId(1, eventName), $"Publishing Event : {eventName}");
+        LoggerMessage.Define<EventPublisher>(
+            LogLevel.Information,
+            new EventId(1, eventName),
+            $"Publishing Event : {eventName}"
+        );
         return mediator.Publish(CreateEventNotification(@event!));
     }
 
     private static INotification CreateEventNotification(IEvent @event) =>
-        (INotification)Activator.CreateInstance(
-            typeof(EventNotification<>).MakeGenericType(@event.GetType()), @event)!;
+        (INotification)
+            Activator.CreateInstance(
+                typeof(EventNotification<>).MakeGenericType(@event.GetType()),
+                @event
+            )!;
 }

@@ -11,8 +11,8 @@ public class GetStatsRequestHandler(
     IRoleService roleService,
     IReadRepository<Brand> brandRepo,
     IReadRepository<Product> productRepo,
-    IStringLocalizer<GetStatsRequestHandler> localizer)
-    : IRequestHandler<GetStatsRequest, StatsDto>
+    IStringLocalizer<GetStatsRequestHandler> localizer
+) : IRequestHandler<GetStatsRequest, StatsDto>
 {
     public async Task<StatsDto> Handle(GetStatsRequest request, CancellationToken cancellationToken)
     {
@@ -21,7 +21,7 @@ public class GetStatsRequestHandler(
             ProductCount = await productRepo.CountAsync(cancellationToken),
             BrandCount = await brandRepo.CountAsync(cancellationToken),
             UserCount = await userService.GetCountAsync(cancellationToken),
-            RoleCount = await roleService.GetCountAsync(cancellationToken)
+            RoleCount = await roleService.GetCountAsync(cancellationToken),
         };
 
         var selectedYear = DateTime.Now.Year;
@@ -31,17 +31,34 @@ public class GetStatsRequestHandler(
         {
             var month = i;
             var filterStartDate = new DateTime(selectedYear, month, 01);
-            var filterEndDate = new DateTime(selectedYear, month, DateTime.DaysInMonth(selectedYear, month), 23, 59, 59); // Monthly Based
+            var filterEndDate = new DateTime(
+                selectedYear,
+                month,
+                DateTime.DaysInMonth(selectedYear, month),
+                23,
+                59,
+                59
+            ); // Monthly Based
 
-            var brandSpec = new AuditableEntitiesByCreatedOnBetweenSpec<Brand>(filterStartDate, filterEndDate);
-            var productSpec = new AuditableEntitiesByCreatedOnBetweenSpec<Product>(filterStartDate, filterEndDate);
+            var brandSpec = new AuditableEntitiesByCreatedOnBetweenSpec<Brand>(
+                filterStartDate,
+                filterEndDate
+            );
+            var productSpec = new AuditableEntitiesByCreatedOnBetweenSpec<Product>(
+                filterStartDate,
+                filterEndDate
+            );
 
             brandsFigure[i - 1] = await brandRepo.CountAsync(brandSpec, cancellationToken);
             productsFigure[i - 1] = await productRepo.CountAsync(productSpec, cancellationToken);
         }
 
-        stats.DataEnterBarChart.Add(new ChartSeries { Name = localizer["Products"], Data = productsFigure });
-        stats.DataEnterBarChart.Add(new ChartSeries { Name = localizer["Brands"], Data = brandsFigure });
+        stats.DataEnterBarChart.Add(
+            new ChartSeries { Name = localizer["Products"], Data = productsFigure }
+        );
+        stats.DataEnterBarChart.Add(
+            new ChartSeries { Name = localizer["Brands"], Data = brandsFigure }
+        );
 
         return stats;
     }

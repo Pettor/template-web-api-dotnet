@@ -19,7 +19,10 @@ public abstract class CacheService<TCacheService>
     {
         var sut = CreateCacheService();
 
-        var action = () => { var result = sut.Get<string>(null!); };
+        var action = () =>
+        {
+            var result = sut.Get<string>(null!);
+        };
 
         action.Should().Throw<ArgumentNullException>();
     }
@@ -35,7 +38,8 @@ public abstract class CacheService<TCacheService>
     }
 
 #pragma warning disable RCS1158
-    public static IEnumerable<object[]> ValueData => new List<object[]>
+    public static IEnumerable<object[]> ValueData =>
+        new List<object[]>
 #pragma warning restore RCS1158
         {
             new object[] { TestKey, TestValue },

@@ -5,10 +5,15 @@ using Backend.Domain.Common.Events;
 
 namespace Backend.Application.Catalog.Products.Queries.Delete;
 
-public class DeleteProductRequestHandler(IRepository<Product> repository, IStringLocalizer<DeleteProductRequestHandler> localizer)
-    : IRequestHandler<DeleteProductRequest, Guid>
+public class DeleteProductRequestHandler(
+    IRepository<Product> repository,
+    IStringLocalizer<DeleteProductRequestHandler> localizer
+) : IRequestHandler<DeleteProductRequest, Guid>
 {
-    public async Task<Guid> Handle(DeleteProductRequest request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(
+        DeleteProductRequest request,
+        CancellationToken cancellationToken
+    )
     {
         var product = await repository.GetByIdAsync(request.Id, cancellationToken);
 

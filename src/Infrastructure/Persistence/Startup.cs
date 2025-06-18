@@ -17,7 +17,10 @@ internal static class Startup
 {
     private static readonly ILogger Logger = Log.ForContext(typeof(Startup));
 
-    internal static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration config)
+    internal static IServiceCollection AddPersistence(
+        this IServiceCollection services,
+        IConfiguration config
+    )
     {
         // TODO: there must be a cleaner way to do IOptions validation...
         var databaseSettings = config.GetSection(nameof(DatabaseSettings)).Get<DatabaseSettings>();
@@ -37,30 +40,34 @@ internal static class Startup
 
         return services
             .Configure<DatabaseSettings>(config.GetSection(nameof(DatabaseSettings)))
-
-            .AddDbContext<ApplicationDbContext>(m => m.UseDatabase(dbProvider, rootConnectionString)
-                .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning)))
-
+            .AddDbContext<ApplicationDbContext>(m =>
+                m.UseDatabase(dbProvider, rootConnectionString)
+                    .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning))
+            )
             .AddTransient<IDatabaseInitializer, DatabaseInitializer>()
             .AddTransient<ApplicationDbInitializer>()
             .AddTransient<ApplicationDbSeeder>()
             .AddServices(typeof(ICustomSeeder), ServiceLifetime.Transient)
             .AddTransient<CustomSeederRunner>()
-
             .AddTransient<IConnectionStringSecurer, ConnectionStringSecurer>()
             .AddTransient<IConnectionStringValidator, ConnectionStringValidator>()
-
             .AddRepositories();
     }
 
-    internal static DbContextOptionsBuilder UseDatabase(this DbContextOptionsBuilder builder, string dbProvider, string connectionString)
+    internal static DbContextOptionsBuilder UseDatabase(
+        this DbContextOptionsBuilder builder,
+        string dbProvider,
+        string connectionString
+    )
     {
         switch (dbProvider.ToUpperInvariant())
         {
             case DbProviderKeys.Npgsql:
                 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-                return builder.UseNpgsql(connectionString, e =>
-                     e.MigrationsAssembly("Migrators.PostgreSQL"));
+                return builder.UseNpgsql(
+                    connectionString,
+                    e => e.MigrationsAssembly("Migrators.PostgreSQL")
+                );
 
             default:
                 throw new InvalidOperationException($"DB Provider {dbProvider} is not supported.");
@@ -72,21 +79,34 @@ internal static class Startup
         // Add Repositories
         services.AddScoped(typeof(IRepository<>), typeof(ApplicationDbRepository<>));
 
-        foreach (var aggregateRootType in
-            typeof(IAggregateRoot).Assembly.GetExportedTypes()
+        foreach (
+            var aggregateRootType in typeof(IAggregateRoot)
+                .Assembly.GetExportedTypes()
                 .Where(t => typeof(IAggregateRoot).IsAssignableFrom(t) && t.IsClass)
-                .ToList())
+                .ToList()
+        )
         {
             // Add ReadRepositories.
-            services.AddScoped(typeof(IReadRepository<>).MakeGenericType(aggregateRootType), sp =>
-                sp.GetRequiredService(typeof(IRepository<>).MakeGenericType(aggregateRootType)));
+            services.AddScoped(
+                typeof(IReadRepository<>).MakeGenericType(aggregateRootType),
+                sp =>
+                    sp.GetRequiredService(typeof(IRepository<>).MakeGenericType(aggregateRootType))
+            );
 
             // Decorate the repositories with EventAddingRepositoryDecorators and expose them as IRepositoryWithEvents.
-            services.AddScoped(typeof(IRepositoryWithEvents<>).MakeGenericType(aggregateRootType), sp =>
-                Activator.CreateInstance(
-                    typeof(EventAddingRepositoryDecorator<>).MakeGenericType(aggregateRootType),
-                    sp.GetRequiredService(typeof(IRepository<>).MakeGenericType(aggregateRootType)))
-                ?? throw new InvalidOperationException($"Couldn't create EventAddingRepositoryDecorator for aggregateRootType {aggregateRootType.Name}"));
+            services.AddScoped(
+                typeof(IRepositoryWithEvents<>).MakeGenericType(aggregateRootType),
+                sp =>
+                    Activator.CreateInstance(
+                        typeof(EventAddingRepositoryDecorator<>).MakeGenericType(aggregateRootType),
+                        sp.GetRequiredService(
+                            typeof(IRepository<>).MakeGenericType(aggregateRootType)
+                        )
+                    )
+                    ?? throw new InvalidOperationException(
+                        $"Couldn't create EventAddingRepositoryDecorator for aggregateRootType {aggregateRootType.Name}"
+                    )
+            );
         }
 
         return services;

@@ -51,9 +51,7 @@ public class ProductsController : VersionedApiController
     [OpenApiOperation("Update a product.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateProductRequest request, Guid id)
     {
-        return id != request.Id
-            ? BadRequest()
-            : Ok(await Mediator.Send(request));
+        return id != request.Id ? BadRequest() : Ok(await Mediator.Send(request));
     }
 
     [HttpDelete("{id:guid}")]

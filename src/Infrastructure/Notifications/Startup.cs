@@ -8,7 +8,10 @@ namespace Backend.Infrastructure.Notifications;
 
 internal static class Startup
 {
-    internal static IServiceCollection AddNotifications(this IServiceCollection services, IConfiguration config)
+    internal static IServiceCollection AddNotifications(
+        this IServiceCollection services,
+        IConfiguration config
+    )
     {
         var logger = Log.ForContext(typeof(Startup));
 
@@ -19,28 +22,41 @@ internal static class Startup
         }
         else
         {
-            var backplaneSettings = config.GetSection("SignalRSettings:Backplane").Get<SignalRSettings.Backplane>();
+            var backplaneSettings = config
+                .GetSection("SignalRSettings:Backplane")
+                .Get<SignalRSettings.Backplane>();
             if (backplaneSettings is null)
-                throw new InvalidOperationException("Backplane enabled, but no backplane settings in config.");
+                throw new InvalidOperationException(
+                    "Backplane enabled, but no backplane settings in config."
+                );
             switch (backplaneSettings.Provider)
             {
                 case "redis":
                     if (backplaneSettings.StringConnection is null)
-                        throw new InvalidOperationException("Redis backplane provider: No connectionString configured.");
-                    services.AddSignalR().AddStackExchangeRedis(backplaneSettings.StringConnection, options =>
-                    {
-                        options.Configuration.AbortOnConnectFail = false;
-                    });
+                        throw new InvalidOperationException(
+                            "Redis backplane provider: No connectionString configured."
+                        );
+                    services
+                        .AddSignalR()
+                        .AddStackExchangeRedis(
+                            backplaneSettings.StringConnection,
+                            options =>
+                            {
+                                options.Configuration.AbortOnConnectFail = false;
+                            }
+                        );
                     break;
 
                 default:
                     throw new InvalidOperationException(
-                        $"SignalR backplane Provider {backplaneSettings.Provider} is not supported.");
+                        $"SignalR backplane Provider {backplaneSettings.Provider} is not supported."
+                    );
             }
 
             logger.Information(
                 "SignalR Backplane Current Provider: {BackplaneSettingsProvider}",
-                backplaneSettings.Provider);
+                backplaneSettings.Provider
+            );
         }
 
         return services;
@@ -48,10 +64,13 @@ internal static class Startup
 
     internal static IEndpointRouteBuilder MapNotifications(this IEndpointRouteBuilder endpoints)
     {
-        endpoints.MapHub<NotificationHub>("/notifications", options =>
-        {
-            options.CloseOnAuthenticationExpiration = true;
-        });
+        endpoints.MapHub<NotificationHub>(
+            "/notifications",
+            options =>
+            {
+                options.CloseOnAuthenticationExpiration = true;
+            }
+        );
         return endpoints;
     }
 }

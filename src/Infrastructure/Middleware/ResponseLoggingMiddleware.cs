@@ -34,9 +34,19 @@ public class ResponseLoggingMiddleware(ICurrentUser currentUser) : IMiddleware
             LogContext.PushProperty("Tenant", tenant);
         LogContext.PushProperty("StatusCode", httpContext.Response.StatusCode);
         LogContext.PushProperty("ResponseTimeUTC", DateTime.UtcNow);
-        Log.ForContext("ResponseHeaders", httpContext.Response.Headers.ToDictionary(h => h.Key, h => h.Value.ToString()), destructureObjects: true)
-       .ForContext("ResponseBody", responseBody)
-       .Information("HTTP {RequestMethod} Request to {RequestPath} by {RequesterEmail} has Status Code {StatusCode}.", httpContext.Request.Method, httpContext.Request.Path, string.IsNullOrEmpty(email) ? "Anonymous" : email, httpContext.Response.StatusCode);
+        Log.ForContext(
+                "ResponseHeaders",
+                httpContext.Response.Headers.ToDictionary(h => h.Key, h => h.Value.ToString()),
+                destructureObjects: true
+            )
+            .ForContext("ResponseBody", responseBody)
+            .Information(
+                "HTTP {RequestMethod} Request to {RequestPath} by {RequesterEmail} has Status Code {StatusCode}.",
+                httpContext.Request.Method,
+                httpContext.Request.Path,
+                string.IsNullOrEmpty(email) ? "Anonymous" : email,
+                httpContext.Response.StatusCode
+            );
         newBody.Seek(0, SeekOrigin.Begin);
         await newBody.CopyToAsync(originalBody);
     }

@@ -14,8 +14,8 @@ public class ApplicationDbContext(
     ICurrentUser currentUser,
     ISerializerService serializer,
     IOptions<DatabaseSettings> dbSettings,
-    IEventPublisher events)
-    : BaseDbContext(currentTenant, options, currentUser, serializer, dbSettings, events)
+    IEventPublisher events
+) : BaseDbContext(currentTenant, options, currentUser, serializer, dbSettings, events)
 {
     public DbSet<Product> Products => Set<Product>();
     public DbSet<Brand> Brands => Set<Brand>();

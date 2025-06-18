@@ -9,6 +9,4 @@ namespace Backend.Application.Common.Persistence;
 /// The regular read/write repository for an aggregate root.
 /// </summary>
 public interface IRepository<T> : IRepositoryBase<T>
-    where T : class, IAggregateRoot
-{
-}
+    where T : class, IAggregateRoot { }

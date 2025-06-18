@@ -8,8 +8,12 @@ namespace Backend.Infrastructure.FileStorage;
 
 public class LocalFileStorageService : IFileStorageService
 {
-    public async Task<string> UploadAsync<T>(FileUploadRequest? request, FileType supportedFileType, CancellationToken cancellationToken = default)
-    where T : class
+    public async Task<string> UploadAsync<T>(
+        FileUploadRequest? request,
+        FileType supportedFileType,
+        CancellationToken cancellationToken = default
+    )
+        where T : class
     {
         if (request?.Data is null)
         {
@@ -21,7 +25,10 @@ public class LocalFileStorageService : IFileStorageService
         if (request.Name is null)
             throw new InvalidOperationException("Name is required.");
 
-        var base64Data = Regex.Match(request.Data, "data:image/(?<type>.+?),(?<data>.+)").Groups["data"].Value;
+        var base64Data = Regex
+            .Match(request.Data, "data:image/(?<type>.+?),(?<data>.+)")
+            .Groups["data"]
+            .Value;
 
         var streamData = new MemoryStream(Convert.FromBase64String(base64Data));
         if (streamData.Length > 0)
@@ -86,7 +93,12 @@ public class LocalFileStorageService : IFileStorageService
 
         if (Path.HasExtension(path))
         {
-            return GetNextFilename(path.Insert(path.LastIndexOf(Path.GetExtension(path), StringComparison.Ordinal), NumberPattern));
+            return GetNextFilename(
+                path.Insert(
+                    path.LastIndexOf(Path.GetExtension(path), StringComparison.Ordinal),
+                    NumberPattern
+                )
+            );
         }
 
         return GetNextFilename(path + NumberPattern);
@@ -101,7 +113,8 @@ public class LocalFileStorageService : IFileStorageService
             return tmp;
         }
 
-        int min = 1, max = 2;
+        int min = 1,
+            max = 2;
 
         while (File.Exists(string.Format(pattern, max)))
         {

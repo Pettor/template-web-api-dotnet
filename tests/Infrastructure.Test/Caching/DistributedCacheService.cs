@@ -6,11 +6,13 @@ using Microsoft.Extensions.Options;
 
 namespace Infrastructure.Test.Caching;
 
-public class DistributedCacheService : CacheService<Backend.Infrastructure.Caching.DistributedCacheService>
+public class DistributedCacheService
+    : CacheService<Backend.Infrastructure.Caching.DistributedCacheService>
 {
     protected override Backend.Infrastructure.Caching.DistributedCacheService CreateCacheService() =>
         new(
             new MemoryDistributedCache(Options.Create(new MemoryDistributedCacheOptions())),
             new NewtonSoftService(),
-            NullLogger<Backend.Infrastructure.Caching.DistributedCacheService>.Instance);
+            NullLogger<Backend.Infrastructure.Caching.DistributedCacheService>.Instance
+        );
 }

@@ -11,8 +11,6 @@ public class BrandConfig : IEntityTypeConfiguration<Brand>
     {
         builder.IsMultiTenant();
 
-        builder
-            .Property(b => b.Name)
-                .HasMaxLength(256);
+        builder.Property(b => b.Name).HasMaxLength(256);
     }
 }

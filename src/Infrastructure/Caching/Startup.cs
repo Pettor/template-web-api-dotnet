@@ -6,7 +6,10 @@ namespace Backend.Infrastructure.Caching;
 
 internal static class Startup
 {
-    internal static IServiceCollection AddCaching(this IServiceCollection services, IConfiguration config)
+    internal static IServiceCollection AddCaching(
+        this IServiceCollection services,
+        IConfiguration config
+    )
     {
         var settings = config.GetSection(nameof(CacheSettings)).Get<CacheSettings>();
         if (settings!.UseDistributedCache)
@@ -19,7 +22,7 @@ internal static class Startup
                     options.ConfigurationOptions = new StackExchange.Redis.ConfigurationOptions
                     {
                         AbortOnConnectFail = true,
-                        EndPoints = { settings.RedisUrl }
+                        EndPoints = { settings.RedisUrl },
                     };
                 });
             }

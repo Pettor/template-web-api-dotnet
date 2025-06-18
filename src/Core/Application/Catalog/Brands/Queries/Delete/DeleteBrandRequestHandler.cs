@@ -9,8 +9,8 @@ namespace Backend.Application.Catalog.Brands.Queries.Delete;
 public class DeleteBrandRequestHandler(
     IRepositoryWithEvents<Brand> brandRepo,
     IReadRepository<Product> productRepo,
-    IStringLocalizer<DeleteBrandRequestHandler> localizer)
-    : IRequestHandler<DeleteBrandRequest, Guid>
+    IStringLocalizer<DeleteBrandRequestHandler> localizer
+) : IRequestHandler<DeleteBrandRequest, Guid>
 {
     // Add Domain Events automatically by using IRepositoryWithEvents
 

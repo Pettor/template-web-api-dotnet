@@ -11,7 +11,9 @@ public class PersonalController(IUserService userService) : VersionNeutralApiCon
 {
     [HttpGet("profile")]
     [OpenApiOperation("Get profile details of currently logged in user.", "")]
-    public async Task<ActionResult<UserDetailsDto>> GetProfileAsync(CancellationToken cancellationToken)
+    public async Task<ActionResult<UserDetailsDto>> GetProfileAsync(
+        CancellationToken cancellationToken
+    )
     {
         return User.GetUserId() is not { } userId || string.IsNullOrEmpty(userId)
             ? Unauthorized()
@@ -47,7 +49,9 @@ public class PersonalController(IUserService userService) : VersionNeutralApiCon
 
     [HttpGet("permissions")]
     [OpenApiOperation("Get permissions of currently logged in user.", "")]
-    public async Task<ActionResult<List<string>>> GetPermissionsAsync(CancellationToken cancellationToken)
+    public async Task<ActionResult<List<string>>> GetPermissionsAsync(
+        CancellationToken cancellationToken
+    )
     {
         return User.GetUserId() is not { } userId || string.IsNullOrEmpty(userId)
             ? Unauthorized()

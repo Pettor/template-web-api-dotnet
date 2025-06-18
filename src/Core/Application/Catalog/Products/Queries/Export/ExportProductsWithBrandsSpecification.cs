@@ -4,7 +4,8 @@ using Backend.Domain.Catalog;
 
 namespace Backend.Application.Catalog.Products.Queries.Export;
 
-public class ExportProductsWithBrandsSpecification : EntitiesByBaseFilterSpec<Product, ProductExportDto>
+public class ExportProductsWithBrandsSpecification
+    : EntitiesByBaseFilterSpec<Product, ProductExportDto>
 {
     public ExportProductsWithBrandsSpecification(ExportProductsRequest request)
         : base(request) =>

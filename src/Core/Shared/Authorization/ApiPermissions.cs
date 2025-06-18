@@ -38,11 +38,20 @@ public static class ApiPermissions
         new("View Tenants", ApiAction.View, ApiResource.Tenants, IsRoot: true),
         new("Create Tenants", ApiAction.Create, ApiResource.Tenants, IsRoot: true),
         new("Update Tenants", ApiAction.Update, ApiResource.Tenants, IsRoot: true),
-        new("Upgrade Tenant Subscription", ApiAction.UpgradeSubscription, ApiResource.Tenants, IsRoot: true)
+        new(
+            "Upgrade Tenant Subscription",
+            ApiAction.UpgradeSubscription,
+            ApiResource.Tenants,
+            IsRoot: true
+        ),
     };
 
-    public static IReadOnlyList<ApiPermission> All { get; } = new ReadOnlyCollection<ApiPermission>(AllClaims);
-    public static IReadOnlyList<ApiPermission> Root { get; } = new ReadOnlyCollection<ApiPermission>(AllClaims.Where(p => p.IsRoot).ToArray());
-    public static IReadOnlyList<ApiPermission> Admin { get; } = new ReadOnlyCollection<ApiPermission>(AllClaims.Where(p => !p.IsRoot).ToArray());
-    public static IReadOnlyList<ApiPermission> Basic { get; } = new ReadOnlyCollection<ApiPermission>(AllClaims.Where(p => p.IsBasic).ToArray());
+    public static IReadOnlyList<ApiPermission> All { get; } =
+        new ReadOnlyCollection<ApiPermission>(AllClaims);
+    public static IReadOnlyList<ApiPermission> Root { get; } =
+        new ReadOnlyCollection<ApiPermission>(AllClaims.Where(p => p.IsRoot).ToArray());
+    public static IReadOnlyList<ApiPermission> Admin { get; } =
+        new ReadOnlyCollection<ApiPermission>(AllClaims.Where(p => !p.IsRoot).ToArray());
+    public static IReadOnlyList<ApiPermission> Basic { get; } =
+        new ReadOnlyCollection<ApiPermission>(AllClaims.Where(p => p.IsBasic).ToArray());
 }

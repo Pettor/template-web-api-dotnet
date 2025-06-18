@@ -2,6 +2,4 @@
 
 namespace Backend.Application.Auditing.Queries.Get;
 
-public class GetMyAuditLogsRequest : IRequest<List<AuditDto>>
-{
-}
+public class GetMyAuditLogsRequest : IRequest<List<AuditDto>> { }

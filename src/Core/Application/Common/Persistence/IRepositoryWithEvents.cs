@@ -9,6 +9,4 @@ namespace Backend.Application.Common.Persistence;
 /// updating or deleting them.
 /// </summary>
 public interface IRepositoryWithEvents<T> : IRepositoryBase<T>
-    where T : class, IAggregateRoot
-{
-}
+    where T : class, IAggregateRoot { }

@@ -59,10 +59,11 @@ public class TenantsController : VersionNeutralApiController
     [MustHavePermission(ApiAction.UpgradeSubscription, ApiResource.Tenants)]
     [OpenApiOperation("Upgrade a tenant's subscription.", "")]
     [ApiConventionMethod(typeof(ApiConventions), nameof(ApiConventions.Register))]
-    public async Task<ActionResult<string>> UpgradeSubscriptionAsync(string id, UpgradeSubscriptionRequest request)
+    public async Task<ActionResult<string>> UpgradeSubscriptionAsync(
+        string id,
+        UpgradeSubscriptionRequest request
+    )
     {
-        return id != request.TenantId
-            ? BadRequest()
-            : Ok(await Mediator.Send(request));
+        return id != request.TenantId ? BadRequest() : Ok(await Mediator.Send(request));
     }
 }

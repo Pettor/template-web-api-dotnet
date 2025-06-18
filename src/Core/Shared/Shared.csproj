@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <RootNamespace>Backend.Shared</RootNamespace>
-        <AssemblyName>Backend.Shared</AssemblyName>
-        <AssemblyVersion>0.7.0</AssemblyVersion>
-    </PropertyGroup>
-    <ItemGroup>
-      <PackageReference Remove="Roslynator.Analyzers" />
-    </ItemGroup>
+  <PropertyGroup>
+    <RootNamespace>Backend.Shared</RootNamespace>
+    <AssemblyName>Backend.Shared</AssemblyName>
+    <AssemblyVersion>0.7.0</AssemblyVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Remove="Roslynator.Analyzers" />
+  </ItemGroup>
 </Project>

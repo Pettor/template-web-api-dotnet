@@ -8,7 +8,10 @@ namespace Backend.Infrastructure.Auth.AzureAd;
 
 internal static class Startup
 {
-    internal static IServiceCollection AddAzureAdAuth(this IServiceCollection services, IConfiguration config)
+    internal static IServiceCollection AddAzureAdAuth(
+        this IServiceCollection services,
+        IConfiguration config
+    )
     {
         var logger = Log.ForContext(typeof(AzureAdJwtBearerEvents));
 
@@ -21,7 +24,9 @@ internal static class Startup
             })
             .AddMicrosoftIdentityWebApi(
                 jwtOptions => jwtOptions.Events = new AzureAdJwtBearerEvents(logger, config),
-                msIdentityOptions => config.GetSection("SecuritySettings:AzureAd").Bind(msIdentityOptions));
+                msIdentityOptions =>
+                    config.GetSection("SecuritySettings:AzureAd").Bind(msIdentityOptions)
+            );
 
         return services;
     }

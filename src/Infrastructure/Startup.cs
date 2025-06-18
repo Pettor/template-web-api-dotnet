@@ -26,7 +26,10 @@ namespace Backend.Infrastructure;
 
 public static class Startup
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
+    public static IServiceCollection AddInfrastructure(
+        this IServiceCollection services,
+        IConfiguration config
+    )
     {
         MapsterSettings.Configure();
         return services
@@ -60,16 +63,23 @@ public static class Startup
     private static IServiceCollection AddHealthCheck(this IServiceCollection services) =>
         services.AddHealthChecks().AddCheck<TenantHealthCheck>("Tenant").Services;
 
-    public static async Task InitializeDatabasesAsync(this IServiceProvider services, CancellationToken cancellationToken = default)
+    public static async Task InitializeDatabasesAsync(
+        this IServiceProvider services,
+        CancellationToken cancellationToken = default
+    )
     {
         // Create a new scope to retrieve scoped services
         using var scope = services.CreateScope();
 
-        await scope.ServiceProvider.GetRequiredService<IDatabaseInitializer>()
+        await scope
+            .ServiceProvider.GetRequiredService<IDatabaseInitializer>()
             .InitializeDatabasesAsync(cancellationToken);
     }
 
-    public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder builder, IConfiguration config) =>
+    public static IApplicationBuilder UseInfrastructure(
+        this IApplicationBuilder builder,
+        IConfiguration config
+    ) =>
         builder
             .UseLocalization(config)
             .UseStaticFiles()
@@ -94,6 +104,7 @@ public static class Startup
         return builder;
     }
 
-    private static IEndpointConventionBuilder MapHealthCheck(this IEndpointRouteBuilder endpoints) =>
-        endpoints.MapHealthChecks("/api/health").RequireAuthorization();
+    private static IEndpointConventionBuilder MapHealthCheck(
+        this IEndpointRouteBuilder endpoints
+    ) => endpoints.MapHealthChecks("/api/health").RequireAuthorization();
 }

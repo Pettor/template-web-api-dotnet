@@ -6,6 +6,4 @@ namespace Backend.Application.Common.Persistence;
 /// The read-only repository for an aggregate root.
 /// </summary>
 public interface IReadRepository<T> : IReadRepositoryBase<T>
-    where T : class, IAggregateRoot
-{
-}
+    where T : class, IAggregateRoot { }

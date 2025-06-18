@@ -5,7 +5,8 @@ using Npgsql;
 
 namespace Backend.Infrastructure.Persistence.ConnectionString;
 
-public class ConnectionStringSecurer(IOptions<DatabaseSettings> dbSettings) : IConnectionStringSecurer
+public class ConnectionStringSecurer(IOptions<DatabaseSettings> dbSettings)
+    : IConnectionStringSecurer
 {
     private const string HiddenValueDefault = "*******";
     private readonly DatabaseSettings _dbSettings = dbSettings.Value;
@@ -25,7 +26,7 @@ public class ConnectionStringSecurer(IOptions<DatabaseSettings> dbSettings) : IC
         return dbProvider?.ToLower() switch
         {
             DbProviderKeys.Npgsql => MakeSecureNpgsqlConnectionString(connectionString),
-            _ => connectionString
+            _ => connectionString,
         };
     }
 

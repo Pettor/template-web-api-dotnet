@@ -4,16 +4,15 @@ using Microsoft.Extensions.Logging;
 
 namespace Backend.Infrastructure.Caching;
 
-public class LocalCacheService(IMemoryCache cache, ILogger<LocalCacheService> logger) : ICacheService
+public class LocalCacheService(IMemoryCache cache, ILogger<LocalCacheService> logger)
+    : ICacheService
 {
-    public T? Get<T>(string key) =>
-        cache.Get<T>(key);
+    public T? Get<T>(string key) => cache.Get<T>(key);
 
     public Task<T?> GetAsync<T>(string key, CancellationToken token = default) =>
         Task.FromResult(Get<T>(key));
 
-    public void Refresh(string key) =>
-        cache.TryGetValue(key, out _);
+    public void Refresh(string key) => cache.TryGetValue(key, out _);
 
     public Task RefreshAsync(string key, CancellationToken token = default)
     {
@@ -21,8 +20,7 @@ public class LocalCacheService(IMemoryCache cache, ILogger<LocalCacheService> lo
         return Task.CompletedTask;
     }
 
-    public void Remove(string key) =>
-        cache.Remove(key);
+    public void Remove(string key) => cache.Remove(key);
 
     public Task RemoveAsync(string key, CancellationToken token = default)
     {
@@ -38,11 +36,20 @@ public class LocalCacheService(IMemoryCache cache, ILogger<LocalCacheService> lo
             slidingExpiration = TimeSpan.FromMinutes(10); // Default expiration time of 10 minutes.
         }
 
-        cache.Set(key, value, new MemoryCacheEntryOptions { SlidingExpiration = slidingExpiration });
+        cache.Set(
+            key,
+            value,
+            new MemoryCacheEntryOptions { SlidingExpiration = slidingExpiration }
+        );
         logger.LogDebug($"Added to Cache : {key}", key);
     }
 
-    public Task SetAsync<T>(string key, T value, TimeSpan? slidingExpiration = null, CancellationToken token = default)
+    public Task SetAsync<T>(
+        string key,
+        T value,
+        TimeSpan? slidingExpiration = null,
+        CancellationToken token = default
+    )
     {
         Set(key, value, slidingExpiration);
         return Task.CompletedTask;

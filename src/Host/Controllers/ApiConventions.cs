@@ -15,28 +15,14 @@ public static class ApiConventions
     public static void Search(
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object request)
-    {
-    }
+            object request
+    ) { }
 
     [ProducesResponseType(200)]
     [ProducesResponseType(400, Type = typeof(HttpValidationProblemDetails))]
     [ProducesDefaultResponseType(typeof(ErrorResult))]
     [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Prefix)]
-    public static void Get()
-    {
-    }
-
-    [ProducesResponseType(200)]
-    [ProducesResponseType(400, Type = typeof(HttpValidationProblemDetails))]
-    [ProducesDefaultResponseType(typeof(ErrorResult))]
-    [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Prefix)]
-    public static void Get(
-        [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
-        [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object id)
-    {
-    }
+    public static void Get() { }
 
     [ProducesResponseType(200)]
     [ProducesResponseType(400, Type = typeof(HttpValidationProblemDetails))]
@@ -45,12 +31,21 @@ public static class ApiConventions
     public static void Get(
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object id,
+            object id
+    ) { }
+
+    [ProducesResponseType(200)]
+    [ProducesResponseType(400, Type = typeof(HttpValidationProblemDetails))]
+    [ProducesDefaultResponseType(typeof(ErrorResult))]
+    [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Prefix)]
+    public static void Get(
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object cancellationtoken)
-    {
-    }
+            object id,
+        [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
+        [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
+            object cancellationtoken
+    ) { }
 
     [ProducesResponseType(200)]
     [ProducesResponseType(400, Type = typeof(HttpValidationProblemDetails))]
@@ -59,9 +54,8 @@ public static class ApiConventions
     public static void Post(
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object request)
-    {
-    }
+            object request
+    ) { }
 
     [ProducesResponseType(200)]
     [ProducesResponseType(400, Type = typeof(HttpValidationProblemDetails))]
@@ -70,12 +64,11 @@ public static class ApiConventions
     public static void Post(
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object request,
+            object request,
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object cancellationToken)
-    {
-    }
+            object cancellationToken
+    ) { }
 
     [ProducesResponseType(200)]
     [ProducesResponseType(400, Type = typeof(HttpValidationProblemDetails))]
@@ -84,9 +77,8 @@ public static class ApiConventions
     public static void Register(
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object request)
-    {
-    }
+            object request
+    ) { }
 
     [ProducesResponseType(200)]
     [ProducesResponseType(400, Type = typeof(HttpValidationProblemDetails))]
@@ -95,9 +87,8 @@ public static class ApiConventions
     public static void Create(
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object request)
-    {
-    }
+            object request
+    ) { }
 
     [ProducesResponseType(200)]
     [ProducesResponseType(400, Type = typeof(HttpValidationProblemDetails))]
@@ -106,9 +97,8 @@ public static class ApiConventions
     public static void Update(
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object request)
-    {
-    }
+            object request
+    ) { }
 
     [ProducesResponseType(200)]
     [ProducesResponseType(400, Type = typeof(HttpValidationProblemDetails))]
@@ -117,12 +107,11 @@ public static class ApiConventions
     public static void Update(
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object request,
+            object request,
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object id)
-    {
-    }
+            object id
+    ) { }
 
     [ProducesResponseType(200)]
     [ProducesResponseType(400, Type = typeof(HttpValidationProblemDetails))]
@@ -131,15 +120,14 @@ public static class ApiConventions
     public static void Update(
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object request,
+            object request,
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object id,
+            object id,
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object cancellationToken)
-    {
-    }
+            object cancellationToken
+    ) { }
 
     [ProducesResponseType(200)]
     [ProducesResponseType(400, Type = typeof(HttpValidationProblemDetails))]
@@ -148,12 +136,11 @@ public static class ApiConventions
     public static void Put(
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object request,
+            object request,
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object id)
-    {
-    }
+            object id
+    ) { }
 
     [ProducesResponseType(200)]
     [ProducesResponseType(400, Type = typeof(HttpValidationProblemDetails))]
@@ -162,15 +149,14 @@ public static class ApiConventions
     public static void Put(
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object request,
+            object request,
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object id,
+            object id,
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object cancellationToken)
-    {
-    }
+            object cancellationToken
+    ) { }
 
     [ProducesResponseType(200)]
     [ProducesResponseType(400, Type = typeof(HttpValidationProblemDetails))]
@@ -179,9 +165,8 @@ public static class ApiConventions
     public static void Delete(
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object id)
-    {
-    }
+            object id
+    ) { }
 
     [ProducesResponseType(200)]
     [ProducesResponseType(400, Type = typeof(HttpValidationProblemDetails))]
@@ -190,12 +175,11 @@ public static class ApiConventions
     public static void Delete(
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object id,
+            object id,
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object cancellationToken)
-    {
-    }
+            object cancellationToken
+    ) { }
 
     [ProducesResponseType(200)]
     [ProducesResponseType(400, Type = typeof(HttpValidationProblemDetails))]
@@ -204,7 +188,6 @@ public static class ApiConventions
     public static void Generate(
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
-        object request)
-    {
-    }
+            object request
+    ) { }
 }

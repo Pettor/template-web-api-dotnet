@@ -7,13 +7,13 @@ using Microsoft.Extensions.Logging;
 namespace Backend.Infrastructure.Caching;
 
 #pragma warning disable CA2254
-public class DistributedCacheService(IDistributedCache cache, ISerializerService serializer, ILogger<DistributedCacheService> logger)
-    : ICacheService
+public class DistributedCacheService(
+    IDistributedCache cache,
+    ISerializerService serializer,
+    ILogger<DistributedCacheService> logger
+) : ICacheService
 {
-    public T? Get<T>(string key) =>
-        Get(key) is byte[] data
-            ? Deserialize<T>(data)
-            : default;
+    public T? Get<T>(string key) => Get(key) is byte[] data ? Deserialize<T>(data) : default;
 
     private byte[]? Get(string key)
     {
@@ -30,9 +30,7 @@ public class DistributedCacheService(IDistributedCache cache, ISerializerService
     }
 
     public async Task<T?> GetAsync<T>(string key, CancellationToken token = default) =>
-        await GetAsync(key, token) is byte[] data
-            ? Deserialize<T>(data)
-            : default;
+        await GetAsync(key, token) is byte[] data ? Deserialize<T>(data) : default;
 
     private async Task<byte[]?> GetAsync(string key, CancellationToken token = default)
     {
@@ -52,9 +50,7 @@ public class DistributedCacheService(IDistributedCache cache, ISerializerService
         {
             cache.Refresh(key);
         }
-        catch
-        {
-        }
+        catch { }
     }
 
     public async Task RefreshAsync(string key, CancellationToken token = default)
@@ -64,9 +60,7 @@ public class DistributedCacheService(IDistributedCache cache, ISerializerService
             await cache.RefreshAsync(key, token);
             logger.LogDebug(string.Format("Cache Refreshed : {0}", key));
         }
-        catch
-        {
-        }
+        catch { }
     }
 
     public void Remove(string key)
@@ -75,9 +69,7 @@ public class DistributedCacheService(IDistributedCache cache, ISerializerService
         {
             cache.Remove(key);
         }
-        catch
-        {
-        }
+        catch { }
     }
 
     public async Task RemoveAsync(string key, CancellationToken token = default)
@@ -86,9 +78,7 @@ public class DistributedCacheService(IDistributedCache cache, ISerializerService
         {
             await cache.RemoveAsync(key, token);
         }
-        catch
-        {
-        }
+        catch { }
     }
 
     public void Set<T>(string key, T value, TimeSpan? slidingExpiration = null) =>
@@ -101,28 +91,32 @@ public class DistributedCacheService(IDistributedCache cache, ISerializerService
             cache.Set(key, value, GetOptions(slidingExpiration));
             logger.LogDebug($"Added to Cache : {key}");
         }
-        catch
-        {
-        }
+        catch { }
     }
 
-    public Task SetAsync<T>(string key, T value, TimeSpan? slidingExpiration = null, CancellationToken cancellationToken = default) =>
-        SetAsync(key, Serialize(value), slidingExpiration, cancellationToken);
+    public Task SetAsync<T>(
+        string key,
+        T value,
+        TimeSpan? slidingExpiration = null,
+        CancellationToken cancellationToken = default
+    ) => SetAsync(key, Serialize(value), slidingExpiration, cancellationToken);
 
-    private async Task SetAsync(string key, byte[] value, TimeSpan? slidingExpiration = null, CancellationToken token = default)
+    private async Task SetAsync(
+        string key,
+        byte[] value,
+        TimeSpan? slidingExpiration = null,
+        CancellationToken token = default
+    )
     {
         try
         {
             await cache.SetAsync(key, value, GetOptions(slidingExpiration), token);
             logger.LogDebug($"Added to Cache : {key}");
         }
-        catch
-        {
-        }
+        catch { }
     }
 
-    private byte[] Serialize<T>(T item) =>
-        Encoding.Default.GetBytes(serializer.Serialize(item));
+    private byte[] Serialize<T>(T item) => Encoding.Default.GetBytes(serializer.Serialize(item));
 
     private T? Deserialize<T>(byte[] cachedData) =>
         serializer.Deserialize<T>(Encoding.Default.GetString(cachedData));

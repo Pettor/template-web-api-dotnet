@@ -16,8 +16,6 @@ public class FileUploadRequestValidator : CustomValidator<FileUploadRequest>
             .WithMessage("Image Extension cannot be empty!")
             .MaximumLength(5);
 
-        RuleFor(p => p.Data)
-            .NotEmpty()
-            .WithMessage("Image Data cannot be empty!");
+        RuleFor(p => p.Data).NotEmpty().WithMessage("Image Data cannot be empty!");
     }
 }

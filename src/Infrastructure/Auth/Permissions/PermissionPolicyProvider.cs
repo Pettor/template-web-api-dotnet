@@ -4,11 +4,13 @@ using Microsoft.Extensions.Options;
 
 namespace Backend.Infrastructure.Auth.Permissions;
 
-internal class PermissionPolicyProvider(IOptions<AuthorizationOptions> options) : IAuthorizationPolicyProvider
+internal class PermissionPolicyProvider(IOptions<AuthorizationOptions> options)
+    : IAuthorizationPolicyProvider
 {
     public DefaultAuthorizationPolicyProvider FallbackPolicyProvider { get; } = new(options);
 
-    public Task<AuthorizationPolicy> GetDefaultPolicyAsync() => FallbackPolicyProvider.GetDefaultPolicyAsync();
+    public Task<AuthorizationPolicy> GetDefaultPolicyAsync() =>
+        FallbackPolicyProvider.GetDefaultPolicyAsync();
 
     public Task<AuthorizationPolicy?> GetPolicyAsync(string policyName)
     {
@@ -22,5 +24,6 @@ internal class PermissionPolicyProvider(IOptions<AuthorizationOptions> options) 
         return FallbackPolicyProvider.GetPolicyAsync(policyName);
     }
 
-    public Task<AuthorizationPolicy?> GetFallbackPolicyAsync() => Task.FromResult<AuthorizationPolicy?>(null);
+    public Task<AuthorizationPolicy?> GetFallbackPolicyAsync() =>
+        Task.FromResult<AuthorizationPolicy?>(null);
 }

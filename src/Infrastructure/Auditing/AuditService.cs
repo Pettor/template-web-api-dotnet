@@ -11,8 +11,8 @@ public class AuditService(ApplicationDbContext context) : IAuditService
 {
     public async Task<List<AuditDto>> GetUserTrailsAsync(Guid userId)
     {
-        var trails = await context.AuditTrails
-            .Where(a => a.UserId == userId)
+        var trails = await context
+            .AuditTrails.Where(a => a.UserId == userId)
             .OrderByDescending(a => a.DateTime)
             .Take(250)
             .ToListAsync();

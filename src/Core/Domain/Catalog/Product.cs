@@ -20,7 +20,13 @@ public class Product : AuditableEntity, IAggregateRoot
         BrandId = brandId;
     }
 
-    public Product Update(string? name, string? description, decimal? rate, Guid? brandId, string? imagePath)
+    public Product Update(
+        string? name,
+        string? description,
+        decimal? rate,
+        Guid? brandId,
+        string? imagePath
+    )
     {
         if (name is not null && Name?.Equals(name) is not true)
             Name = name;

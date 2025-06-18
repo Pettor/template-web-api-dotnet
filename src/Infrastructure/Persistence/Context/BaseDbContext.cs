@@ -17,9 +17,18 @@ public abstract class BaseDbContext(
     ICurrentUser currentUser,
     ISerializerService serializer,
     IOptions<DatabaseSettings> dbSettings,
-    IEventPublisher events)
-    : MultiTenantIdentityDbContext<ApplicationUser, ApplicationRole, string, IdentityUserClaim<string>, IdentityUserRole<string>,
-        IdentityUserLogin<string>, ApplicationRoleClaim, IdentityUserToken<string>>(currentTenant, options)
+    IEventPublisher events
+)
+    : MultiTenantIdentityDbContext<
+        ApplicationUser,
+        ApplicationRole,
+        string,
+        IdentityUserClaim<string>,
+        IdentityUserRole<string>,
+        IdentityUserLogin<string>,
+        ApplicationRoleClaim,
+        IdentityUserToken<string>
+    >(currentTenant, options)
 {
     protected readonly ICurrentUser CurrentUser = currentUser;
     private readonly DatabaseSettings _dbSettings = dbSettings.Value;
@@ -58,7 +67,9 @@ public abstract class BaseDbContext(
         }
     }
 
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+    public override async Task<int> SaveChangesAsync(
+        CancellationToken cancellationToken = new CancellationToken()
+    )
     {
         var auditEntries = HandleAuditingBeforeSaveChanges(CurrentUser.GetUserId());
 
@@ -102,14 +113,19 @@ public abstract class BaseDbContext(
         ChangeTracker.DetectChanges();
 
         var trailEntries = new List<AuditTrail>();
-        foreach (var entry in ChangeTracker.Entries<IAuditableEntity>()
-            .Where(e => e.State is EntityState.Added or EntityState.Deleted or EntityState.Modified)
-            .ToList())
+        foreach (
+            var entry in ChangeTracker
+                .Entries<IAuditableEntity>()
+                .Where(e =>
+                    e.State is EntityState.Added or EntityState.Deleted or EntityState.Modified
+                )
+                .ToList()
+        )
         {
             var trailEntry = new AuditTrail(entry, serializer)
             {
                 TableName = entry.Entity.GetType().Name,
-                UserId = userId
+                UserId = userId,
             };
             trailEntries.Add(trailEntry);
             foreach (var property in entry.Properties)
@@ -140,14 +156,22 @@ public abstract class BaseDbContext(
                         break;
 
                     case EntityState.Modified:
-                        if (property.IsModified && entry.Entity is ISoftDelete && property.OriginalValue is null && property.CurrentValue != null)
+                        if (
+                            property.IsModified
+                            && entry.Entity is ISoftDelete
+                            && property.OriginalValue is null
+                            && property.CurrentValue != null
+                        )
                         {
                             trailEntry.ChangedColumns.Add(propertyName);
                             trailEntry.TrailType = TrailType.Delete;
                             trailEntry.OldValues[propertyName] = property.OriginalValue;
                             trailEntry.NewValues[propertyName] = property.CurrentValue;
                         }
-                        else if (property.IsModified && property.OriginalValue?.Equals(property.CurrentValue) == false)
+                        else if (
+                            property.IsModified
+                            && property.OriginalValue?.Equals(property.CurrentValue) == false
+                        )
                         {
                             trailEntry.ChangedColumns.Add(propertyName);
                             trailEntry.TrailType = TrailType.Update;
@@ -168,7 +192,10 @@ public abstract class BaseDbContext(
         return trailEntries.Where(e => e.HasTemporaryProperties).ToList();
     }
 
-    private Task HandleAuditingAfterSaveChangesAsync(List<AuditTrail> trailEntries, CancellationToken cancellationToken = new())
+    private Task HandleAuditingAfterSaveChangesAsync(
+        List<AuditTrail> trailEntries,
+        CancellationToken cancellationToken = new()
+    )
     {
         if (trailEntries is null || trailEntries.Count == 0)
         {
@@ -197,7 +224,8 @@ public abstract class BaseDbContext(
 
     private async Task SendDomainEventsAsync()
     {
-        var entitiesWithEvents = ChangeTracker.Entries<IEntity>()
+        var entitiesWithEvents = ChangeTracker
+            .Entries<IEntity>()
             .Select(e => e.Entity)
             .Where(e => e.DomainEvents.Count > 0)
             .ToArray();

@@ -7,18 +7,30 @@ namespace Backend.Application.Common.Validation;
 // For more info see https://github.com/FluentValidation/FluentValidation/issues/1648
 public static class SetNonNullableValidatorExtension
 {
-    public static IRuleBuilderOptions<T, TProperty?> SetNonNullableValidator<T, TProperty>(this IRuleBuilder<T, TProperty?> ruleBuilder, IValidator<TProperty> validator, params string[] ruleSets)
+    public static IRuleBuilderOptions<T, TProperty?> SetNonNullableValidator<T, TProperty>(
+        this IRuleBuilder<T, TProperty?> ruleBuilder,
+        IValidator<TProperty> validator,
+        params string[] ruleSets
+    )
     {
-        var adapter = new NullableChildValidatorAdaptor<T, TProperty>(validator, validator.GetType())
+        var adapter = new NullableChildValidatorAdaptor<T, TProperty>(
+            validator,
+            validator.GetType()
+        )
         {
-            RuleSets = ruleSets
+            RuleSets = ruleSets,
         };
 
         return ruleBuilder.SetAsyncValidator(adapter);
     }
 
-    private class NullableChildValidatorAdaptor<T, TProperty>(IValidator<TProperty> validator, Type validatorType)
-        : ChildValidatorAdaptor<T, TProperty>(validator, validatorType), IPropertyValidator<T, TProperty?>, IAsyncPropertyValidator<T, TProperty?>
+    private class NullableChildValidatorAdaptor<T, TProperty>(
+        IValidator<TProperty> validator,
+        Type validatorType
+    )
+        : ChildValidatorAdaptor<T, TProperty>(validator, validatorType),
+            IPropertyValidator<T, TProperty?>,
+            IAsyncPropertyValidator<T, TProperty?>
     {
 #pragma warning disable RCS1132
         public override bool IsValid(ValidationContext<T> context, TProperty? value)
@@ -26,7 +38,11 @@ public static class SetNonNullableValidatorExtension
             return base.IsValid(context, value!);
         }
 
-        public override Task<bool> IsValidAsync(ValidationContext<T> context, TProperty? value, CancellationToken cancellation)
+        public override Task<bool> IsValidAsync(
+            ValidationContext<T> context,
+            TProperty? value,
+            CancellationToken cancellation
+        )
         {
             return base.IsValidAsync(context, value!, cancellation);
         }

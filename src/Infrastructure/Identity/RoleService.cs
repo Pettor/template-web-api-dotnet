@@ -21,32 +21,33 @@ internal class RoleService(
     IStringLocalizer<RoleService> localizer,
     ICurrentUser currentUser,
     ITenantInfo currentTenant,
-    IEventPublisher events)
-    : IRoleService
+    IEventPublisher events
+) : IRoleService
 {
     public async Task<List<RoleDto>> GetListAsync(CancellationToken cancellationToken) =>
-        (await roleManager.Roles.ToListAsync(cancellationToken))
-            .Adapt<List<RoleDto>>();
+        (await roleManager.Roles.ToListAsync(cancellationToken)).Adapt<List<RoleDto>>();
 
     public async Task<int> GetCountAsync(CancellationToken cancellationToken) =>
         await roleManager.Roles.CountAsync(cancellationToken);
 
     public async Task<bool> ExistsAsync(string roleName, string? excludeId) =>
-        await roleManager.FindByNameAsync(roleName)
-            is ApplicationRole existingRole
-            && existingRole.Id != excludeId;
+        await roleManager.FindByNameAsync(roleName) is ApplicationRole existingRole
+        && existingRole.Id != excludeId;
 
     public async Task<RoleDto> GetByIdAsync(string id) =>
         await db.Roles.SingleOrDefaultAsync(x => x.Id == id) is { } role
             ? role.Adapt<RoleDto>()
             : throw new NotFoundException(localizer["Role Not Found"]);
 
-    public async Task<RoleDto> GetByIdWithPermissionsAsync(string roleId, CancellationToken cancellationToken)
+    public async Task<RoleDto> GetByIdWithPermissionsAsync(
+        string roleId,
+        CancellationToken cancellationToken
+    )
     {
         var role = await GetByIdAsync(roleId);
 
-        role.Permissions = await db.RoleClaims
-            .Where(c => c.RoleId == roleId && c.ClaimType == ApiClaims.Permission)
+        role.Permissions = await db
+            .RoleClaims.Where(c => c.RoleId == roleId && c.ClaimType == ApiClaims.Permission)
             .Select(c => c.ClaimValue)
             .ToListAsync(cancellationToken);
 
@@ -63,7 +64,10 @@ internal class RoleService(
 
             if (!result.Succeeded)
             {
-                throw new InternalServerException(localizer["Register role failed"], result.GetErrors(localizer));
+                throw new InternalServerException(
+                    localizer["Register role failed"],
+                    result.GetErrors(localizer)
+                );
             }
 
             await events.PublishAsync(new ApplicationRoleCreatedEvent(role.Id, role.Name));
@@ -79,7 +83,9 @@ internal class RoleService(
 
             if (ApiRoles.IsDefault(role.Name))
             {
-                throw new ConflictException(string.Format(localizer["Not allowed to modify {0} Role."], role.Name));
+                throw new ConflictException(
+                    string.Format(localizer["Not allowed to modify {0} Role."], role.Name)
+                );
             }
 
             role.Name = request.Name;
@@ -89,7 +95,10 @@ internal class RoleService(
 
             if (!result.Succeeded)
             {
-                throw new InternalServerException(localizer["Update role failed"], result.GetErrors(localizer));
+                throw new InternalServerException(
+                    localizer["Update role failed"],
+                    result.GetErrors(localizer)
+                );
             }
 
             await events.PublishAsync(new ApplicationRoleUpdatedEvent(role.Id, role.Name));
@@ -98,13 +107,18 @@ internal class RoleService(
         }
     }
 
-    public async Task<string> UpdatePermissionsAsync(UpdateRolePermissionsRequest request, CancellationToken cancellationToken)
+    public async Task<string> UpdatePermissionsAsync(
+        UpdateRolePermissionsRequest request,
+        CancellationToken cancellationToken
+    )
     {
         var role = await roleManager.FindByIdAsync(request.RoleId);
         _ = role ?? throw new NotFoundException(localizer["Role Not Found"]);
         if (role.Name == ApiRoles.Admin)
         {
-            throw new ConflictException(localizer["Not allowed to modify Permissions for this Role."]);
+            throw new ConflictException(
+                localizer["Not allowed to modify Permissions for this Role."]
+            );
         }
 
         if (currentTenant.Id != MultitenancyConstants.Root.Id)
@@ -121,22 +135,29 @@ internal class RoleService(
             var removeResult = await roleManager.RemoveClaimAsync(role, claim);
             if (!removeResult.Succeeded)
             {
-                throw new InternalServerException(localizer["Update permissions failed."], removeResult.GetErrors(localizer));
+                throw new InternalServerException(
+                    localizer["Update permissions failed."],
+                    removeResult.GetErrors(localizer)
+                );
             }
         }
 
         // Add all permissions that were not previously selected
-        foreach (var permission in request.Permissions.Where(c => !currentClaims.Any(p => p.Value == c)))
+        foreach (
+            var permission in request.Permissions.Where(c => !currentClaims.Any(p => p.Value == c))
+        )
         {
             if (!string.IsNullOrEmpty(permission))
             {
-                db.RoleClaims.Add(new ApplicationRoleClaim
-                {
-                    RoleId = role.Id,
-                    ClaimType = ApiClaims.Permission,
-                    ClaimValue = permission,
-                    CreatedBy = currentUser.GetUserId().ToString()
-                });
+                db.RoleClaims.Add(
+                    new ApplicationRoleClaim
+                    {
+                        RoleId = role.Id,
+                        ClaimType = ApiClaims.Permission,
+                        ClaimValue = permission,
+                        CreatedBy = currentUser.GetUserId().ToString(),
+                    }
+                );
                 await db.SaveChangesAsync(cancellationToken);
             }
         }
@@ -154,12 +175,19 @@ internal class RoleService(
 
         if (ApiRoles.IsDefault(role.Name))
         {
-            throw new ConflictException(string.Format(localizer["Not allowed to delete {0} Role."], role.Name));
+            throw new ConflictException(
+                string.Format(localizer["Not allowed to delete {0} Role."], role.Name)
+            );
         }
 
         if ((await userManager.GetUsersInRoleAsync(role.Name)).Count > 0)
         {
-            throw new ConflictException(string.Format(localizer["Not allowed to delete {0} Role as it is being used."], role.Name));
+            throw new ConflictException(
+                string.Format(
+                    localizer["Not allowed to delete {0} Role as it is being used."],
+                    role.Name
+                )
+            );
         }
 
         await roleManager.DeleteAsync(role);

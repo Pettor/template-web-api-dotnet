@@ -7,8 +7,11 @@ using Microsoft.Extensions.Logging;
 
 namespace Backend.Infrastructure.Catalog;
 
-public class BrandSeeder(ISerializerService serializerService, ILogger<BrandSeeder> logger, ApplicationDbContext db)
-    : ICustomSeeder
+public class BrandSeeder(
+    ISerializerService serializerService,
+    ILogger<BrandSeeder> logger,
+    ApplicationDbContext db
+) : ICustomSeeder
 {
     public async Task InitializeAsync(CancellationToken cancellationToken)
     {
@@ -19,7 +22,10 @@ public class BrandSeeder(ISerializerService serializerService, ILogger<BrandSeed
 
             // Here you can use your own logic to populate the database.
             // As an example, I am using a JSON file to populate the database.
-            var brandData = await File.ReadAllTextAsync(path + "/Catalog/brands.json", cancellationToken);
+            var brandData = await File.ReadAllTextAsync(
+                path + "/Catalog/brands.json",
+                cancellationToken
+            );
             var brands = serializerService.Deserialize<List<Brand>>(brandData);
 
             if (brands != null)

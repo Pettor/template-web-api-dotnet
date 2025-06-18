@@ -33,7 +33,11 @@ public class RolesController(IRoleService roleService) : VersionNeutralApiContro
     [HttpPut("{id}/permissions")]
     [MustHavePermission(ApiAction.Update, ApiResource.RoleClaims)]
     [OpenApiOperation("Update a role's permissions.", "")]
-    public async Task<ActionResult<string>> UpdatePermissionsAsync(string id, UpdateRolePermissionsRequest request, CancellationToken cancellationToken)
+    public async Task<ActionResult<string>> UpdatePermissionsAsync(
+        string id,
+        UpdateRolePermissionsRequest request,
+        CancellationToken cancellationToken
+    )
     {
         if (id != request.RoleId)
         {

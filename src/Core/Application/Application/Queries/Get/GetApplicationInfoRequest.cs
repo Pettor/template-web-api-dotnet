@@ -2,6 +2,4 @@
 
 namespace Backend.Application.Application.Queries.Get;
 
-public class GetApplicationInfoRequest : IRequest<ApplicationInfoDto>
-{
-}
+public class GetApplicationInfoRequest : IRequest<ApplicationInfoDto> { }

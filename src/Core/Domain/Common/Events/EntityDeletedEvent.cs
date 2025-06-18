@@ -5,8 +5,7 @@ namespace Backend.Domain.Common.Events;
 public static class EntityDeletedEvent
 {
     public static EntityDeletedEvent<TEntity> WithEntity<TEntity>(TEntity entity)
-        where TEntity : IEntity
-        => new(entity);
+        where TEntity : IEntity => new(entity);
 }
 
 public class EntityDeletedEvent<TEntity> : DomainEvent

@@ -11,12 +11,8 @@ public class ProductConfig : IEntityTypeConfiguration<Product>
     {
         builder.IsMultiTenant();
 
-        builder
-            .Property(b => b.Name)
-            .HasMaxLength(1024);
+        builder.Property(b => b.Name).HasMaxLength(1024);
 
-        builder
-            .Property(p => p.ImagePath)
-            .HasMaxLength(2048);
+        builder.Property(p => p.ImagePath).HasMaxLength(2048);
     }
 }

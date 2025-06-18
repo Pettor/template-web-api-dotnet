@@ -9,18 +9,15 @@ namespace Infrastructure.Test.Multitenancy.Fixtures;
 
 public class TestFixture : TestBedFixture
 {
-    protected override void AddServices(IServiceCollection services, IConfiguration? configuration)
-        => services
-            .AddTransient<IConnectionStringSecurer, ConnectionStringSecurer>();
+    protected override void AddServices(
+        IServiceCollection services,
+        IConfiguration? configuration
+    ) => services.AddTransient<IConnectionStringSecurer, ConnectionStringSecurer>();
 
     protected override IEnumerable<TestAppSettings> GetTestAppSettings()
     {
-        yield return new TestAppSettings
-        {
-            Filename = "appsettings.json"
-        };
+        yield return new TestAppSettings { Filename = "appsettings.json" };
     }
 
-    protected override ValueTask DisposeAsyncCore()
-        => new();
+    protected override ValueTask DisposeAsyncCore() => new();
 }

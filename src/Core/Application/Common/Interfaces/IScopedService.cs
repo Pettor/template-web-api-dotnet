@@ -1,5 +1,3 @@
 ﻿namespace Backend.Application.Common.Interfaces;
 
-public interface IScopedService
-{
-}
+public interface IScopedService { }

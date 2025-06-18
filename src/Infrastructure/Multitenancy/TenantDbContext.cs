@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Infrastructure.Multitenancy;
 
-public class TenantDbContext(DbContextOptions<TenantDbContext> options) : EFCoreStoreDbContext<TenantInfo>(options)
+public class TenantDbContext(DbContextOptions<TenantDbContext> options)
+    : EFCoreStoreDbContext<TenantInfo>(options)
 {
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

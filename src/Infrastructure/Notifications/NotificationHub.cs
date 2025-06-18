@@ -8,7 +8,9 @@ using Microsoft.Extensions.Logging;
 namespace Backend.Infrastructure.Notifications;
 
 [Authorize]
-public class NotificationHub(ITenantInfo? currentTenant, ILogger<NotificationHub> logger) : Hub, ITransientService
+public class NotificationHub(ITenantInfo? currentTenant, ILogger<NotificationHub> logger)
+    : Hub,
+        ITransientService
 {
     public override async Task OnConnectedAsync()
     {
@@ -21,7 +23,10 @@ public class NotificationHub(ITenantInfo? currentTenant, ILogger<NotificationHub
 
         await base.OnConnectedAsync();
 
-        logger.LogInformation("A client connected to NotificationHub: {connectionId}", Context.ConnectionId);
+        logger.LogInformation(
+            "A client connected to NotificationHub: {connectionId}",
+            Context.ConnectionId
+        );
     }
 
     public override async Task OnDisconnectedAsync(Exception? exception)
@@ -30,6 +35,9 @@ public class NotificationHub(ITenantInfo? currentTenant, ILogger<NotificationHub
 
         await base.OnDisconnectedAsync(exception);
 
-        logger.LogInformation("A client disconnected from NotificationHub: {connectionId}", Context.ConnectionId);
+        logger.LogInformation(
+            "A client disconnected from NotificationHub: {connectionId}",
+            Context.ConnectionId
+        );
     }
 }

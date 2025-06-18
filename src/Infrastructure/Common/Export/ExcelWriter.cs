@@ -12,7 +12,10 @@ public class ExcelWriter : IExcelWriter
         var properties = TypeDescriptor.GetProperties(typeof(T));
         var table = new DataTable("table", "table");
         foreach (PropertyDescriptor prop in properties)
-            table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+            table.Columns.Add(
+                prop.Name,
+                Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType
+            );
         foreach (var item in data)
         {
             var row = table.NewRow();

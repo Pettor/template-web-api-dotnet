@@ -1,5 +1,3 @@
 ﻿namespace Backend.Application.Dashboard;
 
-public class GetStatsRequest : IRequest<StatsDto>
-{
-}
+public class GetStatsRequest : IRequest<StatsDto> { }
