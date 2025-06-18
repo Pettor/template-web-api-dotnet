@@ -1,50 +1,144 @@
 [![Actions Main](https://github.com/Pettor/template-web-api-dotnet/actions/workflows/main.yml/badge.svg)](https://github.com/Pettor/template-web-api-dotnet/actions/workflows/main.yml)
 
-## Web API using .NET
+# Clean Architecture .NET Web API Template
 
-### Requirements
+A production-ready, enterprise-grade .NET 9.0 Web API template built with Clean Architecture principles and comprehensive multitenancy support. This template provides a solid foundation for building scalable, maintainable web APIs with modern development practices and industry-standard patterns.
 
-- .NET 9.0
-- Install PostgreSQL 15.
-- Latest Docker
+## ✨ Key Features
 
-### Configuration
+**🏗️ Architecture & Design**
+- Clean Architecture implementation with clear separation of concerns
+- Domain-Driven Design (DDD) patterns
+- CQRS with MediatR for command/query separation
+- Repository pattern with specifications
+- Dependency injection throughout all layers
 
-Copy the template files for `database.json` and `hangfire.json` in `Host.Configurations.Templates` directory to the `Host.Configurations` directory.
+**🏢 Multi-tenancy Support**
+- Built-in multitenancy using Finbuckle.MultiTenant
+- Tenant isolation at database and application levels
+- Flexible tenant resolution strategies
 
-Configure the `ConnectionString` in both files to make sure they match the credentials for the local PostgreSQL installation.
+**🔐 Authentication & Authorization**
+- JWT Bearer authentication
+- Azure AD integration support
+- Role-based and permission-based authorization
+- Identity management with ASP.NET Core Identity
 
-### Run using Docker
+**📊 Database & Persistence**
+- Entity Framework Core with PostgreSQL support
+- Code-first migrations with dedicated migrator projects
+- Database seeding and initialization
+- Audit trails and soft delete functionality
 
-To run the project using Docker run the following in the root dir:
+**🔧 Background Processing**
+- Hangfire integration for background jobs
+- Job scheduling and monitoring dashboard
+- Persistent job storage with PostgreSQL
 
-```powershell
-docker compose up
-```
+**📚 API Documentation**
+- Swagger/OpenAPI documentation with NSwag
+- Comprehensive API versioning
+- Interactive API explorer
 
-### Swagger
+**🧪 Testing & Quality**
+- Unit test infrastructure setup
+- Code style enforcement with StyleCop
+- EditorConfig for consistent formatting
+- GitHub Actions CI/CD pipeline
 
-Running the backend from Solution will open up Swagger on:
+**⚡ Performance & Scalability**
+- Redis caching support
+- SignalR for real-time communication
+- Health checks implementation
+- Docker containerization ready
 
-```powershell
-http://localhost:5000/swagger
-```
+**📧 Additional Features**
+- Email services with MailKit
+- Excel export functionality with ClosedXML
+- Comprehensive logging with Serilog
+- Localization support
 
-Running the backend from Docker will open up Swagger on:
+## 🚀 Quick Start
 
-```powershell
-https://localhost:5050/swagger
-```
+### Prerequisites
+- .NET 9.0 SDK
+- PostgreSQL 15+
+- Docker (optional)
 
-Authenticate using the following credentials:
+### Setup
+1. Clone the repository
+2. Copy configuration templates from `Host.Configurations.Templates` to `Host.Configurations`
+3. Update database connection strings in `database.json` and `hangfire.json`
+4. Run migrations: `dotnet ef database update`
+5. Start the application: `dotnet run` or use Docker: `docker compose up`
 
+### Default Credentials
 ```json
 {
-    "email":"admin@root.com",
-    "password":"123Pa$$word!"
+    "email": "admin@root.com",
+    "password": "123Pa$$word!"
 }
 ```
 
-## License
+## 📁 Project Structure
 
-This project is licensed with the [MIT license](LICENSE).
+```
+├── src/
+│   ├── Core/
+│   │   ├── Application/          # Application layer (CQRS, DTOs, Services)
+│   │   ├── Domain/              # Domain entities and business logic
+│   │   └── Shared/              # Shared contracts and utilities
+│   ├── Infrastructure/          # Infrastructure concerns (EF, Auth, etc.)
+│   ├── Host/                   # Web API host and controllers
+│   └── Migrators/              # Database migration projects
+├── tests/                      # Test projects
+└── docker-compose.yml          # Docker configuration
+```
+
+## 🛠️ Technology Stack
+
+- **.NET 8.0** - Latest LTS framework
+- **ASP.NET Core** - Web API framework
+- **Entity Framework Core** - ORM and data access
+- **PostgreSQL** - Primary database
+- **Redis** - Caching and session storage
+- **Hangfire** - Background job processing
+- **MediatR** - CQRS implementation
+- **Mapster** - Object mapping
+- **FluentValidation** - Input validation
+- **Serilog** - Structured logging
+- **JWT** - Authentication tokens
+- **Swagger/NSwag** - API documentation
+
+## 📋 API Endpoints
+
+The template includes sample CRUD operations for:
+- **Identity Management** - Users, roles, and permissions
+- **Product Catalog** - Products and brands with full CRUD
+- **Tenant Management** - Multi-tenant operations
+
+## 🐳 Docker Support
+
+Full Docker support with:
+- Multi-stage Dockerfile for optimized builds
+- Docker Compose with PostgreSQL and Redis services
+- Environment-based configuration
+- Health checks and logging
+
+## 🔄 CI/CD
+
+GitHub Actions workflow included for:
+- Automated testing
+- Code quality checks
+- Docker image building
+- Deployment automation
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
+
+## 🤝 Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
+---
