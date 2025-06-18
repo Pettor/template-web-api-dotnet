@@ -1,10 +1,15 @@
-﻿using Backend.Application.Common.Exceptions;
+﻿using Ardalis.Specification;
+using Backend.Application.Common.Exceptions;
 using Backend.Application.Identity.Tokens;
 using Backend.Infrastructure.OpenApi;
+using FluentValidation;
 
 namespace Backend.Host.Controllers.Identity;
 
-public sealed class TokensController(ITokenService tokenService) : VersionNeutralApiController
+public sealed class TokensController(
+    ITokenService tokenService,
+    IValidator<TokenRequest> tokenRequestValidator
+) : VersionNeutralApiController
 {
     [HttpPost]
     [AllowAnonymous]
@@ -15,6 +20,10 @@ public sealed class TokensController(ITokenService tokenService) : VersionNeutra
         CancellationToken cancellationToken
     )
     {
+        await tokenRequestValidator.ValidateAndThrowAsync(
+            request,
+            cancellationToken: cancellationToken
+        );
         var tokenResult = await tokenService.GetTokenAsync(
             request,
             GetIpAddress(),

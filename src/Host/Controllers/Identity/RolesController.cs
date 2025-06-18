@@ -1,10 +1,15 @@
 ﻿using Backend.Application.Identity.Roles;
 using Backend.Infrastructure.Auth.Permissions;
 using Backend.Shared.Authorization;
+using FluentValidation;
 
 namespace Backend.Host.Controllers.Identity;
 
-public class RolesController(IRoleService roleService) : VersionNeutralApiController
+public class RolesController(
+    IRoleService roleService,
+    IValidator<CreateOrUpdateRoleRequest> createOrUpdateValidator,
+    IValidator<UpdateRolePermissionsRequest> updateRoleValidator
+) : VersionNeutralApiController
 {
     [HttpGet]
     [MustHavePermission(ApiAction.View, ApiResource.Roles)]
@@ -39,10 +44,9 @@ public class RolesController(IRoleService roleService) : VersionNeutralApiContro
         CancellationToken cancellationToken
     )
     {
+        await updateRoleValidator.ValidateAndThrowAsync(request, cancellationToken);
         if (id != request.RoleId)
-        {
             return BadRequest();
-        }
 
         return Ok(await roleService.UpdatePermissionsAsync(request, cancellationToken));
     }
@@ -52,6 +56,7 @@ public class RolesController(IRoleService roleService) : VersionNeutralApiContro
     [OpenApiOperation("Create or update a role.", "")]
     public Task<string> RegisterRoleAsync(CreateOrUpdateRoleRequest request)
     {
+        createOrUpdateValidator.ValidateAndThrowAsync(request);
         return roleService.CreateOrUpdateAsync(request);
     }
 

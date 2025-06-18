@@ -7,10 +7,12 @@ using Backend.Application.Multitenancy.Queries.GetAll;
 using Backend.Application.Multitenancy.Queries.Upgrade;
 using Backend.Infrastructure.Auth.Permissions;
 using Backend.Shared.Authorization;
+using FluentValidation;
 
 namespace Backend.Host.Controllers.Multitenancy;
 
-public class TenantsController : VersionNeutralApiController
+public class TenantsController(IValidator<GetTenantRequest> getTenantValidator)
+    : VersionNeutralApiController
 {
     [HttpGet]
     [MustHavePermission(ApiAction.View, ApiResource.Tenants)]

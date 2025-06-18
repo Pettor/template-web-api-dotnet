@@ -4,7 +4,6 @@ using Backend.Host.Configurations;
 using Backend.Host.Controllers;
 using Backend.Infrastructure;
 using Backend.Infrastructure.Common;
-using FluentValidation.AspNetCore;
 using Serilog;
 
 [assembly: ApiConventionType(typeof(ApiConventions))]
@@ -19,8 +18,6 @@ try
     builder.AddSerilog();
 
     builder.Services.AddControllers();
-    builder.Services.AddFluentValidationAutoValidation();
-    builder.Services.AddFluentValidationClientsideAdapters();
     builder.Services.AddInfrastructure(builder.Configuration);
     builder.Services.AddApplication();
 

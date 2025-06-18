@@ -2,11 +2,17 @@
 
 namespace Backend.Application.Multitenancy.Queries.Upgrade;
 
-public class UpgradeSubscriptionRequestHandler(ITenantService tenantService)
-    : IRequestHandler<UpgradeSubscriptionRequest, string>
+public class UpgradeSubscriptionRequestHandler(
+    ITenantService tenantService,
+    IValidator<UpgradeSubscriptionRequest> requestValidator
+) : IRequestHandler<UpgradeSubscriptionRequest, string>
 {
     public Task<string> Handle(
         UpgradeSubscriptionRequest request,
         CancellationToken cancellationToken
-    ) => tenantService.UpdateSubscription(request.TenantId, request.ExtendedExpiryDate);
+    )
+    {
+        requestValidator.ValidateAndThrowAsync(request, cancellationToken: cancellationToken);
+        return tenantService.UpdateSubscription(request.TenantId, request.ExtendedExpiryDate);
+    }
 }

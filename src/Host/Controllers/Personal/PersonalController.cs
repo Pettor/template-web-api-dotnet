@@ -1,12 +1,18 @@
-﻿using Backend.Application.Auditing.Entities;
+﻿using Ardalis.Specification;
+using Backend.Application.Auditing.Entities;
 using Backend.Application.Auditing.Queries.Get;
 using Backend.Application.Identity.Users;
 using Backend.Application.Identity.Users.Password;
 using Backend.Shared.Authorization;
+using FluentValidation;
 
 namespace Backend.Host.Controllers.Personal;
 
-public class PersonalController(IUserService userService) : VersionNeutralApiController
+public class PersonalController(
+    IUserService userService,
+    IValidator<ChangePasswordRequest> changePasswordRequestValidator,
+    IValidator<UpdateUserRequest> updateUserRequestValidator
+) : VersionNeutralApiController
 {
     [HttpGet("profile")]
     [OpenApiOperation("Get profile details of currently logged in user.", "")]
@@ -23,6 +29,7 @@ public class PersonalController(IUserService userService) : VersionNeutralApiCon
     [OpenApiOperation("Update profile details of currently logged in user.", "")]
     public async Task<ActionResult> UpdateProfileAsync(UpdateUserRequest request)
     {
+        await updateUserRequestValidator.ValidateAndThrowAsync(request);
         if (User.GetUserId() is not { } userId || string.IsNullOrEmpty(userId))
         {
             return Unauthorized();
@@ -37,6 +44,7 @@ public class PersonalController(IUserService userService) : VersionNeutralApiCon
     [ApiConventionMethod(typeof(ApiConventions), nameof(ApiConventions.Register))]
     public async Task<ActionResult> ChangePasswordAsync(ChangePasswordRequest model)
     {
+        await changePasswordRequestValidator.ValidateAndThrowAsync(model);
         if (User.GetUserId() is not { } userId || string.IsNullOrEmpty(userId))
         {
             return Unauthorized();
