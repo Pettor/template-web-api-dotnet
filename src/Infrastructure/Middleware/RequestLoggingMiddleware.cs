@@ -19,8 +19,10 @@ public class RequestLoggingMiddleware : IMiddleware
         {
             var request = httpContext.Request;
 
-            if (!string.IsNullOrEmpty(request.ContentType)
-                && request.ContentType.StartsWith("application/json"))
+            if (
+                !string.IsNullOrEmpty(request.ContentType)
+                && request.ContentType.StartsWith("application/json")
+            )
             {
                 request.EnableBuffering();
                 using var reader = new StreamReader(request.Body, Encoding.UTF8, true, 4096, true);
@@ -32,9 +34,17 @@ public class RequestLoggingMiddleware : IMiddleware
         }
 
         LogContext.PushProperty("RequestBody", requestBody);
-        Log.ForContext("RequestHeaders", httpContext.Request.Headers.ToDictionary(h => h.Key, h => h.Value.ToString()), destructureObjects: true)
-           .ForContext("RequestBody", requestBody)
-           .Information("HTTP {RequestMethod} Request sent to {RequestPath}", httpContext.Request.Method, httpContext.Request.Path);
+        Log.ForContext(
+                "RequestHeaders",
+                httpContext.Request.Headers.ToDictionary(h => h.Key, h => h.Value.ToString()),
+                destructureObjects: true
+            )
+            .ForContext("RequestBody", requestBody)
+            .Information(
+                "HTTP {RequestMethod} Request sent to {RequestPath}",
+                httpContext.Request.Method,
+                httpContext.Request.Path
+            );
         await next(httpContext);
     }
 }

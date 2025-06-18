@@ -1,5 +1,4 @@
-﻿using Backend.Application.Auditing;
-using Backend.Application.Auditing.Entities;
+﻿using Backend.Application.Auditing.Entities;
 using Backend.Application.Auditing.Interfaces;
 using Backend.Infrastructure.Persistence.Context;
 using Mapster;
@@ -11,8 +10,8 @@ public class AuditService(ApplicationDbContext context) : IAuditService
 {
     public async Task<List<AuditDto>> GetUserTrailsAsync(Guid userId)
     {
-        var trails = await context.AuditTrails
-            .Where(a => a.UserId == userId)
+        var trails = await context
+            .AuditTrails.Where(a => a.UserId == userId)
             .OrderByDescending(a => a.DateTime)
             .Take(250)
             .ToListAsync();

@@ -29,6 +29,9 @@ public class LocalizationMiddleware : IMiddleware
     }
 
     private static bool CultureExists(string cultureName) =>
-        CultureInfo.GetCultures(CultureTypes.AllCultures)
-            .Any(culture => string.Equals(culture.Name, cultureName, StringComparison.OrdinalIgnoreCase));
+        CultureInfo
+            .GetCultures(CultureTypes.AllCultures)
+            .Any(culture =>
+                string.Equals(culture.Name, cultureName, StringComparison.OrdinalIgnoreCase)
+            );
 }

@@ -11,7 +11,8 @@ public class MailRequest(
     List<string>? bcc = null,
     List<string>? cc = null,
     IDictionary<string, byte[]>? attachmentData = null,
-    IDictionary<string, string>? headers = null)
+    IDictionary<string, string>? headers = null
+)
 {
     public List<string> To { get; } = to;
 
@@ -31,7 +32,9 @@ public class MailRequest(
 
     public List<string> Cc { get; } = cc ?? new List<string>();
 
-    public IDictionary<string, byte[]> AttachmentData { get; } = attachmentData ?? new Dictionary<string, byte[]>();
+    public IDictionary<string, byte[]> AttachmentData { get; } =
+        attachmentData ?? new Dictionary<string, byte[]>();
 
-    public IDictionary<string, string> Headers { get; } = headers ?? new Dictionary<string, string>();
+    public IDictionary<string, string> Headers { get; } =
+        headers ?? new Dictionary<string, string>();
 }

@@ -9,12 +9,8 @@ public class ApplicationUserConfig : IEntityTypeConfiguration<ApplicationUser>
 {
     public void Configure(EntityTypeBuilder<ApplicationUser> builder)
     {
-        builder
-            .ToTable("Users", SchemaNames.Identity)
-            .IsMultiTenant();
+        builder.ToTable("Users", SchemaNames.Identity).IsMultiTenant();
 
-        builder
-            .Property(u => u.ObjectId)
-                .HasMaxLength(256);
+        builder.Property(u => u.ObjectId).HasMaxLength(256);
     }
 }

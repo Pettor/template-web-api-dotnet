@@ -6,11 +6,9 @@ public class ChangePasswordRequestValidator : CustomValidator<ChangePasswordRequ
 {
     public ChangePasswordRequestValidator()
     {
-        RuleFor(p => p.Password)
-            .NotEmpty();
+        RuleFor(p => p.Password).NotEmpty();
 
-        RuleFor(p => p.NewPassword)
-            .NotEmpty();
+        RuleFor(p => p.NewPassword).NotEmpty();
 
         RuleFor(p => p.ConfirmNewPassword)
             .Equal(p => p.NewPassword)

@@ -21,13 +21,17 @@ internal class TokenService(
     IOptions<JwtSettings> jwtSettings,
     IStringLocalizer<TokenService> localizer,
     TenantInfo? currentTenant,
-    IOptions<SecuritySettings> securitySettings)
-    : ITokenService
+    IOptions<SecuritySettings> securitySettings
+) : ITokenService
 {
     private readonly SecuritySettings _securitySettings = securitySettings.Value;
     private readonly JwtSettings _jwtSettings = jwtSettings.Value;
 
-    public async Task<TokenResult> GetTokenAsync(TokenRequest request, string ipAddress, CancellationToken cancellationToken)
+    public async Task<TokenResult> GetTokenAsync(
+        TokenRequest request,
+        string ipAddress,
+        CancellationToken cancellationToken
+    )
     {
         if (string.IsNullOrWhiteSpace(currentTenant?.Id))
         {
@@ -87,12 +91,18 @@ internal class TokenService(
         return await GenerateTokensAndUpdateUser(user, ipAddress);
     }
 
-    private async Task<TokenResult> GenerateTokensAndUpdateUser(ApplicationUser user, string ipAddress, bool rememberMe = true)
+    private async Task<TokenResult> GenerateTokensAndUpdateUser(
+        ApplicationUser user,
+        string ipAddress,
+        bool rememberMe = true
+    )
     {
         var token = GenerateJwt(user, ipAddress);
 
         user.RefreshToken = GenerateRefreshToken();
-        user.RefreshTokenExpiryTime = rememberMe ? DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpirationInDays) : DateTime.UtcNow;
+        user.RefreshTokenExpiryTime = rememberMe
+            ? DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpirationInDays)
+            : DateTime.UtcNow;
 
         await userManager.UpdateAsync(user);
 
@@ -113,7 +123,7 @@ internal class TokenService(
             new(ApiClaims.IpAddress, ipAddress),
             new(ApiClaims.Tenant, currentTenant!.Id),
             new(ApiClaims.ImageUrl, user.ImageUrl ?? string.Empty),
-            new(ClaimTypes.MobilePhone, user.PhoneNumber ?? string.Empty)
+            new(ClaimTypes.MobilePhone, user.PhoneNumber ?? string.Empty),
         };
 
     private static string GenerateRefreshToken()
@@ -124,12 +134,16 @@ internal class TokenService(
         return Convert.ToBase64String(randomNumber);
     }
 
-    private string GenerateEncryptedToken(SigningCredentials signingCredentials, IEnumerable<Claim> claims)
+    private string GenerateEncryptedToken(
+        SigningCredentials signingCredentials,
+        IEnumerable<Claim> claims
+    )
     {
         var token = new JwtSecurityToken(
-           claims: claims,
-           expires: DateTime.UtcNow.AddMinutes(_jwtSettings.TokenExpirationInMinutes),
-           signingCredentials: signingCredentials);
+            claims: claims,
+            expires: DateTime.UtcNow.AddMinutes(_jwtSettings.TokenExpirationInMinutes),
+            signingCredentials: signingCredentials
+        );
         var tokenHandler = new JwtSecurityTokenHandler();
         return tokenHandler.WriteToken(token);
     }
@@ -142,6 +156,9 @@ internal class TokenService(
         }
 
         var secret = Encoding.UTF8.GetBytes(_jwtSettings.Key);
-        return new SigningCredentials(new SymmetricSecurityKey(secret), SecurityAlgorithms.HmacSha256);
+        return new SigningCredentials(
+            new SymmetricSecurityKey(secret),
+            SecurityAlgorithms.HmacSha256
+        );
     }
 }

@@ -1,14 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <RootNamespace>Backend.Domain</RootNamespace>
-        <AssemblyName>Backend.Domain</AssemblyName>
-        <AssemblyVersion>0.7.0</AssemblyVersion>
-    </PropertyGroup>
-    <ItemGroup>
-        <PackageReference Include="NewId" Version="4.0.1" />
-        <PackageReference Remove="Roslynator.Analyzers" />
-    </ItemGroup>
-    <ItemGroup>
-      <ProjectReference Include="..\Shared\Shared.csproj" />
-    </ItemGroup>
+  <PropertyGroup>
+    <RootNamespace>Backend.Domain</RootNamespace>
+    <AssemblyName>Backend.Domain</AssemblyName>
+    <AssemblyVersion>0.7.0</AssemblyVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NewId" Version="4.0.1" />
+    <PackageReference Remove="Roslynator.Analyzers" />
+    <PackageReference Remove="StyleCop.Analyzers" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
 </Project>

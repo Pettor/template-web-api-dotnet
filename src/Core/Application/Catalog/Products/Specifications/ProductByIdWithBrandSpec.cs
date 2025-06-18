@@ -3,10 +3,9 @@ using Backend.Domain.Catalog;
 
 namespace Backend.Application.Catalog.Products.Specifications;
 
-public class ProductByIdWithBrandSpec : Specification<Product, ProductDetailsDto>, ISingleResultSpecification<Product>
+public class ProductByIdWithBrandSpec
+    : Specification<Product, ProductDetailsDto>,
+        ISingleResultSpecification<Product>
 {
-    public ProductByIdWithBrandSpec(Guid id) =>
-        Query
-            .Where(p => p.Id == id)
-            .Include(p => p.Brand);
+    public ProductByIdWithBrandSpec(Guid id) => Query.Where(p => p.Id == id).Include(p => p.Brand);
 }

@@ -77,7 +77,8 @@ public class JsonStringLocalizer(ICacheService cache) : IStringLocalizer
         {
             return cache.GetOrSet(
                 $"locale_{culture}_{key}",
-                () => PullDeserialize<string>(key, Path.GetFullPath(relativeFilePath)));
+                () => PullDeserialize<string>(key, Path.GetFullPath(relativeFilePath))
+            );
         }
 
         WriteEmptyKeys(new CultureInfo("en-US"), fullFilePath);
@@ -90,15 +91,19 @@ public class JsonStringLocalizer(ICacheService cache) : IStringLocalizer
     private string? GetNaturalCulture(string key) =>
         ValidateCulture(key, Thread.CurrentThread.CurrentCulture.Name.Split("-")[0]);
 
-    private string? GetDefaultCulture(string key) =>
-        ValidateCulture(key, DefaultCulture);
+    private string? GetDefaultCulture(string key) => ValidateCulture(key, DefaultCulture);
 
     private static void WriteEmptyKeys(CultureInfo sourceCulture, string fullFilePath)
     {
         var sourceFilePath = $"{Localization}/{sourceCulture.Name}.json";
         if (!File.Exists(sourceFilePath))
             return;
-        using var str = new FileStream(sourceFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+        using var str = new FileStream(
+            sourceFilePath,
+            FileMode.Open,
+            FileAccess.Read,
+            FileShare.Read
+        );
         using var outStream = File.Create(fullFilePath);
         using var sWriter = new StreamWriter(outStream);
         using var writer = new JsonTextWriter(sWriter);

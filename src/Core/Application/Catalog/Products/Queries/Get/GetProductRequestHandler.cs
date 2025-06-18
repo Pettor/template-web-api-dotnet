@@ -6,11 +6,17 @@ using Backend.Domain.Catalog;
 
 namespace Backend.Application.Catalog.Products.Queries.Get;
 
-public class GetProductRequestHandler(IRepository<Product> repository, IStringLocalizer<GetProductRequestHandler> localizer)
-    : IRequestHandler<GetProductRequest, ProductDetailsDto>
+public class GetProductRequestHandler(
+    IRepository<Product> repository,
+    IStringLocalizer<GetProductRequestHandler> localizer
+) : IRequestHandler<GetProductRequest, ProductDetailsDto>
 {
-    public async Task<ProductDetailsDto> Handle(GetProductRequest request, CancellationToken cancellationToken) =>
+    public async Task<ProductDetailsDto> Handle(
+        GetProductRequest request,
+        CancellationToken cancellationToken
+    ) =>
         await repository.FirstOrDefaultAsync(
-            new ProductByIdWithBrandSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(localizer["product.notfound"], request.Id));
+            new ProductByIdWithBrandSpec(request.Id),
+            cancellationToken
+        ) ?? throw new NotFoundException(string.Format(localizer["product.notfound"], request.Id));
 }

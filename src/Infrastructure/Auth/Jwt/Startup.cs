@@ -10,10 +10,17 @@ namespace Backend.Infrastructure.Auth.Jwt;
 
 internal static class Startup
 {
-    internal static IServiceCollection AddJwtAuth(this IServiceCollection services, IConfiguration config)
+    internal static IServiceCollection AddJwtAuth(
+        this IServiceCollection services,
+        IConfiguration config
+    )
     {
-        services.Configure<JwtSettings>(config.GetSection($"SecuritySettings:{nameof(JwtSettings)}"));
-        var jwtSettings = config.GetSection($"SecuritySettings:{nameof(JwtSettings)}").Get<JwtSettings>();
+        services.Configure<JwtSettings>(
+            config.GetSection($"SecuritySettings:{nameof(JwtSettings)}")
+        );
+        var jwtSettings = config
+            .GetSection($"SecuritySettings:{nameof(JwtSettings)}")
+            .Get<JwtSettings>();
         if (string.IsNullOrEmpty(jwtSettings!.Key))
             throw new InvalidOperationException("No Key defined in JwtSettings config.");
         var key = Encoding.ASCII.GetBytes(jwtSettings.Key);
@@ -36,7 +43,7 @@ internal static class Startup
                     ValidateLifetime = true,
                     ValidateAudience = false,
                     RoleClaimType = ClaimTypes.Role,
-                    ClockSkew = TimeSpan.Zero
+                    ClockSkew = TimeSpan.Zero,
                 };
                 bearer.Events = new JwtBearerEvents
                 {
@@ -50,20 +57,25 @@ internal static class Startup
 
                         return Task.CompletedTask;
                     },
-                    OnForbidden = _ => throw new ForbiddenException("You are not authorized to access this resource."),
+                    OnForbidden = _ =>
+                        throw new ForbiddenException(
+                            "You are not authorized to access this resource."
+                        ),
                     OnMessageReceived = context =>
                     {
                         var accessToken = context.Request.Query["access_token"];
 
-                        if (!string.IsNullOrEmpty(accessToken) &&
-                            context.HttpContext.Request.Path.StartsWithSegments("/notifications"))
+                        if (
+                            !string.IsNullOrEmpty(accessToken)
+                            && context.HttpContext.Request.Path.StartsWithSegments("/notifications")
+                        )
                         {
                             // Read the token out of the query string
                             context.Token = accessToken;
                         }
 
                         return Task.CompletedTask;
-                    }
+                    },
                 };
             })
             .Services;

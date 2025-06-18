@@ -26,6 +26,7 @@ public class AuditTrail(EntityEntry entry, ISerializerService serializer)
             PrimaryKey = serializer.Serialize(KeyValues),
             OldValues = OldValues.Count == 0 ? null : serializer.Serialize(OldValues),
             NewValues = NewValues.Count == 0 ? null : serializer.Serialize(NewValues),
-            AffectedColumns = ChangedColumns.Count == 0 ? null : serializer.Serialize(ChangedColumns)
+            AffectedColumns =
+                ChangedColumns.Count == 0 ? null : serializer.Serialize(ChangedColumns),
         };
 }

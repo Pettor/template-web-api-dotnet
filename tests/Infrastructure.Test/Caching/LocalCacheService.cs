@@ -8,5 +8,6 @@ public class LocalCacheService : CacheService<Backend.Infrastructure.Caching.Loc
     protected override Backend.Infrastructure.Caching.LocalCacheService CreateCacheService() =>
         new(
             new MemoryCache(new MemoryCacheOptions()),
-            NullLogger<Backend.Infrastructure.Caching.LocalCacheService>.Instance);
+            NullLogger<Backend.Infrastructure.Caching.LocalCacheService>.Instance
+        );
 }

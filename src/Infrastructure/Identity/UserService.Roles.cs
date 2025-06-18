@@ -9,7 +9,10 @@ namespace Backend.Infrastructure.Identity;
 
 internal partial class UserService
 {
-    public async Task<List<UserRoleDto>> GetRolesAsync(string userId, CancellationToken cancellationToken)
+    public async Task<List<UserRoleDto>> GetRolesAsync(
+        string userId,
+        CancellationToken cancellationToken
+    )
     {
         var userRoles = new List<UserRoleDto>();
 
@@ -19,29 +22,39 @@ internal partial class UserService
         var roles = await roleManager.Roles.AsNoTracking().ToListAsync(cancellationToken);
         foreach (var role in roles)
         {
-            userRoles.Add(new UserRoleDto
-            {
-                RoleId = role.Id,
-                RoleName = role.Name,
-                Description = role.Description,
-                Enabled = await userManager.IsInRoleAsync(user, role.Name)
-            });
+            userRoles.Add(
+                new UserRoleDto
+                {
+                    RoleId = role.Id,
+                    RoleName = role.Name,
+                    Description = role.Description,
+                    Enabled = await userManager.IsInRoleAsync(user, role.Name),
+                }
+            );
         }
 
         return userRoles;
     }
 
-    public async Task<string> AssignRolesAsync(string userId, UserRolesRequest request, CancellationToken cancellationToken)
+    public async Task<string> AssignRolesAsync(
+        string userId,
+        UserRolesRequest request,
+        CancellationToken cancellationToken
+    )
     {
         ArgumentNullException.ThrowIfNull(request, nameof(request));
 
-        var user = await userManager.Users.Where(u => u.Id == userId).FirstOrDefaultAsync(cancellationToken);
+        var user = await userManager
+            .Users.Where(u => u.Id == userId)
+            .FirstOrDefaultAsync(cancellationToken);
 
         _ = user ?? throw new NotFoundException(localizer["User Not Found."]);
 
         // Check if the user is an admin for which the admin role is getting disabled
-        if (await userManager.IsInRoleAsync(user, ApiRoles.Admin)
-            && request.UserRoles.Any(a => !a.Enabled && a.RoleName == ApiRoles.Admin))
+        if (
+            await userManager.IsInRoleAsync(user, ApiRoles.Admin)
+            && request.UserRoles.Any(a => !a.Enabled && a.RoleName == ApiRoles.Admin)
+        )
         {
             // Get count of users in Admin Role
             var adminCount = (await userManager.GetUsersInRoleAsync(ApiRoles.Admin)).Count;
@@ -52,7 +65,9 @@ internal partial class UserService
             {
                 if (currentTenant.Id == MultitenancyConstants.Root.Id)
                 {
-                    throw new ConflictException(localizer["Cannot Remove Admin Role From Root Tenant Admin."]);
+                    throw new ConflictException(
+                        localizer["Cannot Remove Admin Role From Root Tenant Admin."]
+                    );
                 }
             }
             else if (adminCount <= 2)

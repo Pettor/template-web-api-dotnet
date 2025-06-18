@@ -11,8 +11,8 @@ namespace Backend.Infrastructure.Middleware;
 internal class ExceptionMiddleware(
     ICurrentUser currentUser,
     IStringLocalizer<ExceptionMiddleware> localizer,
-    ISerializerService jsonSerializer)
-    : IMiddleware
+    ISerializerService jsonSerializer
+) : IMiddleware
 {
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
@@ -38,7 +38,7 @@ internal class ExceptionMiddleware(
                 Source = exception.TargetSite?.DeclaringType?.FullName,
                 Exception = exception.Message.Trim(),
                 ErrorId = errorId,
-                SupportMessage = localizer["exceptionmiddleware.supportmessage"]
+                SupportMessage = localizer["exceptionmiddleware.supportmessage"],
             };
             errorResult.Messages!.Add(exception.Message);
             var response = context.Response;
@@ -67,11 +67,14 @@ internal class ExceptionMiddleware(
                     break;
 
                 default:
-                    response.StatusCode = errorResult.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    response.StatusCode = errorResult.StatusCode = (int)
+                        HttpStatusCode.InternalServerError;
                     break;
             }
 
-            Log.Error($"{errorResult.Exception} Request failed with Status Code {context.Response.StatusCode} and Error Id {errorId}.");
+            Log.Error(
+                $"{errorResult.Exception} Request failed with Status Code {context.Response.StatusCode} and Error Id {errorId}."
+            );
             await response.WriteAsync(jsonSerializer.Serialize(errorResult));
         }
     }

@@ -13,8 +13,8 @@ internal class DatabaseInitializer(
     TenantDbContext tenantDbContext,
     IOptions<DatabaseSettings> dbSettings,
     IServiceProvider serviceProvider,
-    ILogger<DatabaseInitializer> logger)
-    : IDatabaseInitializer
+    ILogger<DatabaseInitializer> logger
+) : IDatabaseInitializer
 {
     private readonly DatabaseSettings _dbSettings = dbSettings.Value;
 
@@ -28,26 +28,29 @@ internal class DatabaseInitializer(
         }
     }
 
-    public async Task InitializeApplicationDbForTenantAsync(TenantInfo tenant, CancellationToken cancellationToken)
+    public async Task InitializeApplicationDbForTenantAsync(
+        TenantInfo tenant,
+        CancellationToken cancellationToken
+    )
     {
         // First create a new scope
         using var scope = serviceProvider.CreateScope();
 
         // Then set current tenant so the right connectionstring is used
         serviceProvider.GetRequiredService<IMultiTenantContextAccessor>().MultiTenantContext =
-            new MultiTenantContext<TenantInfo>
-            {
-                TenantInfo = tenant
-            };
+            new MultiTenantContext<TenantInfo> { TenantInfo = tenant };
 
         // Then run the initialization in the new scope
-        await scope.ServiceProvider.GetRequiredService<ApplicationDbInitializer>()
+        await scope
+            .ServiceProvider.GetRequiredService<ApplicationDbInitializer>()
             .InitializeAsync(cancellationToken);
     }
 
     private async Task InitializeTenantDbAsync(CancellationToken cancellationToken)
     {
-        var pendingMigrations = await tenantDbContext.Database.GetPendingMigrationsAsync(cancellationToken);
+        var pendingMigrations = await tenantDbContext.Database.GetPendingMigrationsAsync(
+            cancellationToken
+        );
         if (pendingMigrations.Any())
         {
             logger.LogInformation("Applying Root Migrations.");
@@ -59,13 +62,20 @@ internal class DatabaseInitializer(
 
     private async Task SeedRootTenantAsync(CancellationToken cancellationToken)
     {
-        if (await tenantDbContext.TenantInfo.FindAsync(new object?[] { MultitenancyConstants.Root.Id }, cancellationToken: cancellationToken) is null)
+        if (
+            await tenantDbContext.TenantInfo.FindAsync(
+                new object?[] { MultitenancyConstants.Root.Id },
+                cancellationToken: cancellationToken
+            )
+            is null
+        )
         {
             var rootTenant = new TenantInfo(
                 MultitenancyConstants.Root.Id,
                 MultitenancyConstants.Root.Name,
                 _dbSettings.ConnectionString,
-                MultitenancyConstants.Root.EmailAddress);
+                MultitenancyConstants.Root.EmailAddress
+            );
 
             rootTenant.SetValidity(DateTime.UtcNow.AddYears(1));
 

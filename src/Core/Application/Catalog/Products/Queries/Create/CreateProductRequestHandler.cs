@@ -6,13 +6,27 @@ using Backend.Domain.Common.Events;
 
 namespace Backend.Application.Catalog.Products.Queries.Create;
 
-public class CreateProductRequestHandler(IRepository<Product> repository, IFileStorageService file) : IRequestHandler<CreateProductRequest, Guid>
+public class CreateProductRequestHandler(IRepository<Product> repository, IFileStorageService file)
+    : IRequestHandler<CreateProductRequest, Guid>
 {
-    public async Task<Guid> Handle(CreateProductRequest request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(
+        CreateProductRequest request,
+        CancellationToken cancellationToken
+    )
     {
-        var productImagePath = await file.UploadAsync<Product>(request.Image, FileType.Image, cancellationToken);
+        var productImagePath = await file.UploadAsync<Product>(
+            request.Image,
+            FileType.Image,
+            cancellationToken
+        );
 
-        var product = new Product(request.Name, request.Description, request.Rate, request.BrandId, productImagePath);
+        var product = new Product(
+            request.Name,
+            request.Description,
+            request.Rate,
+            request.BrandId,
+            productImagePath
+        );
 
         // Add Domain Events to be raised after the commit
         product.DomainEvents.Add(EntityCreatedEvent.WithEntity(product));

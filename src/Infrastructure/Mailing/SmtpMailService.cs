@@ -7,7 +7,8 @@ using MimeKit;
 
 namespace Backend.Infrastructure.Mailing;
 
-public class SmtpMailService(IOptions<MailSettings> settings, ILogger<SmtpMailService> logger) : IMailService
+public class SmtpMailService(IOptions<MailSettings> settings, ILogger<SmtpMailService> logger)
+    : IMailService
 {
     private readonly MailSettings _settings = settings.Value;
 
@@ -18,7 +19,9 @@ public class SmtpMailService(IOptions<MailSettings> settings, ILogger<SmtpMailSe
             var email = new MimeMessage();
 
             // From
-            email.From.Add(new MailboxAddress(_settings.DisplayName, request.From ?? _settings.From));
+            email.From.Add(
+                new MailboxAddress(_settings.DisplayName, request.From ?? _settings.From)
+            );
 
             // To
             foreach (var address in request.To)
@@ -31,14 +34,20 @@ public class SmtpMailService(IOptions<MailSettings> settings, ILogger<SmtpMailSe
             // Bcc
             if (request.Bcc != null)
             {
-                foreach (var address in request.Bcc.Where(bccValue => !string.IsNullOrWhiteSpace(bccValue)))
+                foreach (
+                    var address in request.Bcc.Where(bccValue =>
+                        !string.IsNullOrWhiteSpace(bccValue)
+                    )
+                )
                     email.Bcc.Add(MailboxAddress.Parse(address.Trim()));
             }
 
             // Cc
             if (request.Cc != null)
             {
-                foreach (var address in request.Cc.Where(ccValue => !string.IsNullOrWhiteSpace(ccValue)))
+                foreach (
+                    var address in request.Cc.Where(ccValue => !string.IsNullOrWhiteSpace(ccValue))
+                )
                     email.Cc.Add(MailboxAddress.Parse(address.Trim()));
             }
 
@@ -51,7 +60,10 @@ public class SmtpMailService(IOptions<MailSettings> settings, ILogger<SmtpMailSe
 
             // Content
             var builder = new BodyBuilder();
-            email.Sender = new MailboxAddress(request.DisplayName ?? _settings.DisplayName, request.From ?? _settings.From);
+            email.Sender = new MailboxAddress(
+                request.DisplayName ?? _settings.DisplayName,
+                request.From ?? _settings.From
+            );
             email.Subject = request.Subject;
             builder.HtmlBody = request.Body;
 

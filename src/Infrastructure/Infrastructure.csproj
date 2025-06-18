@@ -47,10 +47,14 @@
     <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="10.0.0" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="9.0.0" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.6.5" />
-    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.421302">
+    <PackageReference
+      Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers"
+      Version="0.4.421302"
+    >
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Remove="Roslynator.Analyzers" />
+    <PackageReference Remove="StyleCop.Analyzers" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Application\Application.csproj" />

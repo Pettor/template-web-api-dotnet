@@ -8,7 +8,5 @@ namespace Backend.Infrastructure.Persistence.Configuration;
 public class IdentityUserLoginConfig : IEntityTypeConfiguration<IdentityUserLogin<string>>
 {
     public void Configure(EntityTypeBuilder<IdentityUserLogin<string>> builder) =>
-        builder
-            .ToTable("UserLogins", SchemaNames.Identity)
-            .IsMultiTenant();
+        builder.ToTable("UserLogins", SchemaNames.Identity).IsMultiTenant();
 }

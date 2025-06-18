@@ -4,7 +4,9 @@ namespace Backend.Infrastructure.Persistence.Initialization;
 
 internal class CustomSeederRunner(IServiceProvider serviceProvider)
 {
-    private readonly ICustomSeeder[] _seeders = serviceProvider.GetServices<ICustomSeeder>().ToArray();
+    private readonly ICustomSeeder[] _seeders = serviceProvider
+        .GetServices<ICustomSeeder>()
+        .ToArray();
 
     public async Task RunSeedersAsync(CancellationToken cancellationToken)
     {

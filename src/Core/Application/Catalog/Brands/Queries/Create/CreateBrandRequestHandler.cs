@@ -3,7 +3,8 @@ using Backend.Domain.Catalog;
 
 namespace Backend.Application.Catalog.Brands.Queries.Create;
 
-public class CreateBrandRequestHandler(IRepositoryWithEvents<Brand> repository) : IRequestHandler<CreateBrandRequest, Guid>
+public class CreateBrandRequestHandler(IRepositoryWithEvents<Brand> repository)
+    : IRequestHandler<CreateBrandRequest, Guid>
 {
     public async Task<Guid> Handle(CreateBrandRequest request, CancellationToken cancellationToken)
     {

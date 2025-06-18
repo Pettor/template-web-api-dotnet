@@ -9,6 +9,5 @@ namespace Backend.Application.Catalog.Brands.Specifications;
 public class BrandsBySearchRequestSpec : EntitiesByPaginationFilterSpec<Brand, BrandDto>
 {
     public BrandsBySearchRequestSpec(SearchBrandsRequest request)
-        : base(request) =>
-        Query.OrderBy(c => c.Name, !request.HasOrderBy());
+        : base(request) => Query.OrderBy(c => c.Name, !request.HasOrderBy());
 }

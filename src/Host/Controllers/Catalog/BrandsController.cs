@@ -1,5 +1,4 @@
-﻿using Backend.Application.Catalog.Brands;
-using Backend.Application.Catalog.Brands.Entities;
+﻿using Backend.Application.Catalog.Brands.Entities;
 using Backend.Application.Catalog.Brands.Queries.Create;
 using Backend.Application.Catalog.Brands.Queries.Delete;
 using Backend.Application.Catalog.Brands.Queries.Generate;
@@ -43,9 +42,7 @@ public class BrandsController : VersionedApiController
     [OpenApiOperation("Update a brand.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateBrandRequest request, Guid id)
     {
-        return id != request.Id
-            ? BadRequest()
-            : Ok(await Mediator.Send(request));
+        return id != request.Id ? BadRequest() : Ok(await Mediator.Send(request));
     }
 
     [HttpDelete("{id:guid}")]

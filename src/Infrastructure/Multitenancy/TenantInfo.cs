@@ -5,11 +5,15 @@ namespace Backend.Infrastructure.Multitenancy;
 
 public class TenantInfo : ITenantInfo
 {
-    public TenantInfo()
-    {
-    }
+    public TenantInfo() { }
 
-    public TenantInfo(string id, string name, string? connectionString, string adminEmail, string? issuer = null)
+    public TenantInfo(
+        string id,
+        string name,
+        string? connectionString,
+        string adminEmail,
+        string? issuer = null
+    )
     {
         Id = id;
         Identifier = id;
@@ -45,13 +49,13 @@ public class TenantInfo : ITenantInfo
     /// </summary>
     public string? Issuer { get; set; }
 
-    public void AddValidity(int months) =>
-        ValidUpto = ValidUpto.AddMonths(months);
+    public void AddValidity(int months) => ValidUpto = ValidUpto.AddMonths(months);
 
     public void SetValidity(in DateTime validTill) =>
-        ValidUpto = ValidUpto < validTill
-            ? validTill
-            : throw new Exception("Subscription cannot be backdated.");
+        ValidUpto =
+            ValidUpto < validTill
+                ? validTill
+                : throw new Exception("Subscription cannot be backdated.");
 
     public void Activate()
     {
@@ -73,8 +77,27 @@ public class TenantInfo : ITenantInfo
         IsActive = false;
     }
 
-    string? ITenantInfo.Id { get => Id; set => Id = value ?? throw new InvalidOperationException("Id can't be null."); }
-    string? ITenantInfo.Identifier { get => Identifier; set => Identifier = value ?? throw new InvalidOperationException("Identifier can't be null."); }
-    string? ITenantInfo.Name { get => Name; set => Name = value ?? throw new InvalidOperationException("Name can't be null."); }
-    string? ITenantInfo.ConnectionString { get => ConnectionString; set => ConnectionString = value ?? throw new InvalidOperationException("ConnectionString can't be null."); }
+    string? ITenantInfo.Id
+    {
+        get => Id;
+        set => Id = value ?? throw new InvalidOperationException("Id can't be null.");
+    }
+    string? ITenantInfo.Identifier
+    {
+        get => Identifier;
+        set =>
+            Identifier = value ?? throw new InvalidOperationException("Identifier can't be null.");
+    }
+    string? ITenantInfo.Name
+    {
+        get => Name;
+        set => Name = value ?? throw new InvalidOperationException("Name can't be null.");
+    }
+    string? ITenantInfo.ConnectionString
+    {
+        get => ConnectionString;
+        set =>
+            ConnectionString =
+                value ?? throw new InvalidOperationException("ConnectionString can't be null.");
+    }
 }

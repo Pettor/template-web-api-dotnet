@@ -1,7 +1,6 @@
 ﻿using Backend.Application.Common.Exceptions;
 using Backend.Application.Identity.Tokens;
 using Backend.Infrastructure.OpenApi;
-using Org.BouncyCastle.Ocsp;
 
 namespace Backend.Host.Controllers.Identity;
 
@@ -13,9 +12,14 @@ public sealed class TokensController(ITokenService tokenService) : VersionNeutra
     [OpenApiOperation("Request an access token using credentials.", "")]
     public async Task<ActionResult<TokenResponse>> GetTokenAsync(
         TokenRequest request,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken
+    )
     {
-        var tokenResult = await tokenService.GetTokenAsync(request, GetIpAddress(), cancellationToken);
+        var tokenResult = await tokenService.GetTokenAsync(
+            request,
+            GetIpAddress(),
+            cancellationToken
+        );
 
         AddRefreshTokenCookie(tokenResult.RefreshToken);
         return new TokenResponse(tokenResult.Token, tokenResult.RefreshTokenExpiryTime);
@@ -64,7 +68,12 @@ public sealed class TokensController(ITokenService tokenService) : VersionNeutra
 
     private static CookieOptions CreateCookeOptions()
     {
-        return new CookieOptions { HttpOnly = true, SameSite = SameSiteMode.Strict, Secure = true };
+        return new CookieOptions
+        {
+            HttpOnly = true,
+            SameSite = SameSiteMode.Strict,
+            Secure = true,
+        };
     }
 
     private string GetIpAddress()

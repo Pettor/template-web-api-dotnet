@@ -10,13 +10,18 @@ namespace Backend.Infrastructure.Localization;
 
 internal static class Startup
 {
-    internal static IServiceCollection AddLocalization(this IServiceCollection services, IConfiguration config)
+    internal static IServiceCollection AddLocalization(
+        this IServiceCollection services,
+        IConfiguration config
+    )
     {
         services.AddLocalization();
 
         services.AddSingleton<IStringLocalizerFactory, JsonStringLocalizerFactory>();
 
-        var middlewareSettings = config.GetSection(nameof(MiddlewareSettings)).Get<MiddlewareSettings>();
+        var middlewareSettings = config
+            .GetSection(nameof(MiddlewareSettings))
+            .Get<MiddlewareSettings>();
         if (middlewareSettings!.EnableLocalization)
         {
             services.AddSingleton<LocalizationMiddleware>();
@@ -25,14 +30,21 @@ internal static class Startup
         return services;
     }
 
-    internal static IApplicationBuilder UseLocalization(this IApplicationBuilder app, IConfiguration config)
+    internal static IApplicationBuilder UseLocalization(
+        this IApplicationBuilder app,
+        IConfiguration config
+    )
     {
-        app.UseRequestLocalization(new RequestLocalizationOptions
-        {
-            DefaultRequestCulture = new RequestCulture(new CultureInfo("en-US"))
-        });
+        app.UseRequestLocalization(
+            new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(new CultureInfo("en-US")),
+            }
+        );
 
-        var middlewareSettings = config.GetSection(nameof(MiddlewareSettings)).Get<MiddlewareSettings>();
+        var middlewareSettings = config
+            .GetSection(nameof(MiddlewareSettings))
+            .Get<MiddlewareSettings>();
         if (middlewareSettings!.EnableLocalization)
         {
             app.UseMiddleware<LocalizationMiddleware>();

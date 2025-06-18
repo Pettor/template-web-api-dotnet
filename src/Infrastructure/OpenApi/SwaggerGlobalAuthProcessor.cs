@@ -15,13 +15,13 @@ namespace Backend.Infrastructure.OpenApi;
 public class SwaggerGlobalAuthProcessor(string name) : IOperationProcessor
 {
     public SwaggerGlobalAuthProcessor()
-        : this(JwtBearerDefaults.AuthenticationScheme)
-    {
-    }
+        : this(JwtBearerDefaults.AuthenticationScheme) { }
 
     public bool Process(OperationProcessorContext context)
     {
-        var list = ((AspNetCoreOperationProcessorContext)context).ApiDescription?.ActionDescriptor?.TryGetPropertyValue<IList<object>>("EndpointMetadata");
+        var list = (
+            (AspNetCoreOperationProcessorContext)context
+        ).ApiDescription?.ActionDescriptor?.TryGetPropertyValue<IList<object>>("EndpointMetadata");
         if (list is not null)
         {
             if (list.OfType<AllowAnonymousAttribute>().Any())
@@ -31,13 +31,10 @@ public class SwaggerGlobalAuthProcessor(string name) : IOperationProcessor
 
             if (context.OperationDescription.Operation.Security?.Any() != true)
             {
-                (context.OperationDescription.Operation.Security ??= new List<OpenApiSecurityRequirement>()).Add(new OpenApiSecurityRequirement
-                {
-                    {
-                        name,
-                        Array.Empty<string>()
-                    }
-                });
+                (
+                    context.OperationDescription.Operation.Security ??=
+                        new List<OpenApiSecurityRequirement>()
+                ).Add(new OpenApiSecurityRequirement { { name, Array.Empty<string>() } });
             }
         }
 

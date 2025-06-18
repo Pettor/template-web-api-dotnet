@@ -1,5 +1,4 @@
-﻿using Backend.Application.Catalog.Brands;
-using Backend.Application.Catalog.Brands.Interfaces;
+﻿using Backend.Application.Catalog.Brands.Interfaces;
 using Backend.Application.Catalog.Brands.Queries.Create;
 using Backend.Application.Catalog.Brands.Queries.Delete;
 using Backend.Application.Common.Interfaces;
@@ -33,7 +32,8 @@ public class BrandGeneratorJob : IBrandGeneratorJob
         IProgressBarFactory progressBar,
         PerformingContext performingContext,
         INotificationSender notifications,
-        ICurrentUser currentUser)
+        ICurrentUser currentUser
+    )
     {
         _logger = logger;
         _mediator = mediator;
@@ -45,7 +45,11 @@ public class BrandGeneratorJob : IBrandGeneratorJob
         _progress = _progressBar.Create();
     }
 
-    private async Task NotifyAsync(string message, int progress, CancellationToken cancellationToken)
+    private async Task NotifyAsync(
+        string message,
+        int progress,
+        CancellationToken cancellationToken
+    )
     {
         _progress.SetValue(progress);
         await _notifications.SendToUserAsync(
@@ -53,10 +57,11 @@ public class BrandGeneratorJob : IBrandGeneratorJob
             {
                 JobId = _performingContext.BackgroundJob.Id,
                 Message = message,
-                Progress = progress
+                Progress = progress,
             },
             _currentUser.GetUserId().ToString(),
-            cancellationToken);
+            cancellationToken
+        );
     }
 
     [Queue("notdefault")]
@@ -70,11 +75,16 @@ public class BrandGeneratorJob : IBrandGeneratorJob
                 new CreateBrandRequest
                 {
                     Name = $"Brand Random - {Guid.NewGuid()}",
-                    Description = "Funny description"
+                    Description = "Funny description",
                 },
-                cancellationToken);
+                cancellationToken
+            );
 
-            await NotifyAsync("Progress: ", nSeed > 0 ? (index * 100 / nSeed) : 0, cancellationToken);
+            await NotifyAsync(
+                "Progress: ",
+                nSeed > 0 ? (index * 100 / nSeed) : 0,
+                cancellationToken
+            );
         }
 
         await NotifyAsync("Job successfully completed", 0, cancellationToken);
@@ -84,7 +94,10 @@ public class BrandGeneratorJob : IBrandGeneratorJob
     [AutomaticRetry(Attempts = 5)]
     public async Task CleanAsync(CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Initializing Job with Id: {jobId}", _performingContext.BackgroundJob.Id);
+        _logger.LogInformation(
+            "Initializing Job with Id: {jobId}",
+            _performingContext.BackgroundJob.Id
+        );
 
         var items = await _repository.ListAsync(new RandomBrandsSpec(), cancellationToken);
 

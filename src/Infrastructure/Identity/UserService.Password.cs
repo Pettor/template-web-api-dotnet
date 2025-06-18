@@ -27,7 +27,10 @@ internal partial class UserService
         var mailRequest = new MailRequest(
             new List<string> { request.Email },
             localizer["Reset Password"],
-            localizer[$"Your Password Reset Token is '{code}'. You can reset your password using the {endpointUri} Endpoint."]);
+            localizer[
+                $"Your Password Reset Token is '{code}'. You can reset your password using the {endpointUri} Endpoint."
+            ]
+        );
         jobService.Enqueue(() => mailService.SendAsync(mailRequest));
 
         return localizer["Password Reset Mail has been sent to your authorized Email."];
@@ -57,7 +60,10 @@ internal partial class UserService
 
         if (!result.Succeeded)
         {
-            throw new InternalServerException(localizer["Change password failed"], result.GetErrors(localizer));
+            throw new InternalServerException(
+                localizer["Change password failed"],
+                result.GetErrors(localizer)
+            );
         }
     }
 }

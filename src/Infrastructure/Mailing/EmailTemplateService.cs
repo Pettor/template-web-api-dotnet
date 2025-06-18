@@ -22,7 +22,12 @@ public class EmailTemplateService : IEmailTemplateService
         var tmplFolder = Path.Combine(baseDirectory, "Email Templates");
         var filePath = Path.Combine(tmplFolder, $"{templateName}.cshtml");
 
-        using var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+        using var fs = new FileStream(
+            filePath,
+            FileMode.Open,
+            FileAccess.Read,
+            FileShare.ReadWrite
+        );
         using var sr = new StreamReader(fs, Encoding.Default);
         var mailText = sr.ReadToEnd();
         sr.Close();

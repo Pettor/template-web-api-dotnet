@@ -1,6 +1,5 @@
 ﻿using Backend.Application.Common.Exceptions;
 using Backend.Application.Common.Persistence;
-using Backend.Application.Multitenancy;
 using Backend.Application.Multitenancy.Entities;
 using Backend.Application.Multitenancy.Interfaces;
 using Backend.Application.Multitenancy.Queries.Create;
@@ -18,8 +17,8 @@ internal class TenantService(
     IConnectionStringSecurer csSecurer,
     IDatabaseInitializer dbInitializer,
     IStringLocalizer<TenantService> localizer,
-    IOptions<DatabaseSettings> dbSettings)
-    : ITenantService
+    IOptions<DatabaseSettings> dbSettings
+) : ITenantService
 {
     private readonly DatabaseSettings _dbSettings = dbSettings.Value;
 
@@ -37,15 +36,23 @@ internal class TenantService(
         (await tenantStore.GetAllAsync()).Any(t => t.Name == name);
 
     public async Task<TenantDto> GetByIdAsync(string id) =>
-        (await GetTenantInfoAsync(id))
-            .Adapt<TenantDto>();
+        (await GetTenantInfoAsync(id)).Adapt<TenantDto>();
 
-    public async Task<string> CreateAsync(CreateTenantRequest request, CancellationToken cancellationToken)
+    public async Task<string> CreateAsync(
+        CreateTenantRequest request,
+        CancellationToken cancellationToken
+    )
     {
         if (request.ConnectionString?.Trim() == _dbSettings.ConnectionString?.Trim())
             request.ConnectionString = string.Empty;
 
-        var tenant = new TenantInfo(request.Id, request.Name, request.ConnectionString, request.AdminEmail, request.Issuer);
+        var tenant = new TenantInfo(
+            request.Id,
+            request.Name,
+            request.ConnectionString,
+            request.AdminEmail,
+            request.Issuer
+        );
         await tenantStore.TryAddAsync(tenant);
 
         // TODO: run this in a hangfire job? will then have to send mail when it's ready or not
@@ -107,5 +114,7 @@ internal class TenantService(
 
     private async Task<TenantInfo> GetTenantInfoAsync(string id) =>
         await tenantStore.TryGetAsync(id)
-            ?? throw new NotFoundException(string.Format(localizer["entity.notfound"], typeof(TenantInfo).Name, id));
+        ?? throw new NotFoundException(
+            string.Format(localizer["entity.notfound"], typeof(TenantInfo).Name, id)
+        );
 }

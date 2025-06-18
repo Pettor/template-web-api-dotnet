@@ -3,11 +3,18 @@ using Backend.Application.Common.Interfaces;
 
 namespace Backend.Application.Catalog.Brands.Queries.Delete;
 
-public class DeleteRandomBrandRequestHandler(IJobService jobService) : IRequestHandler<DeleteRandomBrandRequest, string>
+public class DeleteRandomBrandRequestHandler(IJobService jobService)
+    : IRequestHandler<DeleteRandomBrandRequest, string>
 {
-    public Task<string> Handle(DeleteRandomBrandRequest request, CancellationToken cancellationToken)
+    public Task<string> Handle(
+        DeleteRandomBrandRequest request,
+        CancellationToken cancellationToken
+    )
     {
-        var jobId = jobService.Schedule<IBrandGeneratorJob>(x => x.CleanAsync(default), TimeSpan.FromSeconds(5));
+        var jobId = jobService.Schedule<IBrandGeneratorJob>(
+            x => x.CleanAsync(default),
+            TimeSpan.FromSeconds(5)
+        );
         return Task.FromResult(jobId);
     }
 }

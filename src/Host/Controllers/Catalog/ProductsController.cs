@@ -1,5 +1,4 @@
-﻿using Backend.Application.Catalog.Products;
-using Backend.Application.Catalog.Products.Entities;
+﻿using Backend.Application.Catalog.Products.Entities;
 using Backend.Application.Catalog.Products.Queries.Create;
 using Backend.Application.Catalog.Products.Queries.Delete;
 using Backend.Application.Catalog.Products.Queries.Export;
@@ -51,9 +50,7 @@ public class ProductsController : VersionedApiController
     [OpenApiOperation("Update a product.", "")]
     public async Task<ActionResult<Guid>> UpdateAsync(UpdateProductRequest request, Guid id)
     {
-        return id != request.Id
-            ? BadRequest()
-            : Ok(await Mediator.Send(request));
+        return id != request.Id ? BadRequest() : Ok(await Mediator.Send(request));
     }
 
     [HttpDelete("{id:guid}")]

@@ -13,26 +13,17 @@ public class CurrentUser : ICurrentUser, ICurrentUserInitializer
     private Guid _userId = Guid.Empty;
 
     public Guid GetUserId() =>
-        IsAuthenticated()
-            ? Guid.Parse(_user?.GetUserId() ?? Guid.Empty.ToString())
-            : _userId;
+        IsAuthenticated() ? Guid.Parse(_user?.GetUserId() ?? Guid.Empty.ToString()) : _userId;
 
-    public string? GetUserEmail() =>
-        IsAuthenticated()
-            ? _user!.GetEmail()
-            : string.Empty;
+    public string? GetUserEmail() => IsAuthenticated() ? _user!.GetEmail() : string.Empty;
 
-    public bool IsAuthenticated() =>
-        _user?.Identity?.IsAuthenticated is true;
+    public bool IsAuthenticated() => _user?.Identity?.IsAuthenticated is true;
 
-    public bool IsInRole(string role) =>
-        _user?.IsInRole(role) is true;
+    public bool IsInRole(string role) => _user?.IsInRole(role) is true;
 
-    public IEnumerable<Claim>? GetUserClaims() =>
-        _user?.Claims;
+    public IEnumerable<Claim>? GetUserClaims() => _user?.Claims;
 
-    public string? GetTenant() =>
-        IsAuthenticated() ? _user?.GetTenant() : string.Empty;
+    public string? GetTenant() => IsAuthenticated() ? _user?.GetTenant() : string.Empty;
 
     public void SetCurrentUser(ClaimsPrincipal user)
     {

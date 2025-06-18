@@ -49,9 +49,10 @@ internal class AzureAdJwtBearerEvents(ILogger logger, IConfiguration config) : J
         // Lookup the tenant using the issuer.
         // TODO: we should probably cache this (root tenant and tenant per issuer)
         var tenantDb = context.HttpContext.RequestServices.GetRequiredService<TenantDbContext>();
-        var tenant = issuer == config["SecuritySettings:AzureAd:RootIssuer"]
-            ? await tenantDb.TenantInfo.FindAsync(MultitenancyConstants.Root.Id)
-            : await tenantDb.TenantInfo.FirstOrDefaultAsync(t => t.Issuer == issuer);
+        var tenant =
+            issuer == config["SecuritySettings:AzureAd:RootIssuer"]
+                ? await tenantDb.TenantInfo.FindAsync(MultitenancyConstants.Root.Id)
+                : await tenantDb.TenantInfo.FirstOrDefaultAsync(t => t.Issuer == issuer);
 
         if (tenant is null)
         {
@@ -71,7 +72,8 @@ internal class AzureAdJwtBearerEvents(ILogger logger, IConfiguration config) : J
         context.HttpContext.TrySetTenantInfo(tenant, false);
 
         // Lookup local user or create one if none exist.
-        var userId = await context.HttpContext.RequestServices.GetRequiredService<IUserService>()
+        var userId = await context
+            .HttpContext.RequestServices.GetRequiredService<IUserService>()
             .GetOrCreateFromPrincipalAsync(principal);
 
         // We use the nameidentifier claim to store the user id.

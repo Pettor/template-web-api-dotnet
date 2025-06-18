@@ -1,15 +1,15 @@
-﻿using System.Data.SqlClient;
-using Backend.Application.Common.Persistence;
+﻿using Backend.Application.Common.Persistence;
 using Backend.Infrastructure.Common;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using MySqlConnector;
 using Npgsql;
 
 namespace Backend.Infrastructure.Persistence.ConnectionString;
 
-internal class ConnectionStringValidator(IOptions<DatabaseSettings> dbSettings, ILogger<ConnectionStringValidator> logger)
-    : IConnectionStringValidator
+internal class ConnectionStringValidator(
+    IOptions<DatabaseSettings> dbSettings,
+    ILogger<ConnectionStringValidator> logger
+) : IConnectionStringValidator
 {
     private readonly DatabaseSettings _dbSettings = dbSettings.Value;
 
@@ -27,7 +27,6 @@ internal class ConnectionStringValidator(IOptions<DatabaseSettings> dbSettings, 
                 case DbProviderKeys.Npgsql:
                     var postgresqlcs = new NpgsqlConnectionStringBuilder(connectionString);
                     break;
-
             }
 
             return true;

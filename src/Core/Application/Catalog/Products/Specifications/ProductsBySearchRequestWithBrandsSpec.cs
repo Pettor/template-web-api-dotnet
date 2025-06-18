@@ -6,7 +6,8 @@ using Backend.Domain.Catalog;
 
 namespace Backend.Application.Catalog.Products.Specifications;
 
-public class ProductsBySearchRequestWithBrandsSpec : EntitiesByPaginationFilterSpec<Product, ProductDto>
+public class ProductsBySearchRequestWithBrandsSpec
+    : EntitiesByPaginationFilterSpec<Product, ProductDto>
 {
     public ProductsBySearchRequestWithBrandsSpec(SearchProductsRequest request)
         : base(request) =>

@@ -13,11 +13,15 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.5" />
     <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
-    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.421302">
+    <PackageReference
+      Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers"
+      Version="0.4.421302"
+    >
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.5" />
     <PackageReference Remove="Roslynator.Analyzers" />
+    <PackageReference Remove="StyleCop.Analyzers" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Application\Application.csproj" />
@@ -44,4 +48,17 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <Target Name="Husky" BeforeTargets="Restore;CollectPackageReferences" Condition="'$(HUSKY)' != 0">
+    <Exec
+      Command="dotnet tool restore"
+      StandardOutputImportance="Low"
+      StandardErrorImportance="High"
+    />
+    <Exec
+      Command="dotnet husky install"
+      StandardOutputImportance="Low"
+      StandardErrorImportance="High"
+      WorkingDirectory="..\.."
+    />
+  </Target>
 </Project>

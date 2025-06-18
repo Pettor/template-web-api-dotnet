@@ -36,7 +36,11 @@ public class UsersController(IUserService userService) : VersionNeutralApiContro
     [ApiConventionMethod(typeof(ApiConventions), nameof(ApiConventions.Register))]
     [MustHavePermission(ApiAction.Update, ApiResource.UserRoles)]
     [OpenApiOperation("Update a user's assigned roles.", "")]
-    public Task<string> AssignRolesAsync(string id, UserRolesRequest request, CancellationToken cancellationToken)
+    public Task<string> AssignRolesAsync(
+        string id,
+        UserRolesRequest request,
+        CancellationToken cancellationToken
+    )
     {
         return userService.AssignRolesAsync(id, request, cancellationToken);
     }
@@ -69,7 +73,11 @@ public class UsersController(IUserService userService) : VersionNeutralApiContro
     [MustHavePermission(ApiAction.Update, ApiResource.Users)]
     [ApiConventionMethod(typeof(ApiConventions), nameof(ApiConventions.Register))]
     [OpenApiOperation("Toggle a user's active status.", "")]
-    public async Task<ActionResult> ToggleStatusAsync(string id, ToggleUserStatusRequest request, CancellationToken cancellationToken)
+    public async Task<ActionResult> ToggleStatusAsync(
+        string id,
+        ToggleUserStatusRequest request,
+        CancellationToken cancellationToken
+    )
     {
         if (id != request.UserId)
         {
@@ -84,7 +92,12 @@ public class UsersController(IUserService userService) : VersionNeutralApiContro
     [AllowAnonymous]
     [OpenApiOperation("Confirm email address for a user.", "")]
     [ApiConventionMethod(typeof(ApiConventions), nameof(ApiConventions.Search))]
-    public Task<string> ConfirmEmailAsync([FromQuery] string tenant, [FromQuery] string userId, [FromQuery] string code, CancellationToken cancellationToken)
+    public Task<string> ConfirmEmailAsync(
+        [FromQuery] string tenant,
+        [FromQuery] string userId,
+        [FromQuery] string code,
+        CancellationToken cancellationToken
+    )
     {
         return userService.ConfirmEmailAsync(userId, code, tenant, cancellationToken);
     }
@@ -116,5 +129,6 @@ public class UsersController(IUserService userService) : VersionNeutralApiContro
         return userService.ResetPasswordAsync(request);
     }
 
-    private string GetOriginFromRequest() => $"{Request.Scheme}://{Request.Host.Value}{Request.PathBase.Value}";
+    private string GetOriginFromRequest() =>
+        $"{Request.Scheme}://{Request.Host.Value}{Request.PathBase.Value}";
 }

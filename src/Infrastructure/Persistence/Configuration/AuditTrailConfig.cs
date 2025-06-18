@@ -8,7 +8,5 @@ namespace Backend.Infrastructure.Persistence.Configuration;
 public class AuditTrailConfig : IEntityTypeConfiguration<Trail>
 {
     public void Configure(EntityTypeBuilder<Trail> builder) =>
-        builder
-            .ToTable("AuditTrails", SchemaNames.Auditing)
-            .IsMultiTenant();
+        builder.ToTable("AuditTrails", SchemaNames.Auditing).IsMultiTenant();
 }
