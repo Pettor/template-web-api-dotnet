@@ -4,6 +4,7 @@ using Backend.Application.Common.Persistence;
 using Backend.Domain.Common.Contracts;
 using Backend.Infrastructure.Persistence.Context;
 using Dapper;
+using Finbuckle.MultiTenant;
 using Finbuckle.MultiTenant.EntityFrameworkCore;
 
 namespace Backend.Infrastructure.Persistence.Repository;

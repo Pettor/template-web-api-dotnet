@@ -1,10 +1,12 @@
-﻿using Backend.Application.Multitenancy.Interfaces;
+﻿using Backend.Application.Multitenancy;
+using Backend.Application.Multitenancy.Interfaces;
 using Backend.Infrastructure.Persistence;
 using Backend.Shared.Authorization;
 using Backend.Shared.Multitenancy;
+using Finbuckle.MultiTenant;
+using Finbuckle.MultiTenant.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -27,34 +29,40 @@ internal static class Startup
             throw new InvalidOperationException("DB Provider is not configured.");
 
         return services
-            .AddDbContext<TenantDbContext>(m =>
-                m.UseDatabase(dbProvider, rootConnectionString)
-                    .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning))
-            )
+            .AddDbContext<TenantDbContext>(m => m.UseDatabase(dbProvider, rootConnectionString))
             .AddMultiTenant<TenantInfo>()
             .WithClaimStrategy(ApiClaims.Tenant)
             .WithHeaderStrategy(MultitenancyConstants.TenantIdName)
-            .WithQueryStringStrategy(MultitenancyConstants.TenantIdName)
+            .WithStrategy<QueryStringStrategy>(
+                ServiceLifetime.Singleton,
+                MultitenancyConstants.TenantIdName
+            )
             .WithEFCoreStore<TenantDbContext, TenantInfo>()
-            .Services.AddScoped<ITenantService, TenantService>();
+            .Services.AddScoped<ITenantService, TenantService>()
+            .AddScoped<ITenantInfo, TenantInfo>();
     }
 
     internal static IApplicationBuilder UseMultiTenancy(this IApplicationBuilder app) =>
         app.UseMultiTenant();
+}
 
-    private static FinbuckleMultiTenantBuilder<TenantInfo> WithQueryStringStrategy(
-        this FinbuckleMultiTenantBuilder<TenantInfo> builder,
-        string queryStringKey
-    ) =>
-        builder.WithDelegateStrategy(context =>
+public class QueryStringStrategy : IMultiTenantStrategy
+{
+    private readonly string _queryStringKey;
+
+    public QueryStringStrategy(string queryStringKey)
+    {
+        _queryStringKey = queryStringKey;
+    }
+
+    public Task<string?> GetIdentifierAsync(object context)
+    {
+        if (context is not HttpContext httpContext)
         {
-            if (context is not HttpContext httpContext)
-            {
-                return Task.FromResult((string?)null);
-            }
+            return Task.FromResult((string?)null);
+        }
 
-            httpContext.Request.Query.TryGetValue(queryStringKey, out var tenantIdParam);
-
-            return Task.FromResult((string?)tenantIdParam.ToString());
-        });
+        httpContext.Request.Query.TryGetValue(_queryStringKey, out var tenantIdParam);
+        return Task.FromResult((string?)tenantIdParam.FirstOrDefault());
+    }
 }

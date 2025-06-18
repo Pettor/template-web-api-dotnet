@@ -3,6 +3,7 @@ using Backend.Infrastructure.Multitenancy;
 using Backend.Infrastructure.Persistence.Context;
 using Backend.Shared.Authorization;
 using Backend.Shared.Multitenancy;
+using Finbuckle.MultiTenant.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -10,13 +11,15 @@ using Microsoft.Extensions.Logging;
 namespace Backend.Infrastructure.Persistence.Initialization;
 
 internal class ApplicationDbSeeder(
-    TenantInfo currentTenant,
+    IMultiTenantContextAccessor<TenantInfo> contextAccessor,
     RoleManager<ApplicationRole> roleManager,
     UserManager<ApplicationUser> userManager,
     CustomSeederRunner seederRunner,
     ILogger<ApplicationDbSeeder> logger
 )
 {
+    private readonly TenantInfo _currentTenant = contextAccessor.MultiTenantContext.TenantInfo!;
+
     public async Task SeedDatabaseAsync(
         ApplicationDbContext dbContext,
         CancellationToken cancellationToken
@@ -40,11 +43,11 @@ internal class ApplicationDbSeeder(
                 logger.LogInformation(
                     "Seeding {role} Role for '{tenantId}' Tenant.",
                     roleName,
-                    currentTenant.Id
+                    _currentTenant.Id
                 );
                 role = new ApplicationRole(
                     roleName,
-                    $"{roleName} Role for {currentTenant.Id} Tenant"
+                    $"{roleName} Role for {_currentTenant.Id} Tenant"
                 );
                 await roleManager.CreateAsync(role);
             }
@@ -59,7 +62,7 @@ internal class ApplicationDbSeeder(
                 {
                     await AssignPermissionsToRoleAsync(dbContext, ApiPermissions.Admin, role);
 
-                    if (currentTenant.Id == MultitenancyConstants.Root.Id)
+                    if (_currentTenant.Id == MultitenancyConstants.Root.Id)
                     {
                         await AssignPermissionsToRoleAsync(dbContext, ApiPermissions.Root, role);
                     }
@@ -89,7 +92,7 @@ internal class ApplicationDbSeeder(
                     "Seeding {role} Permission '{permission}' for '{tenantId}' Tenant.",
                     role.Name,
                     permission.Name,
-                    currentTenant.Id
+                    _currentTenant.Id
                 );
                 dbContext.RoleClaims.Add(
                     new ApplicationRoleClaim
@@ -108,35 +111,35 @@ internal class ApplicationDbSeeder(
     private async Task SeedAdminUserAsync()
     {
         if (
-            string.IsNullOrWhiteSpace(currentTenant.Id)
-            || string.IsNullOrWhiteSpace(currentTenant.AdminEmail)
+            string.IsNullOrWhiteSpace(_currentTenant.Id)
+            || string.IsNullOrWhiteSpace(_currentTenant.AdminEmail)
         )
         {
             return;
         }
 
         if (
-            await userManager.Users.FirstOrDefaultAsync(u => u.Email == currentTenant.AdminEmail)
+            await userManager.Users.FirstOrDefaultAsync(u => u.Email == _currentTenant.AdminEmail)
             is not ApplicationUser adminUser
         )
         {
-            var adminUserName = $"{currentTenant.Id.Trim()}.{ApiRoles.Admin}".ToLowerInvariant();
+            var adminUserName = $"{_currentTenant.Id.Trim()}.{ApiRoles.Admin}".ToLowerInvariant();
             adminUser = new ApplicationUser
             {
-                FirstName = currentTenant.Id.Trim().ToLowerInvariant(),
+                FirstName = _currentTenant.Id.Trim().ToLowerInvariant(),
                 LastName = ApiRoles.Admin,
-                Email = currentTenant.AdminEmail,
+                Email = _currentTenant.AdminEmail,
                 UserName = adminUserName,
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true,
-                NormalizedEmail = currentTenant.AdminEmail?.ToUpperInvariant(),
+                NormalizedEmail = _currentTenant.AdminEmail?.ToUpperInvariant(),
                 NormalizedUserName = adminUserName.ToUpperInvariant(),
                 IsActive = true,
             };
 
             logger.LogInformation(
                 "Seeding Default Admin User for '{tenantId}' Tenant.",
-                currentTenant.Id
+                _currentTenant.Id
             );
             var password = new PasswordHasher<ApplicationUser>();
             adminUser.PasswordHash = password.HashPassword(
@@ -151,7 +154,7 @@ internal class ApplicationDbSeeder(
         {
             logger.LogInformation(
                 "Assigning Admin Role to Admin User for '{tenantId}' Tenant.",
-                currentTenant.Id
+                _currentTenant.Id
             );
             await userManager.AddToRoleAsync(adminUser, ApiRoles.Admin);
         }

@@ -4,7 +4,9 @@ using Backend.Application.Common.Interfaces;
 using Backend.Domain.Common.Contracts;
 using Backend.Infrastructure.Auditing;
 using Backend.Infrastructure.Identity;
-using Finbuckle.MultiTenant;
+using Backend.Infrastructure.Multitenancy;
+using Finbuckle.MultiTenant.Abstractions;
+using Finbuckle.MultiTenant.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -12,7 +14,7 @@ using Microsoft.Extensions.Options;
 namespace Backend.Infrastructure.Persistence.Context;
 
 public abstract class BaseDbContext(
-    ITenantInfo currentTenant,
+    IMultiTenantContextAccessor<TenantInfo> currentTenantAccessor,
     DbContextOptions options,
     ICurrentUser currentUser,
     ISerializerService serializer,
@@ -28,10 +30,13 @@ public abstract class BaseDbContext(
         IdentityUserLogin<string>,
         ApplicationRoleClaim,
         IdentityUserToken<string>
-    >(currentTenant, options)
+    >(currentTenantAccessor, options)
 {
     protected readonly ICurrentUser CurrentUser = currentUser;
     private readonly DatabaseSettings _dbSettings = dbSettings.Value;
+    private readonly IMultiTenantContextAccessor<TenantInfo> _currentTenantAccessor =
+        currentTenantAccessor;
+    private TenantInfo CurrentTenant => _currentTenantAccessor.MultiTenantContext.TenantInfo!;
 
     // Used by Dapper
     public IDbConnection Connection => Database.GetDbConnection();
@@ -40,30 +45,25 @@ public abstract class BaseDbContext(
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // QueryFilters need to be applied before base.OnModelCreating
         modelBuilder.AppendGlobalQueryFilter<ISoftDelete>(s => s.DeletedOn == null);
-
         base.OnModelCreating(modelBuilder);
-
         modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        // TODO: We want this only for development probably... maybe better make it configurable in logger.json config?
         optionsBuilder.EnableSensitiveDataLogging();
 
-        // If you want to see the sql queries that efcore executes:
-
-        // Uncomment the next line to see them in the output window of visual studio
-        // optionsBuilder.LogTo(m => Debug.WriteLine(m), LogLevel.Information);
-
-        // Or uncomment the next line if you want to see them in the console
-        // optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
-
-        if (!string.IsNullOrWhiteSpace(TenantInfo?.ConnectionString))
+        if (
+            !string.IsNullOrWhiteSpace(
+                _currentTenantAccessor.MultiTenantContext?.TenantInfo?.ConnectionString
+            )
+        )
         {
-            optionsBuilder.UseDatabase(_dbSettings.DbProvider!, TenantInfo.ConnectionString);
+            optionsBuilder.UseDatabase(
+                _dbSettings.DbProvider!,
+                _currentTenantAccessor.MultiTenantContext.TenantInfo.ConnectionString
+            );
         }
     }
 
@@ -72,13 +72,9 @@ public abstract class BaseDbContext(
     )
     {
         var auditEntries = HandleAuditingBeforeSaveChanges(CurrentUser.GetUserId());
-
         var result = await base.SaveChangesAsync(cancellationToken);
-
         await HandleAuditingAfterSaveChangesAsync(auditEntries, cancellationToken);
-
         await SendDomainEventsAsync();
-
         return result;
     }
 

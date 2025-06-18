@@ -9,6 +9,7 @@ using Backend.Infrastructure.Auth.Jwt;
 using Backend.Infrastructure.Multitenancy;
 using Backend.Shared.Authorization;
 using Backend.Shared.Multitenancy;
+using Finbuckle.MultiTenant.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
@@ -20,12 +21,13 @@ internal class TokenService(
     UserManager<ApplicationUser> userManager,
     IOptions<JwtSettings> jwtSettings,
     IStringLocalizer<TokenService> localizer,
-    TenantInfo? currentTenant,
+    IMultiTenantContextAccessor<TenantInfo> contextAccessor,
     IOptions<SecuritySettings> securitySettings
 ) : ITokenService
 {
     private readonly SecuritySettings _securitySettings = securitySettings.Value;
     private readonly JwtSettings _jwtSettings = jwtSettings.Value;
+    private readonly TenantInfo _currentTenant = contextAccessor.MultiTenantContext.TenantInfo!;
 
     public async Task<TokenResult> GetTokenAsync(
         TokenRequest request,
@@ -33,7 +35,7 @@ internal class TokenService(
         CancellationToken cancellationToken
     )
     {
-        if (string.IsNullOrWhiteSpace(currentTenant?.Id))
+        if (string.IsNullOrWhiteSpace(_currentTenant?.Id))
         {
             throw new UnauthorizedException(localizer["tenant.invalid"]);
         }
@@ -54,14 +56,14 @@ internal class TokenService(
             throw new UnauthorizedException(localizer["identity.emailnotconfirmed"]);
         }
 
-        if (currentTenant.Id != MultitenancyConstants.Root.Id)
+        if (_currentTenant.Id != MultitenancyConstants.Root.Id)
         {
-            if (!currentTenant.IsActive)
+            if (!_currentTenant.IsActive)
             {
                 throw new UnauthorizedException(localizer["tenant.inactive"]);
             }
 
-            if (DateTime.UtcNow > currentTenant.ValidUpto)
+            if (DateTime.UtcNow > _currentTenant.ValidUpto)
             {
                 throw new UnauthorizedException(localizer["tenant.expired"]);
             }
@@ -72,7 +74,7 @@ internal class TokenService(
             throw new UnauthorizedException(localizer["identity.invalidcredentials"]);
         }
 
-        return await GenerateTokensAndUpdateUser(user, ipAddress, request.RememberMe);
+        return await GenerateTokensAndUpdateUser(user, ipAddress);
     }
 
     public async Task<TokenResult> RefreshTokenAsync(string accessToken, string ipAddress)
@@ -93,16 +95,15 @@ internal class TokenService(
 
     private async Task<TokenResult> GenerateTokensAndUpdateUser(
         ApplicationUser user,
-        string ipAddress,
-        bool rememberMe = true
+        string ipAddress
     )
     {
         var token = GenerateJwt(user, ipAddress);
 
         user.RefreshToken = GenerateRefreshToken();
-        user.RefreshTokenExpiryTime = rememberMe
-            ? DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpirationInDays)
-            : DateTime.UtcNow;
+        user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(
+            _jwtSettings.RefreshTokenExpirationInDays
+        );
 
         await userManager.UpdateAsync(user);
 
@@ -121,7 +122,7 @@ internal class TokenService(
             new(ClaimTypes.Name, user.FirstName ?? string.Empty),
             new(ClaimTypes.Surname, user.LastName ?? string.Empty),
             new(ApiClaims.IpAddress, ipAddress),
-            new(ApiClaims.Tenant, currentTenant!.Id),
+            new(ApiClaims.Tenant, _currentTenant!.Id),
             new(ApiClaims.ImageUrl, user.ImageUrl ?? string.Empty),
             new(ClaimTypes.MobilePhone, user.PhoneNumber ?? string.Empty),
         };

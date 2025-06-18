@@ -1,7 +1,9 @@
 ﻿using Backend.Infrastructure.Auth;
 using Backend.Infrastructure.Common;
+using Backend.Infrastructure.Multitenancy;
 using Backend.Shared.Multitenancy;
 using Finbuckle.MultiTenant;
+using Finbuckle.MultiTenant.Abstractions;
 using Hangfire;
 using Hangfire.Server;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,12 +39,15 @@ public class DefaultJobActivator(IServiceScopeFactory scopeFactory) : JobActivat
             );
             if (tenantInfo is not null)
             {
-                _scope
-                    .ServiceProvider.GetRequiredService<IMultiTenantContextAccessor>()
-                    .MultiTenantContext = new MultiTenantContext<TenantInfo>
+                var multiTenantContextAccessor =
+                    _scope.ServiceProvider.GetRequiredService<IMultiTenantContextAccessor>();
+                if (
+                    multiTenantContextAccessor.MultiTenantContext
+                    is MultiTenantContext<TenantInfo> context
+                )
                 {
-                    TenantInfo = tenantInfo,
-                };
+                    context.TenantInfo = tenantInfo;
+                }
             }
 
             var userId = _context.GetJobParameter<string>(QueryStringKeys.UserId);

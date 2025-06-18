@@ -1,5 +1,5 @@
 ﻿using Backend.Shared.Multitenancy;
-using Finbuckle.MultiTenant;
+using Finbuckle.MultiTenant.Abstractions;
 
 namespace Backend.Infrastructure.Multitenancy;
 
@@ -92,12 +92,5 @@ public class TenantInfo : ITenantInfo
     {
         get => Name;
         set => Name = value ?? throw new InvalidOperationException("Name can't be null.");
-    }
-    string? ITenantInfo.ConnectionString
-    {
-        get => ConnectionString;
-        set =>
-            ConnectionString =
-                value ?? throw new InvalidOperationException("ConnectionString can't be null.");
     }
 }

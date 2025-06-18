@@ -1,5 +1,6 @@
 ﻿using Backend.Application.Common.Caching;
 using Finbuckle.MultiTenant;
+using Finbuckle.MultiTenant.Abstractions;
 
 namespace Backend.Infrastructure.Caching;
 

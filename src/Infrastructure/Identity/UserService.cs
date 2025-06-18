@@ -13,6 +13,7 @@ using Backend.Infrastructure.Auth;
 using Backend.Infrastructure.Persistence.Context;
 using Backend.Shared.Authorization;
 using Finbuckle.MultiTenant;
+using Finbuckle.MultiTenant.Abstractions;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
