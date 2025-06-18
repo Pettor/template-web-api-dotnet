@@ -1,5 +1,4 @@
-﻿using Backend.Application.Catalog.Products;
-using Backend.Application.Catalog.Products.Entities;
+﻿using Backend.Application.Catalog.Products.Entities;
 using Backend.Application.Catalog.Products.Queries.Create;
 using Backend.Application.Catalog.Products.Queries.Delete;
 using Backend.Application.Catalog.Products.Queries.Export;

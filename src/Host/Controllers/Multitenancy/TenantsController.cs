@@ -1,5 +1,4 @@
-﻿using Backend.Application.Multitenancy;
-using Backend.Application.Multitenancy.Entities;
+﻿using Backend.Application.Multitenancy.Entities;
 using Backend.Application.Multitenancy.Queries.Active;
 using Backend.Application.Multitenancy.Queries.Create;
 using Backend.Application.Multitenancy.Queries.Deactivate;

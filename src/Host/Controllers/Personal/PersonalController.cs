@@ -1,5 +1,4 @@
-﻿using Backend.Application.Auditing;
-using Backend.Application.Auditing.Entities;
+﻿using Backend.Application.Auditing.Entities;
 using Backend.Application.Auditing.Queries.Get;
 using Backend.Application.Identity.Users;
 using Backend.Application.Identity.Users.Password;

@@ -1,5 +1,4 @@
-﻿using Backend.Application.Multitenancy;
-using Backend.Application.Multitenancy.Interfaces;
+﻿using Backend.Application.Multitenancy.Interfaces;
 using Backend.Infrastructure.Persistence;
 using Backend.Shared.Authorization;
 using Backend.Shared.Multitenancy;

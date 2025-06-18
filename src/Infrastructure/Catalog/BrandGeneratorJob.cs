@@ -1,5 +1,4 @@
-﻿using Backend.Application.Catalog.Brands;
-using Backend.Application.Catalog.Brands.Interfaces;
+﻿using Backend.Application.Catalog.Brands.Interfaces;
 using Backend.Application.Catalog.Brands.Queries.Create;
 using Backend.Application.Catalog.Brands.Queries.Delete;
 using Backend.Application.Common.Interfaces;

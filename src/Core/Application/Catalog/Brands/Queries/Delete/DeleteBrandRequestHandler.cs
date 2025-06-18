@@ -1,5 +1,4 @@
-﻿using Backend.Application.Catalog.Products;
-using Backend.Application.Catalog.Products.Specifications;
+﻿using Backend.Application.Catalog.Products.Specifications;
 using Backend.Application.Common.Exceptions;
 using Backend.Application.Common.Persistence;
 using Backend.Domain.Catalog;

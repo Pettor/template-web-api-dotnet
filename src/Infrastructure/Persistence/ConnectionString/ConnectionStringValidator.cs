@@ -1,9 +1,7 @@
-﻿using System.Data.SqlClient;
-using Backend.Application.Common.Persistence;
+﻿using Backend.Application.Common.Persistence;
 using Backend.Infrastructure.Common;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using MySqlConnector;
 using Npgsql;
 
 namespace Backend.Infrastructure.Persistence.ConnectionString;

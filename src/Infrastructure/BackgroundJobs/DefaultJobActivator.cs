@@ -1,6 +1,5 @@
 ﻿using Backend.Infrastructure.Auth;
 using Backend.Infrastructure.Common;
-using Backend.Infrastructure.Multitenancy;
 using Backend.Shared.Multitenancy;
 using Finbuckle.MultiTenant;
 using Hangfire;

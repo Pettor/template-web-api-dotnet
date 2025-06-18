@@ -1,7 +1,6 @@
 ﻿using Backend.Application.Common.Exceptions;
 using Backend.Application.Identity.Tokens;
 using Backend.Infrastructure.OpenApi;
-using Org.BouncyCastle.Ocsp;
 
 namespace Backend.Host.Controllers.Identity;
 
