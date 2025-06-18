@@ -16,6 +16,7 @@
     />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="9.0.5" />
     <PackageReference Remove="Roslynator.Analyzers" />
+    <PackageReference Remove="StyleCop.Analyzers" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />

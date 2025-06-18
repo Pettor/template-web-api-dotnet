@@ -51,7 +51,8 @@ internal class TenantService(
             request.Name,
             request.ConnectionString,
             request.AdminEmail,
-            request.Issuer);
+            request.Issuer
+        );
         await tenantStore.TryAddAsync(tenant);
 
         // TODO: run this in a hangfire job? will then have to send mail when it's ready or not
