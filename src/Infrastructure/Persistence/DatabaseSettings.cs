@@ -2,6 +2,6 @@
 
 public class DatabaseSettings
 {
-    public string? DbProvider { get; set; }
-    public string? ConnectionString { get; set; }
+    public string DbProvider { get; set; } = string.Empty;
+    public string ConnectionString { get; set; } = string.Empty;
 }

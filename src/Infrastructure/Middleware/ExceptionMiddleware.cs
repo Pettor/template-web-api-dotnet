@@ -40,7 +40,7 @@ internal class ExceptionMiddleware(
                 ErrorId = errorId,
                 SupportMessage = localizer["exceptionmiddleware.supportmessage"],
             };
-            errorResult.Messages!.Add(exception.Message);
+            errorResult.Messages.Add(exception.Message);
             var response = context.Response;
             response.ContentType = "application/json";
             if (exception is not CustomException && exception.InnerException != null)
