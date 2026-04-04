@@ -2,7 +2,7 @@
 
 # Clean Architecture .NET Web API Template
 
-A production-ready, enterprise-grade .NET 9.0 Web API template built with Clean Architecture principles and comprehensive multitenancy support. This template provides a solid foundation for building scalable, maintainable web APIs with modern development practices and industry-standard patterns.
+A production-ready, enterprise-grade .NET 10.0 Web API template built with Clean Architecture principles and comprehensive multitenancy support. This template provides a solid foundation for building scalable, maintainable web APIs with modern development practices and industry-standard patterns.
 
 ## ✨ Key Features
 
@@ -61,7 +61,7 @@ A production-ready, enterprise-grade .NET 9.0 Web API template built with Clean 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- .NET 9.0 SDK
+- .NET 10.0 SDK
 - PostgreSQL 15+
 - Docker (optional)
 
@@ -97,7 +97,7 @@ A production-ready, enterprise-grade .NET 9.0 Web API template built with Clean 
 
 ## 🛠️ Technology Stack
 
-- **.NET 8.0** - Latest LTS framework
+- **.NET 10.0** - Latest framework
 - **ASP.NET Core** - Web API framework
 - **Entity Framework Core** - ORM and data access
 - **PostgreSQL** - Primary database

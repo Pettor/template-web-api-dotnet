@@ -4,7 +4,7 @@ This document provides guidance for AI assistants (Claude and others) working in
 
 ## Project Overview
 
-This is a **production-ready, enterprise-grade .NET 9.0 Web API template** implementing Clean Architecture with multitenancy support. It is designed as a reusable starting point for scalable, maintainable web API services.
+This is a **production-ready, enterprise-grade .NET 10.0 Web API template** implementing Clean Architecture with multitenancy support. It is designed as a reusable starting point for scalable, maintainable web API services.
 
 **Repository:** `pettor/template-web-api-dotnet`
 
@@ -43,7 +43,7 @@ Never add references that violate this direction (e.g., Domain referencing Appli
 
 | Category | Technology |
 |---|---|
-| Framework | .NET 9.0, ASP.NET Core, C# 13 |
+| Framework | .NET 10.0, ASP.NET Core, C# 14 |
 | ORM | Entity Framework Core 9 + Npgsql |
 | Database | PostgreSQL 15+ |
 | CQRS | MediatR 11 |
@@ -116,7 +116,7 @@ Runtime configuration lives in `src/Host/Configurations/`. Sensitive config file
 
 ### Prerequisites
 
-- .NET 9.0 SDK
+- .NET 10.0 SDK
 - PostgreSQL 15+ (or Docker)
 - Redis (or Docker)
 - PowerShell (for migration script)
@@ -234,8 +234,8 @@ When adding features, add corresponding tests in the relevant subdirectory follo
 
 Enforced globally via `Directory.Build.props`:
 
-- **Target framework:** `net9.0`
-- **Language version:** C# 13
+- **Target framework:** `net10.0`
+- **Language version:** C# 14
 - **Nullable reference types:** enabled
 - **Implicit usings:** enabled
 - **Documentation file:** generated (XML doc comments encouraged on public APIs)
