@@ -61,7 +61,7 @@ public abstract class BaseDbContext(
         )
         {
             optionsBuilder.UseDatabase(
-                _dbSettings.DbProvider!,
+                _dbSettings.DbProvider,
                 _currentTenantAccessor.MultiTenantContext.TenantInfo.ConnectionString
             );
         }

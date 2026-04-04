@@ -33,13 +33,13 @@ internal static class Startup
 
         if (string.IsNullOrEmpty(storageSettings!.StorageProvider))
             throw new ConfigurationErrorsException("Hangfire Storage Provider is not configured.");
-        if (string.IsNullOrEmpty(storageSettings!.ConnectionString))
+        if (string.IsNullOrEmpty(storageSettings.ConnectionString))
             throw new ConfigurationErrorsException(
                 "Hangfire Storage Provider ConnectionString is not configured."
             );
         Logger.Information(
             "Hangfire: Current Storage Provider : {StorageProvider}",
-            storageSettings!.StorageProvider
+            storageSettings.StorageProvider
         );
         Logger.Information(
             "For more Hangfire storage, visit https://www.hangfire.io/extensions.html"
