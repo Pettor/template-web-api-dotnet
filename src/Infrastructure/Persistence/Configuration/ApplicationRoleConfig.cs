@@ -1,6 +1,6 @@
 ﻿using Backend.Infrastructure.Identity;
 using Finbuckle.MultiTenant;
-using Finbuckle.MultiTenant.EntityFrameworkCore;
+using Finbuckle.MultiTenant.EntityFrameworkCore.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

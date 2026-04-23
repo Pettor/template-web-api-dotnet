@@ -4,8 +4,7 @@ using Backend.Application.Common.Persistence;
 using Backend.Domain.Common.Contracts;
 using Backend.Infrastructure.Persistence.Context;
 using Dapper;
-using Finbuckle.MultiTenant;
-using Finbuckle.MultiTenant.EntityFrameworkCore;
+using Finbuckle.MultiTenant.EntityFrameworkCore.Extensions;
 
 namespace Backend.Infrastructure.Persistence.Repository;
 
@@ -30,7 +29,7 @@ public class DapperRepository(ApplicationDbContext dbContext) : IDapperRepositor
     {
         if (!dbContext.Model.GetMultiTenantEntityTypes().Any(t => t.ClrType == typeof(T)))
         {
-            sql = sql.Replace("@tenant", dbContext.TenantInfo.Id);
+            sql = sql.Replace("@tenant", dbContext.TenantInfo?.Id);
         }
 
         var entity = await dbContext.Connection.QueryFirstOrDefaultAsync<T>(
@@ -52,7 +51,7 @@ public class DapperRepository(ApplicationDbContext dbContext) : IDapperRepositor
     {
         if (!dbContext.Model.GetMultiTenantEntityTypes().Any(t => t.ClrType == typeof(T)))
         {
-            sql = sql.Replace("@tenant", dbContext.TenantInfo.Id);
+            sql = sql.Replace("@tenant", dbContext.TenantInfo?.Id);
         }
 
         return dbContext.Connection.QuerySingleAsync<T>(sql, param, transaction);

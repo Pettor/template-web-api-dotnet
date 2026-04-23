@@ -31,7 +31,7 @@ internal class TenantService(
     }
 
     public async Task<bool> ExistsWithIdAsync(string id) =>
-        await tenantStore.TryGetAsync(id) is not null;
+        await tenantStore.GetAsync(id) is not null;
 
     public async Task<bool> ExistsWithNameAsync(string name) =>
         (await tenantStore.GetAllAsync()).Any(t => t.Name == name);
@@ -54,7 +54,7 @@ internal class TenantService(
             request.AdminEmail,
             request.Issuer
         );
-        await tenantStore.TryAddAsync(tenant);
+        await tenantStore.AddAsync(tenant);
 
         // TODO: run this in a hangfire job? will then have to send mail when it's ready or not
         try
@@ -63,7 +63,7 @@ internal class TenantService(
         }
         catch
         {
-            await tenantStore.TryRemoveAsync(request.Id);
+            await tenantStore.RemoveAsync(request.Id);
             throw;
         }
 
@@ -81,7 +81,7 @@ internal class TenantService(
 
         tenant.Activate();
 
-        await tenantStore.TryUpdateAsync(tenant);
+        await tenantStore.UpdateAsync(tenant);
 
         return $"Tenant {id} is now Activated.";
     }
@@ -97,7 +97,7 @@ internal class TenantService(
 
         tenant.Deactivate();
 
-        await tenantStore.TryUpdateAsync(tenant);
+        await tenantStore.UpdateAsync(tenant);
 
         return $"Tenant {id} is now Deactivated.";
     }
@@ -108,13 +108,13 @@ internal class TenantService(
 
         tenant.SetValidity(extendedExpiryDate);
 
-        await tenantStore.TryUpdateAsync(tenant);
+        await tenantStore.UpdateAsync(tenant);
 
         return $"Tenant {id}'s Subscription Upgraded. Now Valid till {tenant.ValidUpto}.";
     }
 
     private async Task<TenantInfo> GetTenantInfoAsync(string id) =>
-        await tenantStore.TryGetAsync(id)
+        await tenantStore.GetAsync(id)
         ?? throw new NotFoundException(
             string.Format(localizer["entity.notfound"], typeof(TenantInfo).Name, id)
         );

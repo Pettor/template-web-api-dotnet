@@ -1,4 +1,4 @@
-﻿using System.Data;
+using System.Data;
 using Backend.Application.Common.Events;
 using Backend.Application.Common.Interfaces;
 using Backend.Domain.Common.Contracts;
@@ -7,21 +7,24 @@ using Backend.Infrastructure.Identity;
 using Backend.Infrastructure.Multitenancy;
 using Finbuckle.MultiTenant.Abstractions;
 using Finbuckle.MultiTenant.EntityFrameworkCore;
+using Finbuckle.MultiTenant.EntityFrameworkCore.Extensions;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using InfraTenantInfo = Backend.Infrastructure.Multitenancy.TenantInfo;
 
 namespace Backend.Infrastructure.Persistence.Context;
 
 public abstract class BaseDbContext(
-    IMultiTenantContextAccessor<TenantInfo> currentTenantAccessor,
+    IMultiTenantContextAccessor<InfraTenantInfo> currentTenantAccessor,
     DbContextOptions options,
     ICurrentUser currentUser,
     ISerializerService serializer,
     IOptions<DatabaseSettings> dbSettings,
     IEventPublisher events
 )
-    : MultiTenantIdentityDbContext<
+    : IdentityDbContext<
         ApplicationUser,
         ApplicationRole,
         string,
@@ -30,13 +33,18 @@ public abstract class BaseDbContext(
         IdentityUserLogin<string>,
         ApplicationRoleClaim,
         IdentityUserToken<string>
-    >(currentTenantAccessor, options)
+    >(options),
+        IMultiTenantDbContext
 {
     protected readonly ICurrentUser CurrentUser = currentUser;
     private readonly DatabaseSettings _dbSettings = dbSettings.Value;
-    private readonly IMultiTenantContextAccessor<TenantInfo> _currentTenantAccessor =
+    private readonly IMultiTenantContextAccessor<InfraTenantInfo> _currentTenantAccessor =
         currentTenantAccessor;
-    private TenantInfo CurrentTenant => _currentTenantAccessor.MultiTenantContext.TenantInfo!;
+    private InfraTenantInfo CurrentTenant => _currentTenantAccessor.MultiTenantContext.TenantInfo!;
+
+    public ITenantInfo? TenantInfo => _currentTenantAccessor.MultiTenantContext?.TenantInfo;
+    public TenantMismatchMode TenantMismatchMode { get; } = TenantMismatchMode.Ignore;
+    public TenantNotSetMode TenantNotSetMode { get; } = TenantNotSetMode.Overwrite;
 
     // Used by Dapper
     public IDbConnection Connection => Database.GetDbConnection();
@@ -45,6 +53,7 @@ public abstract class BaseDbContext(
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.ConfigureMultiTenant();
         modelBuilder.AppendGlobalQueryFilter<ISoftDelete>(s => s.DeletedOn == null);
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
@@ -71,6 +80,7 @@ public abstract class BaseDbContext(
         CancellationToken cancellationToken = new CancellationToken()
     )
     {
+        this.EnforceMultiTenant();
         var auditEntries = HandleAuditingBeforeSaveChanges(CurrentUser.GetUserId());
         var result = await base.SaveChangesAsync(cancellationToken);
         await HandleAuditingAfterSaveChangesAsync(auditEntries, cancellationToken);
