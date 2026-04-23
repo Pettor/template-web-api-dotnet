@@ -38,12 +38,8 @@ internal class DatabaseInitializer(
         using var scope = serviceProvider.CreateScope();
 
         // Then set current tenant so the right connectionstring is used
-        var multiTenantContextAccessor =
-            serviceProvider.GetRequiredService<IMultiTenantContextAccessor>();
-        if (multiTenantContextAccessor.MultiTenantContext is MultiTenantContext<TenantInfo> context)
-        {
-            context.TenantInfo = tenant;
-        }
+        var setter = serviceProvider.GetRequiredService<IMultiTenantContextSetter>();
+        setter.MultiTenantContext = new MultiTenantContext<TenantInfo>(tenant);
 
         // Then run the initialization in the new scope
         await scope

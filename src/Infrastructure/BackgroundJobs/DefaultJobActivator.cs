@@ -39,15 +39,8 @@ public class DefaultJobActivator(IServiceScopeFactory scopeFactory) : JobActivat
             );
             if (tenantInfo is not null)
             {
-                var multiTenantContextAccessor =
-                    _scope.ServiceProvider.GetRequiredService<IMultiTenantContextAccessor>();
-                if (
-                    multiTenantContextAccessor.MultiTenantContext
-                    is MultiTenantContext<TenantInfo> context
-                )
-                {
-                    context.TenantInfo = tenantInfo;
-                }
+                var setter = _scope.ServiceProvider.GetRequiredService<IMultiTenantContextSetter>();
+                setter.MultiTenantContext = new MultiTenantContext<TenantInfo>(tenantInfo);
             }
 
             var userId = _context.GetJobParameter<string>(QueryStringKeys.UserId);

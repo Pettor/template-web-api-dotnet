@@ -105,15 +105,7 @@ public static class HttpContextExtensions
         bool throwIfNull = true
     )
     {
-        var multiTenantContextAccessor =
-            httpContext.RequestServices.GetRequiredService<IMultiTenantContextAccessor>();
-        if (multiTenantContextAccessor.MultiTenantContext is MultiTenantContext<TenantInfo> context)
-        {
-            context.TenantInfo = tenantInfo;
-        }
-        else if (throwIfNull)
-        {
-            throw new InvalidOperationException("MultiTenantContext is not available.");
-        }
+        var setter = httpContext.RequestServices.GetRequiredService<IMultiTenantContextSetter>();
+        setter.MultiTenantContext = new MultiTenantContext<TenantInfo>(tenantInfo);
     }
 }

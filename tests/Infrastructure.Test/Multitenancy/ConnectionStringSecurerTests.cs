@@ -1,7 +1,6 @@
 ﻿using Backend.Application.Common.Persistence;
 using Infrastructure.Test.Multitenancy.Fixtures;
 using Xunit;
-using Xunit.Abstractions;
 using Xunit.Microsoft.DependencyInjection.Abstracts;
 
 namespace Infrastructure.Test.Multitenancy;

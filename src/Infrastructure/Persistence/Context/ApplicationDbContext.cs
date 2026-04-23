@@ -6,6 +6,7 @@ using Backend.Infrastructure.Persistence.Configuration;
 using Finbuckle.MultiTenant.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using TenantInfo = Backend.Infrastructure.Multitenancy.TenantInfo;
 
 namespace Backend.Infrastructure.Persistence.Context;
 
