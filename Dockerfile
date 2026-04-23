@@ -13,12 +13,12 @@ COPY ["src/Core/Shared/Shared.csproj", "src/Core/Shared/"]
 COPY ["src/Infrastructure/Infrastructure.csproj", "src/Infrastructure/"]
 COPY ["src/Migrators/Migrators.PostgreSQL/Migrators.PostgreSQL.csproj", "src/Migrators/Migrators.PostgreSQL/"]
 
-RUN dotnet restore "src/Host/Host.csproj" --disable-parallel
+RUN HUSKY=0 dotnet restore "src/Host/Host.csproj" --disable-parallel
 
 # Copy everything else and build
 COPY . .
 WORKDIR "/src/Host"
-RUN dotnet publish "Host.csproj" -c Release -o /app/publish
+RUN HUSKY=0 dotnet publish "Host.csproj" -c Release -o /app/publish
 
 # Build the runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:10.0
