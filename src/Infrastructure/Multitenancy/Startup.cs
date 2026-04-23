@@ -35,7 +35,8 @@ internal static class Startup
         return services
             .AddDbContext<TenantDbContext>(m =>
                 m.UseDatabase(dbProvider, rootConnectionString)
-                    .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning)))
+                    .ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning))
+            )
             .AddMultiTenant<TenantInfo>()
             .WithClaimStrategy(ApiClaims.Tenant)
             .WithHeaderStrategy(MultitenancyConstants.TenantIdName)
