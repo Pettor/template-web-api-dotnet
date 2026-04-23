@@ -13,22 +13,24 @@ COPY ["src/Core/Shared/Shared.csproj", "src/Core/Shared/"]
 COPY ["src/Infrastructure/Infrastructure.csproj", "src/Infrastructure/"]
 COPY ["src/Migrators/Migrators.PostgreSQL/Migrators.PostgreSQL.csproj", "src/Migrators/Migrators.PostgreSQL/"]
 
-RUN dotnet restore "src/Host/Host.csproj" --disable-parallel
+RUN HUSKY=0 dotnet restore "src/Host/Host.csproj" --disable-parallel
 
 # Copy everything else and build
 COPY . .
 WORKDIR "/src/Host"
-RUN dotnet publish "Host.csproj" -c Release -o /app/publish
+RUN HUSKY=0 dotnet publish "Host.csproj" -c Release -o /app/publish
 
 # Build the runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:10.0
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y --no-install-recommends libgssapi-krb5-2 && rm -rf /var/lib/apt/lists/*
+
 COPY --from=build /app/publish .
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-dotnet-configure-containers
-RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
+RUN useradd -u 5678 --no-create-home appuser && chown -R appuser /app
 USER appuser
 
 ENV ASPNETCORE_URLS=https://+:5050;http://+:5060
