@@ -16,6 +16,8 @@ services:
       - "ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx"
     volumes:
       - ~/.aspnet/https:/https:ro
+      - ./src/Host/Configurations/database.json:/app/Configurations/database.json:ro
+      - ./src/Host/Configurations/hangfire.json:/app/Configurations/hangfire.json:ro
     ports:
       - "5050:5050"
       - "5060:5060"
