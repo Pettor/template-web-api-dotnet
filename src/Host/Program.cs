@@ -17,7 +17,17 @@ try
     builder.AddConfigurations();
     builder.AddSerilog();
 
-    builder.Services.AddControllers();
+    builder
+        .Services.AddControllers()
+        .AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.PropertyNamingPolicy = System
+                .Text
+                .Json
+                .JsonNamingPolicy
+                .CamelCase;
+            options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+        });
     builder.Services.AddInfrastructure(builder.Configuration);
     builder.Services.AddApplication();
 
