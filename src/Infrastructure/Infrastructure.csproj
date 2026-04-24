@@ -20,13 +20,11 @@
     <PackageReference Include="MailKit" Version="4.16.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="10.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.9" />
     <PackageReference
       Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore"
       Version="10.0.5"
     />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.2.9" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.StackExchangeRedis" Version="10.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.5">
@@ -51,20 +49,11 @@
     <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="10.0.0" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="9.0.0" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.7.2" />
-    <PackageReference
-      Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers"
-      Version="0.4.421302"
-    >
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
     <PackageReference Remove="Roslynator.Analyzers" />
     <PackageReference Remove="StyleCop.Analyzers" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Application\Application.csproj" />
     <ProjectReference Include="..\Core\Domain\Domain.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="Catalog\*.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

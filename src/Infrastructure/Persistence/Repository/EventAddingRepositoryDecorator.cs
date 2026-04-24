@@ -56,12 +56,18 @@ public class EventAddingRepositoryDecorator<T>(IRepository<T> decorated) : IRepo
         return decorated.DeleteRangeAsync(entities, cancellationToken);
     }
 
-    public Task<int> DeleteRangeAsync(
+    public async Task<int> DeleteRangeAsync(
         ISpecification<T> specification,
         CancellationToken cancellationToken = new CancellationToken()
     )
     {
-        throw new NotImplementedException();
+        var entities = await decorated.ListAsync(specification, cancellationToken);
+        foreach (var entity in entities)
+        {
+            entity.DomainEvents.Add(EntityDeletedEvent.WithEntity(entity));
+        }
+
+        return await decorated.DeleteRangeAsync(entities, cancellationToken);
     }
 
     // The rest of the methods are simply forwarded.

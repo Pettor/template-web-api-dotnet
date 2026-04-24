@@ -4,6 +4,7 @@ param(
      [string]$commitMessage
  )
 
+$currentDirectory = Get-Location
 $rootDirectory = git rev-parse --show-toplevel
 $hostDirectory = $rootDirectory + '/src/Host'
 Set-Location -Path $hostDirectory

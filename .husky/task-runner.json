@@ -3,6 +3,7 @@
   "tasks": [
     {
       "name": "Run csharpier",
+      "group": "csharpier",
       "command": "csharpier",
       "args": [
         "format",
