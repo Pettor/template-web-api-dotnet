@@ -46,7 +46,12 @@ internal static class Startup
             )
             .WithEFCoreStore<TenantDbContext, TenantInfo>()
             .Services.AddScoped<ITenantService, TenantService>()
-            .AddScoped<ITenantInfo, TenantInfo>();
+            .AddScoped<ITenantInfo>(sp =>
+                sp.GetService<
+                    IMultiTenantContextAccessor<TenantInfo>
+                >()?.MultiTenantContext?.TenantInfo
+                ?? new TenantInfo()
+            );
     }
 
     internal static IApplicationBuilder UseMultiTenancy(this IApplicationBuilder app) =>
