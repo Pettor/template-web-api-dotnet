@@ -44,19 +44,19 @@ Never add references that violate this direction (e.g., Domain referencing Appli
 | Category | Technology |
 |---|---|
 | Framework | .NET 10.0, ASP.NET Core, C# 14 |
-| ORM | Entity Framework Core 9 + Npgsql |
+| ORM | Entity Framework Core 10 + Npgsql |
 | Database | PostgreSQL 15+ |
 | CQRS | MediatR 11 |
 | Validation | FluentValidation 12 |
-| Mapping | Mapster 7 |
+| Mapping | Mapster 10 |
 | Auth | ASP.NET Core Identity, JWT Bearer, Azure AD (Microsoft.Identity.Web) |
-| Multitenancy | Finbuckle.MultiTenant 9 |
+| Multitenancy | Finbuckle.MultiTenant 10 |
 | Background Jobs | Hangfire 1.8 + Hangfire.PostgreSql |
 | Caching | Redis (StackExchangeRedis) |
 | Real-time | SignalR |
 | API Docs | NSwag 14 (OpenAPI/Swagger) |
-| Logging | Serilog 9 |
-| Testing | xUnit 2.9, FluentAssertions 8, coverlet |
+| Logging | Serilog (Extensions 10) |
+| Testing | xUnit v3 3.x, FluentAssertions 8, coverlet |
 | Code Style | StyleCop.Analyzers, Roslynator, csharpier |
 | Git Hooks | Husky.Net |
 

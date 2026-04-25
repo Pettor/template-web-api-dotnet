@@ -67,4 +67,4 @@ from the root project folder and if everything builds fine, your api should be a
 
 ---
 
-**!! There are more docker-compose examples under the deployments folder !!**
+For advanced deployment scenarios, consider adding environment-specific `docker-compose.override.yml` files alongside the root `docker-compose.yml`.
