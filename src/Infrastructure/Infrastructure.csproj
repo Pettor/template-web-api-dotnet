@@ -10,14 +10,14 @@
   <ItemGroup>
     <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="9.3.1" />
     <PackageReference Include="ClosedXML" Version="0.105.0" />
-    <PackageReference Include="Finbuckle.MultiTenant.AspNetCore" Version="10.0.8" />
-    <PackageReference Include="Finbuckle.MultiTenant.EntityFrameworkCore" Version="10.0.8" />
+    <PackageReference Include="Finbuckle.MultiTenant.AspNetCore" Version="10.1.0" />
+    <PackageReference Include="Finbuckle.MultiTenant.EntityFrameworkCore" Version="10.1.0" />
     <PackageReference Include="Hangfire" Version="1.8.23" />
     <PackageReference Include="Hangfire.Console.Extensions" Version="2.1.0" />
     <PackageReference Include="Hangfire.MySqlStorage" Version="2.0.3" />
     <PackageReference Include="Hangfire.PostgreSql" Version="1.21.1" />
     <PackageReference Include="Hangfire.Dashboard.Basic.Authentication" Version="8.0.0" />
-    <PackageReference Include="MailKit" Version="4.16.0" />
+    <PackageReference Include="MailKit" Version="4.17.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="10.0.8" />
     <PackageReference
@@ -33,8 +33,8 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="10.0.8" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="10.0.8" />
-    <PackageReference Include="Microsoft.Identity.Web" Version="4.9.0" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="4.10.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.2" />
     <PackageReference Include="NSwag.AspNetCore" Version="14.7.1" />
     <PackageReference Include="RazorEngineCore" Version="2026.1.1" />
     <PackageReference Include="Serilog.Enrichers.Process" Version="3.0.0" />
