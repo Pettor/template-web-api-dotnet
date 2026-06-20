@@ -13,7 +13,7 @@
     <PackageReference Include="Finbuckle.MultiTenant.AspNetCore" Version="10.1.1" />
     <PackageReference Include="Finbuckle.MultiTenant.EntityFrameworkCore" Version="10.1.1" />
     <PackageReference Include="Hangfire" Version="1.8.23" />
-    <PackageReference Include="Hangfire.Console.Extensions" Version="2.1.0" />
+    <PackageReference Include="Hangfire.Console.Extensions" Version="2.1.1" />
     <PackageReference Include="Hangfire.MySqlStorage" Version="2.0.3" />
     <PackageReference Include="Hangfire.PostgreSql" Version="1.21.1" />
     <PackageReference Include="Hangfire.Dashboard.Basic.Authentication" Version="8.0.0" />
@@ -42,7 +42,7 @@
     <PackageReference Include="Serilog.Expressions" Version="5.0.0" />
     <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.1" />
     <PackageReference Include="Serilog.Extensions.Hosting" Version="10.0.0" />
-    <PackageReference Include="Serilog.Settings.Configuration" Version="10.0.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="10.0.1" />
     <PackageReference Include="Serilog.Sinks.Async" Version="2.1.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="6.1.1" />
     <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="10.0.0" />
