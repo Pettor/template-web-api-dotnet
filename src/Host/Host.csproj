@@ -5,7 +5,7 @@
     <AssemblyVersion>0.7.0</AssemblyVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Hangfire.Console.Extensions.Serilog" Version="2.1.1" />
+    <PackageReference Include="Hangfire.Console.Extensions.Serilog" Version="2.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.9">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
