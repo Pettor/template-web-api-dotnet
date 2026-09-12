@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:11.0 AS build
 WORKDIR /
 
 # Copy csproj and restore as distinct layers
@@ -21,7 +21,7 @@ WORKDIR "/src/Host"
 RUN HUSKY=0 dotnet publish "Host.csproj" -c Release -o /app/publish
 
 # Build the runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:10.0
+FROM mcr.microsoft.com/dotnet/aspnet:11.0
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends libgssapi-krb5-2 && rm -rf /var/lib/apt/lists/*
